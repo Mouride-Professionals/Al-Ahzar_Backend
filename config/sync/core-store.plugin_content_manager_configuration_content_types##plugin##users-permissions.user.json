@@ -147,6 +147,34 @@
           "sortable": true
         }
       },
+      "firstname": {
+        "edit": {
+          "label": "firstname",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "firstname",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "lastname": {
+        "edit": {
+          "label": "lastname",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "lastname",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -177,13 +205,17 @@
       }
     },
     "layouts": {
-      "list": [
-        "id",
-        "username",
-        "email",
-        "confirmed"
-      ],
       "edit": [
+        [
+          {
+            "name": "firstname",
+            "size": 6
+          },
+          {
+            "name": "lastname",
+            "size": 6
+          }
+        ],
         [
           {
             "name": "username",
@@ -214,6 +246,12 @@
             "size": 6
           }
         ]
+      ],
+      "list": [
+        "id",
+        "username",
+        "email",
+        "confirmed"
       ]
     }
   },

@@ -86,7 +86,11 @@
       "subject": "api::school.school",
       "properties": {
         "fields": [
-          "test"
+          "name",
+          "type",
+          "classes",
+          "etablissement",
+          "etablissements"
         ]
       },
       "conditions": []
@@ -108,7 +112,11 @@
       "subject": "api::school.school",
       "properties": {
         "fields": [
-          "test"
+          "name",
+          "type",
+          "classes",
+          "etablissement",
+          "etablissements"
         ]
       },
       "conditions": []
@@ -118,7 +126,11 @@
       "subject": "api::school.school",
       "properties": {
         "fields": [
-          "test"
+          "name",
+          "type",
+          "classes",
+          "etablissement",
+          "etablissements"
         ]
       },
       "conditions": []
@@ -358,7 +370,9 @@
           "confirmationToken",
           "confirmed",
           "blocked",
-          "role"
+          "role",
+          "firstname",
+          "lastname"
         ]
       },
       "conditions": []
@@ -382,7 +396,9 @@
           "confirmationToken",
           "confirmed",
           "blocked",
-          "role"
+          "role",
+          "firstname",
+          "lastname"
         ]
       },
       "conditions": []
@@ -400,7 +416,9 @@
           "confirmationToken",
           "confirmed",
           "blocked",
-          "role"
+          "role",
+          "firstname",
+          "lastname"
         ]
       },
       "conditions": []

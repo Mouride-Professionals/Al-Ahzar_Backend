@@ -7,8 +7,8 @@
       "filterable": true,
       "searchable": true,
       "pageSize": 10,
-      "mainField": "test",
-      "defaultSortBy": "test",
+      "mainField": "name",
+      "defaultSortBy": "name",
       "defaultSortOrder": "ASC"
     },
     "metadatas": {
@@ -20,18 +20,77 @@
           "sortable": true
         }
       },
-      "test": {
+      "name": {
         "edit": {
-          "label": "test",
+          "label": "name",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "test",
+          "label": "name",
           "searchable": true,
           "sortable": true
+        }
+      },
+      "type": {
+        "edit": {
+          "label": "type",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "type",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "classes": {
+        "edit": {
+          "label": "classes",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "test"
+        },
+        "list": {
+          "label": "classes",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "etablissement": {
+        "edit": {
+          "label": "etablissement",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "name"
+        },
+        "list": {
+          "label": "etablissement",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "etablissements": {
+        "edit": {
+          "label": "etablissements",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "name"
+        },
+        "list": {
+          "label": "etablissements",
+          "searchable": false,
+          "sortable": false
         }
       },
       "createdAt": {
@@ -64,19 +123,35 @@
       }
     },
     "layouts": {
-      "list": [
-        "id",
-        "test",
-        "createdAt",
-        "updatedAt"
-      ],
       "edit": [
         [
           {
-            "name": "test",
+            "name": "name",
+            "size": 6
+          },
+          {
+            "name": "type",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "classes",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "etablissements",
             "size": 6
           }
         ]
+      ],
+      "list": [
+        "id",
+        "createdAt",
+        "updatedAt",
+        "name"
       ]
     }
   },
