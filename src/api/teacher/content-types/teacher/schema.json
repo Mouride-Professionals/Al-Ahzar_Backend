@@ -4,7 +4,8 @@
   "info": {
     "singularName": "teacher",
     "pluralName": "teachers",
-    "displayName": "Teacher"
+    "displayName": "Teacher",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true

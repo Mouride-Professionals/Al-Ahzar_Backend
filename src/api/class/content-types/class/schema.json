@@ -4,7 +4,7 @@
   "info": {
     "singularName": "class",
     "pluralName": "classes",
-    "displayName": "Students",
+    "displayName": "Classe",
     "description": ""
   },
   "options": {
@@ -12,41 +12,28 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "firstname": {
-      "type": "string",
-      "required": true
-    },
-    "lastname": {
-      "type": "string",
-      "required": true
-    },
-    "gender": {
+    "cycle": {
       "type": "enumeration",
       "enum": [
-        "Homme",
-        "Femme"
+        "primaire",
+        "collège",
+        "lycée"
       ],
       "required": true
     },
-    "dateOfBirth": {
-      "type": "date",
-      "required": true
-    },
-    "birthPlace": {
+    "level": {
       "type": "string",
       "required": true
     },
-    "tutorFirstname": {
+    "name": {
       "type": "string",
       "required": true
     },
-    "tutorLastname": {
-      "type": "string",
-      "required": true
-    },
-    "tutorPhoneNumber": {
-      "type": "string",
-      "required": true
+    "students": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::student.student",
+      "mappedBy": "class"
     }
   }
 }
