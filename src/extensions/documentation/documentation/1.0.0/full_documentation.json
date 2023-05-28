@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2023-05-28T02:38:36.210Z"
+    "x-generation-date": "2023-05-28T08:29:12.220Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -88,7 +88,6 @@
           "data": {
             "required": [
               "cycle",
-              "level",
               "name"
             ],
             "type": "object",
@@ -97,12 +96,9 @@
                 "type": "string",
                 "enum": [
                   "primaire",
-                  "collège",
-                  "lycée"
+                  "secondaire 1er cycle",
+                  "secondaire 2eme cycle"
                 ]
-              },
-              "level": {
-                "type": "string"
               },
               "name": {
                 "type": "string"
@@ -131,6 +127,34 @@
                   ],
                   "example": "string or id"
                 }
+              },
+              "level": {
+                "type": "string",
+                "enum": [
+                  "CI",
+                  "CP",
+                  "CE1",
+                  "CE2",
+                  "CM1",
+                  "CM2",
+                  "a 6eme",
+                  "a 5eme",
+                  "a 4eme",
+                  "a 3eme",
+                  "a 2nd",
+                  "a 1ere",
+                  "Terminale"
+                ]
+              },
+              "letter": {
+                "type": "string",
+                "enum": [
+                  "A",
+                  "B",
+                  "C",
+                  "D",
+                  "E"
+                ]
               }
             }
           }
@@ -186,7 +210,6 @@
         "type": "object",
         "required": [
           "cycle",
-          "level",
           "name"
         ],
         "properties": {
@@ -194,12 +217,9 @@
             "type": "string",
             "enum": [
               "primaire",
-              "collège",
-              "lycée"
+              "secondaire 1er cycle",
+              "secondaire 2eme cycle"
             ]
-          },
-          "level": {
-            "type": "string"
           },
           "name": {
             "type": "string"
@@ -245,12 +265,9 @@
                                       "type": "string",
                                       "enum": [
                                         "primaire",
-                                        "collège",
-                                        "lycée"
+                                        "secondaire 1er cycle",
+                                        "secondaire 2eme cycle"
                                       ]
-                                    },
-                                    "level": {
-                                      "type": "string"
                                     },
                                     "name": {
                                       "type": "string"
@@ -632,6 +649,34 @@
                                         }
                                       }
                                     },
+                                    "level": {
+                                      "type": "string",
+                                      "enum": [
+                                        "CI",
+                                        "CP",
+                                        "CE1",
+                                        "CE2",
+                                        "CM1",
+                                        "CM2",
+                                        "a 6eme",
+                                        "a 5eme",
+                                        "a 4eme",
+                                        "a 3eme",
+                                        "a 2nd",
+                                        "a 1ere",
+                                        "Terminale"
+                                      ]
+                                    },
+                                    "letter": {
+                                      "type": "string",
+                                      "enum": [
+                                        "A",
+                                        "B",
+                                        "C",
+                                        "D",
+                                        "E"
+                                      ]
+                                    },
                                     "createdAt": {
                                       "type": "string",
                                       "format": "date-time"
@@ -789,6 +834,34 @@
                 }
               }
             }
+          },
+          "level": {
+            "type": "string",
+            "enum": [
+              "CI",
+              "CP",
+              "CE1",
+              "CE2",
+              "CM1",
+              "CM2",
+              "a 6eme",
+              "a 5eme",
+              "a 4eme",
+              "a 3eme",
+              "a 2nd",
+              "a 1ere",
+              "Terminale"
+            ]
+          },
+          "letter": {
+            "type": "string",
+            "enum": [
+              "A",
+              "B",
+              "C",
+              "D",
+              "E"
+            ]
           },
           "createdAt": {
             "type": "string",
@@ -1408,12 +1481,9 @@
                           "type": "string",
                           "enum": [
                             "primaire",
-                            "collège",
-                            "lycée"
+                            "secondaire 1er cycle",
+                            "secondaire 2eme cycle"
                           ]
-                        },
-                        "level": {
-                          "type": "string"
                         },
                         "name": {
                           "type": "string"
@@ -1910,6 +1980,34 @@
                             }
                           }
                         },
+                        "level": {
+                          "type": "string",
+                          "enum": [
+                            "CI",
+                            "CP",
+                            "CE1",
+                            "CE2",
+                            "CM1",
+                            "CM2",
+                            "a 6eme",
+                            "a 5eme",
+                            "a 4eme",
+                            "a 3eme",
+                            "a 2nd",
+                            "a 1ere",
+                            "Terminale"
+                          ]
+                        },
+                        "letter": {
+                          "type": "string",
+                          "enum": [
+                            "A",
+                            "B",
+                            "C",
+                            "D",
+                            "E"
+                          ]
+                        },
                         "createdAt": {
                           "type": "string",
                           "format": "date-time"
@@ -2233,12 +2331,9 @@
                         "type": "string",
                         "enum": [
                           "primaire",
-                          "collège",
-                          "lycée"
+                          "secondaire 1er cycle",
+                          "secondaire 2eme cycle"
                         ]
-                      },
-                      "level": {
-                        "type": "string"
                       },
                       "name": {
                         "type": "string"
@@ -2734,6 +2829,34 @@
                             }
                           }
                         }
+                      },
+                      "level": {
+                        "type": "string",
+                        "enum": [
+                          "CI",
+                          "CP",
+                          "CE1",
+                          "CE2",
+                          "CM1",
+                          "CM2",
+                          "a 6eme",
+                          "a 5eme",
+                          "a 4eme",
+                          "a 3eme",
+                          "a 2nd",
+                          "a 1ere",
+                          "Terminale"
+                        ]
+                      },
+                      "letter": {
+                        "type": "string",
+                        "enum": [
+                          "A",
+                          "B",
+                          "C",
+                          "D",
+                          "E"
+                        ]
                       },
                       "createdAt": {
                         "type": "string",

@@ -16,18 +16,15 @@
       "type": "enumeration",
       "enum": [
         "primaire",
-        "collège",
-        "lycée"
+        "secondaire 1er cycle",
+        "secondaire 2eme cycle"
       ],
-      "required": true
-    },
-    "level": {
-      "type": "string",
       "required": true
     },
     "name": {
       "type": "string",
-      "required": true
+      "required": true,
+      "unique": true
     },
     "etablissement": {
       "type": "relation",
@@ -40,6 +37,34 @@
       "relation": "oneToMany",
       "target": "api::student.student",
       "mappedBy": "classe"
+    },
+    "level": {
+      "type": "enumeration",
+      "enum": [
+        "CI",
+        "CP",
+        "CE1",
+        "CE2",
+        "CM1",
+        "CM2",
+        "a 6eme",
+        "a 5eme",
+        "a 4eme",
+        "a 3eme",
+        "a 2nd",
+        "a 1ere",
+        "Terminale"
+      ]
+    },
+    "letter": {
+      "type": "enumeration",
+      "enum": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ]
     }
   }
 }
