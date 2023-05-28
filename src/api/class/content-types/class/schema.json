@@ -29,11 +29,17 @@
       "type": "string",
       "required": true
     },
-    "students": {
+    "etablissement": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::school.school",
+      "inversedBy": "classes"
+    },
+    "eleves": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::student.student",
-      "mappedBy": "class"
+      "mappedBy": "classe"
     }
   }
 }

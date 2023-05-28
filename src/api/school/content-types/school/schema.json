@@ -26,7 +26,8 @@
     "classes": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::class.class"
+      "target": "api::class.class",
+      "mappedBy": "etablissement"
     },
     "etablissement": {
       "type": "relation",
