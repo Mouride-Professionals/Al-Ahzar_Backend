@@ -1,14 +1,14 @@
 {
-  "key": "plugin_content_manager_configuration_content_types::api::school.school",
+  "key": "plugin_content_manager_configuration_content_types::api::subject.subject",
   "value": {
-    "uid": "api::school.school",
+    "uid": "api::subject.subject",
     "settings": {
       "bulkable": true,
       "filterable": true,
       "searchable": true,
       "pageSize": 10,
-      "mainField": "name",
-      "defaultSortBy": "name",
+      "mainField": "subjectname",
+      "defaultSortBy": "subjectname",
       "defaultSortOrder": "ASC"
     },
     "metadatas": {
@@ -20,77 +20,60 @@
           "sortable": true
         }
       },
-      "name": {
+      "subjectname": {
         "edit": {
-          "label": "name",
+          "label": "subjectname",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "name",
+          "label": "subjectname",
           "searchable": true,
           "sortable": true
         }
       },
-      "type": {
+      "hourlyQuantity": {
         "edit": {
-          "label": "type",
+          "label": "hourlyQuantity",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "type",
+          "label": "hourlyQuantity",
           "searchable": true,
           "sortable": true
         }
       },
-      "classes": {
+      "hourlyRate": {
         "edit": {
-          "label": "classes",
+          "label": "hourlyRate",
           "description": "",
           "placeholder": "",
           "visible": true,
-          "editable": true,
-          "mainField": "level"
+          "editable": true
         },
         "list": {
-          "label": "classes",
-          "searchable": false,
-          "sortable": false
-        }
-      },
-      "etablissement": {
-        "edit": {
-          "label": "etablissement",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true,
-          "mainField": "name"
-        },
-        "list": {
-          "label": "etablissement",
+          "label": "hourlyRate",
           "searchable": true,
           "sortable": true
         }
       },
-      "etablissements": {
+      "salaireStatus": {
         "edit": {
-          "label": "etablissements",
+          "label": "salaireStatus",
           "description": "",
           "placeholder": "",
           "visible": true,
-          "editable": true,
-          "mainField": "name"
+          "editable": true
         },
         "list": {
-          "label": "etablissements",
-          "searchable": false,
-          "sortable": false
+          "label": "salaireStatus",
+          "searchable": true,
+          "sortable": true
         }
       },
       "createdAt": {
@@ -125,34 +108,28 @@
     "layouts": {
       "list": [
         "id",
-        "createdAt",
-        "updatedAt",
-        "name"
+        "subjectname",
+        "hourlyQuantity",
+        "hourlyRate"
       ],
       "edit": [
         [
           {
-            "name": "name",
+            "name": "subjectname",
             "size": 6
           },
           {
-            "name": "type",
-            "size": 6
+            "name": "hourlyQuantity",
+            "size": 4
           }
         ],
         [
           {
-            "name": "classes",
-            "size": 6
+            "name": "hourlyRate",
+            "size": 4
           },
           {
-            "name": "etablissement",
-            "size": 6
-          }
-        ],
-        [
-          {
-            "name": "etablissements",
+            "name": "salaireStatus",
             "size": 6
           }
         ]

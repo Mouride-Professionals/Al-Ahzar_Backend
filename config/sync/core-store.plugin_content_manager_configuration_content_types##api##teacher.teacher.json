@@ -1,14 +1,14 @@
 {
-  "key": "plugin_content_manager_configuration_content_types::api::school.school",
+  "key": "plugin_content_manager_configuration_content_types::api::teacher.teacher",
   "value": {
-    "uid": "api::school.school",
+    "uid": "api::teacher.teacher",
     "settings": {
       "bulkable": true,
       "filterable": true,
       "searchable": true,
       "pageSize": 10,
-      "mainField": "name",
-      "defaultSortBy": "name",
+      "mainField": "firstname",
+      "defaultSortBy": "firstname",
       "defaultSortOrder": "ASC"
     },
     "metadatas": {
@@ -20,77 +20,46 @@
           "sortable": true
         }
       },
-      "name": {
+      "firstname": {
         "edit": {
-          "label": "name",
+          "label": "firstname",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "name",
+          "label": "firstname",
           "searchable": true,
           "sortable": true
         }
       },
-      "type": {
+      "lastname": {
         "edit": {
-          "label": "type",
+          "label": "lastname",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "type",
+          "label": "lastname",
           "searchable": true,
           "sortable": true
         }
       },
-      "classes": {
+      "phoneNumber": {
         "edit": {
-          "label": "classes",
+          "label": "phoneNumber",
           "description": "",
           "placeholder": "",
           "visible": true,
-          "editable": true,
-          "mainField": "level"
+          "editable": true
         },
         "list": {
-          "label": "classes",
-          "searchable": false,
-          "sortable": false
-        }
-      },
-      "etablissement": {
-        "edit": {
-          "label": "etablissement",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true,
-          "mainField": "name"
-        },
-        "list": {
-          "label": "etablissement",
+          "label": "phoneNumber",
           "searchable": true,
           "sortable": true
-        }
-      },
-      "etablissements": {
-        "edit": {
-          "label": "etablissements",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true,
-          "mainField": "name"
-        },
-        "list": {
-          "label": "etablissements",
-          "searchable": false,
-          "sortable": false
         }
       },
       "createdAt": {
@@ -125,34 +94,24 @@
     "layouts": {
       "list": [
         "id",
-        "createdAt",
-        "updatedAt",
-        "name"
+        "firstname",
+        "lastname",
+        "phoneNumber"
       ],
       "edit": [
         [
           {
-            "name": "name",
+            "name": "firstname",
             "size": 6
           },
           {
-            "name": "type",
+            "name": "lastname",
             "size": 6
           }
         ],
         [
           {
-            "name": "classes",
-            "size": 6
-          },
-          {
-            "name": "etablissement",
-            "size": 6
-          }
-        ],
-        [
-          {
-            "name": "etablissements",
+            "name": "phoneNumber",
             "size": 6
           }
         ]

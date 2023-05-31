@@ -7,8 +7,8 @@
       "filterable": true,
       "searchable": true,
       "pageSize": 10,
-      "mainField": "test",
-      "defaultSortBy": "test",
+      "mainField": "id",
+      "defaultSortBy": "id",
       "defaultSortOrder": "ASC"
     },
     "metadatas": {
@@ -20,16 +20,30 @@
           "sortable": true
         }
       },
-      "test": {
+      "mounthlyPayment": {
         "edit": {
-          "label": "test",
+          "label": "mounthlyPayment",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "test",
+          "label": "mounthlyPayment",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "status": {
+        "edit": {
+          "label": "status",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "status",
           "searchable": true,
           "sortable": true
         }
@@ -66,14 +80,18 @@
     "layouts": {
       "list": [
         "id",
-        "test",
         "createdAt",
-        "updatedAt"
+        "updatedAt",
+        "mounthlyPayment"
       ],
       "edit": [
         [
           {
-            "name": "test",
+            "name": "mounthlyPayment",
+            "size": 4
+          },
+          {
+            "name": "status",
             "size": 6
           }
         ]
