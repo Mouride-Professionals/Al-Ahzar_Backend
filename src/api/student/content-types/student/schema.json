@@ -4,7 +4,7 @@
   "info": {
     "singularName": "student",
     "pluralName": "students",
-    "displayName": "Elèves",
+    "displayName": "Eleve",
     "description": ""
   },
   "options": {
@@ -12,8 +12,47 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "test": {
-      "type": "string"
+    "firstname": {
+      "type": "string",
+      "required": true
+    },
+    "lastname": {
+      "type": "string",
+      "required": true
+    },
+    "gender": {
+      "type": "enumeration",
+      "enum": [
+        "Homme",
+        "Femme"
+      ],
+      "required": true
+    },
+    "dateOfBirth": {
+      "type": "date",
+      "required": true
+    },
+    "birthPlace": {
+      "type": "string",
+      "required": true
+    },
+    "tutorFirstname": {
+      "type": "string",
+      "required": true
+    },
+    "tutorLastname": {
+      "type": "string",
+      "required": true
+    },
+    "tutorPhoneNumber": {
+      "type": "string",
+      "required": true
+    },
+    "classe": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::class.class",
+      "inversedBy": "eleves"
     }
   }
 }

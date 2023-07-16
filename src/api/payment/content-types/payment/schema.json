@@ -4,15 +4,24 @@
   "info": {
     "singularName": "payment",
     "pluralName": "payments",
-    "displayName": "Paiement"
+    "displayName": "PaiementStudent",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "test": {
-      "type": "string"
+    "mounthlyPayment": {
+      "type": "date"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "Impayé",
+        "Payé"
+      ],
+      "required": true
     }
   }
 }
