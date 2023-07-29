@@ -42,6 +42,14 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "Ecole",
+        "Annexe",
+        "Centre"
+      ]
     }
   }
 }
