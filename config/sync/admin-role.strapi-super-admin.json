@@ -109,7 +109,8 @@
           "etablissement",
           "etablissements",
           "cashier",
-          "responsible"
+          "responsible",
+          "type"
         ]
       },
       "conditions": []
@@ -136,7 +137,8 @@
           "etablissement",
           "etablissements",
           "cashier",
-          "responsible"
+          "responsible",
+          "type"
         ]
       },
       "conditions": []
@@ -151,7 +153,8 @@
           "etablissement",
           "etablissements",
           "cashier",
-          "responsible"
+          "responsible",
+          "type"
         ]
       },
       "conditions": []

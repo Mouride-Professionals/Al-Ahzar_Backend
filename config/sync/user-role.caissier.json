@@ -1,6 +1,31 @@
 {
   "name": "Caissier",
-  "description": "role caissier",
+  "description": "Caisser",
   "type": "caissier",
-  "permissions": []
+  "permissions": [
+    {
+      "action": "api::class.class.find"
+    },
+    {
+      "action": "api::class.class.findOne"
+    },
+    {
+      "action": "api::school.school.find"
+    },
+    {
+      "action": "api::student.student.find"
+    },
+    {
+      "action": "api::student.student.findOne"
+    },
+    {
+      "action": "api::teacher.teacher.find"
+    },
+    {
+      "action": "plugin::users-permissions.role.find"
+    },
+    {
+      "action": "plugin::users-permissions.user.me"
+    }
+  ]
 }

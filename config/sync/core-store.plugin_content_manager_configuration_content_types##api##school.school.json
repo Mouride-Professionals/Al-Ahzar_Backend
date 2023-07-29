@@ -86,7 +86,7 @@
           "placeholder": "",
           "visible": true,
           "editable": true,
-          "mainField": "firstname"
+          "mainField": "username"
         },
         "list": {
           "label": "cashier",
@@ -101,10 +101,24 @@
           "placeholder": "",
           "visible": true,
           "editable": true,
-          "mainField": "firstname"
+          "mainField": "username"
         },
         "list": {
           "label": "responsible",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "type": {
+        "edit": {
+          "label": "type",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "type",
           "searchable": true,
           "sortable": true
         }
@@ -150,6 +164,10 @@
           {
             "name": "name",
             "size": 6
+          },
+          {
+            "name": "type",
+            "size": 6
           }
         ],
         [
@@ -166,9 +184,7 @@
           {
             "name": "etablissements",
             "size": 6
-          }
-        ],
-        [
+          },
           {
             "name": "cashier",
             "size": 6

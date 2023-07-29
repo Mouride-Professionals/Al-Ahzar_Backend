@@ -139,7 +139,7 @@
           "placeholder": "",
           "visible": true,
           "editable": true,
-          "mainField": "name"
+          "mainField": "level"
         },
         "list": {
           "label": "classe",
@@ -221,9 +221,9 @@
     "layouts": {
       "list": [
         "id",
-        "firstname",
-        "lastname",
-        "gender"
+        "createdAt",
+        "updatedAt",
+        "firstname"
       ],
       "edit": [
         [

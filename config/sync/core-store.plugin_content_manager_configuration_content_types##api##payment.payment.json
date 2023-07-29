@@ -80,19 +80,19 @@
     "layouts": {
       "list": [
         "id",
-        "monthlyPayment",
-        "status",
-        "createdAt"
+        "createdAt",
+        "updatedAt",
+        "monthlyPayment"
       ],
       "edit": [
         [
           {
-            "name": "monthlyPayment",
-            "size": 4
-          },
-          {
             "name": "status",
             "size": 6
+          },
+          {
+            "name": "monthlyPayment",
+            "size": 4
           }
         ]
       ]

@@ -7,8 +7,8 @@
       "filterable": true,
       "searchable": true,
       "pageSize": 10,
-      "mainField": "name",
-      "defaultSortBy": "name",
+      "mainField": "level",
+      "defaultSortBy": "level",
       "defaultSortOrder": "ASC"
     },
     "metadatas": {
@@ -139,8 +139,9 @@
       "list": [
         "id",
         "cycle",
-        "name",
-        "etablissement"
+        "level",
+        "letter",
+        "createdAt"
       ],
       "edit": [
         [
@@ -149,27 +150,27 @@
             "size": 6
           },
           {
-            "name": "name",
+            "name": "level",
             "size": 6
           }
         ],
         [
+          {
+            "name": "letter",
+            "size": 6
+          },
           {
             "name": "etablissement",
             "size": 6
-          },
-          {
-            "name": "eleves",
-            "size": 6
           }
         ],
         [
           {
-            "name": "level",
+            "name": "eleves",
             "size": 6
           },
           {
-            "name": "letter",
+            "name": "name",
             "size": 6
           }
         ]
