@@ -7,8 +7,8 @@
       "filterable": true,
       "searchable": true,
       "pageSize": 10,
-      "mainField": "test",
-      "defaultSortBy": "test",
+      "mainField": "level",
+      "defaultSortBy": "level",
       "defaultSortOrder": "ASC"
     },
     "metadatas": {
@@ -20,16 +20,74 @@
           "sortable": true
         }
       },
-      "test": {
+      "cycle": {
         "edit": {
-          "label": "test",
+          "label": "cycle",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "test",
+          "label": "cycle",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "letter": {
+        "edit": {
+          "label": "letter",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "letter",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "etablissement": {
+        "edit": {
+          "label": "etablissement",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "name"
+        },
+        "list": {
+          "label": "etablissement",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "eleves": {
+        "edit": {
+          "label": "eleves",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "firstname"
+        },
+        "list": {
+          "label": "eleves",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "level": {
+        "edit": {
+          "label": "level",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "level",
           "searchable": true,
           "sortable": true
         }
@@ -66,14 +124,35 @@
     "layouts": {
       "list": [
         "id",
-        "test",
-        "createdAt",
-        "updatedAt"
+        "cycle",
+        "level",
+        "letter",
+        "createdAt"
       ],
       "edit": [
         [
           {
-            "name": "test",
+            "name": "cycle",
+            "size": 6
+          },
+          {
+            "name": "level",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "letter",
+            "size": 6
+          },
+          {
+            "name": "etablissement",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "eleves",
             "size": 6
           }
         ]

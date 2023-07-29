@@ -1,0 +1,28 @@
+{
+  "name": "Directeur etablissment",
+  "description": "Directeur etablissment",
+  "type": "directeur_etablissment",
+  "permissions": [
+    {
+      "action": "api::class.class.create"
+    },
+    {
+      "action": "api::class.class.find"
+    },
+    {
+      "action": "api::class.class.findOne"
+    },
+    {
+      "action": "api::payment.payment.find"
+    },
+    {
+      "action": "api::payment.payment.findOne"
+    },
+    {
+      "action": "api::school.school.find"
+    },
+    {
+      "action": "api::school.school.findOne"
+    }
+  ]
+}

@@ -8,7 +8,11 @@
       "subject": "api::class.class",
       "properties": {
         "fields": [
-          "test"
+          "cycle",
+          "letter",
+          "etablissement",
+          "eleves",
+          "level"
         ]
       },
       "conditions": []
@@ -24,7 +28,11 @@
       "subject": "api::class.class",
       "properties": {
         "fields": [
-          "test"
+          "cycle",
+          "letter",
+          "etablissement",
+          "eleves",
+          "level"
         ]
       },
       "conditions": []
@@ -34,7 +42,11 @@
       "subject": "api::class.class",
       "properties": {
         "fields": [
-          "test"
+          "cycle",
+          "letter",
+          "etablissement",
+          "eleves",
+          "level"
         ]
       },
       "conditions": []
@@ -44,7 +56,8 @@
       "subject": "api::payment.payment",
       "properties": {
         "fields": [
-          "test"
+          "monthlyPayment",
+          "status"
         ]
       },
       "conditions": []
@@ -66,7 +79,8 @@
       "subject": "api::payment.payment",
       "properties": {
         "fields": [
-          "test"
+          "monthlyPayment",
+          "status"
         ]
       },
       "conditions": []
@@ -76,7 +90,8 @@
       "subject": "api::payment.payment",
       "properties": {
         "fields": [
-          "test"
+          "monthlyPayment",
+          "status"
         ]
       },
       "conditions": []
@@ -140,7 +155,15 @@
       "subject": "api::student.student",
       "properties": {
         "fields": [
-          "test"
+          "firstname",
+          "lastname",
+          "gender",
+          "dateOfBirth",
+          "birthPlace",
+          "tutorFirstname",
+          "tutorLastname",
+          "tutorPhoneNumber",
+          "classe"
         ]
       },
       "conditions": []
@@ -156,7 +179,15 @@
       "subject": "api::student.student",
       "properties": {
         "fields": [
-          "test"
+          "firstname",
+          "lastname",
+          "gender",
+          "dateOfBirth",
+          "birthPlace",
+          "tutorFirstname",
+          "tutorLastname",
+          "tutorPhoneNumber",
+          "classe"
         ]
       },
       "conditions": []
@@ -166,7 +197,114 @@
       "subject": "api::student.student",
       "properties": {
         "fields": [
-          "test"
+          "firstname",
+          "lastname",
+          "gender",
+          "dateOfBirth",
+          "birthPlace",
+          "tutorFirstname",
+          "tutorLastname",
+          "tutorPhoneNumber",
+          "classe"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::subject.subject",
+      "properties": {
+        "fields": [
+          "subjectname",
+          "hourlyQuantity",
+          "hourlyRate",
+          "salaireStatus"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::subject.subject",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.publish",
+      "subject": "api::subject.subject",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::subject.subject",
+      "properties": {
+        "fields": [
+          "subjectname",
+          "hourlyQuantity",
+          "hourlyRate",
+          "salaireStatus"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::subject.subject",
+      "properties": {
+        "fields": [
+          "subjectname",
+          "hourlyQuantity",
+          "hourlyRate",
+          "salaireStatus"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::teacher.teacher",
+      "properties": {
+        "fields": [
+          "firstname",
+          "lastname",
+          "phoneNumber"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::teacher.teacher",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.publish",
+      "subject": "api::teacher.teacher",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::teacher.teacher",
+      "properties": {
+        "fields": [
+          "firstname",
+          "lastname",
+          "phoneNumber"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::teacher.teacher",
+      "properties": {
+        "fields": [
+          "firstname",
+          "lastname",
+          "phoneNumber"
         ]
       },
       "conditions": []

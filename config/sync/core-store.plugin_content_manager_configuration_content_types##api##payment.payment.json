@@ -7,8 +7,8 @@
       "filterable": true,
       "searchable": true,
       "pageSize": 10,
-      "mainField": "test",
-      "defaultSortBy": "test",
+      "mainField": "id",
+      "defaultSortBy": "id",
       "defaultSortOrder": "ASC"
     },
     "metadatas": {
@@ -20,16 +20,30 @@
           "sortable": true
         }
       },
-      "test": {
+      "monthlyPayment": {
         "edit": {
-          "label": "test",
+          "label": "monthlyPayment",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "test",
+          "label": "monthlyPayment",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "status": {
+        "edit": {
+          "label": "status",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "status",
           "searchable": true,
           "sortable": true
         }
@@ -66,15 +80,19 @@
     "layouts": {
       "list": [
         "id",
-        "test",
         "createdAt",
-        "updatedAt"
+        "updatedAt",
+        "monthlyPayment"
       ],
       "edit": [
         [
           {
-            "name": "test",
+            "name": "status",
             "size": 6
+          },
+          {
+            "name": "monthlyPayment",
+            "size": 4
           }
         ]
       ]

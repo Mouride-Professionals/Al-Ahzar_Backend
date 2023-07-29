@@ -21,11 +21,7 @@
       ],
       "required": true
     },
-    "level": {
-      "type": "string",
-      "required": true
-    },
-    "name": {
+    "letter": {
       "type": "string",
       "required": true
     },
@@ -40,6 +36,24 @@
       "relation": "oneToMany",
       "target": "api::student.student",
       "mappedBy": "classe"
+    },
+    "level": {
+      "type": "enumeration",
+      "enum": [
+        "CI",
+        "CP",
+        "CE1",
+        "CE2",
+        "CM1",
+        "CM2",
+        "a6eme",
+        "a5eme",
+        "a4eme",
+        "a3eme",
+        "a2nd",
+        "a1ere",
+        "Terminale"
+      ]
     }
   }
 }

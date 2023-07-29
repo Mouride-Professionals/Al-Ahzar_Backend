@@ -7,8 +7,8 @@
       "filterable": true,
       "searchable": true,
       "pageSize": 10,
-      "mainField": "test",
-      "defaultSortBy": "test",
+      "mainField": "firstname",
+      "defaultSortBy": "firstname",
       "defaultSortOrder": "ASC"
     },
     "metadatas": {
@@ -20,16 +20,129 @@
           "sortable": true
         }
       },
-      "test": {
+      "firstname": {
         "edit": {
-          "label": "test",
+          "label": "firstname",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "test",
+          "label": "firstname",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "lastname": {
+        "edit": {
+          "label": "lastname",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "lastname",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "gender": {
+        "edit": {
+          "label": "gender",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "gender",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "dateOfBirth": {
+        "edit": {
+          "label": "dateOfBirth",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "dateOfBirth",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "birthPlace": {
+        "edit": {
+          "label": "birthPlace",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "birthPlace",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "tutorFirstname": {
+        "edit": {
+          "label": "tutorFirstname",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "tutorFirstname",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "tutorLastname": {
+        "edit": {
+          "label": "tutorLastname",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "tutorLastname",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "tutorPhoneNumber": {
+        "edit": {
+          "label": "tutorPhoneNumber",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "tutorPhoneNumber",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "classe": {
+        "edit": {
+          "label": "classe",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "level"
+        },
+        "list": {
+          "label": "classe",
           "searchable": true,
           "sortable": true
         }
@@ -66,14 +179,54 @@
     "layouts": {
       "list": [
         "id",
-        "test",
         "createdAt",
-        "updatedAt"
+        "updatedAt",
+        "firstname"
       ],
       "edit": [
         [
           {
-            "name": "test",
+            "name": "firstname",
+            "size": 6
+          },
+          {
+            "name": "lastname",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "gender",
+            "size": 6
+          },
+          {
+            "name": "dateOfBirth",
+            "size": 4
+          }
+        ],
+        [
+          {
+            "name": "birthPlace",
+            "size": 6
+          },
+          {
+            "name": "tutorFirstname",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "tutorLastname",
+            "size": 6
+          },
+          {
+            "name": "tutorPhoneNumber",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "classe",
             "size": 6
           }
         ]

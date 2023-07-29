@@ -1,8 +1,11 @@
 {
-  "name": "Caissier",
-  "description": "Caisser",
-  "type": "caissier",
+  "name": "Surveillant general",
+  "description": "Surveillant general",
+  "type": "surveillant_general",
   "permissions": [
+    {
+      "action": "api::class.class.create"
+    },
     {
       "action": "api::class.class.find"
     },
@@ -10,19 +13,13 @@
       "action": "api::class.class.findOne"
     },
     {
-      "action": "api::school.school.find"
+      "action": "api::student.student.create"
     },
     {
       "action": "api::student.student.find"
     },
     {
       "action": "api::student.student.findOne"
-    },
-    {
-      "action": "api::teacher.teacher.find"
-    },
-    {
-      "action": "plugin::users-permissions.role.find"
     },
     {
       "action": "plugin::users-permissions.user.me"
