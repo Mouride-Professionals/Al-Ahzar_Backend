@@ -53,6 +53,27 @@
       "relation": "manyToOne",
       "target": "api::class.class",
       "inversedBy": "eleves"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "Hafiz",
+        "Ancien Redoublant",
+        "Ancien Passant",
+        "Nouveau"
+      ]
+    },
+    "socialStatus": {
+      "type": "enumeration",
+      "enum": [
+        "Non",
+        "Réduction inscription",
+        "Réduction mensualité",
+        "Tout tarifs offerts"
+      ]
+    },
+    "registrationComment": {
+      "type": "string"
     }
   }
 }

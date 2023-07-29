@@ -20,26 +20,16 @@
           "sortable": true
         }
       },
-<<<<<<< HEAD
-      "mounthlyPayment": {
-        "edit": {
-          "label": "mounthlyPayment",
-=======
       "monthlyPayment": {
         "edit": {
           "label": "monthlyPayment",
->>>>>>> c2a7e3f8ba5e24be199731bb63bc9455516cf67f
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-<<<<<<< HEAD
-          "label": "mounthlyPayment",
-=======
           "label": "monthlyPayment",
->>>>>>> c2a7e3f8ba5e24be199731bb63bc9455516cf67f
           "searchable": true,
           "sortable": true
         }
@@ -90,30 +80,19 @@
     "layouts": {
       "list": [
         "id",
-        "createdAt",
-        "updatedAt",
-<<<<<<< HEAD
-        "mounthlyPayment"
-=======
-        "monthlyPayment"
->>>>>>> c2a7e3f8ba5e24be199731bb63bc9455516cf67f
+        "monthlyPayment",
+        "status",
+        "createdAt"
       ],
       "edit": [
         [
           {
-<<<<<<< HEAD
-            "name": "mounthlyPayment",
-            "size": 4
-          },
-          {
-=======
->>>>>>> c2a7e3f8ba5e24be199731bb63bc9455516cf67f
-            "name": "status",
-            "size": 6
-          },
-          {
             "name": "monthlyPayment",
             "size": 4
+          },
+          {
+            "name": "status",
+            "size": 6
           }
         ]
       ]

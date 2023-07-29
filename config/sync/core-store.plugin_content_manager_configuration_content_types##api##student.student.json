@@ -139,14 +139,52 @@
           "placeholder": "",
           "visible": true,
           "editable": true,
-<<<<<<< HEAD
           "mainField": "name"
-=======
-          "mainField": "level"
->>>>>>> c2a7e3f8ba5e24be199731bb63bc9455516cf67f
         },
         "list": {
           "label": "classe",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "type": {
+        "edit": {
+          "label": "type",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "type",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "socialStatus": {
+        "edit": {
+          "label": "socialStatus",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "socialStatus",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "registrationComment": {
+        "edit": {
+          "label": "registrationComment",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "registrationComment",
           "searchable": true,
           "sortable": true
         }
@@ -181,15 +219,12 @@
       }
     },
     "layouts": {
-<<<<<<< HEAD
-=======
       "list": [
         "id",
-        "createdAt",
-        "updatedAt",
-        "firstname"
+        "firstname",
+        "lastname",
+        "gender"
       ],
->>>>>>> c2a7e3f8ba5e24be199731bb63bc9455516cf67f
       "edit": [
         [
           {
@@ -235,14 +270,22 @@
           {
             "name": "classe",
             "size": 6
+          },
+          {
+            "name": "type",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "socialStatus",
+            "size": 6
+          },
+          {
+            "name": "registrationComment",
+            "size": 6
           }
         ]
-      ],
-      "list": [
-        "id",
-        "createdAt",
-        "updatedAt",
-        "firstname"
       ]
     }
   },

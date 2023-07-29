@@ -9,18 +9,11 @@
       "properties": {
         "fields": [
           "cycle",
-<<<<<<< HEAD
           "name",
           "etablissement",
           "eleves",
           "level",
           "letter"
-=======
-          "letter",
-          "etablissement",
-          "eleves",
-          "level"
->>>>>>> c2a7e3f8ba5e24be199731bb63bc9455516cf67f
         ]
       },
       "conditions": []
@@ -37,18 +30,11 @@
       "properties": {
         "fields": [
           "cycle",
-<<<<<<< HEAD
           "name",
           "etablissement",
           "eleves",
           "level",
           "letter"
-=======
-          "letter",
-          "etablissement",
-          "eleves",
-          "level"
->>>>>>> c2a7e3f8ba5e24be199731bb63bc9455516cf67f
         ]
       },
       "conditions": []
@@ -59,18 +45,11 @@
       "properties": {
         "fields": [
           "cycle",
-<<<<<<< HEAD
           "name",
           "etablissement",
           "eleves",
           "level",
           "letter"
-=======
-          "letter",
-          "etablissement",
-          "eleves",
-          "level"
->>>>>>> c2a7e3f8ba5e24be199731bb63bc9455516cf67f
         ]
       },
       "conditions": []
@@ -80,11 +59,7 @@
       "subject": "api::payment.payment",
       "properties": {
         "fields": [
-<<<<<<< HEAD
-          "mounthlyPayment",
-=======
           "monthlyPayment",
->>>>>>> c2a7e3f8ba5e24be199731bb63bc9455516cf67f
           "status"
         ]
       },
@@ -107,11 +82,7 @@
       "subject": "api::payment.payment",
       "properties": {
         "fields": [
-<<<<<<< HEAD
-          "mounthlyPayment",
-=======
           "monthlyPayment",
->>>>>>> c2a7e3f8ba5e24be199731bb63bc9455516cf67f
           "status"
         ]
       },
@@ -122,11 +93,7 @@
       "subject": "api::payment.payment",
       "properties": {
         "fields": [
-<<<<<<< HEAD
-          "mounthlyPayment",
-=======
           "monthlyPayment",
->>>>>>> c2a7e3f8ba5e24be199731bb63bc9455516cf67f
           "status"
         ]
       },
@@ -138,10 +105,11 @@
       "properties": {
         "fields": [
           "name",
-          "type",
           "classes",
           "etablissement",
-          "etablissements"
+          "etablissements",
+          "cashier",
+          "responsible"
         ]
       },
       "conditions": []
@@ -164,10 +132,11 @@
       "properties": {
         "fields": [
           "name",
-          "type",
           "classes",
           "etablissement",
-          "etablissements"
+          "etablissements",
+          "cashier",
+          "responsible"
         ]
       },
       "conditions": []
@@ -178,10 +147,11 @@
       "properties": {
         "fields": [
           "name",
-          "type",
           "classes",
           "etablissement",
-          "etablissements"
+          "etablissements",
+          "cashier",
+          "responsible"
         ]
       },
       "conditions": []
@@ -199,7 +169,10 @@
           "tutorFirstname",
           "tutorLastname",
           "tutorPhoneNumber",
-          "classe"
+          "classe",
+          "type",
+          "socialStatus",
+          "registrationComment"
         ]
       },
       "conditions": []
@@ -223,7 +196,10 @@
           "tutorFirstname",
           "tutorLastname",
           "tutorPhoneNumber",
-          "classe"
+          "classe",
+          "type",
+          "socialStatus",
+          "registrationComment"
         ]
       },
       "conditions": []
@@ -241,7 +217,10 @@
           "tutorFirstname",
           "tutorLastname",
           "tutorPhoneNumber",
-          "classe"
+          "classe",
+          "type",
+          "socialStatus",
+          "registrationComment"
         ]
       },
       "conditions": []

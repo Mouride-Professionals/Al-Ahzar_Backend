@@ -34,20 +34,6 @@
           "sortable": true
         }
       },
-      "type": {
-        "edit": {
-          "label": "type",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "type",
-          "searchable": true,
-          "sortable": true
-        }
-      },
       "classes": {
         "edit": {
           "label": "classes",
@@ -93,6 +79,36 @@
           "sortable": false
         }
       },
+      "cashier": {
+        "edit": {
+          "label": "cashier",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "firstname"
+        },
+        "list": {
+          "label": "cashier",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "responsible": {
+        "edit": {
+          "label": "responsible",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "firstname"
+        },
+        "list": {
+          "label": "responsible",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -134,10 +150,6 @@
           {
             "name": "name",
             "size": 6
-          },
-          {
-            "name": "type",
-            "size": 6
           }
         ],
         [
@@ -153,6 +165,18 @@
         [
           {
             "name": "etablissements",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "cashier",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "responsible",
             "size": 6
           }
         ]

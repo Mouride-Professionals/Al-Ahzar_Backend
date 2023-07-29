@@ -15,14 +15,6 @@
     "name": {
       "type": "string"
     },
-    "type": {
-      "type": "enumeration",
-      "enum": [
-        "ecole",
-        "annexe",
-        "centre"
-      ]
-    },
     "classes": {
       "type": "relation",
       "relation": "oneToMany",
@@ -40,6 +32,16 @@
       "relation": "oneToMany",
       "target": "api::school.school",
       "mappedBy": "etablissement"
+    },
+    "cashier": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "responsible": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
     }
   }
 }
