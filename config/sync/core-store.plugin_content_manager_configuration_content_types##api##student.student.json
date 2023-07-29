@@ -139,7 +139,11 @@
           "placeholder": "",
           "visible": true,
           "editable": true,
+<<<<<<< HEAD
           "mainField": "name"
+=======
+          "mainField": "level"
+>>>>>>> c2a7e3f8ba5e24be199731bb63bc9455516cf67f
         },
         "list": {
           "label": "classe",
@@ -177,6 +181,15 @@
       }
     },
     "layouts": {
+<<<<<<< HEAD
+=======
+      "list": [
+        "id",
+        "createdAt",
+        "updatedAt",
+        "firstname"
+      ],
+>>>>>>> c2a7e3f8ba5e24be199731bb63bc9455516cf67f
       "edit": [
         [
           {

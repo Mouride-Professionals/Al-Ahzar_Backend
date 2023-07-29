@@ -7,6 +7,12 @@
       "action": "api::class.class.find"
     },
     {
+<<<<<<< HEAD
+=======
+      "action": "api::class.class.findOne"
+    },
+    {
+>>>>>>> c2a7e3f8ba5e24be199731bb63bc9455516cf67f
       "action": "api::school.school.find"
     },
     {

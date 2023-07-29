@@ -34,16 +34,26 @@
           "sortable": true
         }
       },
+<<<<<<< HEAD
       "name": {
         "edit": {
           "label": "name",
+=======
+      "letter": {
+        "edit": {
+          "label": "letter",
+>>>>>>> c2a7e3f8ba5e24be199731bb63bc9455516cf67f
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
+<<<<<<< HEAD
           "label": "name",
+=======
+          "label": "letter",
+>>>>>>> c2a7e3f8ba5e24be199731bb63bc9455516cf67f
           "searchable": true,
           "sortable": true
         }
@@ -88,6 +98,7 @@
         },
         "list": {
           "label": "level",
+<<<<<<< HEAD
           "searchable": true,
           "sortable": true
         }
@@ -102,6 +113,8 @@
         },
         "list": {
           "label": "letter",
+=======
+>>>>>>> c2a7e3f8ba5e24be199731bb63bc9455516cf67f
           "searchable": true,
           "sortable": true
         }
@@ -136,6 +149,7 @@
       }
     },
     "layouts": {
+<<<<<<< HEAD
       "edit": [
         [
           {
@@ -144,25 +158,53 @@
           },
           {
             "name": "letter",
+=======
+      "list": [
+        "id",
+        "cycle",
+        "level",
+        "letter",
+        "createdAt"
+      ],
+      "edit": [
+        [
+          {
+            "name": "cycle",
+            "size": 6
+          },
+          {
+            "name": "level",
+>>>>>>> c2a7e3f8ba5e24be199731bb63bc9455516cf67f
             "size": 6
           }
         ],
         [
           {
+<<<<<<< HEAD
             "name": "name",
             "size": 6
           },
           {
             "name": "cycle",
+=======
+            "name": "letter",
+            "size": 6
+          },
+          {
+            "name": "etablissement",
+>>>>>>> c2a7e3f8ba5e24be199731bb63bc9455516cf67f
             "size": 6
           }
         ],
         [
           {
+<<<<<<< HEAD
             "name": "etablissement",
             "size": 6
           },
           {
+=======
+>>>>>>> c2a7e3f8ba5e24be199731bb63bc9455516cf67f
             "name": "eleves",
             "size": 6
           }

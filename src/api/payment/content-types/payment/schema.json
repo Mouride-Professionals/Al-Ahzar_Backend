@@ -12,7 +12,7 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "mounthlyPayment": {
+    "monthlyPayment": {
       "type": "date"
     },
     "status": {

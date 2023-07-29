@@ -9,11 +9,18 @@
       "properties": {
         "fields": [
           "cycle",
+<<<<<<< HEAD
           "name",
           "etablissement",
           "eleves",
           "level",
           "letter"
+=======
+          "letter",
+          "etablissement",
+          "eleves",
+          "level"
+>>>>>>> c2a7e3f8ba5e24be199731bb63bc9455516cf67f
         ]
       },
       "conditions": []
@@ -30,11 +37,18 @@
       "properties": {
         "fields": [
           "cycle",
+<<<<<<< HEAD
           "name",
           "etablissement",
           "eleves",
           "level",
           "letter"
+=======
+          "letter",
+          "etablissement",
+          "eleves",
+          "level"
+>>>>>>> c2a7e3f8ba5e24be199731bb63bc9455516cf67f
         ]
       },
       "conditions": []
@@ -45,11 +59,18 @@
       "properties": {
         "fields": [
           "cycle",
+<<<<<<< HEAD
           "name",
           "etablissement",
           "eleves",
           "level",
           "letter"
+=======
+          "letter",
+          "etablissement",
+          "eleves",
+          "level"
+>>>>>>> c2a7e3f8ba5e24be199731bb63bc9455516cf67f
         ]
       },
       "conditions": []
@@ -59,7 +80,11 @@
       "subject": "api::payment.payment",
       "properties": {
         "fields": [
+<<<<<<< HEAD
           "mounthlyPayment",
+=======
+          "monthlyPayment",
+>>>>>>> c2a7e3f8ba5e24be199731bb63bc9455516cf67f
           "status"
         ]
       },
@@ -82,7 +107,11 @@
       "subject": "api::payment.payment",
       "properties": {
         "fields": [
+<<<<<<< HEAD
           "mounthlyPayment",
+=======
+          "monthlyPayment",
+>>>>>>> c2a7e3f8ba5e24be199731bb63bc9455516cf67f
           "status"
         ]
       },
@@ -93,7 +122,11 @@
       "subject": "api::payment.payment",
       "properties": {
         "fields": [
+<<<<<<< HEAD
           "mounthlyPayment",
+=======
+          "monthlyPayment",
+>>>>>>> c2a7e3f8ba5e24be199731bb63bc9455516cf67f
           "status"
         ]
       },

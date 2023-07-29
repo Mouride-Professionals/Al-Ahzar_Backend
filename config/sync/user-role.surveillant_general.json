@@ -13,12 +13,15 @@
       "action": "api::class.class.findOne"
     },
     {
+<<<<<<< HEAD
       "action": "api::school.school.find"
     },
     {
       "action": "api::school.school.findOne"
     },
     {
+=======
+>>>>>>> c2a7e3f8ba5e24be199731bb63bc9455516cf67f
       "action": "api::student.student.create"
     },
     {
@@ -28,12 +31,15 @@
       "action": "api::student.student.findOne"
     },
     {
+<<<<<<< HEAD
       "action": "api::teacher.teacher.find"
     },
     {
       "action": "plugin::users-permissions.role.find"
     },
     {
+=======
+>>>>>>> c2a7e3f8ba5e24be199731bb63bc9455516cf67f
       "action": "plugin::users-permissions.user.me"
     }
   ]

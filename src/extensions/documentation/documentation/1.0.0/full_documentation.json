@@ -14,7 +14,11 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
+<<<<<<< HEAD
     "x-generation-date": "2023-05-31T18:53:11.186Z"
+=======
+    "x-generation-date": "2023-07-29T12:40:16.414Z"
+>>>>>>> c2a7e3f8ba5e24be199731bb63bc9455516cf67f
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -39,6 +43,13 @@
     }
   ],
   "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
     "schemas": {
       "Error": {
         "type": "object",
@@ -88,7 +99,11 @@
           "data": {
             "required": [
               "cycle",
+<<<<<<< HEAD
               "name"
+=======
+              "letter"
+>>>>>>> c2a7e3f8ba5e24be199731bb63bc9455516cf67f
             ],
             "type": "object",
             "properties": {
@@ -100,7 +115,11 @@
                   "secondaire 2eme cycle"
                 ]
               },
+<<<<<<< HEAD
               "name": {
+=======
+              "letter": {
+>>>>>>> c2a7e3f8ba5e24be199731bb63bc9455516cf67f
                 "type": "string"
               },
               "etablissement": {
@@ -137,6 +156,7 @@
                   "CE2",
                   "CM1",
                   "CM2",
+<<<<<<< HEAD
                   "a 6eme",
                   "a 5eme",
                   "a 4eme",
@@ -155,6 +175,16 @@
                   "D",
                   "E"
                 ]
+=======
+                  "a6eme",
+                  "a5eme",
+                  "a4eme",
+                  "a3eme",
+                  "a2nd",
+                  "a1ere",
+                  "Terminale"
+                ]
+>>>>>>> c2a7e3f8ba5e24be199731bb63bc9455516cf67f
               }
             }
           }
@@ -210,7 +240,11 @@
         "type": "object",
         "required": [
           "cycle",
+<<<<<<< HEAD
           "name"
+=======
+          "letter"
+>>>>>>> c2a7e3f8ba5e24be199731bb63bc9455516cf67f
         ],
         "properties": {
           "cycle": {
@@ -221,7 +255,11 @@
               "secondaire 2eme cycle"
             ]
           },
+<<<<<<< HEAD
           "name": {
+=======
+          "letter": {
+>>>>>>> c2a7e3f8ba5e24be199731bb63bc9455516cf67f
             "type": "string"
           },
           "etablissement": {
@@ -269,7 +307,11 @@
                                         "secondaire 2eme cycle"
                                       ]
                                     },
+<<<<<<< HEAD
                                     "name": {
+=======
+                                    "letter": {
+>>>>>>> c2a7e3f8ba5e24be199731bb63bc9455516cf67f
                                       "type": "string"
                                     },
                                     "etablissement": {
@@ -658,6 +700,7 @@
                                         "CE2",
                                         "CM1",
                                         "CM2",
+<<<<<<< HEAD
                                         "a 6eme",
                                         "a 5eme",
                                         "a 4eme",
@@ -677,6 +720,17 @@
                                         "E"
                                       ]
                                     },
+=======
+                                        "a6eme",
+                                        "a5eme",
+                                        "a4eme",
+                                        "a3eme",
+                                        "a2nd",
+                                        "a1ere",
+                                        "Terminale"
+                                      ]
+                                    },
+>>>>>>> c2a7e3f8ba5e24be199731bb63bc9455516cf67f
                                     "createdAt": {
                                       "type": "string",
                                       "format": "date-time"
@@ -844,6 +898,7 @@
               "CE2",
               "CM1",
               "CM2",
+<<<<<<< HEAD
               "a 6eme",
               "a 5eme",
               "a 4eme",
@@ -863,6 +918,17 @@
               "E"
             ]
           },
+=======
+              "a6eme",
+              "a5eme",
+              "a4eme",
+              "a3eme",
+              "a2nd",
+              "a1ere",
+              "Terminale"
+            ]
+          },
+>>>>>>> c2a7e3f8ba5e24be199731bb63bc9455516cf67f
           "createdAt": {
             "type": "string",
             "format": "date-time"
@@ -941,7 +1007,7 @@
             ],
             "type": "object",
             "properties": {
-              "mounthlyPayment": {
+              "monthlyPayment": {
                 "type": "string",
                 "format": "date"
               },
@@ -1008,7 +1074,7 @@
           "status"
         ],
         "properties": {
-          "mounthlyPayment": {
+          "monthlyPayment": {
             "type": "string",
             "format": "date"
           },
@@ -1485,7 +1551,11 @@
                             "secondaire 2eme cycle"
                           ]
                         },
+<<<<<<< HEAD
                         "name": {
+=======
+                        "letter": {
+>>>>>>> c2a7e3f8ba5e24be199731bb63bc9455516cf67f
                           "type": "string"
                         },
                         "etablissement": {
@@ -1989,6 +2059,7 @@
                             "CE2",
                             "CM1",
                             "CM2",
+<<<<<<< HEAD
                             "a 6eme",
                             "a 5eme",
                             "a 4eme",
@@ -2008,6 +2079,17 @@
                             "E"
                           ]
                         },
+=======
+                            "a6eme",
+                            "a5eme",
+                            "a4eme",
+                            "a3eme",
+                            "a2nd",
+                            "a1ere",
+                            "Terminale"
+                          ]
+                        },
+>>>>>>> c2a7e3f8ba5e24be199731bb63bc9455516cf67f
                         "createdAt": {
                           "type": "string",
                           "format": "date-time"
@@ -2335,7 +2417,11 @@
                           "secondaire 2eme cycle"
                         ]
                       },
+<<<<<<< HEAD
                       "name": {
+=======
+                      "letter": {
+>>>>>>> c2a7e3f8ba5e24be199731bb63bc9455516cf67f
                         "type": "string"
                       },
                       "etablissement": {
@@ -2839,6 +2925,7 @@
                           "CE2",
                           "CM1",
                           "CM2",
+<<<<<<< HEAD
                           "a 6eme",
                           "a 5eme",
                           "a 4eme",
@@ -2858,6 +2945,17 @@
                           "E"
                         ]
                       },
+=======
+                          "a6eme",
+                          "a5eme",
+                          "a4eme",
+                          "a3eme",
+                          "a2nd",
+                          "a1ere",
+                          "Terminale"
+                        ]
+                      },
+>>>>>>> c2a7e3f8ba5e24be199731bb63bc9455516cf67f
                       "createdAt": {
                         "type": "string",
                         "format": "date-time"
