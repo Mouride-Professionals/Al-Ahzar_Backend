@@ -16,9 +16,6 @@
       "action": "api::payment.payment.find"
     },
     {
-      "action": "api::payment.payment.findOne"
-    },
-    {
       "action": "api::school.school.find"
     },
     {

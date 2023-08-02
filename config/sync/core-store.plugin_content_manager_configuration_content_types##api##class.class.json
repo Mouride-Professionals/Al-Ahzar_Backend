@@ -34,20 +34,6 @@
           "sortable": true
         }
       },
-      "name": {
-        "edit": {
-          "label": "name",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "name",
-          "searchable": true,
-          "sortable": true
-        }
-      },
       "etablissement": {
         "edit": {
           "label": "etablissement",
@@ -167,10 +153,6 @@
         [
           {
             "name": "eleves",
-            "size": 6
-          },
-          {
-            "name": "name",
             "size": 6
           }
         ]

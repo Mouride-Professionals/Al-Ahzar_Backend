@@ -20,30 +20,45 @@
           "sortable": true
         }
       },
-      "monthlyPayment": {
+      "monthOf": {
         "edit": {
-          "label": "monthlyPayment",
+          "label": "monthOf",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "monthlyPayment",
+          "label": "monthOf",
           "searchable": true,
           "sortable": true
         }
       },
-      "status": {
+      "isPaid": {
         "edit": {
-          "label": "status",
+          "label": "isPaid",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "status",
+          "label": "isPaid",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "eleve": {
+        "edit": {
+          "label": "eleve",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "firstname"
+        },
+        "list": {
+          "label": "eleve",
           "searchable": true,
           "sortable": true
         }
@@ -80,19 +95,25 @@
     "layouts": {
       "list": [
         "id",
-        "createdAt",
-        "updatedAt",
-        "monthlyPayment"
+        "monthOf",
+        "isPaid",
+        "eleve"
       ],
       "edit": [
         [
           {
-            "name": "status",
-            "size": 6
+            "name": "monthOf",
+            "size": 4
           },
           {
-            "name": "monthlyPayment",
+            "name": "isPaid",
             "size": 4
+          }
+        ],
+        [
+          {
+            "name": "eleve",
+            "size": 6
           }
         ]
       ]

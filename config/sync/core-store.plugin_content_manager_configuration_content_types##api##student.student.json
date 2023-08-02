@@ -189,6 +189,21 @@
           "sortable": true
         }
       },
+      "payments": {
+        "edit": {
+          "label": "payments",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "monthOf"
+        },
+        "list": {
+          "label": "payments",
+          "searchable": false,
+          "sortable": false
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -219,12 +234,6 @@
       }
     },
     "layouts": {
-      "list": [
-        "id",
-        "createdAt",
-        "updatedAt",
-        "firstname"
-      ],
       "edit": [
         [
           {
@@ -285,7 +294,21 @@
             "name": "registrationComment",
             "size": 6
           }
+        ],
+        [
+          {
+            "name": "payments",
+            "size": 6
+          }
         ]
+      ],
+      "list": [
+        "id",
+        "firstname",
+        "lastname",
+        "dateOfBirth",
+        "createdAt",
+        "updatedAt"
       ]
     }
   },

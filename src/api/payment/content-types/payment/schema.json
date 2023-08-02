@@ -4,24 +4,28 @@
   "info": {
     "singularName": "payment",
     "pluralName": "payments",
-    "displayName": "PaiementStudent",
+    "displayName": "Payment",
     "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
-    "monthlyPayment": {
-      "type": "date"
-    },
-    "status": {
-      "type": "enumeration",
-      "enum": [
-        "Impayé",
-        "Payé"
-      ],
+    "monthOf": {
+      "type": "date",
       "required": true
+    },
+    "isPaid": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "eleve": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::student.student",
+      "inversedBy": "payments"
     }
   }
 }

@@ -36,12 +36,14 @@
     "cashier": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "plugin::users-permissions.user"
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "etablissement_cashier"
     },
     "responsible": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "plugin::users-permissions.user"
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "etablissement_responsible"
     },
     "type": {
       "type": "enumeration",

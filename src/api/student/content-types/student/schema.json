@@ -69,11 +69,17 @@
         "Non",
         "Réduction inscription",
         "Réduction mensualité",
-        "Tout tarifs offerts"
+        "Tout tarifs offerts"
       ]
     },
     "registrationComment": {
       "type": "string"
+    },
+    "payments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::payment.payment",
+      "mappedBy": "eleve"
     }
   }
 }

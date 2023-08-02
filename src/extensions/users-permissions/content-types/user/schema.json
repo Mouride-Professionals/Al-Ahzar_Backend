@@ -70,6 +70,18 @@
     },
     "lastname": {
       "type": "string"
+    },
+    "etablissement_cashier": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::school.school",
+      "mappedBy": "cashier"
+    },
+    "etablissement_responsible": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::school.school",
+      "mappedBy": "responsible"
     }
   }
 }

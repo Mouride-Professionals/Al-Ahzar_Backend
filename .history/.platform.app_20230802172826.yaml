@@ -1,0 +1,11 @@
+name: strapi
+type: 'nodejs:14'
+hooks:
+  build: |
+    npm install
+    npm run build
+relationships:
+  database: "strapi-mysql:mysql"
+services:
+  strapi-mysql:
+    type: mysql:8.0

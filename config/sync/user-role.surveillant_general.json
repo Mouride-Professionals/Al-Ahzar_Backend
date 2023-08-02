@@ -13,6 +13,9 @@
       "action": "api::class.class.findOne"
     },
     {
+      "action": "api::payment.payment.find"
+    },
+    {
       "action": "api::school.school.find"
     },
     {
@@ -32,6 +35,9 @@
     },
     {
       "action": "plugin::users-permissions.role.findOne"
+    },
+    {
+      "action": "plugin::users-permissions.user.find"
     },
     {
       "action": "plugin::users-permissions.user.me"

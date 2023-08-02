@@ -175,6 +175,36 @@
           "sortable": true
         }
       },
+      "etablissement_cashier": {
+        "edit": {
+          "label": "etablissement_cashier",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "name"
+        },
+        "list": {
+          "label": "etablissement_cashier",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "etablissement_responsible": {
+        "edit": {
+          "label": "etablissement_responsible",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "name"
+        },
+        "list": {
+          "label": "etablissement_responsible",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -205,6 +235,12 @@
       }
     },
     "layouts": {
+      "list": [
+        "id",
+        "username",
+        "email",
+        "confirmed"
+      ],
       "edit": [
         [
           {
@@ -245,13 +281,17 @@
             "name": "role",
             "size": 6
           }
+        ],
+        [
+          {
+            "name": "etablissement_cashier",
+            "size": 6
+          },
+          {
+            "name": "etablissement_responsible",
+            "size": 6
+          }
         ]
-      ],
-      "list": [
-        "id",
-        "username",
-        "email",
-        "confirmed"
       ]
     }
   },

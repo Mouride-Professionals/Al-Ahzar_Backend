@@ -9,7 +9,6 @@
       "properties": {
         "fields": [
           "cycle",
-          "name",
           "etablissement",
           "eleves",
           "level",
@@ -30,7 +29,6 @@
       "properties": {
         "fields": [
           "cycle",
-          "name",
           "etablissement",
           "eleves",
           "level",
@@ -45,7 +43,6 @@
       "properties": {
         "fields": [
           "cycle",
-          "name",
           "etablissement",
           "eleves",
           "level",
@@ -59,8 +56,9 @@
       "subject": "api::payment.payment",
       "properties": {
         "fields": [
-          "monthlyPayment",
-          "status"
+          "monthOf",
+          "isPaid",
+          "eleve"
         ]
       },
       "conditions": []
@@ -72,18 +70,13 @@
       "conditions": []
     },
     {
-      "action": "plugin::content-manager.explorer.publish",
-      "subject": "api::payment.payment",
-      "properties": {},
-      "conditions": []
-    },
-    {
       "action": "plugin::content-manager.explorer.read",
       "subject": "api::payment.payment",
       "properties": {
         "fields": [
-          "monthlyPayment",
-          "status"
+          "monthOf",
+          "isPaid",
+          "eleve"
         ]
       },
       "conditions": []
@@ -93,8 +86,9 @@
       "subject": "api::payment.payment",
       "properties": {
         "fields": [
-          "monthlyPayment",
-          "status"
+          "monthOf",
+          "isPaid",
+          "eleve"
         ]
       },
       "conditions": []
@@ -175,7 +169,8 @@
           "classe",
           "type",
           "socialStatus",
-          "registrationComment"
+          "registrationComment",
+          "payments"
         ]
       },
       "conditions": []
@@ -202,7 +197,8 @@
           "classe",
           "type",
           "socialStatus",
-          "registrationComment"
+          "registrationComment",
+          "payments"
         ]
       },
       "conditions": []
@@ -223,7 +219,8 @@
           "classe",
           "type",
           "socialStatus",
-          "registrationComment"
+          "registrationComment",
+          "payments"
         ]
       },
       "conditions": []
@@ -528,7 +525,9 @@
           "blocked",
           "role",
           "firstname",
-          "lastname"
+          "lastname",
+          "etablissement_cashier",
+          "etablissement_responsible"
         ]
       },
       "conditions": []
@@ -554,7 +553,9 @@
           "blocked",
           "role",
           "firstname",
-          "lastname"
+          "lastname",
+          "etablissement_cashier",
+          "etablissement_responsible"
         ]
       },
       "conditions": []
@@ -574,7 +575,9 @@
           "blocked",
           "role",
           "firstname",
-          "lastname"
+          "lastname",
+          "etablissement_cashier",
+          "etablissement_responsible"
         ]
       },
       "conditions": []
