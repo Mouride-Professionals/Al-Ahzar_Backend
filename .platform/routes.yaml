@@ -1,3 +1,3 @@
 "https://www.{default}/":
   type: upstream
-  upstream: "alazhar:http"
+  upstream: "al-azhar:http"
