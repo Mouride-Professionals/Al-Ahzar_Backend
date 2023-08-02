@@ -115,4 +115,4 @@ build
 .strapi-updater.json
 data.db
 
-# .history
+.history
