@@ -4,8 +4,8 @@ hooks:
   build: |
     npm install
     npm run build
-relationships:
-  database: "strapi-mysql:mysql"
+# relationships:
+#   database: "strapi-mysql:mysql"
 # variables:
 #   DATABASE_CLIENT: "mysql"
 #   DATABASE_HOST: "strapi-mysql.internal"
