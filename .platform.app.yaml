@@ -1,4 +1,4 @@
-name: al-azhar
+name: alazhar
 type: 'nodejs:14'
 hooks:
   build: |
