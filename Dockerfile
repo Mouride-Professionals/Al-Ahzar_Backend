@@ -2,7 +2,7 @@
 FROM node:18-alpine
 
 # Install NASM (Netwide Assembler)
-RUN apk --no-cache add nasm
+RUN npm install -g node-gyp
 
 RUN mkdir -p /usr/src/app
 
