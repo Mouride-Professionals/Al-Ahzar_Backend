@@ -1,6 +1,9 @@
 # Use the official Node.js image as the base image
 FROM node:18-alpine
 
+# Installing necessary system dependencies for sharp to build successfully
+RUN apk add --no-cache vips-dev build-base python3
+
 RUN mkdir -p /usr/src/app
 
 WORKDIR /usr/src/app
