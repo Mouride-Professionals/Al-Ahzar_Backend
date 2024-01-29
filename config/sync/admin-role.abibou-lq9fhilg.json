@@ -1,0 +1,276 @@
+{
+  "name": "Abibou",
+  "code": "abibou-lq9fhilg",
+  "description": "Créé December 17th, 2023",
+  "permissions": [
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::class.class",
+      "properties": {
+        "fields": [
+          "cycle",
+          "etablissement",
+          "eleves",
+          "level",
+          "letter"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::class.class",
+      "properties": {},
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::class.class",
+      "properties": {
+        "fields": [
+          "cycle",
+          "etablissement",
+          "eleves",
+          "level",
+          "letter"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::class.class",
+      "properties": {
+        "fields": [
+          "cycle",
+          "etablissement",
+          "eleves",
+          "level",
+          "letter"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::school.school",
+      "properties": {
+        "fields": [
+          "name",
+          "classes",
+          "etablissement",
+          "etablissements",
+          "cashier",
+          "responsible",
+          "type"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::school.school",
+      "properties": {},
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::content-manager.explorer.publish",
+      "subject": "api::school.school",
+      "properties": {},
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::school.school",
+      "properties": {
+        "fields": [
+          "name",
+          "classes",
+          "etablissement",
+          "etablissements",
+          "cashier",
+          "responsible",
+          "type"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::school.school",
+      "properties": {
+        "fields": [
+          "name",
+          "classes",
+          "etablissement",
+          "etablissements",
+          "cashier",
+          "responsible",
+          "type"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::student.student",
+      "properties": {
+        "fields": [
+          "firstname",
+          "lastname",
+          "gender",
+          "dateOfBirth",
+          "birthPlace",
+          "tutorFirstname",
+          "tutorLastname",
+          "tutorPhoneNumber",
+          "classe",
+          "type",
+          "socialStatus",
+          "registrationComment",
+          "payments"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::student.student",
+      "properties": {},
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::student.student",
+      "properties": {
+        "fields": [
+          "firstname",
+          "lastname",
+          "gender",
+          "dateOfBirth",
+          "birthPlace",
+          "tutorFirstname",
+          "tutorLastname",
+          "tutorPhoneNumber",
+          "classe",
+          "type",
+          "socialStatus",
+          "registrationComment",
+          "payments"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::student.student",
+      "properties": {
+        "fields": [
+          "firstname",
+          "lastname",
+          "gender",
+          "dateOfBirth",
+          "birthPlace",
+          "tutorFirstname",
+          "tutorLastname",
+          "tutorPhoneNumber",
+          "classe",
+          "type",
+          "socialStatus",
+          "registrationComment",
+          "payments"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "plugin::users-permissions.user",
+      "properties": {
+        "fields": [
+          "username",
+          "email",
+          "provider",
+          "password",
+          "resetPasswordToken",
+          "confirmationToken",
+          "confirmed",
+          "blocked",
+          "role",
+          "firstname",
+          "lastname",
+          "etablissement_cashier",
+          "etablissement_responsible"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "plugin::users-permissions.user",
+      "properties": {},
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "plugin::users-permissions.user",
+      "properties": {
+        "fields": [
+          "username",
+          "email",
+          "provider",
+          "password",
+          "resetPasswordToken",
+          "confirmationToken",
+          "confirmed",
+          "blocked",
+          "role",
+          "firstname",
+          "lastname",
+          "etablissement_cashier",
+          "etablissement_responsible"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "plugin::users-permissions.user",
+      "properties": {
+        "fields": [
+          "username",
+          "email",
+          "provider",
+          "password",
+          "resetPasswordToken",
+          "confirmationToken",
+          "confirmed",
+          "blocked",
+          "role",
+          "firstname",
+          "lastname",
+          "etablissement_cashier",
+          "etablissement_responsible"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": {}
+    }
+  ]
+}

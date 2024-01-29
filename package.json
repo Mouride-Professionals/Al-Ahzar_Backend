@@ -1,7 +1,7 @@
 {
   "name": "al-azhar-back",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Al Alzhar BO",
   "scripts": {
     "develop": "strapi develop",
@@ -12,6 +12,7 @@
   },
   "devDependencies": {},
   "dependencies": {
+    "@_sh/strapi-plugin-ckeditor": "^2.0.4",
     "@strapi/plugin-documentation": "^4.15.4",
     "@strapi/plugin-i18n": "4.14.5",
     "@strapi/plugin-users-permissions": "4.14.5",
@@ -19,7 +20,11 @@
     "better-sqlite3": "8.6.0",
     "cs": "^1.0.3",
     "strapi-plugin-config-sync": "^1.2.2",
-    "strapi-plugin-import-export-entries": "^1.22.1"
+    "strapi-plugin-country-select": "^1.0.3",
+    "strapi-plugin-email-designer": "^2.2.0",
+    "strapi-plugin-import-export-entries": "^1.22.1",
+    "strapi-plugin-populate-deep": "^3.0.1"
+
   },
   "author": {
     "name": "lpix11"

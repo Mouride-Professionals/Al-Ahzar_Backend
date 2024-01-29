@@ -1,14 +1,14 @@
 {
-  "key": "plugin_content_manager_configuration_content_types::api::teacher.teacher",
+  "key": "plugin_content_manager_configuration_content_types::plugin::email-designer.email-template",
   "value": {
-    "uid": "api::teacher.teacher",
+    "uid": "plugin::email-designer.email-template",
     "settings": {
       "bulkable": true,
       "filterable": true,
       "searchable": true,
       "pageSize": 10,
-      "mainField": "firstname",
-      "defaultSortBy": "firstname",
+      "mainField": "name",
+      "defaultSortBy": "name",
       "defaultSortOrder": "ASC"
     },
     "metadatas": {
@@ -20,46 +20,116 @@
           "sortable": true
         }
       },
-      "firstname": {
+      "templateReferenceId": {
         "edit": {
-          "label": "firstname",
+          "label": "templateReferenceId",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "firstname",
+          "label": "templateReferenceId",
           "searchable": true,
           "sortable": true
         }
       },
-      "lastname": {
+      "design": {
         "edit": {
-          "label": "lastname",
+          "label": "design",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "lastname",
+          "label": "design",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "name": {
+        "edit": {
+          "label": "name",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "name",
           "searchable": true,
           "sortable": true
         }
       },
-      "phoneNumber": {
+      "subject": {
         "edit": {
-          "label": "phoneNumber",
+          "label": "subject",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "phoneNumber",
+          "label": "subject",
           "searchable": true,
           "sortable": true
+        }
+      },
+      "bodyHtml": {
+        "edit": {
+          "label": "bodyHtml",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "bodyHtml",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "bodyText": {
+        "edit": {
+          "label": "bodyText",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "bodyText",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "enabled": {
+        "edit": {
+          "label": "enabled",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "enabled",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "tags": {
+        "edit": {
+          "label": "tags",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "tags",
+          "searchable": false,
+          "sortable": false
         }
       },
       "createdAt": {
@@ -124,25 +194,53 @@
     "layouts": {
       "list": [
         "id",
-        "firstname",
-        "lastname",
-        "phoneNumber"
+        "templateReferenceId",
+        "name",
+        "subject"
       ],
       "edit": [
         [
           {
-            "name": "firstname",
+            "name": "templateReferenceId",
+            "size": 4
+          }
+        ],
+        [
+          {
+            "name": "design",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "name",
             "size": 6
           },
           {
-            "name": "lastname",
+            "name": "subject",
             "size": 6
           }
         ],
         [
           {
-            "name": "phoneNumber",
+            "name": "bodyHtml",
             "size": 6
+          },
+          {
+            "name": "bodyText",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "enabled",
+            "size": 4
+          }
+        ],
+        [
+          {
+            "name": "tags",
+            "size": 12
           }
         ]
       ]
