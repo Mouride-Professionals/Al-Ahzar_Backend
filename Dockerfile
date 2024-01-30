@@ -1,11 +1,11 @@
-# Use the official Node.js image as the base image
-FROM node:latest
+# Use the official Node.js Alpine image as the base image
+FROM node:18-alpine
 
 ARG APP_ENV
 ARG APP_PORT
 
 # Install dependencies
-RUN apk add --no-cache nasm python3 make g++
+RUN apk --no-cache add nasm python3 make g++
 
 # Set up the working directory
 RUN mkdir -p /usr/src/app
