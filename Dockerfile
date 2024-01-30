@@ -15,6 +15,7 @@ COPY .env.${APP_ENV}  ./.env
 
 COPY package.json ./
 
+RUN npm install -g node-gyp
 RUN yarn cache clean
 RUN yarn
 
