@@ -1,0 +1,57 @@
+{
+  "kind": "collectionType",
+  "collectionName": "schools",
+  "info": {
+    "singularName": "school",
+    "pluralName": "schools",
+    "displayName": "Etablissement",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "classes": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::class.class",
+      "mappedBy": "etablissement"
+    },
+    "etablissement": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::school.school",
+      "inversedBy": "etablissements"
+    },
+    "etablissements": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::school.school",
+      "mappedBy": "etablissement"
+    },
+    "cashier": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "etablissement_cashier"
+    },
+    "responsible": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "etablissement_responsible"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "Ecole",
+        "Annexe",
+        "Centre"
+      ]
+    }
+  }
+}

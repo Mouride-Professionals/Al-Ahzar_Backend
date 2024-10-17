@@ -1,0 +1,195 @@
+{
+  "key": "plugin_content_manager_configuration_content_types::api::class.class",
+  "value": {
+    "uid": "api::class.class",
+    "settings": {
+      "bulkable": true,
+      "filterable": true,
+      "searchable": true,
+      "pageSize": 10,
+      "mainField": "level",
+      "defaultSortBy": "level",
+      "defaultSortOrder": "ASC"
+    },
+    "metadatas": {
+      "id": {
+        "edit": {},
+        "list": {
+          "label": "id",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "cycle": {
+        "edit": {
+          "label": "cycle",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "cycle",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "etablissement": {
+        "edit": {
+          "label": "etablissement",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "name"
+        },
+        "list": {
+          "label": "etablissement",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "eleves": {
+        "edit": {
+          "label": "eleves",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "firstname"
+        },
+        "list": {
+          "label": "eleves",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "level": {
+        "edit": {
+          "label": "level",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "level",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "letter": {
+        "edit": {
+          "label": "letter",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "letter",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "createdAt": {
+        "edit": {
+          "label": "createdAt",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true
+        },
+        "list": {
+          "label": "createdAt",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "updatedAt": {
+        "edit": {
+          "label": "updatedAt",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true
+        },
+        "list": {
+          "label": "updatedAt",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "createdBy": {
+        "edit": {
+          "label": "createdBy",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true,
+          "mainField": "firstname"
+        },
+        "list": {
+          "label": "createdBy",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "updatedBy": {
+        "edit": {
+          "label": "updatedBy",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true,
+          "mainField": "firstname"
+        },
+        "list": {
+          "label": "updatedBy",
+          "searchable": true,
+          "sortable": true
+        }
+      }
+    },
+    "layouts": {
+      "list": [
+        "id",
+        "cycle",
+        "level",
+        "letter",
+        "createdAt"
+      ],
+      "edit": [
+        [
+          {
+            "name": "cycle",
+            "size": 6
+          },
+          {
+            "name": "level",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "letter",
+            "size": 6
+          },
+          {
+            "name": "etablissement",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "eleves",
+            "size": 6
+          }
+        ]
+      ]
+    }
+  },
+  "type": "object",
+  "environment": null,
+  "tag": null
+}

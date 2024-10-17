@@ -1,0 +1,172 @@
+{
+  "key": "plugin_content_manager_configuration_content_types::api::subject.subject",
+  "value": {
+    "uid": "api::subject.subject",
+    "settings": {
+      "bulkable": true,
+      "filterable": true,
+      "searchable": true,
+      "pageSize": 10,
+      "mainField": "subjectname",
+      "defaultSortBy": "subjectname",
+      "defaultSortOrder": "ASC"
+    },
+    "metadatas": {
+      "id": {
+        "edit": {},
+        "list": {
+          "label": "id",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "subjectname": {
+        "edit": {
+          "label": "subjectname",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "subjectname",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "hourlyQuantity": {
+        "edit": {
+          "label": "hourlyQuantity",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "hourlyQuantity",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "hourlyRate": {
+        "edit": {
+          "label": "hourlyRate",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "hourlyRate",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "salaireStatus": {
+        "edit": {
+          "label": "salaireStatus",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "salaireStatus",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "createdAt": {
+        "edit": {
+          "label": "createdAt",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true
+        },
+        "list": {
+          "label": "createdAt",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "updatedAt": {
+        "edit": {
+          "label": "updatedAt",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true
+        },
+        "list": {
+          "label": "updatedAt",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "createdBy": {
+        "edit": {
+          "label": "createdBy",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true,
+          "mainField": "firstname"
+        },
+        "list": {
+          "label": "createdBy",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "updatedBy": {
+        "edit": {
+          "label": "updatedBy",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true,
+          "mainField": "firstname"
+        },
+        "list": {
+          "label": "updatedBy",
+          "searchable": true,
+          "sortable": true
+        }
+      }
+    },
+    "layouts": {
+      "list": [
+        "id",
+        "subjectname",
+        "hourlyQuantity",
+        "hourlyRate"
+      ],
+      "edit": [
+        [
+          {
+            "name": "subjectname",
+            "size": 6
+          },
+          {
+            "name": "hourlyQuantity",
+            "size": 4
+          }
+        ],
+        [
+          {
+            "name": "hourlyRate",
+            "size": 4
+          },
+          {
+            "name": "salaireStatus",
+            "size": 6
+          }
+        ]
+      ]
+    }
+  },
+  "type": "object",
+  "environment": null,
+  "tag": null
+}

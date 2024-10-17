@@ -1,0 +1,85 @@
+{
+  "kind": "collectionType",
+  "collectionName": "students",
+  "info": {
+    "singularName": "student",
+    "pluralName": "students",
+    "displayName": "Eleve",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "firstname": {
+      "type": "string",
+      "required": true
+    },
+    "lastname": {
+      "type": "string",
+      "required": true
+    },
+    "gender": {
+      "type": "enumeration",
+      "enum": [
+        "Homme",
+        "Femme"
+      ],
+      "required": true
+    },
+    "dateOfBirth": {
+      "type": "date",
+      "required": true
+    },
+    "birthPlace": {
+      "type": "string",
+      "required": true
+    },
+    "tutorFirstname": {
+      "type": "string",
+      "required": true
+    },
+    "tutorLastname": {
+      "type": "string",
+      "required": true
+    },
+    "tutorPhoneNumber": {
+      "type": "string",
+      "required": true
+    },
+    "classe": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::class.class",
+      "inversedBy": "eleves"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "Hafiz",
+        "Ancien Redoublant",
+        "Ancien Passant",
+        "Nouveau"
+      ]
+    },
+    "socialStatus": {
+      "type": "enumeration",
+      "enum": [
+        "Non",
+        "Réduction inscription",
+        "Réduction mensualité",
+        "Tout tarifs offerts"
+      ]
+    },
+    "registrationComment": {
+      "type": "string"
+    },
+    "payments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::payment.payment",
+      "mappedBy": "eleve"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+"use strict";
+(self["webpackChunkal_azhar_back"] = self["webpackChunkal_azhar_back"] || []).push([[6637],{
+
+/***/ 23490:
+/***/ ((module) => {
+
+module.exports = {};
+
+/***/ })
+
+}]);

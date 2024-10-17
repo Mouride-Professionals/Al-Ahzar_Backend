@@ -1,0 +1,65 @@
+{
+  "kind": "collectionType",
+  "collectionName": "classes",
+  "info": {
+    "singularName": "class",
+    "pluralName": "classes",
+    "displayName": "Classe",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "cycle": {
+      "type": "enumeration",
+      "enum": [
+        "primaire",
+        "secondaire 1er cycle",
+        "secondaire 2eme cycle"
+      ],
+      "required": true
+    },
+    "etablissement": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::school.school",
+      "inversedBy": "classes"
+    },
+    "eleves": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::student.student",
+      "mappedBy": "classe"
+    },
+    "level": {
+      "type": "enumeration",
+      "enum": [
+        "CI",
+        "CP",
+        "CE1",
+        "CE2",
+        "CM1",
+        "CM2",
+        "a 6eme",
+        "a 5eme",
+        "a 4eme",
+        "a 3eme",
+        "a 2nd",
+        "a 1ere",
+        "Terminale"
+      ]
+    },
+    "letter": {
+      "type": "enumeration",
+      "enum": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ]
+    }
+  }
+}

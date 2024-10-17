@@ -1,0 +1,11 @@
+"use strict";
+(self["webpackChunkal_azhar_back"] = self["webpackChunkal_azhar_back"] || []).push([[8347],{
+
+/***/ 80430:
+/***/ ((module) => {
+
+module.exports = /*#__PURE__*/JSON.parse('{"popUpWarning.warning.import_1":"If you continue all your local config files","popUpWarning.warning.import_2":"will be imported into the database.","popUpWarning.warning.export_1":"If you continue all your database config","popUpWarning.warning.export_2":"will be written into config files.","popUpWarning.button.import":"Yes, import","popUpWarning.button.export":"Yes, export","popUpWarning.button.cancel":"Cancel","popUpWarning.force":"Force","popUpWarning.Confirmation":"Confirmation","Header.Title":"Config Sync","Header.Description":"Manage your database config across environments.","ConfigList.Loading":"Loading content...","ConfigList.SelectAll":"Select all entries","ConfigList.ConfigName":"Config name","ConfigList.ConfigType":"Config type","ConfigList.State":"State","ConfigList.Different":"Different","ConfigList.OnlyDir":"Only in sync dir","ConfigList.OnlyDB":"Only in DB","NoChanges.Message":"No differences between DB and sync directory. You are up-to-date!","ConfigDiff.Title":"Config changes for","ConfigDiff.SyncDirectory":"Sync directory","ConfigDiff.Database":"Database","Buttons.Export":"Export","Buttons.Import":"Import","FirstExport.Message":"Looks like this is your first time using config-sync for this project.","FirstExport.Button":"Make the initial export","Settings.Tool.Title":"Interface","plugin.name":"Config Sync"}');
+
+/***/ })
+
+}]);
