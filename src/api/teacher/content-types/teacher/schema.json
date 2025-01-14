@@ -23,6 +23,113 @@
     "phoneNumber": {
       "type": "string",
       "required": true
+    },
+    "email": {
+      "type": "email"
+    },
+    "gender": {
+      "type": "enumeration",
+      "enum": [
+        "Homme",
+        "Femme"
+      ]
+    },
+    "etablissement": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::school.school"
+    },
+    "birthDate": {
+      "type": "date"
+    },
+    "birthPlace": {
+      "type": "string"
+    },
+    "address": {
+      "type": "string"
+    },
+    "maritalStatus": {
+      "type": "enumeration",
+      "enum": [
+        "Marié(e)",
+        "Célibataire",
+        "Divorcé(e)"
+      ]
+    },
+    "academicDegree": {
+      "type": "enumeration",
+      "enum": [
+        "Baccalauréat",
+        "Licence",
+        "Master",
+        "Doctorat"
+      ]
+    },
+    "professionalDegrees": {
+      "type": "string"
+    },
+    "disciplines": {
+      "type": "string"
+    },
+    "language": {
+      "type": "enumeration",
+      "enum": [
+        "Francais",
+        "Anglais",
+        "Arabe",
+        "Wolof"
+      ]
+    },
+    "subjects": {
+      "type": "string"
+    },
+    "contractType": {
+      "type": "enumeration",
+      "enum": [
+        "Disponible",
+        "Employé Etat",
+        "Journalier",
+        "Etranger"
+      ],
+      "default": "Disponible"
+    },
+    "level": {
+      "type": "enumeration",
+      "enum": [
+        "Primaire",
+        "Moyen",
+        "Secondaire"
+      ]
+    },
+    "salary": {
+      "type": "decimal"
+    },
+    "registrationNumber": {
+      "type": "string"
+    },
+    "generation": {
+      "type": "string"
+    },
+    "salaryPerHour": {
+      "type": "decimal"
+    },
+    "hoursNumber": {
+      "type": "integer"
+    },
+    "additionalResponsibilities": {
+      "type": "string"
+    },
+    "countryFrom": {
+      "type": "string"
+    },
+    "arrivalDate": {
+      "type": "date"
+    },
+    "previousInstitutes": {
+      "type": "string"
+    },
+    "contributions": {
+      "type": "string"
     }
   }
 }

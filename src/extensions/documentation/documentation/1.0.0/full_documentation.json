@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2024-12-15T15:45:58.698Z"
+    "x-generation-date": "2025-01-13T20:47:36.264Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -823,7 +823,7 @@
                           }
                         }
                       },
-                      "etablissement": {
+                      "etablissementParent": {
                         "type": "object",
                         "properties": {
                           "data": {
@@ -1174,10 +1174,121 @@
                       "type": {
                         "type": "string",
                         "enum": [
-                          "Ecole",
-                          "Annexe",
-                          "Centre"
+                          "Centre",
+                          "Centre Secondaire",
+                          "Annexe"
                         ]
+                      },
+                      "region": {
+                        "type": "string",
+                        "enum": [
+                          "Dakar",
+                          "Diourbel",
+                          "Fatick",
+                          "Kaffrine",
+                          "Kaolack",
+                          "Kédougou",
+                          "Kolda",
+                          "Louga",
+                          "Matam",
+                          "Saint-Louis",
+                          "Sédhiou",
+                          "Tambacounda",
+                          "Thiès",
+                          "Ziguinchor"
+                        ]
+                      },
+                      "department": {
+                        "type": "string",
+                        "enum": [
+                          "Bakel",
+                          "Bambey",
+                          "Bignona",
+                          "Birkelane",
+                          "Bounkiling",
+                          "Dagana",
+                          "Dakar",
+                          "Diourbel",
+                          "Fatick",
+                          "Foundiougne",
+                          "Gossas",
+                          "Goudiry",
+                          "Goudomp",
+                          "Guédiawaye",
+                          "Guinguinéo",
+                          "Kafrine",
+                          "Kaolack",
+                          "Kanel",
+                          "Kébémer",
+                          "Kédougou",
+                          "Keur Massar",
+                          "Kolda",
+                          "Koumpentoum",
+                          "Koungheul",
+                          "Linguère",
+                          "Louga",
+                          "M'bour",
+                          "Malem Hodar",
+                          "Matam",
+                          "Mbacké",
+                          "Médina Yoro Foulah",
+                          "Nioro du Rip",
+                          "Oussouye",
+                          "Pikine",
+                          "Podor",
+                          "Ranérou",
+                          "Rufisque",
+                          "Saint-Louis",
+                          "Salemata",
+                          "Saraya",
+                          "Sédhiou",
+                          "Tambacounda",
+                          "Thiès",
+                          "Tivaouane",
+                          "Vélingara",
+                          "Ziguinchor"
+                        ]
+                      },
+                      "commune": {
+                        "type": "string"
+                      },
+                      "creationDate": {
+                        "type": "string",
+                        "format": "date"
+                      },
+                      "address": {
+                        "type": "string"
+                      },
+                      "email": {
+                        "type": "string",
+                        "format": "email"
+                      },
+                      "phone": {
+                        "type": "string"
+                      },
+                      "phoneFix": {
+                        "type": "string"
+                      },
+                      "isAlAzharLand": {
+                        "type": "boolean"
+                      },
+                      "note": {
+                        "type": "string"
+                      },
+                      "IA": {
+                        "type": "string"
+                      },
+                      "IEF": {
+                        "type": "string"
+                      },
+                      "responsibleName": {
+                        "type": "string"
+                      },
+                      "city": {
+                        "type": "string"
+                      },
+                      "postBox": {
+                        "type": "string"
                       },
                       "createdAt": {
                         "type": "string",
@@ -1536,7 +1647,7 @@
                                                   }
                                                 }
                                               },
-                                              "etablissement": {
+                                              "etablissementParent": {
                                                 "type": "object",
                                                 "properties": {
                                                   "data": {
@@ -2139,10 +2250,121 @@
                                               "type": {
                                                 "type": "string",
                                                 "enum": [
-                                                  "Ecole",
-                                                  "Annexe",
-                                                  "Centre"
+                                                  "Centre",
+                                                  "Centre Secondaire",
+                                                  "Annexe"
                                                 ]
+                                              },
+                                              "region": {
+                                                "type": "string",
+                                                "enum": [
+                                                  "Dakar",
+                                                  "Diourbel",
+                                                  "Fatick",
+                                                  "Kaffrine",
+                                                  "Kaolack",
+                                                  "Kédougou",
+                                                  "Kolda",
+                                                  "Louga",
+                                                  "Matam",
+                                                  "Saint-Louis",
+                                                  "Sédhiou",
+                                                  "Tambacounda",
+                                                  "Thiès",
+                                                  "Ziguinchor"
+                                                ]
+                                              },
+                                              "department": {
+                                                "type": "string",
+                                                "enum": [
+                                                  "Bakel",
+                                                  "Bambey",
+                                                  "Bignona",
+                                                  "Birkelane",
+                                                  "Bounkiling",
+                                                  "Dagana",
+                                                  "Dakar",
+                                                  "Diourbel",
+                                                  "Fatick",
+                                                  "Foundiougne",
+                                                  "Gossas",
+                                                  "Goudiry",
+                                                  "Goudomp",
+                                                  "Guédiawaye",
+                                                  "Guinguinéo",
+                                                  "Kafrine",
+                                                  "Kaolack",
+                                                  "Kanel",
+                                                  "Kébémer",
+                                                  "Kédougou",
+                                                  "Keur Massar",
+                                                  "Kolda",
+                                                  "Koumpentoum",
+                                                  "Koungheul",
+                                                  "Linguère",
+                                                  "Louga",
+                                                  "M'bour",
+                                                  "Malem Hodar",
+                                                  "Matam",
+                                                  "Mbacké",
+                                                  "Médina Yoro Foulah",
+                                                  "Nioro du Rip",
+                                                  "Oussouye",
+                                                  "Pikine",
+                                                  "Podor",
+                                                  "Ranérou",
+                                                  "Rufisque",
+                                                  "Saint-Louis",
+                                                  "Salemata",
+                                                  "Saraya",
+                                                  "Sédhiou",
+                                                  "Tambacounda",
+                                                  "Thiès",
+                                                  "Tivaouane",
+                                                  "Vélingara",
+                                                  "Ziguinchor"
+                                                ]
+                                              },
+                                              "commune": {
+                                                "type": "string"
+                                              },
+                                              "creationDate": {
+                                                "type": "string",
+                                                "format": "date"
+                                              },
+                                              "address": {
+                                                "type": "string"
+                                              },
+                                              "email": {
+                                                "type": "string",
+                                                "format": "email"
+                                              },
+                                              "phone": {
+                                                "type": "string"
+                                              },
+                                              "phoneFix": {
+                                                "type": "string"
+                                              },
+                                              "isAlAzharLand": {
+                                                "type": "boolean"
+                                              },
+                                              "note": {
+                                                "type": "string"
+                                              },
+                                              "IA": {
+                                                "type": "string"
+                                              },
+                                              "IEF": {
+                                                "type": "string"
+                                              },
+                                              "responsibleName": {
+                                                "type": "string"
+                                              },
+                                              "city": {
+                                                "type": "string"
+                                              },
+                                              "postBox": {
+                                                "type": "string"
                                               },
                                               "createdAt": {
                                                 "type": "string",
@@ -2521,6 +2743,10 @@
         ],
         "properties": {
           "data": {
+            "required": [
+              "type",
+              "region"
+            ],
             "type": "object",
             "properties": {
               "name": {
@@ -2540,7 +2766,7 @@
                   "example": "string or id"
                 }
               },
-              "etablissement": {
+              "etablissementParent": {
                 "oneOf": [
                   {
                     "type": "integer"
@@ -2590,10 +2816,121 @@
               "type": {
                 "type": "string",
                 "enum": [
-                  "Ecole",
-                  "Annexe",
-                  "Centre"
+                  "Centre",
+                  "Centre Secondaire",
+                  "Annexe"
                 ]
+              },
+              "region": {
+                "type": "string",
+                "enum": [
+                  "Dakar",
+                  "Diourbel",
+                  "Fatick",
+                  "Kaffrine",
+                  "Kaolack",
+                  "Kédougou",
+                  "Kolda",
+                  "Louga",
+                  "Matam",
+                  "Saint-Louis",
+                  "Sédhiou",
+                  "Tambacounda",
+                  "Thiès",
+                  "Ziguinchor"
+                ]
+              },
+              "department": {
+                "type": "string",
+                "enum": [
+                  "Bakel",
+                  "Bambey",
+                  "Bignona",
+                  "Birkelane",
+                  "Bounkiling",
+                  "Dagana",
+                  "Dakar",
+                  "Diourbel",
+                  "Fatick",
+                  "Foundiougne",
+                  "Gossas",
+                  "Goudiry",
+                  "Goudomp",
+                  "Guédiawaye",
+                  "Guinguinéo",
+                  "Kafrine",
+                  "Kaolack",
+                  "Kanel",
+                  "Kébémer",
+                  "Kédougou",
+                  "Keur Massar",
+                  "Kolda",
+                  "Koumpentoum",
+                  "Koungheul",
+                  "Linguère",
+                  "Louga",
+                  "M'bour",
+                  "Malem Hodar",
+                  "Matam",
+                  "Mbacké",
+                  "Médina Yoro Foulah",
+                  "Nioro du Rip",
+                  "Oussouye",
+                  "Pikine",
+                  "Podor",
+                  "Ranérou",
+                  "Rufisque",
+                  "Saint-Louis",
+                  "Salemata",
+                  "Saraya",
+                  "Sédhiou",
+                  "Tambacounda",
+                  "Thiès",
+                  "Tivaouane",
+                  "Vélingara",
+                  "Ziguinchor"
+                ]
+              },
+              "commune": {
+                "type": "string"
+              },
+              "creationDate": {
+                "type": "string",
+                "format": "date"
+              },
+              "address": {
+                "type": "string"
+              },
+              "email": {
+                "type": "string",
+                "format": "email"
+              },
+              "phone": {
+                "type": "string"
+              },
+              "phoneFix": {
+                "type": "string"
+              },
+              "isAlAzharLand": {
+                "type": "boolean"
+              },
+              "note": {
+                "type": "string"
+              },
+              "IA": {
+                "type": "string"
+              },
+              "IEF": {
+                "type": "string"
+              },
+              "responsibleName": {
+                "type": "string"
+              },
+              "city": {
+                "type": "string"
+              },
+              "postBox": {
+                "type": "string"
               }
             }
           }
@@ -2647,6 +2984,10 @@
       },
       "School": {
         "type": "object",
+        "required": [
+          "type",
+          "region"
+        ],
         "properties": {
           "name": {
             "type": "string"
@@ -2708,7 +3049,7 @@
                                         }
                                       }
                                     },
-                                    "etablissement": {
+                                    "etablissementParent": {
                                       "type": "object",
                                       "properties": {
                                         "data": {
@@ -3311,10 +3652,121 @@
                                     "type": {
                                       "type": "string",
                                       "enum": [
-                                        "Ecole",
-                                        "Annexe",
-                                        "Centre"
+                                        "Centre",
+                                        "Centre Secondaire",
+                                        "Annexe"
                                       ]
+                                    },
+                                    "region": {
+                                      "type": "string",
+                                      "enum": [
+                                        "Dakar",
+                                        "Diourbel",
+                                        "Fatick",
+                                        "Kaffrine",
+                                        "Kaolack",
+                                        "Kédougou",
+                                        "Kolda",
+                                        "Louga",
+                                        "Matam",
+                                        "Saint-Louis",
+                                        "Sédhiou",
+                                        "Tambacounda",
+                                        "Thiès",
+                                        "Ziguinchor"
+                                      ]
+                                    },
+                                    "department": {
+                                      "type": "string",
+                                      "enum": [
+                                        "Bakel",
+                                        "Bambey",
+                                        "Bignona",
+                                        "Birkelane",
+                                        "Bounkiling",
+                                        "Dagana",
+                                        "Dakar",
+                                        "Diourbel",
+                                        "Fatick",
+                                        "Foundiougne",
+                                        "Gossas",
+                                        "Goudiry",
+                                        "Goudomp",
+                                        "Guédiawaye",
+                                        "Guinguinéo",
+                                        "Kafrine",
+                                        "Kaolack",
+                                        "Kanel",
+                                        "Kébémer",
+                                        "Kédougou",
+                                        "Keur Massar",
+                                        "Kolda",
+                                        "Koumpentoum",
+                                        "Koungheul",
+                                        "Linguère",
+                                        "Louga",
+                                        "M'bour",
+                                        "Malem Hodar",
+                                        "Matam",
+                                        "Mbacké",
+                                        "Médina Yoro Foulah",
+                                        "Nioro du Rip",
+                                        "Oussouye",
+                                        "Pikine",
+                                        "Podor",
+                                        "Ranérou",
+                                        "Rufisque",
+                                        "Saint-Louis",
+                                        "Salemata",
+                                        "Saraya",
+                                        "Sédhiou",
+                                        "Tambacounda",
+                                        "Thiès",
+                                        "Tivaouane",
+                                        "Vélingara",
+                                        "Ziguinchor"
+                                      ]
+                                    },
+                                    "commune": {
+                                      "type": "string"
+                                    },
+                                    "creationDate": {
+                                      "type": "string",
+                                      "format": "date"
+                                    },
+                                    "address": {
+                                      "type": "string"
+                                    },
+                                    "email": {
+                                      "type": "string",
+                                      "format": "email"
+                                    },
+                                    "phone": {
+                                      "type": "string"
+                                    },
+                                    "phoneFix": {
+                                      "type": "string"
+                                    },
+                                    "isAlAzharLand": {
+                                      "type": "boolean"
+                                    },
+                                    "note": {
+                                      "type": "string"
+                                    },
+                                    "IA": {
+                                      "type": "string"
+                                    },
+                                    "IEF": {
+                                      "type": "string"
+                                    },
+                                    "responsibleName": {
+                                      "type": "string"
+                                    },
+                                    "city": {
+                                      "type": "string"
+                                    },
+                                    "postBox": {
+                                      "type": "string"
                                     },
                                     "createdAt": {
                                       "type": "string",
@@ -3662,7 +4114,7 @@
               }
             }
           },
-          "etablissement": {
+          "etablissementParent": {
             "type": "object",
             "properties": {
               "data": {
@@ -3736,10 +4188,121 @@
           "type": {
             "type": "string",
             "enum": [
-              "Ecole",
-              "Annexe",
-              "Centre"
+              "Centre",
+              "Centre Secondaire",
+              "Annexe"
             ]
+          },
+          "region": {
+            "type": "string",
+            "enum": [
+              "Dakar",
+              "Diourbel",
+              "Fatick",
+              "Kaffrine",
+              "Kaolack",
+              "Kédougou",
+              "Kolda",
+              "Louga",
+              "Matam",
+              "Saint-Louis",
+              "Sédhiou",
+              "Tambacounda",
+              "Thiès",
+              "Ziguinchor"
+            ]
+          },
+          "department": {
+            "type": "string",
+            "enum": [
+              "Bakel",
+              "Bambey",
+              "Bignona",
+              "Birkelane",
+              "Bounkiling",
+              "Dagana",
+              "Dakar",
+              "Diourbel",
+              "Fatick",
+              "Foundiougne",
+              "Gossas",
+              "Goudiry",
+              "Goudomp",
+              "Guédiawaye",
+              "Guinguinéo",
+              "Kafrine",
+              "Kaolack",
+              "Kanel",
+              "Kébémer",
+              "Kédougou",
+              "Keur Massar",
+              "Kolda",
+              "Koumpentoum",
+              "Koungheul",
+              "Linguère",
+              "Louga",
+              "M'bour",
+              "Malem Hodar",
+              "Matam",
+              "Mbacké",
+              "Médina Yoro Foulah",
+              "Nioro du Rip",
+              "Oussouye",
+              "Pikine",
+              "Podor",
+              "Ranérou",
+              "Rufisque",
+              "Saint-Louis",
+              "Salemata",
+              "Saraya",
+              "Sédhiou",
+              "Tambacounda",
+              "Thiès",
+              "Tivaouane",
+              "Vélingara",
+              "Ziguinchor"
+            ]
+          },
+          "commune": {
+            "type": "string"
+          },
+          "creationDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "address": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "phoneFix": {
+            "type": "string"
+          },
+          "isAlAzharLand": {
+            "type": "boolean"
+          },
+          "note": {
+            "type": "string"
+          },
+          "IA": {
+            "type": "string"
+          },
+          "IEF": {
+            "type": "string"
+          },
+          "responsibleName": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "postBox": {
+            "type": "string"
           },
           "createdAt": {
             "type": "string",
@@ -4052,7 +4615,7 @@
                                       }
                                     }
                                   },
-                                  "etablissement": {
+                                  "etablissementParent": {
                                     "type": "object",
                                     "properties": {
                                       "data": {
@@ -4655,10 +5218,121 @@
                                   "type": {
                                     "type": "string",
                                     "enum": [
-                                      "Ecole",
-                                      "Annexe",
-                                      "Centre"
+                                      "Centre",
+                                      "Centre Secondaire",
+                                      "Annexe"
                                     ]
+                                  },
+                                  "region": {
+                                    "type": "string",
+                                    "enum": [
+                                      "Dakar",
+                                      "Diourbel",
+                                      "Fatick",
+                                      "Kaffrine",
+                                      "Kaolack",
+                                      "Kédougou",
+                                      "Kolda",
+                                      "Louga",
+                                      "Matam",
+                                      "Saint-Louis",
+                                      "Sédhiou",
+                                      "Tambacounda",
+                                      "Thiès",
+                                      "Ziguinchor"
+                                    ]
+                                  },
+                                  "department": {
+                                    "type": "string",
+                                    "enum": [
+                                      "Bakel",
+                                      "Bambey",
+                                      "Bignona",
+                                      "Birkelane",
+                                      "Bounkiling",
+                                      "Dagana",
+                                      "Dakar",
+                                      "Diourbel",
+                                      "Fatick",
+                                      "Foundiougne",
+                                      "Gossas",
+                                      "Goudiry",
+                                      "Goudomp",
+                                      "Guédiawaye",
+                                      "Guinguinéo",
+                                      "Kafrine",
+                                      "Kaolack",
+                                      "Kanel",
+                                      "Kébémer",
+                                      "Kédougou",
+                                      "Keur Massar",
+                                      "Kolda",
+                                      "Koumpentoum",
+                                      "Koungheul",
+                                      "Linguère",
+                                      "Louga",
+                                      "M'bour",
+                                      "Malem Hodar",
+                                      "Matam",
+                                      "Mbacké",
+                                      "Médina Yoro Foulah",
+                                      "Nioro du Rip",
+                                      "Oussouye",
+                                      "Pikine",
+                                      "Podor",
+                                      "Ranérou",
+                                      "Rufisque",
+                                      "Saint-Louis",
+                                      "Salemata",
+                                      "Saraya",
+                                      "Sédhiou",
+                                      "Tambacounda",
+                                      "Thiès",
+                                      "Tivaouane",
+                                      "Vélingara",
+                                      "Ziguinchor"
+                                    ]
+                                  },
+                                  "commune": {
+                                    "type": "string"
+                                  },
+                                  "creationDate": {
+                                    "type": "string",
+                                    "format": "date"
+                                  },
+                                  "address": {
+                                    "type": "string"
+                                  },
+                                  "email": {
+                                    "type": "string",
+                                    "format": "email"
+                                  },
+                                  "phone": {
+                                    "type": "string"
+                                  },
+                                  "phoneFix": {
+                                    "type": "string"
+                                  },
+                                  "isAlAzharLand": {
+                                    "type": "boolean"
+                                  },
+                                  "note": {
+                                    "type": "string"
+                                  },
+                                  "IA": {
+                                    "type": "string"
+                                  },
+                                  "IEF": {
+                                    "type": "string"
+                                  },
+                                  "responsibleName": {
+                                    "type": "string"
+                                  },
+                                  "city": {
+                                    "type": "string"
+                                  },
+                                  "postBox": {
+                                    "type": "string"
                                   },
                                   "createdAt": {
                                     "type": "string",
@@ -5556,6 +6230,123 @@
               },
               "phoneNumber": {
                 "type": "string"
+              },
+              "email": {
+                "type": "string",
+                "format": "email"
+              },
+              "gender": {
+                "type": "string",
+                "enum": [
+                  "Homme",
+                  "Femme"
+                ]
+              },
+              "etablissement": {
+                "oneOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "string"
+                  }
+                ],
+                "example": "string or id"
+              },
+              "birthDate": {
+                "type": "string",
+                "format": "date"
+              },
+              "birthPlace": {
+                "type": "string"
+              },
+              "address": {
+                "type": "string"
+              },
+              "maritalStatus": {
+                "type": "string",
+                "enum": [
+                  "Marié(e)",
+                  "Célibataire",
+                  "Divorcé(e)"
+                ]
+              },
+              "academicDegree": {
+                "type": "string",
+                "enum": [
+                  "Baccalauréat",
+                  "Licence",
+                  "Master",
+                  "Doctorat"
+                ]
+              },
+              "professionalDegrees": {
+                "type": "string"
+              },
+              "disciplines": {
+                "type": "string"
+              },
+              "language": {
+                "type": "string",
+                "enum": [
+                  "Francais",
+                  "Anglais",
+                  "Arabe",
+                  "Wolof"
+                ]
+              },
+              "subjects": {
+                "type": "string"
+              },
+              "contractType": {
+                "type": "string",
+                "enum": [
+                  "Disponible",
+                  "Employé Etat",
+                  "Journalier",
+                  "Etranger"
+                ]
+              },
+              "level": {
+                "type": "string",
+                "enum": [
+                  "Primaire",
+                  "Moyen",
+                  "Secondaire"
+                ]
+              },
+              "salary": {
+                "type": "number",
+                "format": "float"
+              },
+              "registrationNumber": {
+                "type": "string"
+              },
+              "generation": {
+                "type": "string"
+              },
+              "salaryPerHour": {
+                "type": "number",
+                "format": "float"
+              },
+              "hoursNumber": {
+                "type": "integer"
+              },
+              "additionalResponsibilities": {
+                "type": "string"
+              },
+              "countryFrom": {
+                "type": "string"
+              },
+              "arrivalDate": {
+                "type": "string",
+                "format": "date"
+              },
+              "previousInstitutes": {
+                "type": "string"
+              },
+              "contributions": {
+                "type": "string"
               }
             }
           }
@@ -5624,19 +6415,18 @@
           "phoneNumber": {
             "type": "string"
           },
-          "createdAt": {
+          "email": {
             "type": "string",
-            "format": "date-time"
+            "format": "email"
           },
-          "updatedAt": {
+          "gender": {
             "type": "string",
-            "format": "date-time"
+            "enum": [
+              "Homme",
+              "Femme"
+            ]
           },
-          "publishedAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "createdBy": {
+          "etablissement": {
             "type": "object",
             "properties": {
               "data": {
@@ -5648,29 +6438,10 @@
                   "attributes": {
                     "type": "object",
                     "properties": {
-                      "firstname": {
+                      "name": {
                         "type": "string"
                       },
-                      "lastname": {
-                        "type": "string"
-                      },
-                      "username": {
-                        "type": "string"
-                      },
-                      "email": {
-                        "type": "string",
-                        "format": "email"
-                      },
-                      "resetPasswordToken": {
-                        "type": "string"
-                      },
-                      "registrationToken": {
-                        "type": "string"
-                      },
-                      "isActive": {
-                        "type": "boolean"
-                      },
-                      "roles": {
+                      "classes": {
                         "type": "object",
                         "properties": {
                           "data": {
@@ -5684,36 +6455,32 @@
                                 "attributes": {
                                   "type": "object",
                                   "properties": {
-                                    "name": {
-                                      "type": "string"
+                                    "cycle": {
+                                      "type": "string",
+                                      "enum": [
+                                        "primaire",
+                                        "secondaire 1er cycle",
+                                        "secondaire 2eme cycle"
+                                      ]
                                     },
-                                    "code": {
-                                      "type": "string"
-                                    },
-                                    "description": {
-                                      "type": "string"
-                                    },
-                                    "users": {
+                                    "etablissement": {
                                       "type": "object",
                                       "properties": {
                                         "data": {
-                                          "type": "array",
-                                          "items": {
-                                            "type": "object",
-                                            "properties": {
-                                              "id": {
-                                                "type": "number"
-                                              },
-                                              "attributes": {
-                                                "type": "object",
-                                                "properties": {}
-                                              }
+                                          "type": "object",
+                                          "properties": {
+                                            "id": {
+                                              "type": "number"
+                                            },
+                                            "attributes": {
+                                              "type": "object",
+                                              "properties": {}
                                             }
                                           }
                                         }
                                       }
                                     },
-                                    "permissions": {
+                                    "eleves": {
                                       "type": "object",
                                       "properties": {
                                         "data": {
@@ -5727,16 +6494,36 @@
                                               "attributes": {
                                                 "type": "object",
                                                 "properties": {
-                                                  "action": {
+                                                  "firstname": {
                                                     "type": "string"
                                                   },
-                                                  "actionParameters": {},
-                                                  "subject": {
+                                                  "lastname": {
                                                     "type": "string"
                                                   },
-                                                  "properties": {},
-                                                  "conditions": {},
-                                                  "role": {
+                                                  "gender": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                      "Homme",
+                                                      "Femme"
+                                                    ]
+                                                  },
+                                                  "dateOfBirth": {
+                                                    "type": "string",
+                                                    "format": "date"
+                                                  },
+                                                  "birthPlace": {
+                                                    "type": "string"
+                                                  },
+                                                  "tutorFirstname": {
+                                                    "type": "string"
+                                                  },
+                                                  "tutorLastname": {
+                                                    "type": "string"
+                                                  },
+                                                  "tutorPhoneNumber": {
+                                                    "type": "string"
+                                                  },
+                                                  "classe": {
                                                     "type": "object",
                                                     "properties": {
                                                       "data": {
@@ -5748,6 +6535,366 @@
                                                           "attributes": {
                                                             "type": "object",
                                                             "properties": {}
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  },
+                                                  "type": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                      "Hafiz",
+                                                      "Ancien Redoublant",
+                                                      "Ancien Passant",
+                                                      "Nouveau"
+                                                    ]
+                                                  },
+                                                  "socialStatus": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                      "Non",
+                                                      "Réduction inscription",
+                                                      "Réduction mensualité",
+                                                      "Tout tarifs offerts"
+                                                    ]
+                                                  },
+                                                  "registrationComment": {
+                                                    "type": "string"
+                                                  },
+                                                  "payments": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                      "data": {
+                                                        "type": "array",
+                                                        "items": {
+                                                          "type": "object",
+                                                          "properties": {
+                                                            "id": {
+                                                              "type": "number"
+                                                            },
+                                                            "attributes": {
+                                                              "type": "object",
+                                                              "properties": {
+                                                                "monthOf": {
+                                                                  "type": "string",
+                                                                  "format": "date"
+                                                                },
+                                                                "isPaid": {
+                                                                  "type": "boolean"
+                                                                },
+                                                                "eleve": {
+                                                                  "type": "object",
+                                                                  "properties": {
+                                                                    "data": {
+                                                                      "type": "object",
+                                                                      "properties": {
+                                                                        "id": {
+                                                                          "type": "number"
+                                                                        },
+                                                                        "attributes": {
+                                                                          "type": "object",
+                                                                          "properties": {}
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                },
+                                                                "createdAt": {
+                                                                  "type": "string",
+                                                                  "format": "date-time"
+                                                                },
+                                                                "updatedAt": {
+                                                                  "type": "string",
+                                                                  "format": "date-time"
+                                                                },
+                                                                "createdBy": {
+                                                                  "type": "object",
+                                                                  "properties": {
+                                                                    "data": {
+                                                                      "type": "object",
+                                                                      "properties": {
+                                                                        "id": {
+                                                                          "type": "number"
+                                                                        },
+                                                                        "attributes": {
+                                                                          "type": "object",
+                                                                          "properties": {
+                                                                            "firstname": {
+                                                                              "type": "string"
+                                                                            },
+                                                                            "lastname": {
+                                                                              "type": "string"
+                                                                            },
+                                                                            "username": {
+                                                                              "type": "string"
+                                                                            },
+                                                                            "email": {
+                                                                              "type": "string",
+                                                                              "format": "email"
+                                                                            },
+                                                                            "resetPasswordToken": {
+                                                                              "type": "string"
+                                                                            },
+                                                                            "registrationToken": {
+                                                                              "type": "string"
+                                                                            },
+                                                                            "isActive": {
+                                                                              "type": "boolean"
+                                                                            },
+                                                                            "roles": {
+                                                                              "type": "object",
+                                                                              "properties": {
+                                                                                "data": {
+                                                                                  "type": "array",
+                                                                                  "items": {
+                                                                                    "type": "object",
+                                                                                    "properties": {
+                                                                                      "id": {
+                                                                                        "type": "number"
+                                                                                      },
+                                                                                      "attributes": {
+                                                                                        "type": "object",
+                                                                                        "properties": {
+                                                                                          "name": {
+                                                                                            "type": "string"
+                                                                                          },
+                                                                                          "code": {
+                                                                                            "type": "string"
+                                                                                          },
+                                                                                          "description": {
+                                                                                            "type": "string"
+                                                                                          },
+                                                                                          "users": {
+                                                                                            "type": "object",
+                                                                                            "properties": {
+                                                                                              "data": {
+                                                                                                "type": "array",
+                                                                                                "items": {
+                                                                                                  "type": "object",
+                                                                                                  "properties": {
+                                                                                                    "id": {
+                                                                                                      "type": "number"
+                                                                                                    },
+                                                                                                    "attributes": {
+                                                                                                      "type": "object",
+                                                                                                      "properties": {}
+                                                                                                    }
+                                                                                                  }
+                                                                                                }
+                                                                                              }
+                                                                                            }
+                                                                                          },
+                                                                                          "permissions": {
+                                                                                            "type": "object",
+                                                                                            "properties": {
+                                                                                              "data": {
+                                                                                                "type": "array",
+                                                                                                "items": {
+                                                                                                  "type": "object",
+                                                                                                  "properties": {
+                                                                                                    "id": {
+                                                                                                      "type": "number"
+                                                                                                    },
+                                                                                                    "attributes": {
+                                                                                                      "type": "object",
+                                                                                                      "properties": {
+                                                                                                        "action": {
+                                                                                                          "type": "string"
+                                                                                                        },
+                                                                                                        "actionParameters": {},
+                                                                                                        "subject": {
+                                                                                                          "type": "string"
+                                                                                                        },
+                                                                                                        "properties": {},
+                                                                                                        "conditions": {},
+                                                                                                        "role": {
+                                                                                                          "type": "object",
+                                                                                                          "properties": {
+                                                                                                            "data": {
+                                                                                                              "type": "object",
+                                                                                                              "properties": {
+                                                                                                                "id": {
+                                                                                                                  "type": "number"
+                                                                                                                },
+                                                                                                                "attributes": {
+                                                                                                                  "type": "object",
+                                                                                                                  "properties": {}
+                                                                                                                }
+                                                                                                              }
+                                                                                                            }
+                                                                                                          }
+                                                                                                        },
+                                                                                                        "createdAt": {
+                                                                                                          "type": "string",
+                                                                                                          "format": "date-time"
+                                                                                                        },
+                                                                                                        "updatedAt": {
+                                                                                                          "type": "string",
+                                                                                                          "format": "date-time"
+                                                                                                        },
+                                                                                                        "createdBy": {
+                                                                                                          "type": "object",
+                                                                                                          "properties": {
+                                                                                                            "data": {
+                                                                                                              "type": "object",
+                                                                                                              "properties": {
+                                                                                                                "id": {
+                                                                                                                  "type": "number"
+                                                                                                                },
+                                                                                                                "attributes": {
+                                                                                                                  "type": "object",
+                                                                                                                  "properties": {}
+                                                                                                                }
+                                                                                                              }
+                                                                                                            }
+                                                                                                          }
+                                                                                                        },
+                                                                                                        "updatedBy": {
+                                                                                                          "type": "object",
+                                                                                                          "properties": {
+                                                                                                            "data": {
+                                                                                                              "type": "object",
+                                                                                                              "properties": {
+                                                                                                                "id": {
+                                                                                                                  "type": "number"
+                                                                                                                },
+                                                                                                                "attributes": {
+                                                                                                                  "type": "object",
+                                                                                                                  "properties": {}
+                                                                                                                }
+                                                                                                              }
+                                                                                                            }
+                                                                                                          }
+                                                                                                        }
+                                                                                                      }
+                                                                                                    }
+                                                                                                  }
+                                                                                                }
+                                                                                              }
+                                                                                            }
+                                                                                          },
+                                                                                          "createdAt": {
+                                                                                            "type": "string",
+                                                                                            "format": "date-time"
+                                                                                          },
+                                                                                          "updatedAt": {
+                                                                                            "type": "string",
+                                                                                            "format": "date-time"
+                                                                                          },
+                                                                                          "createdBy": {
+                                                                                            "type": "object",
+                                                                                            "properties": {
+                                                                                              "data": {
+                                                                                                "type": "object",
+                                                                                                "properties": {
+                                                                                                  "id": {
+                                                                                                    "type": "number"
+                                                                                                  },
+                                                                                                  "attributes": {
+                                                                                                    "type": "object",
+                                                                                                    "properties": {}
+                                                                                                  }
+                                                                                                }
+                                                                                              }
+                                                                                            }
+                                                                                          },
+                                                                                          "updatedBy": {
+                                                                                            "type": "object",
+                                                                                            "properties": {
+                                                                                              "data": {
+                                                                                                "type": "object",
+                                                                                                "properties": {
+                                                                                                  "id": {
+                                                                                                    "type": "number"
+                                                                                                  },
+                                                                                                  "attributes": {
+                                                                                                    "type": "object",
+                                                                                                    "properties": {}
+                                                                                                  }
+                                                                                                }
+                                                                                              }
+                                                                                            }
+                                                                                          }
+                                                                                        }
+                                                                                      }
+                                                                                    }
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            },
+                                                                            "blocked": {
+                                                                              "type": "boolean"
+                                                                            },
+                                                                            "preferedLanguage": {
+                                                                              "type": "string"
+                                                                            },
+                                                                            "createdAt": {
+                                                                              "type": "string",
+                                                                              "format": "date-time"
+                                                                            },
+                                                                            "updatedAt": {
+                                                                              "type": "string",
+                                                                              "format": "date-time"
+                                                                            },
+                                                                            "createdBy": {
+                                                                              "type": "object",
+                                                                              "properties": {
+                                                                                "data": {
+                                                                                  "type": "object",
+                                                                                  "properties": {
+                                                                                    "id": {
+                                                                                      "type": "number"
+                                                                                    },
+                                                                                    "attributes": {
+                                                                                      "type": "object",
+                                                                                      "properties": {}
+                                                                                    }
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            },
+                                                                            "updatedBy": {
+                                                                              "type": "object",
+                                                                              "properties": {
+                                                                                "data": {
+                                                                                  "type": "object",
+                                                                                  "properties": {
+                                                                                    "id": {
+                                                                                      "type": "number"
+                                                                                    },
+                                                                                    "attributes": {
+                                                                                      "type": "object",
+                                                                                      "properties": {}
+                                                                                    }
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                },
+                                                                "updatedBy": {
+                                                                  "type": "object",
+                                                                  "properties": {
+                                                                    "data": {
+                                                                      "type": "object",
+                                                                      "properties": {
+                                                                        "id": {
+                                                                          "type": "number"
+                                                                        },
+                                                                        "attributes": {
+                                                                          "type": "object",
+                                                                          "properties": {}
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
                                                           }
                                                         }
                                                       }
@@ -5802,6 +6949,34 @@
                                         }
                                       }
                                     },
+                                    "level": {
+                                      "type": "string",
+                                      "enum": [
+                                        "CI",
+                                        "CP",
+                                        "CE1",
+                                        "CE2",
+                                        "CM1",
+                                        "CM2",
+                                        "a 6eme",
+                                        "a 5eme",
+                                        "a 4eme",
+                                        "a 3eme",
+                                        "a 2nd",
+                                        "a 1ere",
+                                        "Terminale"
+                                      ]
+                                    },
+                                    "letter": {
+                                      "type": "string",
+                                      "enum": [
+                                        "A",
+                                        "B",
+                                        "C",
+                                        "D",
+                                        "E"
+                                      ]
+                                    },
                                     "createdAt": {
                                       "type": "string",
                                       "format": "date-time"
@@ -5851,10 +7026,471 @@
                           }
                         }
                       },
-                      "blocked": {
+                      "etablissementParent": {
+                        "type": "object",
+                        "properties": {
+                          "data": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "number"
+                              },
+                              "attributes": {
+                                "type": "object",
+                                "properties": {}
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "etablissements": {
+                        "type": "object",
+                        "properties": {
+                          "data": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "number"
+                                },
+                                "attributes": {
+                                  "type": "object",
+                                  "properties": {}
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "cashier": {
+                        "type": "object",
+                        "properties": {
+                          "data": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "number"
+                              },
+                              "attributes": {
+                                "type": "object",
+                                "properties": {
+                                  "username": {
+                                    "type": "string"
+                                  },
+                                  "email": {
+                                    "type": "string",
+                                    "format": "email"
+                                  },
+                                  "provider": {
+                                    "type": "string"
+                                  },
+                                  "resetPasswordToken": {
+                                    "type": "string"
+                                  },
+                                  "confirmationToken": {
+                                    "type": "string"
+                                  },
+                                  "confirmed": {
+                                    "type": "boolean"
+                                  },
+                                  "blocked": {
+                                    "type": "boolean"
+                                  },
+                                  "role": {
+                                    "type": "object",
+                                    "properties": {
+                                      "data": {
+                                        "type": "object",
+                                        "properties": {
+                                          "id": {
+                                            "type": "number"
+                                          },
+                                          "attributes": {
+                                            "type": "object",
+                                            "properties": {
+                                              "name": {
+                                                "type": "string"
+                                              },
+                                              "description": {
+                                                "type": "string"
+                                              },
+                                              "type": {
+                                                "type": "string"
+                                              },
+                                              "permissions": {
+                                                "type": "object",
+                                                "properties": {
+                                                  "data": {
+                                                    "type": "array",
+                                                    "items": {
+                                                      "type": "object",
+                                                      "properties": {
+                                                        "id": {
+                                                          "type": "number"
+                                                        },
+                                                        "attributes": {
+                                                          "type": "object",
+                                                          "properties": {
+                                                            "action": {
+                                                              "type": "string"
+                                                            },
+                                                            "role": {
+                                                              "type": "object",
+                                                              "properties": {
+                                                                "data": {
+                                                                  "type": "object",
+                                                                  "properties": {
+                                                                    "id": {
+                                                                      "type": "number"
+                                                                    },
+                                                                    "attributes": {
+                                                                      "type": "object",
+                                                                      "properties": {}
+                                                                    }
+                                                                  }
+                                                                }
+                                                              }
+                                                            },
+                                                            "createdAt": {
+                                                              "type": "string",
+                                                              "format": "date-time"
+                                                            },
+                                                            "updatedAt": {
+                                                              "type": "string",
+                                                              "format": "date-time"
+                                                            },
+                                                            "createdBy": {
+                                                              "type": "object",
+                                                              "properties": {
+                                                                "data": {
+                                                                  "type": "object",
+                                                                  "properties": {
+                                                                    "id": {
+                                                                      "type": "number"
+                                                                    },
+                                                                    "attributes": {
+                                                                      "type": "object",
+                                                                      "properties": {}
+                                                                    }
+                                                                  }
+                                                                }
+                                                              }
+                                                            },
+                                                            "updatedBy": {
+                                                              "type": "object",
+                                                              "properties": {
+                                                                "data": {
+                                                                  "type": "object",
+                                                                  "properties": {
+                                                                    "id": {
+                                                                      "type": "number"
+                                                                    },
+                                                                    "attributes": {
+                                                                      "type": "object",
+                                                                      "properties": {}
+                                                                    }
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              },
+                                              "users": {
+                                                "type": "object",
+                                                "properties": {
+                                                  "data": {
+                                                    "type": "array",
+                                                    "items": {
+                                                      "type": "object",
+                                                      "properties": {
+                                                        "id": {
+                                                          "type": "number"
+                                                        },
+                                                        "attributes": {
+                                                          "type": "object",
+                                                          "properties": {}
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              },
+                                              "createdAt": {
+                                                "type": "string",
+                                                "format": "date-time"
+                                              },
+                                              "updatedAt": {
+                                                "type": "string",
+                                                "format": "date-time"
+                                              },
+                                              "createdBy": {
+                                                "type": "object",
+                                                "properties": {
+                                                  "data": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                      "id": {
+                                                        "type": "number"
+                                                      },
+                                                      "attributes": {
+                                                        "type": "object",
+                                                        "properties": {}
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              },
+                                              "updatedBy": {
+                                                "type": "object",
+                                                "properties": {
+                                                  "data": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                      "id": {
+                                                        "type": "number"
+                                                      },
+                                                      "attributes": {
+                                                        "type": "object",
+                                                        "properties": {}
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "firstname": {
+                                    "type": "string"
+                                  },
+                                  "lastname": {
+                                    "type": "string"
+                                  },
+                                  "etablissement_cashier": {
+                                    "type": "object",
+                                    "properties": {
+                                      "data": {
+                                        "type": "object",
+                                        "properties": {
+                                          "id": {
+                                            "type": "number"
+                                          },
+                                          "attributes": {
+                                            "type": "object",
+                                            "properties": {}
+                                          }
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "etablissement_responsible": {
+                                    "type": "object",
+                                    "properties": {
+                                      "data": {
+                                        "type": "object",
+                                        "properties": {
+                                          "id": {
+                                            "type": "number"
+                                          },
+                                          "attributes": {
+                                            "type": "object",
+                                            "properties": {}
+                                          }
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "createdAt": {
+                                    "type": "string",
+                                    "format": "date-time"
+                                  },
+                                  "updatedAt": {
+                                    "type": "string",
+                                    "format": "date-time"
+                                  },
+                                  "createdBy": {
+                                    "type": "object",
+                                    "properties": {
+                                      "data": {
+                                        "type": "object",
+                                        "properties": {
+                                          "id": {
+                                            "type": "number"
+                                          },
+                                          "attributes": {
+                                            "type": "object",
+                                            "properties": {}
+                                          }
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "updatedBy": {
+                                    "type": "object",
+                                    "properties": {
+                                      "data": {
+                                        "type": "object",
+                                        "properties": {
+                                          "id": {
+                                            "type": "number"
+                                          },
+                                          "attributes": {
+                                            "type": "object",
+                                            "properties": {}
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "responsible": {
+                        "type": "object",
+                        "properties": {
+                          "data": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "number"
+                              },
+                              "attributes": {
+                                "type": "object",
+                                "properties": {}
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "type": {
+                        "type": "string",
+                        "enum": [
+                          "Centre",
+                          "Centre Secondaire",
+                          "Annexe"
+                        ]
+                      },
+                      "region": {
+                        "type": "string",
+                        "enum": [
+                          "Dakar",
+                          "Diourbel",
+                          "Fatick",
+                          "Kaffrine",
+                          "Kaolack",
+                          "Kédougou",
+                          "Kolda",
+                          "Louga",
+                          "Matam",
+                          "Saint-Louis",
+                          "Sédhiou",
+                          "Tambacounda",
+                          "Thiès",
+                          "Ziguinchor"
+                        ]
+                      },
+                      "department": {
+                        "type": "string",
+                        "enum": [
+                          "Bakel",
+                          "Bambey",
+                          "Bignona",
+                          "Birkelane",
+                          "Bounkiling",
+                          "Dagana",
+                          "Dakar",
+                          "Diourbel",
+                          "Fatick",
+                          "Foundiougne",
+                          "Gossas",
+                          "Goudiry",
+                          "Goudomp",
+                          "Guédiawaye",
+                          "Guinguinéo",
+                          "Kafrine",
+                          "Kaolack",
+                          "Kanel",
+                          "Kébémer",
+                          "Kédougou",
+                          "Keur Massar",
+                          "Kolda",
+                          "Koumpentoum",
+                          "Koungheul",
+                          "Linguère",
+                          "Louga",
+                          "M'bour",
+                          "Malem Hodar",
+                          "Matam",
+                          "Mbacké",
+                          "Médina Yoro Foulah",
+                          "Nioro du Rip",
+                          "Oussouye",
+                          "Pikine",
+                          "Podor",
+                          "Ranérou",
+                          "Rufisque",
+                          "Saint-Louis",
+                          "Salemata",
+                          "Saraya",
+                          "Sédhiou",
+                          "Tambacounda",
+                          "Thiès",
+                          "Tivaouane",
+                          "Vélingara",
+                          "Ziguinchor"
+                        ]
+                      },
+                      "commune": {
+                        "type": "string"
+                      },
+                      "creationDate": {
+                        "type": "string",
+                        "format": "date"
+                      },
+                      "address": {
+                        "type": "string"
+                      },
+                      "email": {
+                        "type": "string",
+                        "format": "email"
+                      },
+                      "phone": {
+                        "type": "string"
+                      },
+                      "phoneFix": {
+                        "type": "string"
+                      },
+                      "isAlAzharLand": {
                         "type": "boolean"
                       },
-                      "preferedLanguage": {
+                      "note": {
+                        "type": "string"
+                      },
+                      "IA": {
+                        "type": "string"
+                      },
+                      "IEF": {
+                        "type": "string"
+                      },
+                      "responsibleName": {
+                        "type": "string"
+                      },
+                      "city": {
+                        "type": "string"
+                      },
+                      "postBox": {
                         "type": "string"
                       },
                       "createdAt": {
@@ -5862,6 +7498,10 @@
                         "format": "date-time"
                       },
                       "updatedAt": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "publishedAt": {
                         "type": "string",
                         "format": "date-time"
                       },
@@ -5900,6 +7540,130 @@
                         }
                       }
                     }
+                  }
+                }
+              }
+            }
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "birthPlace": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "maritalStatus": {
+            "type": "string",
+            "enum": [
+              "Marié(e)",
+              "Célibataire",
+              "Divorcé(e)"
+            ]
+          },
+          "academicDegree": {
+            "type": "string",
+            "enum": [
+              "Baccalauréat",
+              "Licence",
+              "Master",
+              "Doctorat"
+            ]
+          },
+          "professionalDegrees": {
+            "type": "string"
+          },
+          "disciplines": {
+            "type": "string"
+          },
+          "language": {
+            "type": "string",
+            "enum": [
+              "Francais",
+              "Anglais",
+              "Arabe",
+              "Wolof"
+            ]
+          },
+          "subjects": {
+            "type": "string"
+          },
+          "contractType": {
+            "type": "string",
+            "enum": [
+              "Disponible",
+              "Employé Etat",
+              "Journalier",
+              "Etranger"
+            ]
+          },
+          "level": {
+            "type": "string",
+            "enum": [
+              "Primaire",
+              "Moyen",
+              "Secondaire"
+            ]
+          },
+          "salary": {
+            "type": "number",
+            "format": "float"
+          },
+          "registrationNumber": {
+            "type": "string"
+          },
+          "generation": {
+            "type": "string"
+          },
+          "salaryPerHour": {
+            "type": "number",
+            "format": "float"
+          },
+          "hoursNumber": {
+            "type": "integer"
+          },
+          "additionalResponsibilities": {
+            "type": "string"
+          },
+          "countryFrom": {
+            "type": "string"
+          },
+          "arrivalDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "previousInstitutes": {
+            "type": "string"
+          },
+          "contributions": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "publishedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdBy": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number"
+                  },
+                  "attributes": {
+                    "type": "object",
+                    "properties": {}
                   }
                 }
               }
@@ -6309,7 +8073,8 @@
             "deprecated": false,
             "required": false,
             "schema": {
-              "type": "object"
+              "type": "object",
+              "additionalProperties": true
             },
             "style": "deepObject"
           },
@@ -6814,7 +8579,8 @@
             "deprecated": false,
             "required": false,
             "schema": {
-              "type": "object"
+              "type": "object",
+              "additionalProperties": true
             },
             "style": "deepObject"
           },
@@ -7319,7 +9085,8 @@
             "deprecated": false,
             "required": false,
             "schema": {
-              "type": "object"
+              "type": "object",
+              "additionalProperties": true
             },
             "style": "deepObject"
           },
@@ -7824,7 +9591,8 @@
             "deprecated": false,
             "required": false,
             "schema": {
-              "type": "object"
+              "type": "object",
+              "additionalProperties": true
             },
             "style": "deepObject"
           },
@@ -8329,7 +10097,8 @@
             "deprecated": false,
             "required": false,
             "schema": {
-              "type": "object"
+              "type": "object",
+              "additionalProperties": true
             },
             "style": "deepObject"
           },
@@ -8834,7 +10603,8 @@
             "deprecated": false,
             "required": false,
             "schema": {
-              "type": "object"
+              "type": "object",
+              "additionalProperties": true
             },
             "style": "deepObject"
           },

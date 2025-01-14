@@ -21,7 +21,7 @@
       "target": "api::class.class",
       "mappedBy": "etablissement"
     },
-    "etablissement": {
+    "etablissementParent": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::school.school",
@@ -31,7 +31,7 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::school.school",
-      "mappedBy": "etablissement"
+      "mappedBy": "etablissementParent"
     },
     "cashier": {
       "type": "relation",
@@ -48,10 +48,121 @@
     "type": {
       "type": "enumeration",
       "enum": [
-        "Ecole",
-        "Annexe",
-        "Centre"
+        "Centre",
+        "Centre Secondaire",
+        "Annexe"
+      ],
+      "required": true
+    },
+    "region": {
+      "type": "enumeration",
+      "enum": [
+        "Dakar",
+        "Diourbel",
+        "Fatick",
+        "Kaffrine",
+        "Kaolack",
+        "Kédougou",
+        "Kolda",
+        "Louga",
+        "Matam",
+        "Saint-Louis",
+        "Sédhiou",
+        "Tambacounda",
+        "Thiès",
+        "Ziguinchor"
+      ],
+      "required": true
+    },
+    "department": {
+      "type": "enumeration",
+      "enum": [
+        "Bakel",
+        "Bambey",
+        "Bignona",
+        "Birkelane",
+        "Bounkiling",
+        "Dagana",
+        "Dakar",
+        "Diourbel",
+        "Fatick",
+        "Foundiougne",
+        "Gossas",
+        "Goudiry",
+        "Goudomp",
+        "Guédiawaye",
+        "Guinguinéo",
+        "Kafrine",
+        "Kaolack",
+        "Kanel",
+        "Kébémer",
+        "Kédougou",
+        "Keur Massar",
+        "Kolda",
+        "Koumpentoum",
+        "Koungheul",
+        "Linguère",
+        "Louga",
+        "M'bour",
+        "Malem Hodar",
+        "Matam",
+        "Mbacké",
+        "Médina Yoro Foulah",
+        "Nioro du Rip",
+        "Oussouye",
+        "Pikine",
+        "Podor",
+        "Ranérou",
+        "Rufisque",
+        "Saint-Louis",
+        "Salemata",
+        "Saraya",
+        "Sédhiou",
+        "Tambacounda",
+        "Thiès",
+        "Tivaouane",
+        "Vélingara",
+        "Ziguinchor"
       ]
+    },
+    "commune": {
+      "type": "string"
+    },
+    "creationDate": {
+      "type": "date"
+    },
+    "address": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "phoneFix": {
+      "type": "string"
+    },
+    "isAlAzharLand": {
+      "type": "boolean"
+    },
+    "note": {
+      "type": "text"
+    },
+    "IA": {
+      "type": "string"
+    },
+    "IEF": {
+      "type": "string"
+    },
+    "responsibleName": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "postBox": {
+      "type": "string"
     }
   }
 }

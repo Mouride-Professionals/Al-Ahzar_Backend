@@ -852,7 +852,7 @@ export interface ApiSchoolSchool extends Schema.CollectionType {
       'oneToMany',
       'api::class.class'
     >;
-    etablissement: Attribute.Relation<
+    etablissementParent: Attribute.Relation<
       'api::school.school',
       'manyToOne',
       'api::school.school'
@@ -872,7 +872,90 @@ export interface ApiSchoolSchool extends Schema.CollectionType {
       'oneToOne',
       'plugin::users-permissions.user'
     >;
-    type: Attribute.Enumeration<['Ecole', 'Annexe', 'Centre']>;
+    type: Attribute.Enumeration<['Centre', 'Centre Secondaire', 'Annexe']> &
+      Attribute.Required;
+    region: Attribute.Enumeration<
+      [
+        'Dakar',
+        'Diourbel',
+        'Fatick',
+        'Kaffrine',
+        'Kaolack',
+        'K\u00E9dougou',
+        'Kolda',
+        'Louga',
+        'Matam',
+        'Saint-Louis',
+        'S\u00E9dhiou',
+        'Tambacounda',
+        'Thi\u00E8s',
+        'Ziguinchor'
+      ]
+    > &
+      Attribute.Required;
+    department: Attribute.Enumeration<
+      [
+        'Bakel',
+        'Bambey',
+        'Bignona',
+        'Birkelane',
+        'Bounkiling',
+        'Dagana',
+        'Dakar',
+        'Diourbel',
+        'Fatick',
+        'Foundiougne',
+        'Gossas',
+        'Goudiry',
+        'Goudomp',
+        'Gu\u00E9diawaye',
+        'Guinguin\u00E9o',
+        'Kafrine',
+        'Kaolack',
+        'Kanel',
+        'K\u00E9b\u00E9mer',
+        'K\u00E9dougou',
+        'Keur Massar',
+        'Kolda',
+        'Koumpentoum',
+        'Koungheul',
+        'Lingu\u00E8re',
+        'Louga',
+        "M'bour",
+        'Malem Hodar',
+        'Matam',
+        'Mback\u00E9',
+        'M\u00E9dina Yoro Foulah',
+        'Nioro du Rip',
+        'Oussouye',
+        'Pikine',
+        'Podor',
+        'Ran\u00E9rou',
+        'Rufisque',
+        'Saint-Louis',
+        'Salemata',
+        'Saraya',
+        'S\u00E9dhiou',
+        'Tambacounda',
+        'Thi\u00E8s',
+        'Tivaouane',
+        'V\u00E9lingara',
+        'Ziguinchor'
+      ]
+    >;
+    commune: Attribute.String;
+    creationDate: Attribute.Date;
+    address: Attribute.String;
+    email: Attribute.Email;
+    phone: Attribute.String;
+    phoneFix: Attribute.String;
+    isAlAzharLand: Attribute.Boolean;
+    note: Attribute.Text;
+    IA: Attribute.String;
+    IEF: Attribute.String;
+    responsibleName: Attribute.String;
+    city: Attribute.String;
+    postBox: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -999,6 +1082,41 @@ export interface ApiTeacherTeacher extends Schema.CollectionType {
     firstname: Attribute.String & Attribute.Required;
     lastname: Attribute.String & Attribute.Required;
     phoneNumber: Attribute.String & Attribute.Required;
+    email: Attribute.Email;
+    gender: Attribute.Enumeration<['Homme', 'Femme']>;
+    etablissement: Attribute.Relation<
+      'api::teacher.teacher',
+      'oneToOne',
+      'api::school.school'
+    >;
+    birthDate: Attribute.Date;
+    birthPlace: Attribute.String;
+    address: Attribute.String;
+    maritalStatus: Attribute.Enumeration<
+      ['Mari\u00E9(e)', 'C\u00E9libataire', 'Divorc\u00E9(e)']
+    >;
+    academicDegree: Attribute.Enumeration<
+      ['Baccalaur\u00E9at', 'Licence', 'Master', 'Doctorat']
+    >;
+    professionalDegrees: Attribute.String;
+    disciplines: Attribute.String;
+    language: Attribute.Enumeration<['Francais', 'Anglais', 'Arabe', 'Wolof']>;
+    subjects: Attribute.String;
+    contractType: Attribute.Enumeration<
+      ['Disponible', 'Employ\u00E9 Etat', 'Journalier', 'Etranger']
+    > &
+      Attribute.DefaultTo<'Disponible'>;
+    level: Attribute.Enumeration<['Primaire', 'Moyen', 'Secondaire']>;
+    salary: Attribute.Decimal;
+    registrationNumber: Attribute.String;
+    generation: Attribute.String;
+    salaryPerHour: Attribute.Decimal;
+    hoursNumber: Attribute.Integer;
+    additionalResponsibilities: Attribute.String;
+    countryFrom: Attribute.String;
+    arrivalDate: Attribute.Date;
+    previousInstitutes: Attribute.String;
+    contributions: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
