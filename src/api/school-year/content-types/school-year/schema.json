@@ -1,0 +1,59 @@
+{
+  "kind": "collectionType",
+  "collectionName": "school_years",
+  "info": {
+    "singularName": "school-year",
+    "pluralName": "school-years",
+    "displayName": "SchoolYear",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "startDate": {
+      "type": "date",
+      "required": true
+    },
+    "endDate": {
+      "type": "date",
+      "required": true
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": false
+    },
+    "isCurrent": {
+      "type": "boolean",
+      "default": false,
+      "required": true,
+      "unique": true
+    },
+    "description": {
+      "type": "string"
+    },
+    "eleves": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::student.student"
+    },
+    "classes": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::class.class",
+      "mappedBy": "schoolYear"
+    },
+    "teachers": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::teacher.teacher",
+      "inversedBy": "school_years"
+    }
+  }
+}

@@ -130,6 +130,12 @@
     },
     "contributions": {
       "type": "string"
+    },
+    "school_years": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::school-year.school-year",
+      "mappedBy": "teachers"
     }
   }
 }

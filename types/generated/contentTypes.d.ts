@@ -781,6 +781,11 @@ export interface ApiClassClass extends Schema.CollectionType {
       ]
     >;
     letter: Attribute.Enumeration<['A', 'B', 'C', 'D', 'E']>;
+    schoolYear: Attribute.Relation<
+      'api::class.class',
+      'manyToOne',
+      'api::school-year.school-year'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -974,6 +979,59 @@ export interface ApiSchoolSchool extends Schema.CollectionType {
   };
 }
 
+export interface ApiSchoolYearSchoolYear extends Schema.CollectionType {
+  collectionName: 'school_years';
+  info: {
+    singularName: 'school-year';
+    pluralName: 'school-years';
+    displayName: 'SchoolYear';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required & Attribute.Unique;
+    startDate: Attribute.Date & Attribute.Required;
+    endDate: Attribute.Date & Attribute.Required;
+    isActive: Attribute.Boolean & Attribute.DefaultTo<false>;
+    isCurrent: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.Unique &
+      Attribute.DefaultTo<false>;
+    description: Attribute.String;
+    eleves: Attribute.Relation<
+      'api::school-year.school-year',
+      'oneToMany',
+      'api::student.student'
+    >;
+    classes: Attribute.Relation<
+      'api::school-year.school-year',
+      'oneToMany',
+      'api::class.class'
+    >;
+    teachers: Attribute.Relation<
+      'api::school-year.school-year',
+      'manyToMany',
+      'api::teacher.teacher'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::school-year.school-year',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::school-year.school-year',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiStudentStudent extends Schema.CollectionType {
   collectionName: 'students';
   info: {
@@ -1117,6 +1175,11 @@ export interface ApiTeacherTeacher extends Schema.CollectionType {
     arrivalDate: Attribute.Date;
     previousInstitutes: Attribute.String;
     contributions: Attribute.String;
+    school_years: Attribute.Relation<
+      'api::teacher.teacher',
+      'manyToMany',
+      'api::school-year.school-year'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1155,6 +1218,7 @@ declare module '@strapi/types' {
       'api::class.class': ApiClassClass;
       'api::payment.payment': ApiPaymentPayment;
       'api::school.school': ApiSchoolSchool;
+      'api::school-year.school-year': ApiSchoolYearSchoolYear;
       'api::student.student': ApiStudentStudent;
       'api::subject.subject': ApiSubjectSubject;
       'api::teacher.teacher': ApiTeacherTeacher;

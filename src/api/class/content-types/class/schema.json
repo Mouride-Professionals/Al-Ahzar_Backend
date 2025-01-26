@@ -60,6 +60,12 @@
         "D",
         "E"
       ]
+    },
+    "schoolYear": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::school-year.school-year",
+      "inversedBy": "classes"
     }
   }
 }
