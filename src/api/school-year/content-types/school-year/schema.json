@@ -32,8 +32,11 @@
     "isCurrent": {
       "type": "boolean",
       "default": false,
-      "required": true,
       "unique": true
+    },
+    "isEnded": {
+      "type": "boolean",
+      "default": false
     },
     "description": {
       "type": "string"

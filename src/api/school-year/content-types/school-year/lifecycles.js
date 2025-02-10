@@ -16,7 +16,18 @@ module.exports = {
     },
 
     async beforeUpdate(event) {
-        const { data } = event.params;
+        const { data, where } = event.params;
+        // Fetch the existing school year
+        const schoolYear = await strapi.entityService.findOne("api::school-year.school-year", where.id);
+
+        if (!schoolYear) {
+            throw new Error("School year not found.");
+        }
+
+        // ❌ Prevent setting `isCurrent` if `isEnded` is true
+        if (schoolYear.isEnded === true && data.isCurrent === true) {
+            throw new Error("Cannot mark as current because the school year has ended.");
+        }
 
         if (data.isCurrent) {
             // Ensure no other school year is marked as current
@@ -45,5 +56,8 @@ module.exports = {
 
 
         }
+
+
+
     },
 };

@@ -996,9 +996,9 @@ export interface ApiSchoolYearSchoolYear extends Schema.CollectionType {
     endDate: Attribute.Date & Attribute.Required;
     isActive: Attribute.Boolean & Attribute.DefaultTo<false>;
     isCurrent: Attribute.Boolean &
-      Attribute.Required &
       Attribute.Unique &
       Attribute.DefaultTo<false>;
+    isEnded: Attribute.Boolean & Attribute.DefaultTo<false>;
     description: Attribute.String;
     eleves: Attribute.Relation<
       'api::school-year.school-year',
@@ -1156,10 +1156,7 @@ export interface ApiTeacherTeacher extends Schema.CollectionType {
     academicDegree: Attribute.Enumeration<
       ['Baccalaur\u00E9at', 'Licence', 'Master', 'Doctorat']
     >;
-    professionalDegrees: Attribute.String;
-    disciplines: Attribute.String;
     language: Attribute.Enumeration<['Francais', 'Anglais', 'Arabe', 'Wolof']>;
-    subjects: Attribute.String;
     contractType: Attribute.Enumeration<
       ['Disponible', 'Employ\u00E9 Etat', 'Journalier', 'Etranger']
     > &
@@ -1169,7 +1166,10 @@ export interface ApiTeacherTeacher extends Schema.CollectionType {
     registrationNumber: Attribute.String;
     generation: Attribute.String;
     salaryPerHour: Attribute.Decimal;
-    hoursNumber: Attribute.Integer;
+    hoursNumber: Attribute.Integer &
+      Attribute.SetMinMax<{
+        min: 0;
+      }>;
     additionalResponsibilities: Attribute.String;
     countryFrom: Attribute.String;
     arrivalDate: Attribute.Date;
@@ -1180,6 +1180,9 @@ export interface ApiTeacherTeacher extends Schema.CollectionType {
       'manyToMany',
       'api::school-year.school-year'
     >;
+    professionalDegrees: Attribute.JSON & Attribute.DefaultTo<[]>;
+    disciplines: Attribute.JSON & Attribute.DefaultTo<[]>;
+    subjects: Attribute.JSON & Attribute.DefaultTo<[]>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2025-01-26T11:11:34.993Z"
+    "x-generation-date": "2025-02-10T19:11:17.518Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -814,6 +814,9 @@
                                                 "isCurrent": {
                                                   "type": "boolean"
                                                 },
+                                                "isEnded": {
+                                                  "type": "boolean"
+                                                },
                                                 "description": {
                                                   "type": "string"
                                                 },
@@ -935,12 +938,6 @@
                                                                   "Doctorat"
                                                                 ]
                                                               },
-                                                              "professionalDegrees": {
-                                                                "type": "string"
-                                                              },
-                                                              "disciplines": {
-                                                                "type": "string"
-                                                              },
                                                               "language": {
                                                                 "type": "string",
                                                                 "enum": [
@@ -949,9 +946,6 @@
                                                                   "Arabe",
                                                                   "Wolof"
                                                                 ]
-                                                              },
-                                                              "subjects": {
-                                                                "type": "string"
                                                               },
                                                               "contractType": {
                                                                 "type": "string",
@@ -1023,6 +1017,9 @@
                                                                   }
                                                                 }
                                                               },
+                                                              "professionalDegrees": {},
+                                                              "disciplines": {},
+                                                              "subjects": {},
                                                               "createdAt": {
                                                                 "type": "string",
                                                                 "format": "date-time"
@@ -2862,6 +2859,9 @@
                                               "isCurrent": {
                                                 "type": "boolean"
                                               },
+                                              "isEnded": {
+                                                "type": "boolean"
+                                              },
                                               "description": {
                                                 "type": "string"
                                               },
@@ -2983,12 +2983,6 @@
                                                                 "Doctorat"
                                                               ]
                                                             },
-                                                            "professionalDegrees": {
-                                                              "type": "string"
-                                                            },
-                                                            "disciplines": {
-                                                              "type": "string"
-                                                            },
                                                             "language": {
                                                               "type": "string",
                                                               "enum": [
@@ -2997,9 +2991,6 @@
                                                                 "Arabe",
                                                                 "Wolof"
                                                               ]
-                                                            },
-                                                            "subjects": {
-                                                              "type": "string"
                                                             },
                                                             "contractType": {
                                                               "type": "string",
@@ -3071,6 +3062,9 @@
                                                                 }
                                                               }
                                                             },
+                                                            "professionalDegrees": {},
+                                                            "disciplines": {},
+                                                            "subjects": {},
                                                             "createdAt": {
                                                               "type": "string",
                                                               "format": "date-time"
@@ -4800,6 +4794,9 @@
                                     "isCurrent": {
                                       "type": "boolean"
                                     },
+                                    "isEnded": {
+                                      "type": "boolean"
+                                    },
                                     "description": {
                                       "type": "string"
                                     },
@@ -4921,12 +4918,6 @@
                                                       "Doctorat"
                                                     ]
                                                   },
-                                                  "professionalDegrees": {
-                                                    "type": "string"
-                                                  },
-                                                  "disciplines": {
-                                                    "type": "string"
-                                                  },
                                                   "language": {
                                                     "type": "string",
                                                     "enum": [
@@ -4935,9 +4926,6 @@
                                                       "Arabe",
                                                       "Wolof"
                                                     ]
-                                                  },
-                                                  "subjects": {
-                                                    "type": "string"
                                                   },
                                                   "contractType": {
                                                     "type": "string",
@@ -5009,6 +4997,9 @@
                                                       }
                                                     }
                                                   },
+                                                  "professionalDegrees": {},
+                                                  "disciplines": {},
+                                                  "subjects": {},
                                                   "createdAt": {
                                                     "type": "string",
                                                     "format": "date-time"
@@ -5429,8 +5420,7 @@
             "required": [
               "name",
               "startDate",
-              "endDate",
-              "isCurrent"
+              "endDate"
             ],
             "type": "object",
             "properties": {
@@ -5449,6 +5439,9 @@
                 "type": "boolean"
               },
               "isCurrent": {
+                "type": "boolean"
+              },
+              "isEnded": {
                 "type": "boolean"
               },
               "description": {
@@ -5551,8 +5544,7 @@
         "required": [
           "name",
           "startDate",
-          "endDate",
-          "isCurrent"
+          "endDate"
         ],
         "properties": {
           "name": {
@@ -5570,6 +5562,9 @@
             "type": "boolean"
           },
           "isCurrent": {
+            "type": "boolean"
+          },
+          "isEnded": {
             "type": "boolean"
           },
           "description": {
@@ -6521,6 +6516,9 @@
                                                 "isCurrent": {
                                                   "type": "boolean"
                                                 },
+                                                "isEnded": {
+                                                  "type": "boolean"
+                                                },
                                                 "description": {
                                                   "type": "string"
                                                 },
@@ -6642,12 +6640,6 @@
                                                                   "Doctorat"
                                                                 ]
                                                               },
-                                                              "professionalDegrees": {
-                                                                "type": "string"
-                                                              },
-                                                              "disciplines": {
-                                                                "type": "string"
-                                                              },
                                                               "language": {
                                                                 "type": "string",
                                                                 "enum": [
@@ -6656,9 +6648,6 @@
                                                                   "Arabe",
                                                                   "Wolof"
                                                                 ]
-                                                              },
-                                                              "subjects": {
-                                                                "type": "string"
                                                               },
                                                               "contractType": {
                                                                 "type": "string",
@@ -6730,6 +6719,9 @@
                                                                   }
                                                                 }
                                                               },
+                                                              "professionalDegrees": {},
+                                                              "disciplines": {},
+                                                              "subjects": {},
                                                               "createdAt": {
                                                                 "type": "string",
                                                                 "format": "date-time"
@@ -8428,6 +8420,9 @@
                                   "isCurrent": {
                                     "type": "boolean"
                                   },
+                                  "isEnded": {
+                                    "type": "boolean"
+                                  },
                                   "description": {
                                     "type": "string"
                                   },
@@ -8549,12 +8544,6 @@
                                                     "Doctorat"
                                                   ]
                                                 },
-                                                "professionalDegrees": {
-                                                  "type": "string"
-                                                },
-                                                "disciplines": {
-                                                  "type": "string"
-                                                },
                                                 "language": {
                                                   "type": "string",
                                                   "enum": [
@@ -8563,9 +8552,6 @@
                                                     "Arabe",
                                                     "Wolof"
                                                   ]
-                                                },
-                                                "subjects": {
-                                                  "type": "string"
                                                 },
                                                 "contractType": {
                                                   "type": "string",
@@ -8637,6 +8623,9 @@
                                                     }
                                                   }
                                                 },
+                                                "professionalDegrees": {},
+                                                "disciplines": {},
+                                                "subjects": {},
                                                 "createdAt": {
                                                   "type": "string",
                                                   "format": "date-time"
@@ -9387,12 +9376,6 @@
                   "Doctorat"
                 ]
               },
-              "professionalDegrees": {
-                "type": "string"
-              },
-              "disciplines": {
-                "type": "string"
-              },
               "language": {
                 "type": "string",
                 "enum": [
@@ -9401,9 +9384,6 @@
                   "Arabe",
                   "Wolof"
                 ]
-              },
-              "subjects": {
-                "type": "string"
               },
               "contractType": {
                 "type": "string",
@@ -9468,7 +9448,10 @@
                   ],
                   "example": "string or id"
                 }
-              }
+              },
+              "professionalDegrees": {},
+              "disciplines": {},
+              "subjects": {}
             }
           }
         }
@@ -10127,6 +10110,9 @@
                                                 "isCurrent": {
                                                   "type": "boolean"
                                                 },
+                                                "isEnded": {
+                                                  "type": "boolean"
+                                                },
                                                 "description": {
                                                   "type": "string"
                                                 },
@@ -10248,12 +10234,6 @@
                                                                   "Doctorat"
                                                                 ]
                                                               },
-                                                              "professionalDegrees": {
-                                                                "type": "string"
-                                                              },
-                                                              "disciplines": {
-                                                                "type": "string"
-                                                              },
                                                               "language": {
                                                                 "type": "string",
                                                                 "enum": [
@@ -10262,9 +10242,6 @@
                                                                   "Arabe",
                                                                   "Wolof"
                                                                 ]
-                                                              },
-                                                              "subjects": {
-                                                                "type": "string"
                                                               },
                                                               "contractType": {
                                                                 "type": "string",
@@ -10336,6 +10313,9 @@
                                                                   }
                                                                 }
                                                               },
+                                                              "professionalDegrees": {},
+                                                              "disciplines": {},
+                                                              "subjects": {},
                                                               "createdAt": {
                                                                 "type": "string",
                                                                 "format": "date-time"
@@ -11032,12 +11012,6 @@
               "Doctorat"
             ]
           },
-          "professionalDegrees": {
-            "type": "string"
-          },
-          "disciplines": {
-            "type": "string"
-          },
           "language": {
             "type": "string",
             "enum": [
@@ -11046,9 +11020,6 @@
               "Arabe",
               "Wolof"
             ]
-          },
-          "subjects": {
-            "type": "string"
           },
           "contractType": {
             "type": "string",
@@ -11120,6 +11091,9 @@
               }
             }
           },
+          "professionalDegrees": {},
+          "disciplines": {},
+          "subjects": {},
           "createdAt": {
             "type": "string",
             "format": "date-time"
