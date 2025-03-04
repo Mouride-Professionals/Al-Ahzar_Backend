@@ -34,7 +34,7 @@
         "Femme"
       ]
     },
-    "etablissement": {
+    "school": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::school.school"
@@ -122,12 +122,6 @@
     },
     "contributions": {
       "type": "string"
-    },
-    "school_years": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::school-year.school-year",
-      "mappedBy": "teachers"
     },
     "professionalDegrees": {
       "type": "json",

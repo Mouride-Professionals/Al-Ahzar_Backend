@@ -20,15 +20,6 @@ module.exports = {
 
             },
         },
-        {
-            method: "PUT",
-            path: "/school-years/:id/set-active",
-            handler: "school-year.setActive",
-            config: {
-                policies: [],
-                auth: { scope: ["api::school-year.school-year.update"] },
-
-            },
-        },
+       
     ],
 };

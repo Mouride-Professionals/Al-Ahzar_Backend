@@ -21,17 +21,11 @@
       ],
       "required": true
     },
-    "etablissement": {
+    "school": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::school.school",
       "inversedBy": "classes"
-    },
-    "eleves": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::student.student",
-      "mappedBy": "classe"
     },
     "level": {
       "type": "enumeration",
@@ -66,6 +60,12 @@
       "relation": "manyToOne",
       "target": "api::school-year.school-year",
       "inversedBy": "classes"
+    },
+    "enrollments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::enrollment.enrollment",
+      "mappedBy": "class"
     }
   }
 }

@@ -4,7 +4,7 @@
   "info": {
     "singularName": "student",
     "pluralName": "students",
-    "displayName": "Eleve",
+    "displayName": "Student",
     "description": ""
   },
   "options": {
@@ -48,12 +48,6 @@
       "type": "string",
       "required": true
     },
-    "classe": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::class.class",
-      "inversedBy": "eleves"
-    },
     "type": {
       "type": "enumeration",
       "enum": [
@@ -75,11 +69,23 @@
     "registrationComment": {
       "type": "string"
     },
+    "enrollments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::enrollment.enrollment",
+      "mappedBy": "student"
+    },
     "payments": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::payment.payment",
-      "mappedBy": "eleve"
+      "mappedBy": "student"
+    },
+    "studentIdentifer": {
+      "type": "string",
+      "required": false,
+      "unique": true,
+      "minLength": 5
     }
   }
 }

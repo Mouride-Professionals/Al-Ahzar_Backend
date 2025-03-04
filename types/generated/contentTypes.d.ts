@@ -661,12 +661,7 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
     >;
     firstname: Attribute.String;
     lastname: Attribute.String;
-    etablissement_cashier: Attribute.Relation<
-      'plugin::users-permissions.user',
-      'oneToOne',
-      'api::school.school'
-    >;
-    etablissement_responsible: Attribute.Relation<
+    school: Attribute.Relation<
       'plugin::users-permissions.user',
       'oneToOne',
       'api::school.school'
@@ -753,15 +748,10 @@ export interface ApiClassClass extends Schema.CollectionType {
       ['primaire', 'secondaire 1er cycle', 'secondaire 2eme cycle']
     > &
       Attribute.Required;
-    etablissement: Attribute.Relation<
+    school: Attribute.Relation<
       'api::class.class',
       'manyToOne',
       'api::school.school'
-    >;
-    eleves: Attribute.Relation<
-      'api::class.class',
-      'oneToMany',
-      'api::student.student'
     >;
     level: Attribute.Enumeration<
       [
@@ -786,6 +776,11 @@ export interface ApiClassClass extends Schema.CollectionType {
       'manyToOne',
       'api::school-year.school-year'
     >;
+    enrollments: Attribute.Relation<
+      'api::class.class',
+      'oneToMany',
+      'api::enrollment.enrollment'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -796,6 +791,57 @@ export interface ApiClassClass extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::class.class',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiEnrollmentEnrollment extends Schema.CollectionType {
+  collectionName: 'enrollments';
+  info: {
+    singularName: 'enrollment';
+    pluralName: 'enrollments';
+    displayName: 'Enrollment';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    enrollmentDate: Attribute.Date & Attribute.Required;
+    class: Attribute.Relation<
+      'api::enrollment.enrollment',
+      'manyToOne',
+      'api::class.class'
+    >;
+    student: Attribute.Relation<
+      'api::enrollment.enrollment',
+      'manyToOne',
+      'api::student.student'
+    >;
+    schoolYear: Attribute.Relation<
+      'api::enrollment.enrollment',
+      'manyToOne',
+      'api::school-year.school-year'
+    >;
+    enrollmentNumber: Attribute.Integer &
+      Attribute.SetMinMax<{
+        min: 0;
+      }> &
+      Attribute.DefaultTo<0>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::enrollment.enrollment',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::enrollment.enrollment',
       'oneToOne',
       'admin::user'
     > &
@@ -817,7 +863,7 @@ export interface ApiPaymentPayment extends Schema.CollectionType {
   attributes: {
     monthOf: Attribute.Date & Attribute.Required;
     isPaid: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<false>;
-    eleve: Attribute.Relation<
+    student: Attribute.Relation<
       'api::payment.payment',
       'manyToOne',
       'api::student.student'
@@ -844,7 +890,7 @@ export interface ApiSchoolSchool extends Schema.CollectionType {
   info: {
     singularName: 'school';
     pluralName: 'schools';
-    displayName: 'Etablissement';
+    displayName: 'School';
     description: '';
   };
   options: {
@@ -852,30 +898,15 @@ export interface ApiSchoolSchool extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.String;
-    classes: Attribute.Relation<
-      'api::school.school',
-      'oneToMany',
-      'api::class.class'
-    >;
-    etablissementParent: Attribute.Relation<
+    parentSchool: Attribute.Relation<
       'api::school.school',
       'manyToOne',
       'api::school.school'
     >;
-    etablissements: Attribute.Relation<
+    childSchools: Attribute.Relation<
       'api::school.school',
       'oneToMany',
       'api::school.school'
-    >;
-    cashier: Attribute.Relation<
-      'api::school.school',
-      'oneToOne',
-      'plugin::users-permissions.user'
-    >;
-    responsible: Attribute.Relation<
-      'api::school.school',
-      'oneToOne',
-      'plugin::users-permissions.user'
     >;
     type: Attribute.Enumeration<['Centre', 'Centre Secondaire', 'Annexe']> &
       Attribute.Required;
@@ -961,6 +992,11 @@ export interface ApiSchoolSchool extends Schema.CollectionType {
     responsibleName: Attribute.String;
     city: Attribute.String;
     postBox: Attribute.String;
+    classes: Attribute.Relation<
+      'api::school.school',
+      'oneToMany',
+      'api::class.class'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -994,26 +1030,20 @@ export interface ApiSchoolYearSchoolYear extends Schema.CollectionType {
     name: Attribute.String & Attribute.Required & Attribute.Unique;
     startDate: Attribute.Date & Attribute.Required;
     endDate: Attribute.Date & Attribute.Required;
-    isActive: Attribute.Boolean & Attribute.DefaultTo<false>;
     isCurrent: Attribute.Boolean &
       Attribute.Unique &
       Attribute.DefaultTo<false>;
     isEnded: Attribute.Boolean & Attribute.DefaultTo<false>;
     description: Attribute.String;
-    eleves: Attribute.Relation<
-      'api::school-year.school-year',
-      'oneToMany',
-      'api::student.student'
-    >;
     classes: Attribute.Relation<
       'api::school-year.school-year',
       'oneToMany',
       'api::class.class'
     >;
-    teachers: Attribute.Relation<
+    enrollments: Attribute.Relation<
       'api::school-year.school-year',
-      'manyToMany',
-      'api::teacher.teacher'
+      'oneToMany',
+      'api::enrollment.enrollment'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1037,7 +1067,7 @@ export interface ApiStudentStudent extends Schema.CollectionType {
   info: {
     singularName: 'student';
     pluralName: 'students';
-    displayName: 'Eleve';
+    displayName: 'Student';
     description: '';
   };
   options: {
@@ -1052,11 +1082,6 @@ export interface ApiStudentStudent extends Schema.CollectionType {
     tutorFirstname: Attribute.String & Attribute.Required;
     tutorLastname: Attribute.String & Attribute.Required;
     tutorPhoneNumber: Attribute.String & Attribute.Required;
-    classe: Attribute.Relation<
-      'api::student.student',
-      'manyToOne',
-      'api::class.class'
-    >;
     type: Attribute.Enumeration<
       ['Hafiz', 'Ancien Redoublant', 'Ancien Passant', 'Nouveau']
     >;
@@ -1069,11 +1094,21 @@ export interface ApiStudentStudent extends Schema.CollectionType {
       ]
     >;
     registrationComment: Attribute.String;
+    enrollments: Attribute.Relation<
+      'api::student.student',
+      'oneToMany',
+      'api::enrollment.enrollment'
+    >;
     payments: Attribute.Relation<
       'api::student.student',
       'oneToMany',
       'api::payment.payment'
     >;
+    studentIdentifer: Attribute.String &
+      Attribute.Unique &
+      Attribute.SetMinMaxLength<{
+        minLength: 5;
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1142,7 +1177,7 @@ export interface ApiTeacherTeacher extends Schema.CollectionType {
     phoneNumber: Attribute.String & Attribute.Required;
     email: Attribute.Email;
     gender: Attribute.Enumeration<['Homme', 'Femme']>;
-    etablissement: Attribute.Relation<
+    school: Attribute.Relation<
       'api::teacher.teacher',
       'oneToOne',
       'api::school.school'
@@ -1175,11 +1210,6 @@ export interface ApiTeacherTeacher extends Schema.CollectionType {
     arrivalDate: Attribute.Date;
     previousInstitutes: Attribute.String;
     contributions: Attribute.String;
-    school_years: Attribute.Relation<
-      'api::teacher.teacher',
-      'manyToMany',
-      'api::school-year.school-year'
-    >;
     professionalDegrees: Attribute.JSON & Attribute.DefaultTo<[]>;
     disciplines: Attribute.JSON & Attribute.DefaultTo<[]>;
     subjects: Attribute.JSON & Attribute.DefaultTo<[]>;
@@ -1219,6 +1249,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::email-designer.email-template': PluginEmailDesignerEmailTemplate;
       'api::class.class': ApiClassClass;
+      'api::enrollment.enrollment': ApiEnrollmentEnrollment;
       'api::payment.payment': ApiPaymentPayment;
       'api::school.school': ApiSchoolSchool;
       'api::school-year.school-year': ApiSchoolYearSchoolYear;

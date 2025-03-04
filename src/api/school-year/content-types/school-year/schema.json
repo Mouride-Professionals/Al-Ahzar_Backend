@@ -25,10 +25,6 @@
       "type": "date",
       "required": true
     },
-    "isActive": {
-      "type": "boolean",
-      "default": false
-    },
     "isCurrent": {
       "type": "boolean",
       "default": false,
@@ -41,22 +37,17 @@
     "description": {
       "type": "string"
     },
-    "eleves": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::student.student"
-    },
     "classes": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::class.class",
       "mappedBy": "schoolYear"
     },
-    "teachers": {
+    "enrollments": {
       "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::teacher.teacher",
-      "inversedBy": "school_years"
+      "relation": "oneToMany",
+      "target": "api::enrollment.enrollment",
+      "mappedBy": "schoolYear"
     }
   }
 }

@@ -68,36 +68,5 @@ module.exports = createCoreController('api::school-year.school-year', ({ strapi 
         }
     },
 
-    /**
- * Mark a school year as active 
- */
-    async setActive(ctx) {
-        try {
-            const { id } = ctx.params;
-
-            // Fetch the school year to check its status
-            const schoolYear = await strapi.entityService.findOne("api::school-year.school-year", id);
-
-            if (!schoolYear) {
-                return ctx.badRequest("School year not found");
-            }
-
-
-            // Unset all other school years from being active
-            await strapi.db.query("api::school-year.school-year").updateMany({
-                where: { isActive: true },
-                data: { isActive: false }
-            });
-
-            // Set the selected school year as active
-            const updatedSchoolYear = await strapi.entityService.update("api::school-year.school-year", id, {
-                data: { isActive: true },
-            });
-
-            return ctx.send({ message: "School year marked as active", schoolYear: updatedSchoolYear });
-        } catch (error) {
-            console.error(error);
-            return ctx.badRequest("Error updating school year");
-        }
-    }
+  
 }));

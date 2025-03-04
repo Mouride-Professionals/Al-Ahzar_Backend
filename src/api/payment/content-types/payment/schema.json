@@ -21,7 +21,7 @@
       "default": false,
       "required": true
     },
-    "eleve": {
+    "student": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::student.student",

@@ -4,7 +4,7 @@
   "info": {
     "singularName": "school",
     "pluralName": "schools",
-    "displayName": "Etablissement",
+    "displayName": "School",
     "description": ""
   },
   "options": {
@@ -15,35 +15,17 @@
     "name": {
       "type": "string"
     },
-    "classes": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::class.class",
-      "mappedBy": "etablissement"
-    },
-    "etablissementParent": {
+    "parentSchool": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::school.school",
-      "inversedBy": "etablissements"
+      "inversedBy": "childSchools"
     },
-    "etablissements": {
+    "childSchools": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::school.school",
-      "mappedBy": "etablissementParent"
-    },
-    "cashier": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "plugin::users-permissions.user",
-      "inversedBy": "etablissement_cashier"
-    },
-    "responsible": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "plugin::users-permissions.user",
-      "inversedBy": "etablissement_responsible"
+      "mappedBy": "parentSchool"
     },
     "type": {
       "type": "enumeration",
@@ -163,6 +145,12 @@
     },
     "postBox": {
       "type": "string"
+    },
+    "classes": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::class.class",
+      "mappedBy": "school"
     }
   }
 }

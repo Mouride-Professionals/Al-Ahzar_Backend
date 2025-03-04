@@ -46,16 +46,7 @@ module.exports = {
             }
         }
 
-        if (data.isActive) {
-            // Ensure no other school year is marked as active
-
-            await strapi.db.query('api::school-year.school-year').updateMany({
-                where: { isActive: true },
-                data: { isActive: false },
-            });
-
-
-        }
+        
 
 
 
