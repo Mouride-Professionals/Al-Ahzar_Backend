@@ -75,12 +75,6 @@
       "target": "api::enrollment.enrollment",
       "mappedBy": "student"
     },
-    "payments": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::payment.payment",
-      "mappedBy": "student"
-    },
     "studentIdentifer": {
       "type": "string",
       "required": false,

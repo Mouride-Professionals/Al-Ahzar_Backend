@@ -18,14 +18,32 @@
     },
     "isPaid": {
       "type": "boolean",
-      "default": false,
+      "default": true,
       "required": true
     },
-    "student": {
+    "enrollment": {
       "type": "relation",
       "relation": "manyToOne",
-      "target": "api::student.student",
+      "target": "api::enrollment.enrollment",
       "inversedBy": "payments"
+    },
+    "amount": {
+      "type": "decimal",
+      "min": 0
+    },
+    "paymentType": {
+      "type": "enumeration",
+      "enum": [
+        "enrollment",
+        "monthly"
+      ],
+      "required": true
+    },
+    "payment_detail": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::payment-detail.payment-detail",
+      "mappedBy": "payment"
     }
   }
 }
