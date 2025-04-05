@@ -14,7 +14,7 @@
   "attributes": {
     "monthOf": {
       "type": "date",
-      "required": true
+      "required": false
     },
     "isPaid": {
       "type": "boolean",
@@ -29,21 +29,26 @@
     },
     "amount": {
       "type": "decimal",
-      "min": 0
+      "min": 0,
+      "required": true
     },
     "paymentType": {
       "type": "enumeration",
       "enum": [
         "enrollment",
-        "monthly"
+        "monthly",
+        "exam",
+        "blouse",
+        "parentContribution",
+        "other"
       ],
       "required": true
     },
-    "payment_detail": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::payment-detail.payment-detail",
-      "mappedBy": "payment"
+    "motive": {
+      "type": "string"
+    },
+    "comment": {
+      "type": "text"
     }
   }
 }

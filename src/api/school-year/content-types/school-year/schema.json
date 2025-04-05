@@ -48,6 +48,12 @@
       "relation": "oneToMany",
       "target": "api::enrollment.enrollment",
       "mappedBy": "schoolYear"
+    },
+    "expenses": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::expense.expense",
+      "mappedBy": "schoolYear"
     }
   }
 }

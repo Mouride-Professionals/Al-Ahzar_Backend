@@ -51,11 +51,11 @@
     "type": {
       "type": "enumeration",
       "enum": [
-        "Hafiz",
         "Ancien Redoublant",
         "Ancien Passant",
         "Nouveau"
-      ]
+      ],
+      "default": "Nouveau"
     },
     "socialStatus": {
       "type": "enumeration",
@@ -64,7 +64,8 @@
         "Réduction inscription",
         "Réduction mensualité",
         "Tout tarifs offerts"
-      ]
+      ],
+      "default": "Non"
     },
     "registrationComment": {
       "type": "string"

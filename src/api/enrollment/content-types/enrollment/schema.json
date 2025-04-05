@@ -8,7 +8,7 @@
     "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
@@ -36,14 +36,34 @@
     },
     "enrollmentNumber": {
       "type": "integer",
-      "default": 0,
-      "min": 0
+      "default": 1,
+      "min": 1
     },
     "payments": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::payment.payment",
       "mappedBy": "enrollment"
+    },
+    "enrollmentType": {
+      "type": "enumeration",
+      "enum": [
+        "Ancien Redoublant",
+        "Ancien Passant",
+        "Nouveau"
+      ],
+      "required": true,
+      "default": "Nouveau"
+    },
+    "socialStatus": {
+      "type": "enumeration",
+      "enum": [
+        "Non",
+        "Réduction inscription",
+        "Réduction mensualité",
+        "Tout tarifs offerts"
+      ],
+      "default": "Non"
     }
   }
 }

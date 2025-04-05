@@ -807,7 +807,7 @@ export interface ApiEnrollmentEnrollment extends Schema.CollectionType {
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     enrollmentDate: Attribute.Date & Attribute.Required;
@@ -828,17 +828,30 @@ export interface ApiEnrollmentEnrollment extends Schema.CollectionType {
     >;
     enrollmentNumber: Attribute.Integer &
       Attribute.SetMinMax<{
-        min: 0;
+        min: 1;
       }> &
-      Attribute.DefaultTo<0>;
+      Attribute.DefaultTo<1>;
     payments: Attribute.Relation<
       'api::enrollment.enrollment',
       'oneToMany',
       'api::payment.payment'
     >;
+    enrollmentType: Attribute.Enumeration<
+      ['Ancien Redoublant', 'Ancien Passant', 'Nouveau']
+    > &
+      Attribute.Required &
+      Attribute.DefaultTo<'Nouveau'>;
+    socialStatus: Attribute.Enumeration<
+      [
+        'Non',
+        'R\u00E9duction inscription',
+        'R\u00E9duction mensualit\u00E9',
+        'Tout tarifs offerts'
+      ]
+    > &
+      Attribute.DefaultTo<'Non'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::enrollment.enrollment',
       'oneToOne',
@@ -847,6 +860,65 @@ export interface ApiEnrollmentEnrollment extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::enrollment.enrollment',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiExpenseExpense extends Schema.CollectionType {
+  collectionName: 'expenses';
+  info: {
+    singularName: 'expense';
+    pluralName: 'expenses';
+    displayName: 'Expense';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    expenseDate: Attribute.Date;
+    amount: Attribute.Decimal &
+      Attribute.SetMinMax<{
+        min: 0;
+      }>;
+    category: Attribute.Enumeration<
+      [
+        'Services Publics',
+        'Salaires',
+        'Fournitures',
+        'Entretien',
+        'Transport',
+        'Activit\u00E9s Parascolaires',
+        '\u00C9quipements',
+        'Formation',
+        'Autres'
+      ]
+    > &
+      Attribute.Required;
+    description: Attribute.String;
+    school: Attribute.Relation<
+      'api::expense.expense',
+      'manyToOne',
+      'api::school.school'
+    >;
+    schoolYear: Attribute.Relation<
+      'api::expense.expense',
+      'manyToOne',
+      'api::school-year.school-year'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::expense.expense',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::expense.expense',
       'oneToOne',
       'admin::user'
     > &
@@ -866,7 +938,7 @@ export interface ApiPaymentPayment extends Schema.CollectionType {
     draftAndPublish: false;
   };
   attributes: {
-    monthOf: Attribute.Date & Attribute.Required;
+    monthOf: Attribute.Date;
     isPaid: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<true>;
     enrollment: Attribute.Relation<
       'api::payment.payment',
@@ -874,16 +946,16 @@ export interface ApiPaymentPayment extends Schema.CollectionType {
       'api::enrollment.enrollment'
     >;
     amount: Attribute.Decimal &
+      Attribute.Required &
       Attribute.SetMinMax<{
         min: 0;
       }>;
-    paymentType: Attribute.Enumeration<['enrollment', 'monthly']> &
+    paymentType: Attribute.Enumeration<
+      ['enrollment', 'monthly', 'exam', 'blouse', 'parentContribution', 'other']
+    > &
       Attribute.Required;
-    payment_detail: Attribute.Relation<
-      'api::payment.payment',
-      'oneToOne',
-      'api::payment-detail.payment-detail'
-    >;
+    motive: Attribute.String;
+    comment: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -894,44 +966,6 @@ export interface ApiPaymentPayment extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::payment.payment',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiPaymentDetailPaymentDetail extends Schema.CollectionType {
-  collectionName: 'payment_details';
-  info: {
-    singularName: 'payment-detail';
-    pluralName: 'payment-details';
-    displayName: 'PaymentDetail';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    payment: Attribute.Relation<
-      'api::payment-detail.payment-detail',
-      'oneToOne',
-      'api::payment.payment'
-    >;
-    monthlyFee: Attribute.Decimal;
-    enrollmentFee: Attribute.Decimal;
-    blouseFee: Attribute.Decimal;
-    examFee: Attribute.Decimal;
-    parentContributionFee: Attribute.Decimal;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::payment-detail.payment-detail',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::payment-detail.payment-detail',
       'oneToOne',
       'admin::user'
     > &
@@ -1051,6 +1085,11 @@ export interface ApiSchoolSchool extends Schema.CollectionType {
       'oneToMany',
       'api::class.class'
     >;
+    expenses: Attribute.Relation<
+      'api::school.school',
+      'oneToMany',
+      'api::expense.expense'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1099,6 +1138,11 @@ export interface ApiSchoolYearSchoolYear extends Schema.CollectionType {
       'oneToMany',
       'api::enrollment.enrollment'
     >;
+    expenses: Attribute.Relation<
+      'api::school-year.school-year',
+      'oneToMany',
+      'api::expense.expense'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1137,8 +1181,9 @@ export interface ApiStudentStudent extends Schema.CollectionType {
     tutorLastname: Attribute.String & Attribute.Required;
     tutorPhoneNumber: Attribute.String & Attribute.Required;
     type: Attribute.Enumeration<
-      ['Hafiz', 'Ancien Redoublant', 'Ancien Passant', 'Nouveau']
-    >;
+      ['Ancien Redoublant', 'Ancien Passant', 'Nouveau']
+    > &
+      Attribute.DefaultTo<'Nouveau'>;
     socialStatus: Attribute.Enumeration<
       [
         'Non',
@@ -1146,7 +1191,8 @@ export interface ApiStudentStudent extends Schema.CollectionType {
         'R\u00E9duction mensualit\u00E9',
         'Tout tarifs offerts'
       ]
-    >;
+    > &
+      Attribute.DefaultTo<'Non'>;
     registrationComment: Attribute.String;
     enrollments: Attribute.Relation<
       'api::student.student',
@@ -1299,8 +1345,8 @@ declare module '@strapi/types' {
       'plugin::email-designer.email-template': PluginEmailDesignerEmailTemplate;
       'api::class.class': ApiClassClass;
       'api::enrollment.enrollment': ApiEnrollmentEnrollment;
+      'api::expense.expense': ApiExpenseExpense;
       'api::payment.payment': ApiPaymentPayment;
-      'api::payment-detail.payment-detail': ApiPaymentDetailPaymentDetail;
       'api::school.school': ApiSchoolSchool;
       'api::school-year.school-year': ApiSchoolYearSchoolYear;
       'api::student.student': ApiStudentStudent;

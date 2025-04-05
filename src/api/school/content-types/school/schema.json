@@ -151,6 +151,12 @@
       "relation": "oneToMany",
       "target": "api::class.class",
       "mappedBy": "school"
+    },
+    "expenses": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::expense.expense",
+      "mappedBy": "school"
     }
   }
 }

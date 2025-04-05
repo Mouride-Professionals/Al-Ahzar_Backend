@@ -1,5 +1,5 @@
 {
-  "/payment-details": {
+  "/expenses": {
     "get": {
       "responses": {
         "200": {
@@ -7,7 +7,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/PaymentDetailListResponse"
+                "$ref": "#/components/schemas/ExpenseListResponse"
               }
             }
           }
@@ -64,7 +64,7 @@
         }
       },
       "tags": [
-        "Payment-detail"
+        "Expense"
       ],
       "parameters": [
         {
@@ -170,7 +170,7 @@
           }
         }
       ],
-      "operationId": "get/payment-details"
+      "operationId": "get/expenses"
     },
     "post": {
       "responses": {
@@ -179,7 +179,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/PaymentDetailResponse"
+                "$ref": "#/components/schemas/ExpenseResponse"
               }
             }
           }
@@ -236,23 +236,23 @@
         }
       },
       "tags": [
-        "Payment-detail"
+        "Expense"
       ],
       "parameters": [],
-      "operationId": "post/payment-details",
+      "operationId": "post/expenses",
       "requestBody": {
         "required": true,
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/PaymentDetailRequest"
+              "$ref": "#/components/schemas/ExpenseRequest"
             }
           }
         }
       }
     }
   },
-  "/payment-details/{id}": {
+  "/expenses/{id}": {
     "get": {
       "responses": {
         "200": {
@@ -260,7 +260,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/PaymentDetailResponse"
+                "$ref": "#/components/schemas/ExpenseResponse"
               }
             }
           }
@@ -317,7 +317,7 @@
         }
       },
       "tags": [
-        "Payment-detail"
+        "Expense"
       ],
       "parameters": [
         {
@@ -331,7 +331,7 @@
           }
         }
       ],
-      "operationId": "get/payment-details/{id}"
+      "operationId": "get/expenses/{id}"
     },
     "put": {
       "responses": {
@@ -340,7 +340,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/PaymentDetailResponse"
+                "$ref": "#/components/schemas/ExpenseResponse"
               }
             }
           }
@@ -397,7 +397,7 @@
         }
       },
       "tags": [
-        "Payment-detail"
+        "Expense"
       ],
       "parameters": [
         {
@@ -411,13 +411,13 @@
           }
         }
       ],
-      "operationId": "put/payment-details/{id}",
+      "operationId": "put/expenses/{id}",
       "requestBody": {
         "required": true,
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/PaymentDetailRequest"
+              "$ref": "#/components/schemas/ExpenseRequest"
             }
           }
         }
@@ -488,7 +488,7 @@
         }
       },
       "tags": [
-        "Payment-detail"
+        "Expense"
       ],
       "parameters": [
         {
@@ -502,7 +502,7 @@
           }
         }
       ],
-      "operationId": "delete/payment-details/{id}"
+      "operationId": "delete/expenses/{id}"
     }
   }
 }

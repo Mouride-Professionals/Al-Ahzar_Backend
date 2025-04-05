@@ -1,0 +1,53 @@
+{
+  "kind": "collectionType",
+  "collectionName": "expenses",
+  "info": {
+    "singularName": "expense",
+    "pluralName": "expenses",
+    "displayName": "Expense",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "expenseDate": {
+      "type": "date"
+    },
+    "amount": {
+      "type": "decimal",
+      "min": 0
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "Services Publics",
+        "Salaires",
+        "Fournitures",
+        "Entretien",
+        "Transport",
+        "Activités Parascolaires",
+        "Équipements",
+        "Formation",
+        "Autres"
+      ],
+      "required": true
+    },
+    "description": {
+      "type": "string"
+    },
+    "school": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::school.school",
+      "inversedBy": "expenses"
+    },
+    "schoolYear": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::school-year.school-year",
+      "inversedBy": "expenses"
+    }
+  }
+}
