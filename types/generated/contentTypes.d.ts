@@ -1085,6 +1085,7 @@ export interface ApiSchoolSchool extends Schema.CollectionType {
       'oneToMany',
       'api::class.class'
     >;
+    banner: Attribute.Media;
     expenses: Attribute.Relation<
       'api::school.school',
       'oneToMany',

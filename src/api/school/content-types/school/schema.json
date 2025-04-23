@@ -152,6 +152,14 @@
       "target": "api::class.class",
       "mappedBy": "school"
     },
+    "banner": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
     "expenses": {
       "type": "relation",
       "relation": "oneToMany",

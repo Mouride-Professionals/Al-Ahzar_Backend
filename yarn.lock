@@ -13846,9 +13846,9 @@ universalify@^2.0.0:
   integrity sha512-gptHNQghINnc/vTGIk0SOFGFNXw7JVrlRUtConJRlvaw6DuX0wO5Jeko9sWrMBhh+PsYAZ7oXAiOnf/UKogyiw==
 
 unlayer-types@latest:
-  version "1.192.0"
-  resolved "https://registry.npmjs.org/unlayer-types/-/unlayer-types-1.192.0.tgz"
-  integrity sha512-7AU7xclz/GaqbTKDlz3tYpcJ7DL/khf1ZxB8wrR7l/vtxp0Ma2WvgUcKX+0IGk3r6WkP3buj8tPaQa5mZHOjgw==
+  version "1.248.0"
+  resolved "https://registry.npmjs.org/unlayer-types/-/unlayer-types-1.248.0.tgz"
+  integrity sha512-jXse36Qo8LT8XsI0/3bVeKe7NV8QGEih+Yji6y4qAQqC4CNWZBJAbofvRS0eb5Ad2uiLdxYQIbRiDQvoy8bkJA==
 
 unload@2.2.0:
   version "2.2.0"
