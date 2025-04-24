@@ -12,7 +12,7 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 # Copy necessary files
-COPY .env.${APP_ENV}  ./.env
+# COPY .env.${APP_ENV}  ./.env
 COPY package.json ./
 
 # Update npm and install node-gyp globally
