@@ -1,5 +1,5 @@
 # Use the official Node.js Alpine image as the base image
-FROM node:18-alpine
+FROM node:20-alpine
 
 ARG APP_ENV="production"
 ARG APP_PORT
