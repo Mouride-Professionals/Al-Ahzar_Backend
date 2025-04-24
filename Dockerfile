@@ -1,7 +1,7 @@
 # Use the official Node.js Alpine image as the base image
 FROM node:18-alpine
 
-ARG APP_ENV
+ARG APP_ENV="production"
 ARG APP_PORT
 
 # Install dependencies
@@ -12,7 +12,7 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 # Copy necessary files
-# COPY .env.${APP_ENV}  ./.env
+COPY .env.${APP_ENV}  ./.env
 COPY package.json ./
 
 # Update npm and install node-gyp globally
