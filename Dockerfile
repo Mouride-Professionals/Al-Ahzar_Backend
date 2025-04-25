@@ -2,7 +2,7 @@
 FROM node:20-alpine
 
 ARG APP_ENV="production"
-ARG APP_PORT
+ARG APP_PORT= 1337
 
 # Install dependencies
 RUN apk --no-cache add nasm python3 make g++
