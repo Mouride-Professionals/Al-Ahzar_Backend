@@ -19,7 +19,7 @@ module.exports = [
   {
     name: 'strapi::cors',
     config: {
-      origin: ['https://al-ahzar-front.vercel.app', 'http://localhost:3000', 'https://al-ahzar-backend.onrender.com',,'https://al-ahzar-front-gu42alx1h-himeuhs-projects.vercel.app','https://al-ahzar-front-64eewlwah-himeuhs-projects.vercel.app','al-ahzar-front-53bgngjcz-himeuhs-projects.vercel.app'],
+      origin: ['https://al-ahzar-front.vercel.app', 'http://localhost:3000', 'https://al-ahzar-backend.onrender.com', 'http://localhost:1338'],
       methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
       headers: ['Content-Type', 'Authorization', 'Origin', 'Accept'],
       keepHeaderOnError: true,

@@ -32,6 +32,7 @@
     "password": {
       "type": "password",
       "minLength": 6,
+      "default": "Passer123",
       "configurable": false,
       "private": true,
       "searchable": false
@@ -75,6 +76,10 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::school.school"
+    },
+    "forcePasswordChange": {
+      "type": "boolean",
+      "default": true
     }
   }
 }

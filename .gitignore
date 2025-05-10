@@ -116,3 +116,5 @@ build
 data.db
 
 .history
+my.json
+sendgrid.env
