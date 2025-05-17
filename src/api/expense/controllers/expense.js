@@ -112,8 +112,8 @@ module.exports = createCoreController("api::expense.expense", ({ strapi }) => ({
                     .where("expenses.expense_date", ">=", startOfYear)
                     .andWhere("expenses.expense_date", "<", startOfNextYear)
             )
-                .groupByRaw("MONTH(expenses.expense_date)")
-                .select(knex.raw("MONTH(expenses.expense_date) AS month"))
+                .groupByRaw("EXTRACT(MONTH FROM expenses.expense_date)")
+                .select(knex.raw("EXTRACT(MONTH FROM expenses.expense_date) AS month"))
                 .sum({ total: "expenses.amount" });
 
             // Category breakdown for the current year

@@ -76,7 +76,7 @@ module.exports = createCoreController("api::payment.payment", ({ strapi }) => ({
                 }
                 if (schoolId) {
                     console.log("schoolId", schoolId);
-                    
+
                     query.andWhere("classes_school_links.school_id", schoolId);
                 }
                 return query;
@@ -134,8 +134,8 @@ module.exports = createCoreController("api::payment.payment", ({ strapi }) => ({
                     .where("payments.month_of", ">=", startOfYear)
                     .andWhere("payments.month_of", "<", startOfNextYear)
             )
-                .groupByRaw("MONTH(payments.month_of)")
-                .select(knex.raw("MONTH(payments.month_of) AS month"))
+                .groupByRaw("EXTRACT(MONTH FROM payments.month_of)")
+                .select(knex.raw("EXTRACT(MONTH FROM payments.month_of) AS month"))
                 .sum({ total: "payments.amount" });
 
             // New query: Group payments by payment_type for the current year.
