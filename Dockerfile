@@ -2,7 +2,7 @@
 FROM node:20-alpine
 
 ARG APP_ENV="production"
-ARG APP_PORT= 1337
+ARG APP_PORT=1337
 
 # Install dependencies
 RUN apk --no-cache add nasm python3 make g++
@@ -11,9 +11,8 @@ RUN apk --no-cache add nasm python3 make g++
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
-# Copy necessary files
-COPY .env.${APP_ENV}  ./.env
-COPY package.json ./
+# Copy package.json and yarn.lock (if exists)
+COPY package.json yarn.lock* ./
 
 # Update npm and install node-gyp globally
 RUN npm install -g npm@latest
@@ -32,15 +31,12 @@ COPY . .
 RUN yarn build
 
 # Set appropriate permissions
-RUN mkdir -p /usr/src/app/.tmp && chmod 777 /usr/src/app/.tmp
-RUN chmod 777 -R /usr/src/app/src/*
-RUN mkdir -p /usr/src/app/public/uploads && chmod 777 -R /usr/src/app/public/uploads
-
-# Import code style settings
-RUN yarn cs import -y
+RUN mkdir -p /usr/src/app/.tmp && chmod 755 /usr/src/app/.tmp
+RUN chmod 755 -R /usr/src/app/src/*
+RUN mkdir -p /usr/src/app/public/uploads && chmod 755 -R /usr/src/app/public/uploads
 
 # Expose the application port
 EXPOSE ${APP_PORT}
 
-# Run the application
-CMD ["yarn", "start"]
+# Run the application with config sync import
+CMD ["sh", "-c", "yarn cs import -y && yarn start"]
