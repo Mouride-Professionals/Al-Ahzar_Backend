@@ -8,8 +8,7 @@
     "start": "strapi start",
     "build": "strapi build",
     "strapi": "strapi",
-    "cs": "config-sync",
-    "create-admin": "strapi admin:create-user --firstname=khadim --lastname=Sylla --email=syllakhadim1269@gmail.com --password=Sylla1269# --username=syllakhadim1269 --role=Super Admin"
+    "cs": "config-sync"
   },
   "devDependencies": {},
   "dependencies": {
