@@ -39,4 +39,4 @@ RUN mkdir -p /usr/src/app/public/uploads && chmod 755 -R /usr/src/app/public/upl
 EXPOSE ${APP_PORT}
 
 # Run the application with config sync import
-CMD ["sh", "-c", "yarn cs import -y && yarn start"]
+CMD ["sh", "-c", "yarn cs import -y && yarn create-admin && yarn start"]

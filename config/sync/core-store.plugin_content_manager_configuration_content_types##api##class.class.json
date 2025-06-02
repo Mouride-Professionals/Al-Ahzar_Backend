@@ -7,8 +7,8 @@
       "filterable": true,
       "searchable": true,
       "pageSize": 10,
-      "mainField": "level",
-      "defaultSortBy": "level",
+      "mainField": "id",
+      "defaultSortBy": "id",
       "defaultSortOrder": "ASC"
     },
     "metadatas": {
@@ -34,9 +34,9 @@
           "sortable": true
         }
       },
-      "etablissement": {
+      "school": {
         "edit": {
-          "label": "etablissement",
+          "label": "school",
           "description": "",
           "placeholder": "",
           "visible": true,
@@ -44,24 +44,9 @@
           "mainField": "name"
         },
         "list": {
-          "label": "etablissement",
+          "label": "school",
           "searchable": true,
           "sortable": true
-        }
-      },
-      "eleves": {
-        "edit": {
-          "label": "eleves",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true,
-          "mainField": "firstname"
-        },
-        "list": {
-          "label": "eleves",
-          "searchable": false,
-          "sortable": false
         }
       },
       "level": {
@@ -90,6 +75,36 @@
           "label": "letter",
           "searchable": true,
           "sortable": true
+        }
+      },
+      "schoolYear": {
+        "edit": {
+          "label": "schoolYear",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "name"
+        },
+        "list": {
+          "label": "schoolYear",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "enrollments": {
+        "edit": {
+          "label": "enrollments",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "id"
+        },
+        "list": {
+          "label": "enrollments",
+          "searchable": false,
+          "sortable": false
         }
       },
       "createdAt": {
@@ -155,9 +170,8 @@
       "list": [
         "id",
         "cycle",
-        "level",
-        "letter",
-        "createdAt"
+        "school",
+        "level"
       ],
       "edit": [
         [
@@ -166,23 +180,27 @@
             "size": 6
           },
           {
-            "name": "level",
+            "name": "school",
             "size": 6
           }
         ],
         [
           {
-            "name": "letter",
+            "name": "level",
             "size": 6
           },
           {
-            "name": "etablissement",
+            "name": "letter",
             "size": 6
           }
         ],
         [
           {
-            "name": "eleves",
+            "name": "schoolYear",
+            "size": 6
+          },
+          {
+            "name": "enrollments",
             "size": 6
           }
         ]

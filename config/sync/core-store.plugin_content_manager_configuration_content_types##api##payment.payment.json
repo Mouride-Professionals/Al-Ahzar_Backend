@@ -7,8 +7,8 @@
       "filterable": true,
       "searchable": true,
       "pageSize": 10,
-      "mainField": "id",
-      "defaultSortBy": "id",
+      "mainField": "motive",
+      "defaultSortBy": "motive",
       "defaultSortOrder": "ASC"
     },
     "metadatas": {
@@ -48,17 +48,73 @@
           "sortable": true
         }
       },
-      "eleve": {
+      "enrollment": {
         "edit": {
-          "label": "eleve",
+          "label": "enrollment",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true,
-          "mainField": "firstname"
+          "mainField": "id"
         },
         "list": {
-          "label": "eleve",
+          "label": "enrollment",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "amount": {
+        "edit": {
+          "label": "amount",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "amount",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "paymentType": {
+        "edit": {
+          "label": "paymentType",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "paymentType",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "motive": {
+        "edit": {
+          "label": "motive",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "motive",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "comment": {
+        "edit": {
+          "label": "comment",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "comment",
           "searchable": true,
           "sortable": true
         }
@@ -127,7 +183,7 @@
         "id",
         "monthOf",
         "isPaid",
-        "eleve"
+        "enrollment"
       ],
       "edit": [
         [
@@ -142,7 +198,27 @@
         ],
         [
           {
-            "name": "eleve",
+            "name": "enrollment",
+            "size": 6
+          },
+          {
+            "name": "amount",
+            "size": 4
+          }
+        ],
+        [
+          {
+            "name": "paymentType",
+            "size": 6
+          },
+          {
+            "name": "motive",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "comment",
             "size": 6
           }
         ]

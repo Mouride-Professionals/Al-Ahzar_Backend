@@ -118,3 +118,4 @@ data.db
 .history
 my.json
 sendgrid.env
+mysql2pg.load

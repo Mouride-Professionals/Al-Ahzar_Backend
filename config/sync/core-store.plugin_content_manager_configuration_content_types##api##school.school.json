@@ -34,24 +34,9 @@
           "sortable": true
         }
       },
-      "classes": {
+      "parentSchool": {
         "edit": {
-          "label": "classes",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true,
-          "mainField": "level"
-        },
-        "list": {
-          "label": "classes",
-          "searchable": false,
-          "sortable": false
-        }
-      },
-      "etablissement": {
-        "edit": {
-          "label": "etablissement",
+          "label": "parentSchool",
           "description": "",
           "placeholder": "",
           "visible": true,
@@ -59,14 +44,14 @@
           "mainField": "name"
         },
         "list": {
-          "label": "etablissement",
+          "label": "parentSchool",
           "searchable": true,
           "sortable": true
         }
       },
-      "etablissements": {
+      "childSchools": {
         "edit": {
-          "label": "etablissements",
+          "label": "childSchools",
           "description": "",
           "placeholder": "",
           "visible": true,
@@ -74,39 +59,9 @@
           "mainField": "name"
         },
         "list": {
-          "label": "etablissements",
+          "label": "childSchools",
           "searchable": false,
           "sortable": false
-        }
-      },
-      "cashier": {
-        "edit": {
-          "label": "cashier",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true,
-          "mainField": "username"
-        },
-        "list": {
-          "label": "cashier",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "responsible": {
-        "edit": {
-          "label": "responsible",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true,
-          "mainField": "username"
-        },
-        "list": {
-          "label": "responsible",
-          "searchable": true,
-          "sortable": true
         }
       },
       "type": {
@@ -121,6 +76,260 @@
           "label": "type",
           "searchable": true,
           "sortable": true
+        }
+      },
+      "region": {
+        "edit": {
+          "label": "region",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "region",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "department": {
+        "edit": {
+          "label": "department",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "department",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "commune": {
+        "edit": {
+          "label": "commune",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "commune",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "creationDate": {
+        "edit": {
+          "label": "creationDate",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "creationDate",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "address": {
+        "edit": {
+          "label": "address",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "address",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "email": {
+        "edit": {
+          "label": "email",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "email",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "phone": {
+        "edit": {
+          "label": "phone",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "phone",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "phoneFix": {
+        "edit": {
+          "label": "phoneFix",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "phoneFix",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "isAlAzharLand": {
+        "edit": {
+          "label": "isAlAzharLand",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "isAlAzharLand",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "note": {
+        "edit": {
+          "label": "note",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "note",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "IA": {
+        "edit": {
+          "label": "IA",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "IA",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "IEF": {
+        "edit": {
+          "label": "IEF",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "IEF",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "responsibleName": {
+        "edit": {
+          "label": "responsibleName",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "responsibleName",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "city": {
+        "edit": {
+          "label": "city",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "city",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "postBox": {
+        "edit": {
+          "label": "postBox",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "postBox",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "classes": {
+        "edit": {
+          "label": "classes",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "id"
+        },
+        "list": {
+          "label": "classes",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "banner": {
+        "edit": {
+          "label": "banner",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "banner",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "expenses": {
+        "edit": {
+          "label": "expenses",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "description"
+        },
+        "list": {
+          "label": "expenses",
+          "searchable": false,
+          "sortable": false
         }
       },
       "createdAt": {
@@ -185,14 +394,24 @@
     "layouts": {
       "list": [
         "id",
-        "createdAt",
-        "updatedAt",
-        "name"
+        "name",
+        "parentSchool",
+        "childSchools"
       ],
       "edit": [
         [
           {
             "name": "name",
+            "size": 6
+          },
+          {
+            "name": "parentSchool",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "childSchools",
             "size": 6
           },
           {
@@ -202,27 +421,91 @@
         ],
         [
           {
+            "name": "region",
+            "size": 6
+          },
+          {
+            "name": "department",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "commune",
+            "size": 6
+          },
+          {
+            "name": "creationDate",
+            "size": 4
+          }
+        ],
+        [
+          {
+            "name": "address",
+            "size": 6
+          },
+          {
+            "name": "email",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "phone",
+            "size": 6
+          },
+          {
+            "name": "phoneFix",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "isAlAzharLand",
+            "size": 4
+          },
+          {
+            "name": "note",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "IA",
+            "size": 6
+          },
+          {
+            "name": "IEF",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "responsibleName",
+            "size": 6
+          },
+          {
+            "name": "city",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "postBox",
+            "size": 6
+          },
+          {
             "name": "classes",
             "size": 6
-          },
-          {
-            "name": "etablissement",
-            "size": 6
           }
         ],
         [
           {
-            "name": "etablissements",
+            "name": "banner",
             "size": 6
           },
           {
-            "name": "cashier",
-            "size": 6
-          }
-        ],
-        [
-          {
-            "name": "responsible",
+            "name": "expenses",
             "size": 6
           }
         ]

@@ -1,14 +1,14 @@
 {
-  "key": "plugin_content_manager_configuration_content_types::plugin::users-permissions.user",
+  "key": "plugin_content_manager_configuration_content_types::api::school-year.school-year",
   "value": {
-    "uid": "plugin::users-permissions.user",
+    "uid": "api::school-year.school-year",
     "settings": {
       "bulkable": true,
       "filterable": true,
       "searchable": true,
       "pageSize": 10,
-      "mainField": "username",
-      "defaultSortBy": "username",
+      "mainField": "name",
+      "defaultSortBy": "name",
       "defaultSortOrder": "ASC"
     },
     "metadatas": {
@@ -20,188 +20,133 @@
           "sortable": true
         }
       },
-      "username": {
+      "name": {
         "edit": {
-          "label": "username",
+          "label": "name",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "username",
+          "label": "name",
           "searchable": true,
           "sortable": true
         }
       },
-      "email": {
+      "startDate": {
         "edit": {
-          "label": "email",
+          "label": "startDate",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "email",
+          "label": "startDate",
           "searchable": true,
           "sortable": true
         }
       },
-      "provider": {
+      "endDate": {
         "edit": {
-          "label": "provider",
-          "description": "",
-          "placeholder": "",
-          "visible": false,
-          "editable": true
-        },
-        "list": {
-          "label": "provider",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "password": {
-        "edit": {
-          "label": "password",
+          "label": "endDate",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "password",
+          "label": "endDate",
           "searchable": true,
           "sortable": true
         }
       },
-      "resetPasswordToken": {
+      "isCurrent": {
         "edit": {
-          "label": "resetPasswordToken",
-          "description": "",
-          "placeholder": "",
-          "visible": false,
-          "editable": true
-        },
-        "list": {
-          "label": "resetPasswordToken",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "confirmationToken": {
-        "edit": {
-          "label": "confirmationToken",
-          "description": "",
-          "placeholder": "",
-          "visible": false,
-          "editable": true
-        },
-        "list": {
-          "label": "confirmationToken",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "confirmed": {
-        "edit": {
-          "label": "confirmed",
+          "label": "isCurrent",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "confirmed",
+          "label": "isCurrent",
           "searchable": true,
           "sortable": true
         }
       },
-      "blocked": {
+      "isEnded": {
         "edit": {
-          "label": "blocked",
+          "label": "isEnded",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "blocked",
+          "label": "isEnded",
           "searchable": true,
           "sortable": true
         }
       },
-      "role": {
+      "description": {
         "edit": {
-          "label": "role",
+          "label": "description",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "description",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "classes": {
+        "edit": {
+          "label": "classes",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true,
-          "mainField": "name"
+          "mainField": "id"
         },
         "list": {
-          "label": "role",
-          "searchable": true,
-          "sortable": true
+          "label": "classes",
+          "searchable": false,
+          "sortable": false
         }
       },
-      "firstname": {
+      "enrollments": {
         "edit": {
-          "label": "firstname",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "firstname",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "lastname": {
-        "edit": {
-          "label": "lastname",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "lastname",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "school": {
-        "edit": {
-          "label": "school",
+          "label": "enrollments",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true,
-          "mainField": "name"
+          "mainField": "id"
         },
         "list": {
-          "label": "school",
-          "searchable": true,
-          "sortable": true
+          "label": "enrollments",
+          "searchable": false,
+          "sortable": false
         }
       },
-      "forcePasswordChange": {
+      "expenses": {
         "edit": {
-          "label": "forcePasswordChange",
+          "label": "expenses",
           "description": "",
           "placeholder": "",
           "visible": true,
-          "editable": true
+          "editable": true,
+          "mainField": "description"
         },
         "list": {
-          "label": "forcePasswordChange",
-          "searchable": true,
-          "sortable": true
+          "label": "expenses",
+          "searchable": false,
+          "sortable": false
         }
       },
       "createdAt": {
@@ -266,59 +211,53 @@
     "layouts": {
       "list": [
         "id",
-        "username",
-        "email",
-        "confirmed"
+        "name",
+        "startDate",
+        "endDate"
       ],
       "edit": [
         [
           {
-            "name": "username",
+            "name": "name",
             "size": 6
           },
           {
-            "name": "email",
-            "size": 6
-          }
-        ],
-        [
-          {
-            "name": "password",
-            "size": 6
-          },
-          {
-            "name": "confirmed",
+            "name": "startDate",
             "size": 4
           }
         ],
         [
           {
-            "name": "blocked",
+            "name": "endDate",
             "size": 4
           },
           {
-            "name": "role",
+            "name": "isCurrent",
+            "size": 4
+          },
+          {
+            "name": "isEnded",
+            "size": 4
+          }
+        ],
+        [
+          {
+            "name": "description",
+            "size": 6
+          },
+          {
+            "name": "classes",
             "size": 6
           }
         ],
         [
           {
-            "name": "firstname",
+            "name": "enrollments",
             "size": 6
           },
           {
-            "name": "lastname",
+            "name": "expenses",
             "size": 6
-          }
-        ],
-        [
-          {
-            "name": "school",
-            "size": 6
-          },
-          {
-            "name": "forcePasswordChange",
-            "size": 4
           }
         ]
       ]

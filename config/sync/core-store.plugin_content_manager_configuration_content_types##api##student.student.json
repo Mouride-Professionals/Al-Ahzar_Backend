@@ -132,21 +132,6 @@
           "sortable": true
         }
       },
-      "classe": {
-        "edit": {
-          "label": "classe",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true,
-          "mainField": "level"
-        },
-        "list": {
-          "label": "classe",
-          "searchable": true,
-          "sortable": true
-        }
-      },
       "type": {
         "edit": {
           "label": "type",
@@ -189,19 +174,33 @@
           "sortable": true
         }
       },
-      "payments": {
+      "enrollments": {
         "edit": {
-          "label": "payments",
+          "label": "enrollments",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true,
-          "mainField": "monthOf"
+          "mainField": "id"
         },
         "list": {
-          "label": "payments",
+          "label": "enrollments",
           "searchable": false,
           "sortable": false
+        }
+      },
+      "studentIdentifer": {
+        "edit": {
+          "label": "studentIdentifer",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "studentIdentifer",
+          "searchable": true,
+          "sortable": true
         }
       },
       "createdAt": {
@@ -268,9 +267,7 @@
         "id",
         "firstname",
         "lastname",
-        "dateOfBirth",
-        "createdAt",
-        "updatedAt"
+        "gender"
       ],
       "edit": [
         [
@@ -315,27 +312,27 @@
         ],
         [
           {
-            "name": "classe",
-            "size": 6
-          },
-          {
             "name": "type",
             "size": 6
-          }
-        ],
-        [
+          },
           {
             "name": "socialStatus",
             "size": 6
-          },
+          }
+        ],
+        [
           {
             "name": "registrationComment",
+            "size": 6
+          },
+          {
+            "name": "enrollments",
             "size": 6
           }
         ],
         [
           {
-            "name": "payments",
+            "name": "studentIdentifer",
             "size": 6
           }
         ]
