@@ -1,8 +1,7 @@
 # Use the official Node.js Alpine image as the base image
 FROM node:20-alpine
 
-ARG APP_ENV="production"
-ARG APP_PORT=1337
+ARG APP_PORT=1338
 
 # Install dependencies
 RUN apk --no-cache add nasm python3 make g++
