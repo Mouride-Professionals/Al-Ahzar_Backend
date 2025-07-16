@@ -43,16 +43,13 @@
       "action": "api::payment.payment.findOne"
     },
     {
-      "action": "api::payment.payment.stats"
+      "action": "api::expense.expense.create"
     },
     {
-      "action": "api::payment.payment.update"
+      "action": "api::expense.expense.find"
     },
     {
-      "action": "api::school-year.school-year.find"
-    },
-    {
-      "action": "api::school-year.school-year.findOne"
+      "action": "api::expense.expense.findOne"
     },
     {
       "action": "api::school.school.find"

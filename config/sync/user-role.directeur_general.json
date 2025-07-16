@@ -1,208 +1,79 @@
 {
-  "name": "Directeur General",
-  "description": "D.G",
-  "type": "directeur_general",
-  "permissions": [
-    {
-      "action": "api::class.class.create"
-    },
-    {
-      "action": "api::class.class.delete"
-    },
-    {
-      "action": "api::class.class.find"
-    },
-    {
-      "action": "api::class.class.findOne"
-    },
-    {
-      "action": "api::class.class.update"
-    },
-    {
-      "action": "api::enrollment.enrollment.create"
-    },
-    {
-      "action": "api::enrollment.enrollment.delete"
-    },
-    {
-      "action": "api::enrollment.enrollment.find"
-    },
-    {
-      "action": "api::enrollment.enrollment.findOne"
-    },
-    {
-      "action": "api::enrollment.enrollment.update"
-    },
-    {
-      "action": "api::expense.expense.find"
-    },
-    {
-      "action": "api::expense.expense.findOne"
-    },
-    {
-      "action": "api::payment.payment.find"
-    },
-    {
-      "action": "api::payment.payment.findOne"
-    },
-    {
-      "action": "api::school-year.school-year.create"
-    },
-    {
-      "action": "api::school-year.school-year.delete"
-    },
-    {
-      "action": "api::school-year.school-year.find"
-    },
-    {
-      "action": "api::school-year.school-year.findOne"
-    },
-    {
-      "action": "api::school-year.school-year.setCurrent"
-    },
-    {
-      "action": "api::school-year.school-year.setEnded"
-    },
-    {
-      "action": "api::school-year.school-year.update"
-    },
-    {
-      "action": "api::school.school.create"
-    },
-    {
-      "action": "api::school.school.delete"
-    },
-    {
-      "action": "api::school.school.find"
-    },
-    {
-      "action": "api::school.school.findOne"
-    },
-    {
-      "action": "api::school.school.update"
-    },
-    {
-      "action": "api::student.student.create"
-    },
-    {
-      "action": "api::student.student.delete"
-    },
-    {
-      "action": "api::student.student.find"
-    },
-    {
-      "action": "api::student.student.findOne"
-    },
-    {
-      "action": "api::student.student.update"
-    },
-    {
-      "action": "api::subject.subject.create"
-    },
-    {
-      "action": "api::subject.subject.delete"
-    },
-    {
-      "action": "api::subject.subject.find"
-    },
-    {
-      "action": "api::subject.subject.findOne"
-    },
-    {
-      "action": "api::subject.subject.update"
-    },
-    {
-      "action": "api::teacher.teacher.create"
-    },
-    {
-      "action": "api::teacher.teacher.delete"
-    },
-    {
-      "action": "api::teacher.teacher.find"
-    },
-    {
-      "action": "api::teacher.teacher.findOne"
-    },
-    {
-      "action": "api::teacher.teacher.update"
-    },
-    {
-      "action": "plugin::email.email.send"
-    },
-    {
-      "action": "plugin::import-export-entries.export.exportData"
-    },
-    {
-      "action": "plugin::import-export-entries.import.importData"
-    },
-    {
-      "action": "plugin::upload.content-api.find"
-    },
-    {
-      "action": "plugin::upload.content-api.findOne"
-    },
-    {
-      "action": "plugin::upload.content-api.upload"
-    },
-    {
-      "action": "plugin::users-permissions.auth.callback"
-    },
-    {
-      "action": "plugin::users-permissions.auth.changePassword"
-    },
-    {
-      "action": "plugin::users-permissions.auth.connect"
-    },
-    {
-      "action": "plugin::users-permissions.auth.emailConfirmation"
-    },
-    {
-      "action": "plugin::users-permissions.auth.forgotPassword"
-    },
-    {
-      "action": "plugin::users-permissions.auth.register"
-    },
-    {
-      "action": "plugin::users-permissions.auth.resetPassword"
-    },
-    {
-      "action": "plugin::users-permissions.auth.sendEmailConfirmation"
-    },
-    {
-      "action": "plugin::users-permissions.permissions.getPermissions"
-    },
-    {
-      "action": "plugin::users-permissions.role.createRole"
-    },
-    {
-      "action": "plugin::users-permissions.role.find"
-    },
-    {
-      "action": "plugin::users-permissions.role.findOne"
-    },
-    {
-      "action": "plugin::users-permissions.role.updateRole"
-    },
-    {
-      "action": "plugin::users-permissions.user.count"
-    },
-    {
-      "action": "plugin::users-permissions.user.create"
-    },
-    {
-      "action": "plugin::users-permissions.user.destroy"
-    },
-    {
-      "action": "plugin::users-permissions.user.find"
-    },
-    {
-      "action": "plugin::users-permissions.user.findOne"
-    },
-    {
-      "action": "plugin::users-permissions.user.me"
-    },
-    {
-      "action": "plugin::users-permissions.user.update"
-    }
-  ]
+    "name": "Directeur General",
+    "description": "D.G",
+    "type": "directeur_general",
+    "permissions": [
+        {
+            "action": "api::class.class.find"
+        },
+        {
+            "action": "api::class.class.findOne"
+        },
+        {
+            "action": "api::school.school.create"
+        },
+        {
+            "action": "api::school.school.delete"
+        },
+        {
+            "action": "api::school.school.find"
+        },
+        {
+            "action": "api::school.school.findOne"
+        },
+        {
+            "action": "api::school.school.update"
+        },
+        {
+            "action": "api::student.student.create"
+        },
+        {
+            "action": "api::student.student.find"
+        },
+        {
+            "action": "api::student.student.findOne"
+        },
+        {
+            "action": "api::student.student.update"
+        },
+        {
+            "action": "api::teacher.teacher.find"
+        },
+        {
+            "action": "api::teacher.teacher.update"
+        },
+        {
+            "action": "api::teacher.teacher.create"
+        },
+        {
+            "action": "api::teacher.teacher.findOne"
+        },
+        {
+            "action": "plugin::users-permissions.role.find"
+        },
+        {
+            "action": "plugin::users-permissions.role.findOne"
+        },
+        {
+            "action": "plugin::users-permissions.user.me"
+        },
+        {
+            "action": "plugin::users-permissions.user.create"
+        },
+        {
+            "action": "plugin::users-permissions.user.delete"
+        },
+        {
+            "action": "plugin::users-permissions.user.find"
+        },
+        {
+            "action": "plugin::users-permissions.user.findOne"
+        },
+        {
+            "action": "plugin::users-permissions.user.update"
+        },
+        {
+            "action": "plugin::email.email.send"
+        }
+    ]
 }
