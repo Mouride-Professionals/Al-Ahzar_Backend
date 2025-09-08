@@ -6,12 +6,12 @@
       "icon": "sync",
       "options": {
         "from": {
-          "name": "Administration Panel",
-          "email": "no-reply@strapi.io"
+          "name": "Al Azhar",
+          "email": "toubadarou399@gmail.com"
         },
-        "response_email": "",
+        "response_email": "toubadarou399@gmail.com",
         "object": "Reset password",
-        "message": "<p>We heard that you lost your password. Sorry about that!</p>\n\n<p>But don’t worry! You can use the following link to reset your password:</p>\n<p><%= URL %>?code=<%= TOKEN %></p>\n\n<p>Thanks.</p>"
+        "message": "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Réinitialisation de Mot de Passe - Al Azhar</title>\n</head>\n<body style=\"margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f4f4f4;\">\n  <table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background-color: #f4f4f4; padding: 20px;\">\n    <tr>\n      <td align=\"center\">\n        <table width=\"600\" cellpadding=\"0\" cellspacing=\"0\" style=\"background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);\">\n          <tr>\n            <td style=\"background-color: #fd6101; padding: 20px; text-align: center; border-top-left-radius: 8px; border-top-right-radius: 8px;\">\n              <h1 style=\"color: #ffffff; margin: 0; font-size: 24px;\">Al Azhar - Réinitialisation de Mot de Passe</h1>\n            </td>\n          </tr>\n          <tr>\n            <td style=\"padding: 30px; color: #333333; font-size: 16px; line-height: 1.5;\">\n              <p style=\"margin: 0 0 20px;\">Bonjour,</p>\n              <p style=\"margin: 0 0 20px;\">Nous avons reçu une demande pour réinitialiser le mot de passe de votre compte Al Azhar. Pas d’inquiétude, vous pouvez facilement définir un nouveau mot de passe en cliquant sur le bouton ci-dessous :</p>\n              <p style=\"text-align: center; margin: 20px 0;\">\n                <a href=\"<%= URL %>?code=<%= TOKEN %>\" style=\"display: inline-block; background-color: #fd6101; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold;\">Réinitialiser mon mot de passe</a>\n              </p>\n              <p style=\"margin: 0 0 20px;\">Ce lien est valable pendant 24 heures. Si vous n’avez pas demandé cette réinitialisation, veuillez ignorer cet e-mail ou contacter notre support.</p>\n              <p style=\"margin: 0;\">Merci de faire partie de l’institut Al Azhar !</p>\n            </td>\n          </tr>\n          <tr>\n            <td style=\"background-color: #f8f8f8; padding: 20px; text-align: center; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; color: #666666; font-size: 14px;\">\n              <p style=\"margin: 0 0 10px;\">Besoin d’aide ? Contactez l’équipe de support à <a href=\"mailto:support@al-azhar.com\" style=\"color: #fd6101;\">support@al-azhar.com</a>.</p>\n              <p style=\"margin: 0;\">Mourid Professional ©️ 2025</p>\n            </td>\n          </tr>\n        </table>\n      </td>\n    </tr>\n  </table>\n</body>\n</html>"
       }
     },
     "email_confirmation": {
@@ -19,12 +19,12 @@
       "icon": "check-square",
       "options": {
         "from": {
-          "name": "Administration Panel",
-          "email": "no-reply@strapi.io"
+          "name": "Al Azhar",
+          "email": "toubadarou399@gmail.com"
         },
-        "response_email": "",
+        "response_email": "toubadarou399@gmail.com",
         "object": "Account confirmation",
-        "message": "<p>Thank you for registering!</p>\n\n<p>You have to confirm your email address. Please click on the link below.</p>\n\n<p><%= URL %>?confirmation=<%= CODE %></p>\n\n<p>Thanks.</p>"
+        "message": "<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Réinitialisation de Mot de Passe - Al Azhar</title>\n</head>\n<body style=\"margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f4f4f4;\">\n  <table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background-color: #f4f4f4; padding: 20px;\">\n    <tr>\n      <td align=\"center\">\n        <table width=\"600\" cellpadding=\"0\" cellspacing=\"0\" style=\"background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);\">\n          <tr>\n            <td style=\"background-color: #fd6101; padding: 20px; text-align: center; border-top-left-radius: 8px; border-top-right-radius: 8px;\">\n              <h1 style=\"color: #ffffff; margin: 0; font-size: 24px;\">Al Azhar - Réinitialisation de Mot de Passe</h1>\n            </td>\n          </tr>\n          <tr>\n            <td style=\"padding: 30px; color: #333333; font-size: 16px; line-height: 1.5;\">\n              <p style=\"margin: 0 0 20px;\">Bonjour,</p>\n              <p style=\"margin: 0 0 20px;\">Nous avons reçu une demande pour réinitialiser le mot de passe de votre compte Al Azhar. Pas d’inquiétude, vous pouvez facilement définir un nouveau mot de passe en cliquant sur le bouton ci-dessous :</p>\n              <p style=\"text-align: center; margin: 20px 0;\">\n                <a href=\"<%= URL %>?code=<%= TOKEN %>\" style=\"display: inline-block; background-color: #fd6101; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold;\">Réinitialiser mon mot de passe</a>\n              </p>\n              <p style=\"margin: 0 0 20px;\">Ce lien est valable pendant 24 heures. Si vous n’avez pas demandé cette réinitialisation, veuillez ignorer cet e-mail ou contacter notre support.</p>\n              <p style=\"margin: 0;\">Merci de faire partie de l’institut Al Azhar !</p>\n            </td>\n          </tr>\n          <tr>\n            <td style=\"background-color: #f8f8f8; padding: 20px; text-align: center; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; color: #666666; font-size: 14px;\">\n              <p style=\"margin: 0 0 10px;\">Besoin d’aide ? Contactez l’équipe de support à <a href=\"mailto:support@al-azhar.com\" style=\"color: #fd6101;\">support@al-azhar.com</a>.</p>\n              <p style=\"margin: 0;\">Mourid Professional ©️ 2025</p>\n            </td>\n          </tr>\n        </table>\n      </td>\n    </tr>\n  </table>\n</body>\n</html>"
       }
     }
   },

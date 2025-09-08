@@ -62,6 +62,343 @@
           "sortable": true
         }
       },
+      "email": {
+        "edit": {
+          "label": "email",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "email",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "gender": {
+        "edit": {
+          "label": "gender",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "gender",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "school": {
+        "edit": {
+          "label": "school",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "name"
+        },
+        "list": {
+          "label": "school",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "birthDate": {
+        "edit": {
+          "label": "birthDate",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "birthDate",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "birthPlace": {
+        "edit": {
+          "label": "birthPlace",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "birthPlace",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "address": {
+        "edit": {
+          "label": "address",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "address",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "maritalStatus": {
+        "edit": {
+          "label": "maritalStatus",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "maritalStatus",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "academicDegree": {
+        "edit": {
+          "label": "academicDegree",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "academicDegree",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "language": {
+        "edit": {
+          "label": "language",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "language",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "contractType": {
+        "edit": {
+          "label": "contractType",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "contractType",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "level": {
+        "edit": {
+          "label": "level",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "level",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "salary": {
+        "edit": {
+          "label": "salary",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "salary",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "registrationNumber": {
+        "edit": {
+          "label": "registrationNumber",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "registrationNumber",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "generation": {
+        "edit": {
+          "label": "generation",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "generation",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "salaryPerHour": {
+        "edit": {
+          "label": "salaryPerHour",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "salaryPerHour",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "hoursNumber": {
+        "edit": {
+          "label": "hoursNumber",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "hoursNumber",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "additionalResponsibilities": {
+        "edit": {
+          "label": "additionalResponsibilities",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "additionalResponsibilities",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "countryFrom": {
+        "edit": {
+          "label": "countryFrom",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "countryFrom",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "arrivalDate": {
+        "edit": {
+          "label": "arrivalDate",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "arrivalDate",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "previousInstitutes": {
+        "edit": {
+          "label": "previousInstitutes",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "previousInstitutes",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "contributions": {
+        "edit": {
+          "label": "contributions",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "contributions",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "professionalDegrees": {
+        "edit": {
+          "label": "professionalDegrees",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "professionalDegrees",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "disciplines": {
+        "edit": {
+          "label": "disciplines",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "disciplines",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "subjects": {
+        "edit": {
+          "label": "subjects",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "subjects",
+          "searchable": false,
+          "sortable": false
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -143,6 +480,128 @@
           {
             "name": "phoneNumber",
             "size": 6
+          },
+          {
+            "name": "email",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "gender",
+            "size": 6
+          },
+          {
+            "name": "school",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "birthDate",
+            "size": 4
+          },
+          {
+            "name": "birthPlace",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "address",
+            "size": 6
+          },
+          {
+            "name": "maritalStatus",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "academicDegree",
+            "size": 6
+          },
+          {
+            "name": "language",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "contractType",
+            "size": 6
+          },
+          {
+            "name": "level",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "salary",
+            "size": 4
+          },
+          {
+            "name": "registrationNumber",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "generation",
+            "size": 6
+          },
+          {
+            "name": "salaryPerHour",
+            "size": 4
+          }
+        ],
+        [
+          {
+            "name": "hoursNumber",
+            "size": 4
+          },
+          {
+            "name": "additionalResponsibilities",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "countryFrom",
+            "size": 6
+          },
+          {
+            "name": "arrivalDate",
+            "size": 4
+          }
+        ],
+        [
+          {
+            "name": "previousInstitutes",
+            "size": 6
+          },
+          {
+            "name": "contributions",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "professionalDegrees",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "disciplines",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "subjects",
+            "size": 12
           }
         ]
       ]

@@ -1,0 +1,252 @@
+{
+  "key": "plugin_content_manager_configuration_content_types::api::enrollment.enrollment",
+  "value": {
+    "uid": "api::enrollment.enrollment",
+    "settings": {
+      "bulkable": true,
+      "filterable": true,
+      "searchable": true,
+      "pageSize": 10,
+      "mainField": "id",
+      "defaultSortBy": "id",
+      "defaultSortOrder": "ASC"
+    },
+    "metadatas": {
+      "id": {
+        "edit": {},
+        "list": {
+          "label": "id",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "enrollmentDate": {
+        "edit": {
+          "label": "enrollmentDate",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "enrollmentDate",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "class": {
+        "edit": {
+          "label": "class",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "id"
+        },
+        "list": {
+          "label": "class",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "student": {
+        "edit": {
+          "label": "student",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "firstname"
+        },
+        "list": {
+          "label": "student",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "schoolYear": {
+        "edit": {
+          "label": "schoolYear",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "name"
+        },
+        "list": {
+          "label": "schoolYear",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "enrollmentNumber": {
+        "edit": {
+          "label": "enrollmentNumber",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "enrollmentNumber",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "payments": {
+        "edit": {
+          "label": "payments",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "motive"
+        },
+        "list": {
+          "label": "payments",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "enrollmentType": {
+        "edit": {
+          "label": "enrollmentType",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "enrollmentType",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "socialStatus": {
+        "edit": {
+          "label": "socialStatus",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "socialStatus",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "createdAt": {
+        "edit": {
+          "label": "createdAt",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true
+        },
+        "list": {
+          "label": "createdAt",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "updatedAt": {
+        "edit": {
+          "label": "updatedAt",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true
+        },
+        "list": {
+          "label": "updatedAt",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "createdBy": {
+        "edit": {
+          "label": "createdBy",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true,
+          "mainField": "firstname"
+        },
+        "list": {
+          "label": "createdBy",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "updatedBy": {
+        "edit": {
+          "label": "updatedBy",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true,
+          "mainField": "firstname"
+        },
+        "list": {
+          "label": "updatedBy",
+          "searchable": true,
+          "sortable": true
+        }
+      }
+    },
+    "layouts": {
+      "list": [
+        "id",
+        "enrollmentDate",
+        "class",
+        "student"
+      ],
+      "edit": [
+        [
+          {
+            "name": "enrollmentDate",
+            "size": 4
+          },
+          {
+            "name": "class",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "student",
+            "size": 6
+          },
+          {
+            "name": "schoolYear",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "enrollmentNumber",
+            "size": 4
+          },
+          {
+            "name": "payments",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "enrollmentType",
+            "size": 6
+          },
+          {
+            "name": "socialStatus",
+            "size": 6
+          }
+        ]
+      ]
+    }
+  },
+  "type": "object",
+  "environment": null,
+  "tag": null
+}
