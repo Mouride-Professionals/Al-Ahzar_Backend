@@ -24,7 +24,7 @@ module.exports = ({ env }) => ({
             settings: {
                 defaultFrom: 'toubadarou399@gmail.com',
                 defaultReplyTo: 'toubadarou399@gmail.com',
-                defaultFooter: 'Al Azhar, 123 Main St, Dakar, Senegal',
+                defaultFooter: 'Al Azhar, Ndame, Touba, Senegal',
             },
         },
     },
