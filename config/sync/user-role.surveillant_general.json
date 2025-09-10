@@ -40,10 +40,16 @@
       "action": "api::school.school.findOne"
     },
     {
+      "action": "api::student.student.bulkImport"
+    },
+    {
       "action": "api::student.student.create"
     },
     {
       "action": "api::student.student.delete"
+    },
+    {
+      "action": "api::student.student.downloadTemplate"
     },
     {
       "action": "api::student.student.find"
@@ -52,7 +58,13 @@
       "action": "api::student.student.findOne"
     },
     {
+      "action": "api::student.student.getImportStats"
+    },
+    {
       "action": "api::student.student.update"
+    },
+    {
+      "action": "api::student.student.validateBulkImport"
     },
     {
       "action": "api::teacher.teacher.find"
@@ -76,7 +88,13 @@
       "action": "plugin::users-permissions.role.findOne"
     },
     {
+      "action": "plugin::users-permissions.user.findOne"
+    },
+    {
       "action": "plugin::users-permissions.user.me"
+    },
+    {
+      "action": "plugin::users-permissions.user.update"
     }
   ]
 }
