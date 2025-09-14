@@ -1,0 +1,100 @@
+{
+    "name": "Adjoint Surveillant General",
+    "description": "Assistant au Surveillant General - Même permissions que le Surveillant General titulaire",
+    "type": "adjoint_surveillant_general",
+    "permissions": [
+        {
+            "action": "api::class.class.find"
+        },
+        {
+            "action": "api::class.class.findOne"
+        },
+        {
+            "action": "api::enrollment.enrollment.create"
+        },
+        {
+            "action": "api::enrollment.enrollment.find"
+        },
+        {
+            "action": "api::enrollment.enrollment.findOne"
+        },
+        {
+            "action": "api::enrollment.enrollment.update"
+        },
+        {
+            "action": "api::payment.payment.find"
+        },
+        {
+            "action": "api::payment.payment.findOne"
+        },
+        {
+            "action": "api::school-year.school-year.find"
+        },
+        {
+            "action": "api::school-year.school-year.findOne"
+        },
+        {
+            "action": "api::school.school.find"
+        },
+        {
+            "action": "api::school.school.findOne"
+        },
+        {
+            "action": "api::student.student.bulkImport"
+        },
+        {
+            "action": "api::student.student.create"
+        },
+        {
+            "action": "api::student.student.delete"
+        },
+        {
+            "action": "api::student.student.downloadTemplate"
+        },
+        {
+            "action": "api::student.student.find"
+        },
+        {
+            "action": "api::student.student.findOne"
+        },
+        {
+            "action": "api::student.student.getImportStats"
+        },
+        {
+            "action": "api::student.student.update"
+        },
+        {
+            "action": "api::student.student.validateBulkImport"
+        },
+        {
+            "action": "api::teacher.teacher.find"
+        },
+        {
+            "action": "api::teacher.teacher.findOne"
+        },
+        {
+            "action": "plugin::users-permissions.auth.changePassword"
+        },
+        {
+            "action": "plugin::users-permissions.auth.forgotPassword"
+        },
+        {
+            "action": "plugin::users-permissions.auth.resetPassword"
+        },
+        {
+            "action": "plugin::users-permissions.role.find"
+        },
+        {
+            "action": "plugin::users-permissions.role.findOne"
+        },
+        {
+            "action": "plugin::users-permissions.user.findOne"
+        },
+        {
+            "action": "plugin::users-permissions.user.me"
+        },
+        {
+            "action": "plugin::users-permissions.user.update"
+        }
+    ]
+}
