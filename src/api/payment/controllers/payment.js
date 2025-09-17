@@ -134,8 +134,8 @@ module.exports = createCoreController("api::payment.payment", ({ strapi }) => ({
                     .where("payments.month_of", ">=", startOfYear)
                     .andWhere("payments.month_of", "<", startOfNextYear)
             )
-                .groupByRaw("EXTRACT(MONTH FROM payments.month_of)")
-                .select(knex.raw("EXTRACT(MONTH FROM payments.month_of) AS month"))
+                .groupByRaw("EXTRACT(MONTH FROM payments.month_of)::INTEGER")
+                .select(knex.raw("EXTRACT(MONTH FROM payments.month_of)::INTEGER AS month"))
                 .sum({ total: "payments.amount" });
 
             // New query: Group payments by payment_type for the current year.
@@ -165,8 +165,12 @@ module.exports = createCoreController("api::payment.payment", ({ strapi }) => ({
                 paymentTypeBreakdown,
             ] = results;
 
-            // Function to ensure the sum is a number (or 0)
-            const extractTotal = (res) => Number(res.total) || 0;
+            // Function to ensure the sum is a number (or 0) - PostgreSQL compatible
+            const extractTotal = (res) => {
+                if (!res || res.total === null || res.total === undefined) return 0;
+                // Handle PostgreSQL decimal/numeric types
+                return parseFloat(res.total) || 0;
+            };
 
             ctx.send({
                 yearPaymentTotal: extractTotal(yearPaymentRes),
