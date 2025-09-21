@@ -958,6 +958,11 @@ export interface ApiPaymentPayment extends Schema.CollectionType {
       Attribute.Required;
     motive: Attribute.String;
     comment: Attribute.Text;
+    status: Attribute.Enumeration<['pending', 'paid', 'cancelled']> &
+      Attribute.Required &
+      Attribute.DefaultTo<'paid'>;
+    cancellationReason: Attribute.Text;
+    cancelledAt: Attribute.Date;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

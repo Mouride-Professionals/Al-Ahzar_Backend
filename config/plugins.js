@@ -1,9 +1,6 @@
 module.exports = ({ env }) => ({
   'users-permissions': {
     config: {
-      // register: {
-      //     allowedFields: ['firstname', 'lastname', 'school'],
-      // },
       register: {
         allowedFields: ['firstname', 'lastname', 'school'],
       },
@@ -58,7 +55,7 @@ module.exports = ({ env }) => ({
       emailConfirmation: {
         from: env('EMAIL_FROM', 'toubadarou399@gmail.com'),
         replyTo: env('EMAIL_REPLY_TO', 'toubadarou399@gmail.com'),
-        redirectUrl: env('PUBLIC_URL', 'http://localhost:3000') + '/email-confirmed',
+        redirectUrl: env('PUBLIC_URL', 'https://al-ahzar-backend-xeuc.onrender.com') + 'user/auth/email-confirmed',
         emailTemplate: {
           subject: 'Al Azhar - Confirmation d\'Inscription',
           text: `Merci de vous être inscrit au système de gestion Al Azhar ! Pour activer votre compte, veuillez confirmer votre adresse e-mail en visitant: <%= url %>`,

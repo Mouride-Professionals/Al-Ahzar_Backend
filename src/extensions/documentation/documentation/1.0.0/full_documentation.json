@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2025-09-17T23:21:30.702Z"
+    "x-generation-date": "2025-09-21T15:24:08.616Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -1021,6 +1021,21 @@
                                                                             },
                                                                             "comment": {
                                                                               "type": "string"
+                                                                            },
+                                                                            "status": {
+                                                                              "type": "string",
+                                                                              "enum": [
+                                                                                "pending",
+                                                                                "paid",
+                                                                                "cancelled"
+                                                                              ]
+                                                                            },
+                                                                            "cancellationReason": {
+                                                                              "type": "string"
+                                                                            },
+                                                                            "cancelledAt": {
+                                                                              "type": "string",
+                                                                              "format": "date"
                                                                             },
                                                                             "createdAt": {
                                                                               "type": "string",
@@ -3281,6 +3296,21 @@
                                                                                         "comment": {
                                                                                           "type": "string"
                                                                                         },
+                                                                                        "status": {
+                                                                                          "type": "string",
+                                                                                          "enum": [
+                                                                                            "pending",
+                                                                                            "paid",
+                                                                                            "cancelled"
+                                                                                          ]
+                                                                                        },
+                                                                                        "cancellationReason": {
+                                                                                          "type": "string"
+                                                                                        },
+                                                                                        "cancelledAt": {
+                                                                                          "type": "string",
+                                                                                          "format": "date"
+                                                                                        },
                                                                                         "createdAt": {
                                                                                           "type": "string",
                                                                                           "format": "date-time"
@@ -4746,6 +4776,21 @@
                                                                             "comment": {
                                                                               "type": "string"
                                                                             },
+                                                                            "status": {
+                                                                              "type": "string",
+                                                                              "enum": [
+                                                                                "pending",
+                                                                                "paid",
+                                                                                "cancelled"
+                                                                              ]
+                                                                            },
+                                                                            "cancellationReason": {
+                                                                              "type": "string"
+                                                                            },
+                                                                            "cancelledAt": {
+                                                                              "type": "string",
+                                                                              "format": "date"
+                                                                            },
                                                                             "createdAt": {
                                                                               "type": "string",
                                                                               "format": "date-time"
@@ -5635,7 +5680,8 @@
             "required": [
               "isPaid",
               "amount",
-              "paymentType"
+              "paymentType",
+              "status"
             ],
             "type": "object",
             "properties": {
@@ -5677,6 +5723,21 @@
               },
               "comment": {
                 "type": "string"
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "pending",
+                  "paid",
+                  "cancelled"
+                ]
+              },
+              "cancellationReason": {
+                "type": "string"
+              },
+              "cancelledAt": {
+                "type": "string",
+                "format": "date"
               }
             }
           }
@@ -5733,7 +5794,8 @@
         "required": [
           "isPaid",
           "amount",
-          "paymentType"
+          "paymentType",
+          "status"
         ],
         "properties": {
           "monthOf": {
@@ -7213,6 +7275,21 @@
                                     "comment": {
                                       "type": "string"
                                     },
+                                    "status": {
+                                      "type": "string",
+                                      "enum": [
+                                        "pending",
+                                        "paid",
+                                        "cancelled"
+                                      ]
+                                    },
+                                    "cancellationReason": {
+                                      "type": "string"
+                                    },
+                                    "cancelledAt": {
+                                      "type": "string",
+                                      "format": "date"
+                                    },
                                     "createdAt": {
                                       "type": "string",
                                       "format": "date-time"
@@ -7347,6 +7424,21 @@
           },
           "comment": {
             "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "pending",
+              "paid",
+              "cancelled"
+            ]
+          },
+          "cancellationReason": {
+            "type": "string"
+          },
+          "cancelledAt": {
+            "type": "string",
+            "format": "date"
           },
           "createdAt": {
             "type": "string",
@@ -8460,6 +8552,21 @@
                                                                             },
                                                                             "comment": {
                                                                               "type": "string"
+                                                                            },
+                                                                            "status": {
+                                                                              "type": "string",
+                                                                              "enum": [
+                                                                                "pending",
+                                                                                "paid",
+                                                                                "cancelled"
+                                                                              ]
+                                                                            },
+                                                                            "cancellationReason": {
+                                                                              "type": "string"
+                                                                            },
+                                                                            "cancelledAt": {
+                                                                              "type": "string",
+                                                                              "format": "date"
                                                                             },
                                                                             "createdAt": {
                                                                               "type": "string",
@@ -10988,6 +11095,21 @@
                                                                                           "comment": {
                                                                                             "type": "string"
                                                                                           },
+                                                                                          "status": {
+                                                                                            "type": "string",
+                                                                                            "enum": [
+                                                                                              "pending",
+                                                                                              "paid",
+                                                                                              "cancelled"
+                                                                                            ]
+                                                                                          },
+                                                                                          "cancellationReason": {
+                                                                                            "type": "string"
+                                                                                          },
+                                                                                          "cancelledAt": {
+                                                                                            "type": "string",
+                                                                                            "format": "date"
+                                                                                          },
                                                                                           "createdAt": {
                                                                                             "type": "string",
                                                                                             "format": "date-time"
@@ -13161,6 +13283,21 @@
                                       "comment": {
                                         "type": "string"
                                       },
+                                      "status": {
+                                        "type": "string",
+                                        "enum": [
+                                          "pending",
+                                          "paid",
+                                          "cancelled"
+                                        ]
+                                      },
+                                      "cancellationReason": {
+                                        "type": "string"
+                                      },
+                                      "cancelledAt": {
+                                        "type": "string",
+                                        "format": "date"
+                                      },
                                       "createdAt": {
                                         "type": "string",
                                         "format": "date-time"
@@ -14766,6 +14903,21 @@
                                                                             },
                                                                             "comment": {
                                                                               "type": "string"
+                                                                            },
+                                                                            "status": {
+                                                                              "type": "string",
+                                                                              "enum": [
+                                                                                "pending",
+                                                                                "paid",
+                                                                                "cancelled"
+                                                                              ]
+                                                                            },
+                                                                            "cancellationReason": {
+                                                                              "type": "string"
+                                                                            },
+                                                                            "cancelledAt": {
+                                                                              "type": "string",
+                                                                              "format": "date"
                                                                             },
                                                                             "createdAt": {
                                                                               "type": "string",

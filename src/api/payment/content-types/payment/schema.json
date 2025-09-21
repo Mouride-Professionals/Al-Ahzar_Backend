@@ -49,6 +49,22 @@
     },
     "comment": {
       "type": "text"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "pending",
+        "paid",
+        "cancelled"
+      ],
+      "default": "paid",
+      "required": true
+    },
+    "cancellationReason": {
+      "type": "text"
+    },
+    "cancelledAt": {
+      "type": "date"
     }
   }
 }

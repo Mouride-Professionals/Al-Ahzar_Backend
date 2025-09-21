@@ -4,8 +4,8 @@
     "unique_email": true,
     "allow_register": true,
     "email_confirmation": true,
-    "email_reset_password": "http://localhost:3000/user/auth/reset-password",
-    "email_confirmation_redirection": "http://localhost:3000/user/auth/email-confirmed",
+    "email_reset_password": "https://al-ahzar-backend-xeuc.onrender.com/user/auth/reset-password",
+    "email_confirmation_redirection": "https://al-ahzar-backend-xeuc.onrender.com/user/auth/email-confirmed",
     "default_role": "authenticated"
   },
   "type": "object",

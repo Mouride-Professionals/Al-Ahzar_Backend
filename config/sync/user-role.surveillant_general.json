@@ -4,10 +4,16 @@
   "type": "surveillant_general",
   "permissions": [
     {
+      "action": "api::class.class.create"
+    },
+    {
       "action": "api::class.class.find"
     },
     {
       "action": "api::class.class.findOne"
+    },
+    {
+      "action": "api::class.class.update"
     },
     {
       "action": "api::enrollment.enrollment.create"
@@ -44,9 +50,6 @@
     },
     {
       "action": "api::student.student.create"
-    },
-    {
-      "action": "api::student.student.delete"
     },
     {
       "action": "api::student.student.downloadTemplate"

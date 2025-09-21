@@ -80,6 +80,9 @@
     },
     {
       "action": "plugin::users-permissions.user.me"
+    },
+    {
+      "action": "plugin::users-permissions.user.update"
     }
   ]
 }
