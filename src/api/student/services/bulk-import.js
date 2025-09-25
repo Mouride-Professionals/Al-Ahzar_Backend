@@ -11,30 +11,8 @@ module.exports = ({ strapi }) => ({
    * Generate unique student identifier
    */
   async generateUniqueIdentifier() {
-    const year = new Date().getFullYear();
-    const prefix = `AL${year}`;
-
-    // Find the highest existing identifier for this year
-    const existingStudents = await strapi.entityService.findMany('api::student.student', {
-      filters: {
-        studentIdentifer: {
-          $startsWith: prefix
-        }
-      },
-      sort: { studentIdentifer: 'desc' },
-      limit: 1
-    });
-
-    let nextNumber = 1;
-    if (existingStudents.length > 0) {
-      const lastIdentifier = existingStudents[0].studentIdentifer;
-      const lastNumber = parseInt(lastIdentifier.replace(prefix, ''));
-      if (!isNaN(lastNumber)) {
-        nextNumber = lastNumber + 1;
-      }
-    }
-
-    return `${prefix}${String(nextNumber).padStart(4, '0')}`;
+    const { generateUniqueIdentifier } = require('../utils/identifier');
+    return generateUniqueIdentifier(strapi);
   },
 
   /**
@@ -384,10 +362,9 @@ module.exports = ({ strapi }) => ({
 
           console.log('About to create student with data:', JSON.stringify(studentCreateData, null, 2));
 
-          // Create student
-          const createdStudent = await strapi.entityService.create('api::student.student', {
-            data: studentCreateData
-          });
+          // Create student using creator service which retries on identifier collisions
+          const creatorService = strapi.service('api::student.creator');
+          const createdStudent = await creatorService.createStudentWithRetry(studentCreateData, { maxAttempts: 50, genMaxAttempts: 200 });
 
           // Create enrollment if class and school year are provided
           // Temporarily disabled to test student creation
