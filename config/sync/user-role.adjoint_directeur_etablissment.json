@@ -28,6 +28,9 @@
       "action": "api::enrollment.enrollment.update"
     },
     {
+      "action": "api::expense.expense.create"
+    },
+    {
       "action": "api::expense.expense.find"
     },
     {
@@ -37,6 +40,12 @@
       "action": "api::expense.expense.stats"
     },
     {
+      "action": "api::expense.expense.update"
+    },
+    {
+      "action": "api::payment.payment.create"
+    },
+    {
       "action": "api::payment.payment.find"
     },
     {
@@ -44,6 +53,9 @@
     },
     {
       "action": "api::payment.payment.stats"
+    },
+    {
+      "action": "api::payment.payment.update"
     },
     {
       "action": "api::school-year.school-year.find"

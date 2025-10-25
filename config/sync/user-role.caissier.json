@@ -22,16 +22,7 @@
       "action": "api::expense.expense.create"
     },
     {
-      "action": "api::expense.expense.create"
-    },
-    {
       "action": "api::expense.expense.find"
-    },
-    {
-      "action": "api::expense.expense.find"
-    },
-    {
-      "action": "api::expense.expense.findOne"
     },
     {
       "action": "api::expense.expense.findOne"

@@ -76,9 +76,6 @@
       "action": "api::subject.subject.findOne"
     },
     {
-      "action": "api::subject.subject.update"
-    },
-    {
       "action": "api::teacher.teacher.find"
     },
     {

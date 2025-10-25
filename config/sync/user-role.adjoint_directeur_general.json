@@ -148,12 +148,6 @@
       "action": "plugin::email.email.send"
     },
     {
-      "action": "plugin::import-export-entries.export.exportData"
-    },
-    {
-      "action": "plugin::import-export-entries.import.importData"
-    },
-    {
       "action": "plugin::upload.content-api.find"
     },
     {
