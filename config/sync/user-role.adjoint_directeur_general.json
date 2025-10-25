@@ -40,10 +40,16 @@
       "action": "api::expense.expense.findOne"
     },
     {
+      "action": "api::expense.expense.stats"
+    },
+    {
       "action": "api::payment.payment.find"
     },
     {
       "action": "api::payment.payment.findOne"
+    },
+    {
+      "action": "api::payment.payment.stats"
     },
     {
       "action": "api::school-year.school-year.create"
@@ -82,10 +88,16 @@
       "action": "api::school.school.update"
     },
     {
+      "action": "api::student.student.bulkImport"
+    },
+    {
       "action": "api::student.student.create"
     },
     {
       "action": "api::student.student.delete"
+    },
+    {
+      "action": "api::student.student.downloadTemplate"
     },
     {
       "action": "api::student.student.find"
@@ -94,7 +106,13 @@
       "action": "api::student.student.findOne"
     },
     {
+      "action": "api::student.student.getImportStats"
+    },
+    {
       "action": "api::student.student.update"
+    },
+    {
+      "action": "api::student.student.validateBulkImport"
     },
     {
       "action": "api::subject.subject.create"

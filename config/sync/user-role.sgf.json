@@ -52,25 +52,55 @@
       "action": "api::student.student.findOne"
     },
     {
+      "action": "api::subject.subject.find"
+    },
+    {
+      "action": "api::subject.subject.findOne"
+    },
+    {
       "action": "api::teacher.teacher.find"
     },
     {
       "action": "api::teacher.teacher.findOne"
     },
     {
+      "action": "plugin::email.email.send"
+    },
+    {
+      "action": "plugin::users-permissions.auth.callback"
+    },
+    {
       "action": "plugin::users-permissions.auth.changePassword"
+    },
+    {
+      "action": "plugin::users-permissions.auth.connect"
+    },
+    {
+      "action": "plugin::users-permissions.auth.emailConfirmation"
     },
     {
       "action": "plugin::users-permissions.auth.forgotPassword"
     },
     {
+      "action": "plugin::users-permissions.auth.register"
+    },
+    {
       "action": "plugin::users-permissions.auth.resetPassword"
+    },
+    {
+      "action": "plugin::users-permissions.auth.sendEmailConfirmation"
+    },
+    {
+      "action": "plugin::users-permissions.permissions.getPermissions"
     },
     {
       "action": "plugin::users-permissions.role.find"
     },
     {
       "action": "plugin::users-permissions.role.findOne"
+    },
+    {
+      "action": "plugin::users-permissions.user.count"
     },
     {
       "action": "plugin::users-permissions.user.find"

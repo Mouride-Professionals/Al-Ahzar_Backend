@@ -7,9 +7,6 @@
       "action": "api::class.class.create"
     },
     {
-      "action": "api::class.class.delete"
-    },
-    {
       "action": "api::class.class.find"
     },
     {
@@ -20,9 +17,6 @@
     },
     {
       "action": "api::enrollment.enrollment.create"
-    },
-    {
-      "action": "api::enrollment.enrollment.delete"
     },
     {
       "action": "api::enrollment.enrollment.find"
@@ -64,9 +58,6 @@
       "action": "api::school.school.findOne"
     },
     {
-      "action": "api::school.school.update"
-    },
-    {
       "action": "api::student.student.bulkImport"
     },
     {
@@ -91,6 +82,24 @@
       "action": "api::student.student.validateBulkImport"
     },
     {
+      "action": "api::subject.subject.create"
+    },
+    {
+      "action": "api::subject.subject.delete"
+    },
+    {
+      "action": "api::subject.subject.find"
+    },
+    {
+      "action": "api::subject.subject.findOne"
+    },
+    {
+      "action": "api::subject.subject.update"
+    },
+    {
+      "action": "api::teacher.teacher.create"
+    },
+    {
       "action": "api::teacher.teacher.find"
     },
     {
@@ -100,7 +109,19 @@
       "action": "api::teacher.teacher.update"
     },
     {
+      "action": "plugin::email.email.send"
+    },
+    {
+      "action": "plugin::users-permissions.auth.callback"
+    },
+    {
       "action": "plugin::users-permissions.auth.changePassword"
+    },
+    {
+      "action": "plugin::users-permissions.auth.connect"
+    },
+    {
+      "action": "plugin::users-permissions.auth.emailConfirmation"
     },
     {
       "action": "plugin::users-permissions.auth.forgotPassword"
@@ -112,10 +133,19 @@
       "action": "plugin::users-permissions.auth.resetPassword"
     },
     {
+      "action": "plugin::users-permissions.auth.sendEmailConfirmation"
+    },
+    {
+      "action": "plugin::users-permissions.permissions.getPermissions"
+    },
+    {
       "action": "plugin::users-permissions.role.find"
     },
     {
       "action": "plugin::users-permissions.role.findOne"
+    },
+    {
+      "action": "plugin::users-permissions.user.count"
     },
     {
       "action": "plugin::users-permissions.user.create"

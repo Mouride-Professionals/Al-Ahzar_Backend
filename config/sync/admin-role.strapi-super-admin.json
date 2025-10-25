@@ -14,7 +14,8 @@
           "level",
           "letter",
           "schoolYear",
-          "enrollments"
+          "enrollments",
+          "description"
         ]
       },
       "conditions": []
@@ -37,7 +38,8 @@
           "level",
           "letter",
           "schoolYear",
-          "enrollments"
+          "enrollments",
+          "description"
         ]
       },
       "conditions": []
@@ -53,7 +55,8 @@
           "level",
           "letter",
           "schoolYear",
-          "enrollments"
+          "enrollments",
+          "description"
         ]
       },
       "conditions": []
@@ -186,7 +189,10 @@
           "amount",
           "paymentType",
           "motive",
-          "comment"
+          "comment",
+          "status",
+          "cancellationReason",
+          "cancelledAt"
         ]
       },
       "conditions": []
@@ -210,7 +216,10 @@
           "amount",
           "paymentType",
           "motive",
-          "comment"
+          "comment",
+          "status",
+          "cancellationReason",
+          "cancelledAt"
         ]
       },
       "conditions": []
@@ -227,7 +236,10 @@
           "amount",
           "paymentType",
           "motive",
-          "comment"
+          "comment",
+          "status",
+          "cancellationReason",
+          "cancelledAt"
         ]
       },
       "conditions": []
