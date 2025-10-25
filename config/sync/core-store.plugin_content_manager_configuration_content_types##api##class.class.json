@@ -107,6 +107,20 @@
           "sortable": false
         }
       },
+      "description": {
+        "edit": {
+          "label": "description",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "description",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -201,6 +215,12 @@
           },
           {
             "name": "enrollments",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "description",
             "size": 6
           }
         ]

@@ -119,6 +119,48 @@
           "sortable": true
         }
       },
+      "status": {
+        "edit": {
+          "label": "status",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "status",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "cancellationReason": {
+        "edit": {
+          "label": "cancellationReason",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "cancellationReason",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "cancelledAt": {
+        "edit": {
+          "label": "cancelledAt",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "cancelledAt",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -220,6 +262,20 @@
           {
             "name": "comment",
             "size": 6
+          },
+          {
+            "name": "status",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "cancellationReason",
+            "size": 6
+          },
+          {
+            "name": "cancelledAt",
+            "size": 4
           }
         ]
       ]

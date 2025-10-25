@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2025-09-25T13:00:03.235Z"
+    "x-generation-date": "2025-10-25T11:53:43.553Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -169,6 +169,9 @@
                   ],
                   "example": "string or id"
                 }
+              },
+              "description": {
+                "type": "string"
               }
             }
           }
@@ -1342,6 +1345,9 @@
                                         }
                                       }
                                     },
+                                    "description": {
+                                      "type": "string"
+                                    },
                                     "createdAt": {
                                       "type": "string",
                                       "format": "date-time"
@@ -1897,6 +1903,9 @@
                 }
               }
             }
+          },
+          "description": {
+            "type": "string"
           },
           "createdAt": {
             "type": "string",
@@ -3660,6 +3669,9 @@
                           }
                         }
                       },
+                      "description": {
+                        "type": "string"
+                      },
                       "createdAt": {
                         "type": "string",
                         "format": "date-time"
@@ -5095,6 +5107,9 @@
                                           }
                                         }
                                       }
+                                    },
+                                    "description": {
+                                      "type": "string"
                                     },
                                     "createdAt": {
                                       "type": "string",
@@ -7016,6 +7031,9 @@
                                       }
                                     }
                                   },
+                                  "description": {
+                                    "type": "string"
+                                  },
                                   "createdAt": {
                                     "type": "string",
                                     "format": "date-time"
@@ -8872,6 +8890,9 @@
                                           }
                                         }
                                       }
+                                    },
+                                    "description": {
+                                      "type": "string"
                                     },
                                     "createdAt": {
                                       "type": "string",
@@ -11459,6 +11480,9 @@
                             }
                           }
                         },
+                        "description": {
+                          "type": "string"
+                        },
                         "createdAt": {
                           "type": "string",
                           "format": "date-time"
@@ -13023,6 +13047,9 @@
                                           }
                                         }
                                       }
+                                    },
+                                    "description": {
+                                      "type": "string"
                                     },
                                     "createdAt": {
                                       "type": "string",
@@ -15223,6 +15250,9 @@
                                           }
                                         }
                                       }
+                                    },
+                                    "description": {
+                                      "type": "string"
                                     },
                                     "createdAt": {
                                       "type": "string",

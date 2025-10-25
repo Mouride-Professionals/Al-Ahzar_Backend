@@ -783,6 +783,7 @@ export interface ApiClassClass extends Schema.CollectionType {
       'oneToMany',
       'api::enrollment.enrollment'
     >;
+    description: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

@@ -66,6 +66,9 @@
       "relation": "oneToMany",
       "target": "api::enrollment.enrollment",
       "mappedBy": "class"
+    },
+    "description": {
+      "type": "string"
     }
   }
 }
