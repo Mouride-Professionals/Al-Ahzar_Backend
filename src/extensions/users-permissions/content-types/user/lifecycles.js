@@ -23,13 +23,19 @@ module.exports = {
         // Send confirmation email if user is unconfirmed
         if (!result.confirmed) {
             try {
-                await strapi
+                strapi
                     .plugin('users-permissions')
                     .service('user')
-                    .sendConfirmationEmail(result);
-                strapi.log.info(`Confirmation email sent to ${result.email}`);
+                    .sendConfirmationEmail(result)
+                    .then(() => {
+                        strapi.log.info(`Confirmation email sent to ${result.email}`);
+                    })
+                    .catch((error) => {
+                        strapi.log.error(`Failed to send confirmation email to ${result.email}:`, error);
+                    });
             } catch (error) {
-                strapi.log.error(`Failed to send confirmation email to ${result.email}:`, error);
+                // Only catches synchronous failures when fetching the email service.
+                strapi.log.error(`Failed to schedule confirmation email to ${result.email}:`, error);
             }
         } else {
             strapi.log.info(`Skipping confirmation email for ${result.email} (already confirmed)`);
