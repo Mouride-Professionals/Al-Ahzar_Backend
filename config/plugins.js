@@ -110,6 +110,7 @@ module.exports = ({ env }) => ({
       providerOptions: {
         host: env('SMTP_HOST', 'smtp.gmail.com'),
         port: env('SMTP_PORT', 587),
+        secure: env.bool('SMTP_SECURE', false),
         auth: {
           user: env('SMTP_USERNAME'),
           pass: env('SMTP_PASSWORD'),
