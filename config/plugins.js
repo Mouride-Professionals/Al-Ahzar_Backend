@@ -1,14 +1,14 @@
 module.exports = ({ env }) => ({
-  'users-permissions': {
+  "users-permissions": {
     config: {
       register: {
-        allowedFields: ['firstname', 'lastname', 'school'],
+        allowedFields: ["firstname", "lastname", "school"],
       },
       resetPassword: {
-        from: env('EMAIL_FROM', 'toubadarou399@gmail.com'),
-        replyTo: env('EMAIL_REPLY_TO', 'toubadarou399@gmail.com'),
+        from: env("EMAIL_FROM", "toubadarou399@gmail.com"),
+        replyTo: env("EMAIL_REPLY_TO", "toubadarou399@gmail.com"),
         emailTemplate: {
-          subject: 'Al Azhar - Réinitialisation de Mot de Passe',
+          subject: "Al Azhar - Réinitialisation de Mot de Passe",
           text: `Bonjour, nous avons reçu une demande pour réinitialiser le mot de passe de votre compte Al Azhar. Visitez: <%= url %>`,
           html: `<!DOCTYPE html>
 <html lang="fr">
@@ -53,11 +53,13 @@ module.exports = ({ env }) => ({
         },
       },
       emailConfirmation: {
-        from: env('EMAIL_FROM', 'toubadarou399@gmail.com'),
-        replyTo: env('EMAIL_REPLY_TO', 'toubadarou399@gmail.com'),
-        redirectUrl: env('PUBLIC_URL', 'https://al-ahzar-backend-xeuc.onrender.com') + 'user/auth/email-confirmed',
+        from: env("EMAIL_FROM", "toubadarou399@gmail.com"),
+        replyTo: env("EMAIL_REPLY_TO", "toubadarou399@gmail.com"),
+        redirectUrl:
+          env("PUBLIC_URL", "https://al-ahzar-backend-xeuc.onrender.com") +
+          "user/auth/email-confirmed",
         emailTemplate: {
-          subject: 'Al Azhar - Confirmation d\'Inscription',
+          subject: "Al Azhar - Confirmation d'Inscription",
           text: `Merci de vous être inscrit au système de gestion Al Azhar ! Pour activer votre compte, veuillez confirmer votre adresse e-mail en visitant: <%= url %>`,
           html: `<!DOCTYPE html>
 <html lang="fr">
@@ -106,23 +108,16 @@ module.exports = ({ env }) => ({
   },
   email: {
     config: {
-      provider: 'nodemailer',
+      provider: "strapi-provider-email-brevo",
       providerOptions: {
-        host: env('SMTP_HOST', 'smtp.gmail.com'),
-        port: env('SMTP_PORT', 587),
-        secure: env.bool('SMTP_SECURE', false),
-        auth: {
-          user: env('SMTP_USERNAME'),
-          pass: env('SMTP_PASSWORD'),
-        },
+        apiKey: env("BREVO_API_KEY"),
       },
       settings: {
-        defaultFrom: env('EMAIL_FROM', 'toubadarou399@gmail.com'),
-        defaultReplyTo: env('EMAIL_REPLY_TO', 'toubadarou399@gmail.com'),
-        defaultFooter: 'Al Azhar, Ndame, Touba, Senegal',
+        defaultSenderEmail: env("EMAIL_FROM", "toubadarou399@gmail.com"),
+        defaultReplyTo: env("EMAIL_REPLY_TO", "toubadarou399@gmail.com"),
+        defaultSenderName: env("EMAIL_SENDER_NAME", "Al Azhar"),
+        defaultFooter: "Al Azhar, Ndame, Touba, Senegal",
       },
     },
   },
-
-
 });
