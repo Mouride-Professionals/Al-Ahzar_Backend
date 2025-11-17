@@ -7,6 +7,9 @@ module.exports = ({ env }) => ({
       resetPassword: {
         from: env("EMAIL_FROM", "toubadarou399@gmail.com"),
         replyTo: env("EMAIL_REPLY_TO", "toubadarou399@gmail.com"),
+        redirectUrl:
+          env("FRONTEND_URL", "https://al-ahzar-front.vercel.app/") +
+          "user/auth/reset-password",
         emailTemplate: {
           subject: "Al Azhar - Réinitialisation de Mot de Passe",
           text: `Bonjour, nous avons reçu une demande pour réinitialiser le mot de passe de votre compte Al Azhar. Visitez: <%= url %>`,
@@ -56,7 +59,7 @@ module.exports = ({ env }) => ({
         from: env("EMAIL_FROM", "toubadarou399@gmail.com"),
         replyTo: env("EMAIL_REPLY_TO", "toubadarou399@gmail.com"),
         redirectUrl:
-          env("PUBLIC_URL", "https://al-ahzar-backend-xeuc.onrender.com") +
+          env("FRONTEND_URL", "https://al-ahzar-front.vercel.app/") +
           "user/auth/email-confirmed",
         emailTemplate: {
           subject: "Al Azhar - Confirmation d'Inscription",
