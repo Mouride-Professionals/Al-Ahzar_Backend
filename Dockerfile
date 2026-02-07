@@ -1,41 +1,63 @@
-# Use the official Node.js Alpine image as the base image
-FROM node:20-alpine
+#
+# Production-focused Strapi v4 image.
+# - Uses Node 20 (matches .nvmrc and Strapi 4 support)
+# - Multi-stage build to keep runtime smaller
+# - Debian slim to avoid common native-module pain on Alpine
+#
 
-ARG APP_PORT=1338
+FROM node:20-bookworm-slim AS base
+WORKDIR /srv/app
 
-# Install dependencies
-RUN apk --no-cache add nasm python3 make g++
+ENV NODE_ENV=production
 
-# Set up the working directory
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+FROM base AS build
 
-# Copy package.json and yarn.lock (if exists)
-COPY package.json yarn.lock* ./
+# Native deps for Strapi (sharp) and other native modules
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends \
+    python3 \
+    make \
+    g++ \
+    git \
+    ca-certificates \
+    libvips \
+  && rm -rf /var/lib/apt/lists/*
 
-# Update npm and install node-gyp globally
-RUN npm install -g npm@latest
-RUN npm install -g node-gyp
+COPY package.json yarn.lock ./
 
-# Clean npm cache
-RUN npm cache clean --force
+# Install all deps to build admin and compile native modules
+RUN yarn install --frozen-lockfile
 
-# Install Node.js dependencies
-RUN yarn
-
-# Copy the rest of the application files
 COPY . .
 
-# Build the application
+# Build Strapi admin
 RUN yarn build
 
-# Set appropriate permissions
-RUN mkdir -p /usr/src/app/.tmp && chmod 755 /usr/src/app/.tmp
-RUN chmod 755 -R /usr/src/app/src/*
-RUN mkdir -p /usr/src/app/public/uploads && chmod 755 -R /usr/src/app/public/uploads
+FROM base AS runtime
 
-# Expose the application port
-EXPOSE ${APP_PORT}
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends \
+    ca-certificates \
+    libvips \
+  && rm -rf /var/lib/apt/lists/*
 
-# Run the application with config sync import
-CMD ["sh", "-c", "yarn cs import -y && yarn start"]
+# Copy built app and deps
+COPY --from=build /srv/app /srv/app
+
+# Ensure writable dirs for Strapi
+RUN mkdir -p /srv/app/.tmp /srv/app/public/uploads \
+  && chown -R node:node /srv/app
+
+COPY --chown=node:node docker/entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
+USER node
+
+ENV HOST=0.0.0.0
+ENV PORT=1337
+
+EXPOSE 1337
+
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+CMD ["yarn", "start"]
+

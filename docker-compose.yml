@@ -1,0 +1,62 @@
+services:
+  # Reverse proxy with automatic Let's Encrypt TLS
+  caddy:
+    image: caddy:2.7-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    env_file:
+      - .env
+    environment:
+      # Used by Caddyfile: {$DOMAIN}
+      - DOMAIN=${DOMAIN:-localhost}
+      # Used by Caddyfile global options: {$CADDY_EMAIL}
+      - CADDY_EMAIL=${CADDY_EMAIL:-}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - strapi
+
+  strapi:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=production
+      - HOST=0.0.0.0
+      - PORT=1337
+      # For safety: don't run config sync import on every restart
+      - STRAPI_CONFIG_SYNC_IMPORT=${STRAPI_CONFIG_SYNC_IMPORT:-0}
+    volumes:
+      # Persist uploads if you don't use Spaces/S3.
+      - strapi_uploads:/srv/app/public/uploads
+    depends_on:
+      - db
+
+  # If you prefer DO Managed Postgres, delete this service and point DATABASE_URL to the managed DB.
+  db:
+    image: postgres:15-alpine
+    restart: unless-stopped
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB:-strapi}
+      - POSTGRES_USER=${POSTGRES_USER:-strapi}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-strapi}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-strapi} -d ${POSTGRES_DB:-strapi}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  pgdata:
+  strapi_uploads:
+  caddy_data:
+  caddy_config:
