@@ -25,7 +25,7 @@ module.exports = (plugin) => {
             emailTemplate,
             {
                 user,
-                URL: 'https://al-ahzar-front.vercel.app/user/confirmation/submit',
+                URL: 'https://app.alazharsn.com/user/confirmation/submit',
                 CODE: confirmationToken,
             }
         );

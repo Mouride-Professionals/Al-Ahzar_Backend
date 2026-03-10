@@ -8,7 +8,7 @@ module.exports = ({ env }) => ({
         from: env("EMAIL_FROM", "toubadarou399@gmail.com"),
         replyTo: env("EMAIL_REPLY_TO", "toubadarou399@gmail.com"),
         redirectUrl:
-          env("FRONTEND_URL", "https://al-ahzar-front.vercel.app") +
+          env("FRONTEND_URL", "https://app.alazharsn.com") +
           "/user/auth/reset-password",
         emailTemplate: {
           subject: "Al Azhar - Réinitialisation de Mot de Passe",
@@ -59,7 +59,7 @@ module.exports = ({ env }) => ({
         from: env("EMAIL_FROM", "toubadarou399@gmail.com"),
         replyTo: env("EMAIL_REPLY_TO", "toubadarou399@gmail.com"),
         redirectUrl:
-          env("FRONTEND_URL", "https://al-ahzar-front.vercel.app") +
+          env("FRONTEND_URL", "https://app.alazharsn.com") +
           "/user/auth/email-confirmed",
         emailTemplate: {
           subject: "Al Azhar - Confirmation d'Inscription",
@@ -89,7 +89,7 @@ module.exports = ({ env }) => ({
                 <a href="<%= url %>" style="display: inline-block; background-color: #fd6101; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold;">Confirmer mon e-mail</a>
               </p>
               <p style="margin: 0 0 20px;">Votre mot de passe temporaire est : <strong>Passer@123</strong></p>
-              <p style="margin: 0 0 20px;">Pour des raisons de sécurité, vous devez changer ce mot de passe lors de votre première connexion. Connectez-vous à <a href="https://al-ahzar-front.vercel.app" style="color: #fd6101;">Al Azhar</a> et suivez les instructions pour mettre à jour votre mot de passe.</p>
+              <p style="margin: 0 0 20px;">Pour des raisons de sécurité, vous devez changer ce mot de passe lors de votre première connexion. Connectez-vous à <a href="https://app.alazharsn.com" style="color: #fd6101;">Al Azhar</a> et suivez les instructions pour mettre à jour votre mot de passe.</p>
               <p style="margin: 0;">Merci de faire partie de l'institut Al Azhar !</p>
             </td>
           </tr>
