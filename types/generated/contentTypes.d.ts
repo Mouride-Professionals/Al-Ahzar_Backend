@@ -853,6 +853,9 @@ export interface ApiEnrollmentEnrollment extends Schema.CollectionType {
       ]
     > &
       Attribute.DefaultTo<'Non'>;
+    isConfirmed: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<false>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

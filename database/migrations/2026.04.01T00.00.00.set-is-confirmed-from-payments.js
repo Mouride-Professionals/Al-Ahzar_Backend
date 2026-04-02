@@ -12,12 +12,36 @@
 
 module.exports = {
   async up(knex) {
-    // Collect distinct enrollment IDs that have at least one payment
-    const rows = await knex('payments')
-      .distinct('enrollment_id')
-      .whereNotNull('enrollment_id');
+    let ids = [];
+    let confirmationColumn = null;
 
-    const ids = rows.map((r) => r.enrollment_id).filter(Boolean);
+    if (await knex.schema.hasColumn('enrollments', 'is_confirmed')) {
+      confirmationColumn = 'is_confirmed';
+    } else if (await knex.schema.hasColumn('enrollments', 'isConfirmed')) {
+      confirmationColumn = 'isConfirmed';
+    } else {
+      console.log('[migration] No enrollment confirmation column found — skipping.');
+      return;
+    }
+
+    if (await knex.schema.hasTable('payments_enrollment_links')) {
+      const rows = await knex('payments_enrollment_links')
+        .distinct('enrollment_id')
+        .whereNotNull('enrollment_id');
+
+      ids = rows.map((row) => row.enrollment_id).filter(Boolean);
+    } else if (await knex.schema.hasColumn('payments', 'enrollment_id')) {
+      const rows = await knex('payments')
+        .distinct('enrollment_id')
+        .whereNotNull('enrollment_id');
+
+      ids = rows.map((row) => row.enrollment_id).filter(Boolean);
+    } else {
+      console.log(
+        '[migration] No payment → enrollment relation storage found — skipping.',
+      );
+      return;
+    }
 
     if (ids.length === 0) {
       console.log('[migration] No enrollments with payments found — nothing to update.');
@@ -26,14 +50,29 @@ module.exports = {
 
     const updated = await knex('enrollments')
       .whereIn('id', ids)
-      .update({ is_confirmed: true });
+      .update({ [confirmationColumn]: true });
 
-    console.log(`[migration] Set is_confirmed = true on ${updated} enrollment(s).`);
+    console.log(
+      `[migration] Set ${confirmationColumn} = true on ${updated} enrollment(s).`,
+    );
   },
 
   async down(knex) {
+    let confirmationColumn = null;
+
+    if (await knex.schema.hasColumn('enrollments', 'is_confirmed')) {
+      confirmationColumn = 'is_confirmed';
+    } else if (await knex.schema.hasColumn('enrollments', 'isConfirmed')) {
+      confirmationColumn = 'isConfirmed';
+    } else {
+      console.log('[migration] No enrollment confirmation column found — nothing to revert.');
+      return;
+    }
+
     // Revert: mark all enrollments as unconfirmed
-    await knex('enrollments').update({ is_confirmed: false });
-    console.log('[migration] Reverted is_confirmed to false for all enrollments.');
+    await knex('enrollments').update({ [confirmationColumn]: false });
+    console.log(
+      `[migration] Reverted ${confirmationColumn} to false for all enrollments.`,
+    );
   },
 };

@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2025-11-10T23:31:39.945Z"
+    "x-generation-date": "2026-04-02T16:16:12.886Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -1106,6 +1106,9 @@
                                                                   "Tout tarifs offerts"
                                                                 ]
                                                               },
+                                                              "isConfirmed": {
+                                                                "type": "boolean"
+                                                              },
                                                               "createdAt": {
                                                                 "type": "string",
                                                                 "format": "date-time"
@@ -1982,7 +1985,8 @@
           "data": {
             "required": [
               "enrollmentDate",
-              "enrollmentType"
+              "enrollmentType",
+              "isConfirmed"
             ],
             "type": "object",
             "properties": {
@@ -2056,6 +2060,9 @@
                   "Réduction mensualité",
                   "Tout tarifs offerts"
                 ]
+              },
+              "isConfirmed": {
+                "type": "boolean"
               }
             }
           }
@@ -2111,7 +2118,8 @@
         "type": "object",
         "required": [
           "enrollmentDate",
-          "enrollmentType"
+          "enrollmentType",
+          "isConfirmed"
         ],
         "properties": {
           "enrollmentDate": {
@@ -3386,6 +3394,9 @@
                                                                               "Tout tarifs offerts"
                                                                             ]
                                                                           },
+                                                                          "isConfirmed": {
+                                                                            "type": "boolean"
+                                                                          },
                                                                           "createdAt": {
                                                                             "type": "string",
                                                                             "format": "date-time"
@@ -3793,6 +3804,9 @@
               "Réduction mensualité",
               "Tout tarifs offerts"
             ]
+          },
+          "isConfirmed": {
+            "type": "boolean"
           },
           "createdAt": {
             "type": "string",
@@ -4868,6 +4882,9 @@
                                                                   "Réduction mensualité",
                                                                   "Tout tarifs offerts"
                                                                 ]
+                                                              },
+                                                              "isConfirmed": {
+                                                                "type": "boolean"
                                                               },
                                                               "createdAt": {
                                                                 "type": "string",
@@ -7374,6 +7391,9 @@
                           "Tout tarifs offerts"
                         ]
                       },
+                      "isConfirmed": {
+                        "type": "boolean"
+                      },
                       "createdAt": {
                         "type": "string",
                         "format": "date-time"
@@ -8651,6 +8671,9 @@
                                                                   "Réduction mensualité",
                                                                   "Tout tarifs offerts"
                                                                 ]
+                                                              },
+                                                              "isConfirmed": {
+                                                                "type": "boolean"
                                                               },
                                                               "createdAt": {
                                                                 "type": "string",
@@ -11197,6 +11220,9 @@
                                                                                 "Tout tarifs offerts"
                                                                               ]
                                                                             },
+                                                                            "isConfirmed": {
+                                                                              "type": "boolean"
+                                                                            },
                                                                             "createdAt": {
                                                                               "type": "string",
                                                                               "format": "date-time"
@@ -13391,6 +13417,9 @@
                             "Tout tarifs offerts"
                           ]
                         },
+                        "isConfirmed": {
+                          "type": "boolean"
+                        },
                         "createdAt": {
                           "type": "string",
                           "format": "date-time"
@@ -15011,6 +15040,9 @@
                                                                   "Réduction mensualité",
                                                                   "Tout tarifs offerts"
                                                                 ]
+                                                              },
+                                                              "isConfirmed": {
+                                                                "type": "boolean"
                                                               },
                                                               "createdAt": {
                                                                 "type": "string",
@@ -19652,6 +19684,89 @@
           }
         ],
         "operationId": "delete/students/{id}"
+      }
+    },
+    "/students/{id}/safe-delete": {
+      "delete": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Student"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "deprecated": false,
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "operationId": "delete/students/{id}/safe-delete"
       }
     },
     "/students/bulk/template": {
