@@ -121,3 +121,4 @@ my.json
 sendgrid.env
 mysql2pg.load
 package-lock.json
+infra/terraform/terraform.tfvars

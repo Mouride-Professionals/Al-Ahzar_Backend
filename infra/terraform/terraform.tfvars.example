@@ -1,0 +1,5 @@
+do_token        = "dop_v1_CHANGE_ME"
+region          = "lon1"
+droplet_size    = "s-1vcpu-2gb"
+ssh_key_name    = "your-key-name-in-do"
+ssh_allowed_ips = ["x.x.x.x/32"]  # Your IP — curl ifconfig.me
