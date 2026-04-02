@@ -1,0 +1,50 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - "infra/**"
+      - "*.md"
+      - ".github/workflows/terraform.yml"
+
+jobs:
+  deploy:
+    name: Deploy to Droplet
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install doctl
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DO_TOKEN }}
+
+      # Temporarily open SSH for this runner's IP
+      - name: Open SSH on firewall
+        run: |
+          RUNNER_IP="$(curl -s ifconfig.me)/32"
+          doctl compute firewall add-rules ${{ secrets.DO_FIREWALL_ID }} \
+            --inbound-rules "protocol:tcp,ports:22,address:${RUNNER_IP}"
+          echo "RUNNER_IP=${RUNNER_IP}" >> $GITHUB_ENV
+
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1
+        with:
+          host: 159.89.251.91
+          username: root
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            set -e
+            cd /opt/al-azhar
+            git pull origin main
+            docker compose up -d --build
+            docker image prune -f
+
+      # Always remove the runner IP — even if deploy failed
+      - name: Close SSH on firewall
+        if: always()
+        run: |
+          doctl compute firewall remove-rules ${{ secrets.DO_FIREWALL_ID }} \
+            --inbound-rules "protocol:tcp,ports:22,address:${RUNNER_IP}"
