@@ -6,15 +6,34 @@ on:
     paths-ignore:
       - "infra/**"
       - "*.md"
-      - ".github/workflows/terraform.yml"
 
 jobs:
   deploy:
-    name: Deploy to Droplet
+    name: Build, Push & Deploy
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
+
+      - name: Install doctl
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DO_TOKEN }}
+
+      - name: Authenticate to DO registry
+        run: doctl registry login --expiry-seconds 600
+
+      - name: Build image
+        run: |
+          docker build \
+            -t registry.digitalocean.com/africadex-registry/al-azhar-backend:${{ github.sha }} \
+            -t registry.digitalocean.com/africadex-registry/al-azhar-backend:latest \
+            .
+
+      - name: Push image
+        run: |
+          docker push registry.digitalocean.com/africadex-registry/al-azhar-backend:${{ github.sha }}
+          docker push registry.digitalocean.com/africadex-registry/al-azhar-backend:latest
 
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1
@@ -22,9 +41,12 @@ jobs:
           host: 159.89.251.91
           username: root
           key: ${{ secrets.SSH_PRIVATE_KEY }}
+          envs: GITHUB_SHA
           script: |
             set -e
             cd /opt/al-azhar
             git pull origin main
-            docker compose up -d --build
+            doctl registry login --expiry-seconds 600
+            IMAGE_TAG=$GITHUB_SHA docker compose pull strapi
+            IMAGE_TAG=$GITHUB_SHA docker compose up -d
             docker image prune -f

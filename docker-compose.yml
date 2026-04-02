@@ -21,6 +21,7 @@ services:
       - strapi
 
   strapi:
+    image: registry.digitalocean.com/africadex-registry/al-azhar-backend:${IMAGE_TAG:-latest}
     build:
       context: .
       dockerfile: Dockerfile
