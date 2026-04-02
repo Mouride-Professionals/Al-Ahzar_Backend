@@ -202,5 +202,36 @@ module.exports = createCoreController('api::student.student', ({ strapi }) => ({
     } catch (error) {
       ctx.throw(500, `Erreur lors de la récupération des statistiques: ${error.message}`);
     }
+  },
+
+  /**
+   * Safely delete a student only if none of their enrollments are confirmed.
+   * Cascades: deletes payments → enrollments → student.
+   */
+  async safeDelete(ctx) {
+    const { id } = ctx.params;
+
+    const enrollments = await strapi.entityService.findMany('api::enrollment.enrollment', {
+      filters: { student: { id } },
+      populate: ['payments'],
+    });
+
+    const hasConfirmedEnrollment = enrollments.some((e) => e.isConfirmed);
+    if (hasConfirmedEnrollment) {
+      return ctx.forbidden(
+        "Impossible de supprimer cet élève : son inscription a déjà été confirmée."
+      );
+    }
+
+    for (const enrollment of enrollments) {
+      for (const payment of enrollment.payments || []) {
+        await strapi.entityService.delete('api::payment.payment', payment.id);
+      }
+      await strapi.entityService.delete('api::enrollment.enrollment', enrollment.id);
+    }
+
+    await strapi.entityService.delete('api::student.student', id);
+
+    ctx.body = { message: 'Élève supprimé avec succès.' };
   }
 }));

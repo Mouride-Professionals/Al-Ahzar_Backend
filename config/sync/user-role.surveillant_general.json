@@ -67,6 +67,9 @@
       "action": "api::student.student.update"
     },
     {
+      "action": "api::student.student.safeDelete"
+    },
+    {
       "action": "api::student.student.validateBulkImport"
     },
     {

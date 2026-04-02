@@ -64,6 +64,11 @@
         "Tout tarifs offerts"
       ],
       "default": "Non"
+    },
+    "isConfirmed": {
+      "type": "boolean",
+      "default": false,
+      "required": true
     }
   }
 }

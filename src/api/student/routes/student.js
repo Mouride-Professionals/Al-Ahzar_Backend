@@ -64,6 +64,18 @@ module.exports = {
             }
         },
 
+        // Safe delete (surveillant général: only if no confirmed enrollment)
+        {
+            method: 'DELETE',
+            path: '/students/:id/safe-delete',
+            handler: 'api::student.student.safeDelete',
+            config: {
+                auth: {
+                    scope: ['api::student.student.safeDelete']
+                }
+            }
+        },
+
         // Custom bulk import routes
         {
             method: 'GET',
