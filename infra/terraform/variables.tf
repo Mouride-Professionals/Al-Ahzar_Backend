@@ -21,8 +21,3 @@ variable "ssh_key_name" {
   type        = string
 }
 
-variable "ssh_allowed_ips" {
-  description = "List of IPs allowed SSH access (CIDR). Add your own IP: [\"x.x.x.x/32\"]"
-  type        = list(string)
-  default     = []
-}

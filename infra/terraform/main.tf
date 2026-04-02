@@ -89,14 +89,11 @@ resource "digitalocean_firewall" "app" {
     source_addresses = ["0.0.0.0/0", "::/0"]
   }
 
-  # SSH — restricted to IPs listed in ssh_allowed_ips
-  dynamic "inbound_rule" {
-    for_each = length(var.ssh_allowed_ips) > 0 ? [1] : []
-    content {
-      protocol         = "tcp"
-      port_range       = "22"
-      source_addresses = var.ssh_allowed_ips
-    }
+  # SSH — open to all
+  inbound_rule {
+    protocol         = "tcp"
+    port_range       = "22"
+    source_addresses = ["0.0.0.0/0", "::/0"]
   }
 
   # Outbound — unrestricted
