@@ -7,10 +7,10 @@ module.exports = [
         useDefaults: true,
         directives: {
           'connect-src': ["'self'", 'https:'],
-          'img-src': ["'self'", 'data:', 'blob:', 'https://al-ahzar-backend-xeuc.onrender.com'],
-          'media-src': ["'self'", 'data:', 'blob:', 'https://al-ahzar-backend-xeuc.onrender.com'],
-          'script-src': ["'self'", 'https://al-ahzar-backend-xeuc.onrender.com'],
-          'script-src-elem': ["'self'", 'https://al-ahzar-backend-xeuc.onrender.com'],
+          'img-src': ["'self'", 'data:', 'blob:', 'https://api.alazharsn.com'],
+          'media-src': ["'self'", 'data:', 'blob:', 'https://api.alazharsn.com'],
+          'script-src': ["'self'", 'https://api.alazharsn.com'],
+          'script-src-elem': ["'self'", 'https://api.alazharsn.com'],
           upgradeInsecureRequests: null,
         },
       },
@@ -19,7 +19,7 @@ module.exports = [
   {
     name: 'strapi::cors',
     config: {
-      origin: ['https://app.alazharsn.com', 'https://al-ahzar-front.vercel.app', 'http://localhost:3000', 'https://al-ahzar-backend-xeuc.onrender.com', 'http://localhost:1338'],
+      origin: ['https://api.alazharsn.com', 'https://app.alazharsn.com', 'https://al-ahzar-front.vercel.app', 'http://localhost:3000', 'http://localhost:1338'],
       methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
       headers: ['Content-Type', 'Authorization', 'Origin', 'Accept'],
       keepHeaderOnError: true,
