@@ -38,7 +38,7 @@ jobs:
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1
         with:
-          host: 159.89.251.91
+          host: 144.126.204.214
           username: root
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           envs: GITHUB_SHA

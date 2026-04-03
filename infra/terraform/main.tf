@@ -31,7 +31,7 @@ data "digitalocean_ssh_key" "default" {
 # terraform import digitalocean_droplet.app 548724368
 # -----------------------------------------------------------------
 resource "digitalocean_droplet" "app" {
-  name     = "stagging.api.ucak"
+  name     = "al-azhar"
   region   = var.region
   size     = var.droplet_size
   image    = "ubuntu-22-04-x64"
