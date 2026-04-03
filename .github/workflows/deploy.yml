@@ -45,7 +45,8 @@ jobs:
           script: |
             set -e
             cd /opt/al-azhar
-            git pull origin main
+            git fetch origin main
+            git reset --hard origin/main
             doctl registry login --expiry-seconds 600
             IMAGE_TAG=$GITHUB_SHA docker compose pull strapi
             IMAGE_TAG=$GITHUB_SHA docker compose up -d
