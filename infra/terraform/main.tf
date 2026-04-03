@@ -40,8 +40,8 @@ resource "digitalocean_droplet" "app" {
 
   lifecycle {
     prevent_destroy = true
-    # user_data cannot be changed without recreating the droplet
-    ignore_changes = [user_data]
+    # Ignore fields that differ on the existing droplet and would force recreation
+    ignore_changes = [user_data, image, ssh_keys, tags, monitoring]
   }
 
   tags = ["al-azhar", "production"]
