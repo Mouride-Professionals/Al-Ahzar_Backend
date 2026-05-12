@@ -1,10 +1,20 @@
 "use strict";
 
 const { createCoreController } = require("@strapi/strapi").factories;
+const { resolveFinanceAccessContext } = require("../../../utils/finance-access");
 
 module.exports = createCoreController("api::payment.payment", ({ strapi }) => ({
   async stats(ctx) {
     try {
+      const accessContext = await resolveFinanceAccessContext(
+        strapi,
+        ctx.state.user?.id
+      );
+
+      if (!accessContext) {
+        return ctx.forbidden("Forbidden");
+      }
+
       // Get current date info
       const now = new Date();
       const currentYear = now.getFullYear();
@@ -34,7 +44,9 @@ module.exports = createCoreController("api::payment.payment", ({ strapi }) => ({
       // For instance: ?filters[schoolYear][id][$eq]=6&filters[school][id][$eq]=10
       const filters = ctx.query.filters || {};
       const schoolYearId = filters.schoolYear?.id?.$eq;
-      const schoolId = filters.school?.id?.$eq;
+      const requestedSchoolId = filters.school?.id?.$eq;
+      const schoolId =
+        accessContext.scope === "school" ? accessContext.schoolId : requestedSchoolId;
 
       // Use knex for aggregation queries
       const knex = strapi.db.connection;
@@ -75,8 +87,6 @@ module.exports = createCoreController("api::payment.payment", ({ strapi }) => ({
           query.andWhere("enrollments_school_year_links.school_year_id", schoolYearId);
         }
         if (schoolId) {
-          console.log("schoolId", schoolId);
-
           query.andWhere("classes_school_links.school_id", schoolId);
         }
         return query;

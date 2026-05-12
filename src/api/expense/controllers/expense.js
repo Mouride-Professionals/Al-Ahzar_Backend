@@ -1,10 +1,20 @@
 "use strict";
 
 const { createCoreController } = require("@strapi/strapi").factories;
+const { resolveFinanceAccessContext } = require("../../../utils/finance-access");
 
 module.exports = createCoreController("api::expense.expense", ({ strapi }) => ({
   async stats(ctx) {
     try {
+      const accessContext = await resolveFinanceAccessContext(
+        strapi,
+        ctx.state.user?.id
+      );
+
+      if (!accessContext) {
+        return ctx.forbidden("Forbidden");
+      }
+
       // Get current date info
       const now = new Date();
       const currentYear = now.getFullYear();
@@ -33,8 +43,10 @@ module.exports = createCoreController("api::expense.expense", ({ strapi }) => ({
       // Retrieve filters from query string
       // Example: ?filters[school][id][$eq]=10&filters[schoolYear][id][$eq]=6
       const filters = ctx.query.filters || {};
-      const schoolId = filters.school?.id?.$eq;
+      const requestedSchoolId = filters.school?.id?.$eq;
       const schoolYearId = filters.schoolYear?.id?.$eq;
+      const schoolId =
+        accessContext.scope === "school" ? accessContext.schoolId : requestedSchoolId;
 
       // Use knex for aggregation queries
       const knex = strapi.db.connection;
