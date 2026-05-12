@@ -57,4 +57,12 @@ module.exports = createCoreController('api::grade-entry.grade-entry', ({ strapi 
       return ctx.badRequest(error.message);
     }
   },
+
+  async summary(ctx) {
+    try {
+      return await strapi.service('api::grade-entry.grade-entry').summary(ctx.query || {});
+    } catch (error) {
+      return ctx.badRequest(error.message);
+    }
+  },
 }));

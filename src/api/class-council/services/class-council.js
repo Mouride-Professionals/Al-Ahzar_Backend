@@ -12,6 +12,12 @@ module.exports = createCoreService('api::class-council.class-council', ({ strapi
       throw new Error('Classe, période, école, année scolaire, titre et date sont obligatoires.');
     }
 
+    const period = await strapi.entityService.findOne('api::academic-period.academic-period', data.academicPeriod);
+
+    if (!period) {
+      throw new Error('Période académique introuvable.');
+    }
+
     const council = await strapi.entityService.create('api::class-council.class-council', {
       data: {
         title: data.title,
@@ -33,13 +39,22 @@ module.exports = createCoreService('api::class-council.class-council', ({ strapi
       populate: ['student'],
       limit: 500,
     });
+    const generatedStudents = [];
 
     for (const enrollment of enrollments) {
+      const attendanceFilters = {
+        enrollment: { id: enrollment.id },
+        schoolYear: { id: data.schoolYear },
+      };
+
+      if (period.startDate || period.endDate) {
+        attendanceFilters.attendanceDate = {};
+        if (period.startDate) attendanceFilters.attendanceDate.$gte = period.startDate;
+        if (period.endDate) attendanceFilters.attendanceDate.$lte = period.endDate;
+      }
+
       const attendance = await strapi.entityService.findMany('api::attendance-record.attendance-record', {
-        filters: {
-          enrollment: { id: enrollment.id },
-          schoolYear: { id: data.schoolYear },
-        },
+        filters: attendanceFilters,
         limit: 500,
       });
       const grades = await strapi.entityService.findMany('api::grade-entry.grade-entry', {
@@ -57,7 +72,7 @@ module.exports = createCoreService('api::class-council.class-council', ({ strapi
       }, 0);
       const coefficientTotal = scoredGrades.reduce((total, grade) => total + Number(grade.assessment?.coefficient || 1), 0);
 
-      await strapi.entityService.create('api::class-council-student.class-council-student', {
+      const studentSummary = await strapi.entityService.create('api::class-council-student.class-council-student', {
         data: {
           council: council.id,
           enrollment: enrollment.id,
@@ -69,9 +84,38 @@ module.exports = createCoreService('api::class-council.class-council', ({ strapi
           councilDecision: 'pending',
         },
       });
+
+      generatedStudents.push(studentSummary);
+    }
+
+    const rankedStudents = [...generatedStudents]
+      .filter((student) => student.generalAverage !== null && student.generalAverage !== undefined)
+      .sort((left, right) => Number(right.generalAverage) - Number(left.generalAverage));
+
+    for (let index = 0; index < rankedStudents.length; index += 1) {
+      await strapi.entityService.update('api::class-council-student.class-council-student', rankedStudents[index].id, {
+        data: { rank: index + 1 },
+      });
     }
 
     return strapi.entityService.findOne('api::class-council.class-council', council.id, {
+      populate: ['class', 'academicPeriod', 'school', 'schoolYear', 'students.enrollment.student'],
+    });
+  },
+
+  async reopen(id) {
+    const council = await strapi.entityService.findOne('api::class-council.class-council', id);
+
+    if (!council) {
+      throw new Error('Conseil introuvable.');
+    }
+
+    if (council.status === 'archived') {
+      throw new Error('Un conseil archivé ne peut pas être rouvert.');
+    }
+
+    return strapi.entityService.update('api::class-council.class-council', id, {
+      data: { status: 'draft' },
       populate: ['class', 'academicPeriod', 'school', 'schoolYear', 'students.enrollment.student'],
     });
   },
