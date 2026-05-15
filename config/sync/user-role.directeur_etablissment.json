@@ -4,6 +4,48 @@
   "type": "directeur_etablissment",
   "permissions": [
     {
+      "action": "api::assessment.assessment.create"
+    },
+    {
+      "action": "api::assessment.assessment.find"
+    },
+    {
+      "action": "api::assessment.assessment.findOne"
+    },
+    {
+      "action": "api::assessment.assessment.update"
+    },
+    {
+      "action": "api::attendance-record.attendance-record.bulk"
+    },
+    {
+      "action": "api::attendance-record.attendance-record.create"
+    },
+    {
+      "action": "api::attendance-record.attendance-record.delete"
+    },
+    {
+      "action": "api::attendance-record.attendance-record.find"
+    },
+    {
+      "action": "api::attendance-record.attendance-record.findOne"
+    },
+    {
+      "action": "api::attendance-record.attendance-record.update"
+    },
+    {
+      "action": "api::class-council-student.class-council-student.find"
+    },
+    {
+      "action": "api::class-council-student.class-council-student.findOne"
+    },
+    {
+      "action": "api::class-council.class-council.find"
+    },
+    {
+      "action": "api::class-council.class-council.findOne"
+    },
+    {
       "action": "api::class.class.create"
     },
     {
@@ -14,6 +56,30 @@
     },
     {
       "action": "api::class.class.update"
+    },
+    {
+      "action": "api::course-session.course-session.cancel"
+    },
+    {
+      "action": "api::course-session.course-session.create"
+    },
+    {
+      "action": "api::course-session.course-session.delete"
+    },
+    {
+      "action": "api::course-session.course-session.find"
+    },
+    {
+      "action": "api::course-session.course-session.findOne"
+    },
+    {
+      "action": "api::course-session.course-session.markDone"
+    },
+    {
+      "action": "api::course-session.course-session.replace"
+    },
+    {
+      "action": "api::course-session.course-session.update"
     },
     {
       "action": "api::enrollment.enrollment.create"
@@ -41,6 +107,24 @@
     },
     {
       "action": "api::expense.expense.update"
+    },
+    {
+      "action": "api::grade-entry.grade-entry.bulk"
+    },
+    {
+      "action": "api::grade-entry.grade-entry.create"
+    },
+    {
+      "action": "api::grade-entry.grade-entry.find"
+    },
+    {
+      "action": "api::grade-entry.grade-entry.findOne"
+    },
+    {
+      "action": "api::grade-entry.grade-entry.summary"
+    },
+    {
+      "action": "api::grade-entry.grade-entry.update"
     },
     {
       "action": "api::payment.payment.create"
@@ -119,6 +203,15 @@
     },
     {
       "action": "api::teacher.teacher.update"
+    },
+    {
+      "action": "api::timetable-slot.timetable-slot.find"
+    },
+    {
+      "action": "api::timetable-slot.timetable-slot.findOne"
+    },
+    {
+      "action": "api::timetable-slot.timetable-slot.weekly"
     },
     {
       "action": "plugin::email.email.send"
