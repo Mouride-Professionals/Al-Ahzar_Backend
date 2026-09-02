@@ -11,13 +11,19 @@ const populate = ['class', 'teacher', 'subject', 'school', 'schoolYear'];
 module.exports = createCoreController('api::timetable-slot.timetable-slot', ({ strapi }) => ({
   async create(ctx) {
     const data = ctx.request.body?.data || ctx.request.body;
+    const service = strapi.service('api::timetable-slot.timetable-slot');
 
     try {
-      await strapi
-        .service('api::timetable-slot.timetable-slot')
-        .validateTimetableSlot(data);
+      await service.validateTimetableSlot(data);
     } catch (error) {
       return ctx.badRequest(error.message);
+    }
+
+    if (data.startTime) {
+      data.startTime = service.normalizeTime(data.startTime);
+    }
+    if (data.endTime) {
+      data.endTime = service.normalizeTime(data.endTime);
     }
 
     const entity = await strapi.entityService.create('api::timetable-slot.timetable-slot', {
@@ -32,13 +38,19 @@ module.exports = createCoreController('api::timetable-slot.timetable-slot', ({ s
   async update(ctx) {
     const { id } = ctx.params;
     const data = ctx.request.body?.data || ctx.request.body;
+    const service = strapi.service('api::timetable-slot.timetable-slot');
 
     try {
-      await strapi
-        .service('api::timetable-slot.timetable-slot')
-        .validateTimetableSlot(data, { slotId: id });
+      await service.validateTimetableSlot(data, { slotId: id });
     } catch (error) {
       return ctx.badRequest(error.message);
+    }
+
+    if (data.startTime) {
+      data.startTime = service.normalizeTime(data.startTime);
+    }
+    if (data.endTime) {
+      data.endTime = service.normalizeTime(data.endTime);
     }
 
     const entity = await strapi.entityService.update('api::timetable-slot.timetable-slot', id, {

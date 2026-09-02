@@ -56,6 +56,23 @@ module.exports = createCoreService('api::academic-period.academic-period', ({ st
       throw new Error('La date de début doit être antérieure à la date de fin.');
     }
 
+    if (data.startDate || data.endDate) {
+      const schoolYear = await strapi.entityService.findOne(
+        'api::school-year.school-year',
+        schoolYearId,
+      );
+
+      if (schoolYear) {
+        if (data.startDate && schoolYear.startDate && data.startDate < schoolYear.startDate) {
+          throw new Error("La date de début doit être comprise dans l'année scolaire sélectionnée.");
+        }
+
+        if (data.endDate && schoolYear.endDate && data.endDate > schoolYear.endDate) {
+          throw new Error("La date de fin doit être comprise dans l'année scolaire sélectionnée.");
+        }
+      }
+    }
+
     const duplicateFilters = {
       school: { id: schoolId },
       schoolYear: { id: schoolYearId },

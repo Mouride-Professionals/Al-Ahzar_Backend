@@ -1,14 +1,14 @@
 {
-  "key": "plugin_content_manager_configuration_content_types::api::payment.payment",
+  "key": "plugin_content_manager_configuration_content_types::api::attendance-record.attendance-record",
   "value": {
-    "uid": "api::payment.payment",
+    "uid": "api::attendance-record.attendance-record",
     "settings": {
       "bulkable": true,
       "filterable": true,
       "searchable": true,
       "pageSize": 10,
-      "mainField": "motive",
-      "defaultSortBy": "motive",
+      "mainField": "id",
+      "defaultSortBy": "id",
       "defaultSortOrder": "ASC"
     },
     "metadatas": {
@@ -20,44 +20,100 @@
           "sortable": true
         }
       },
-      "reference": {
+      "attendanceDate": {
         "edit": {
-          "label": "reference",
+          "label": "attendanceDate",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "reference",
+          "label": "attendanceDate",
           "searchable": true,
           "sortable": true
         }
       },
-      "monthOf": {
+      "status": {
         "edit": {
-          "label": "monthOf",
+          "label": "status",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "monthOf",
+          "label": "status",
           "searchable": true,
           "sortable": true
         }
       },
-      "isPaid": {
+      "lateMinutes": {
         "edit": {
-          "label": "isPaid",
+          "label": "lateMinutes",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "isPaid",
+          "label": "lateMinutes",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "reason": {
+        "edit": {
+          "label": "reason",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "reason",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "isJustified": {
+        "edit": {
+          "label": "isJustified",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "isJustified",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "justificationNote": {
+        "edit": {
+          "label": "justificationNote",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "justificationNote",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "recordedAt": {
+        "edit": {
+          "label": "recordedAt",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "recordedAt",
           "searchable": true,
           "sortable": true
         }
@@ -77,100 +133,77 @@
           "sortable": true
         }
       },
-      "amount": {
+      "courseSession": {
         "edit": {
-          "label": "amount",
+          "label": "courseSession",
           "description": "",
           "placeholder": "",
           "visible": true,
-          "editable": true
+          "editable": true,
+          "mainField": "title"
         },
         "list": {
-          "label": "amount",
+          "label": "courseSession",
           "searchable": true,
           "sortable": true
         }
       },
-      "paymentType": {
+      "class": {
         "edit": {
-          "label": "paymentType",
+          "label": "class",
           "description": "",
           "placeholder": "",
           "visible": true,
-          "editable": true
+          "editable": true,
+          "mainField": "description"
         },
         "list": {
-          "label": "paymentType",
+          "label": "class",
           "searchable": true,
           "sortable": true
         }
       },
-      "motive": {
+      "school": {
         "edit": {
-          "label": "motive",
+          "label": "school",
           "description": "",
           "placeholder": "",
           "visible": true,
-          "editable": true
+          "editable": true,
+          "mainField": "name"
         },
         "list": {
-          "label": "motive",
+          "label": "school",
           "searchable": true,
           "sortable": true
         }
       },
-      "comment": {
+      "schoolYear": {
         "edit": {
-          "label": "comment",
+          "label": "schoolYear",
           "description": "",
           "placeholder": "",
           "visible": true,
-          "editable": true
+          "editable": true,
+          "mainField": "name"
         },
         "list": {
-          "label": "comment",
+          "label": "schoolYear",
           "searchable": true,
           "sortable": true
         }
       },
-      "status": {
+      "recordedBy": {
         "edit": {
-          "label": "status",
+          "label": "recordedBy",
           "description": "",
           "placeholder": "",
           "visible": true,
-          "editable": true
+          "editable": true,
+          "mainField": "username"
         },
         "list": {
-          "label": "status",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "cancellationReason": {
-        "edit": {
-          "label": "cancellationReason",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "cancellationReason",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "cancelledAt": {
-        "edit": {
-          "label": "cancelledAt",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "cancelledAt",
+          "label": "recordedBy",
           "searchable": true,
           "sortable": true
         }
@@ -237,45 +270,15 @@
     "layouts": {
       "list": [
         "id",
-        "monthOf",
-        "isPaid",
-        "enrollment"
+        "attendanceDate",
+        "status",
+        "lateMinutes"
       ],
       "edit": [
         [
           {
-            "name": "monthOf",
+            "name": "attendanceDate",
             "size": 4
-          },
-          {
-            "name": "isPaid",
-            "size": 4
-          }
-        ],
-        [
-          {
-            "name": "enrollment",
-            "size": 6
-          },
-          {
-            "name": "amount",
-            "size": 4
-          }
-        ],
-        [
-          {
-            "name": "paymentType",
-            "size": 6
-          },
-          {
-            "name": "motive",
-            "size": 6
-          }
-        ],
-        [
-          {
-            "name": "comment",
-            "size": 6
           },
           {
             "name": "status",
@@ -284,17 +287,57 @@
         ],
         [
           {
-            "name": "cancellationReason",
-            "size": 6
+            "name": "lateMinutes",
+            "size": 4
           },
           {
-            "name": "cancelledAt",
-            "size": 4
+            "name": "reason",
+            "size": 6
           }
         ],
         [
           {
-            "name": "reference",
+            "name": "isJustified",
+            "size": 4
+          },
+          {
+            "name": "justificationNote",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "recordedAt",
+            "size": 6
+          },
+          {
+            "name": "enrollment",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "courseSession",
+            "size": 6
+          },
+          {
+            "name": "class",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "school",
+            "size": 6
+          },
+          {
+            "name": "schoolYear",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "recordedBy",
             "size": 6
           }
         ]

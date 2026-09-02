@@ -12,6 +12,18 @@ module.exports = createCoreService('api::class-council.class-council', ({ strapi
       throw new Error('Classe, période, école, année scolaire, titre et date sont obligatoires.');
     }
 
+    const schoolYearEntity = await strapi.entityService.findOne('api::school-year.school-year', data.schoolYear);
+
+    if (schoolYearEntity) {
+      if (schoolYearEntity.startDate && data.councilDate < schoolYearEntity.startDate) {
+        throw new Error("La date doit être comprise dans l'année scolaire sélectionnée.");
+      }
+
+      if (schoolYearEntity.endDate && data.councilDate > schoolYearEntity.endDate) {
+        throw new Error("La date doit être comprise dans l'année scolaire sélectionnée.");
+      }
+    }
+
     const period = await strapi.entityService.findOne('api::academic-period.academic-period', data.academicPeriod);
 
     if (!period) {
@@ -39,6 +51,30 @@ module.exports = createCoreService('api::class-council.class-council', ({ strapi
       populate: ['student'],
       limit: 500,
     });
+
+    const classSubjects = await strapi.entityService.findMany('api::class-subject.class-subject', {
+      filters: { class: { id: data.class } },
+      populate: ['subject'],
+      limit: 100,
+    });
+    const subjectSummaries = await Promise.all(
+      classSubjects
+        .filter((classSubject) => classSubject.subject?.id)
+        .map(async (classSubject) => {
+          const summary = await strapi.service('api::grade-entry.grade-entry').summary({
+            classId: data.class,
+            schoolYearId: data.schoolYear,
+            subjectId: classSubject.subject.id,
+            academicPeriodId: data.academicPeriod,
+          });
+
+          return {
+            coefficient: Number(classSubject.coefficient || 1),
+            students: summary.students,
+          };
+        }),
+    );
+
     const generatedStudents = [];
 
     for (const enrollment of enrollments) {
@@ -57,20 +93,25 @@ module.exports = createCoreService('api::class-council.class-council', ({ strapi
         filters: attendanceFilters,
         limit: 500,
       });
-      const grades = await strapi.entityService.findMany('api::grade-entry.grade-entry', {
-        filters: {
-          enrollment: { id: enrollment.id },
-          assessment: { academicPeriod: { id: data.academicPeriod } },
-        },
-        populate: ['assessment'],
-        limit: 500,
-      });
-      const scoredGrades = grades.filter((grade) => !grade.isAbsent && grade.score !== null && grade.score !== undefined);
-      const weightedTotal = scoredGrades.reduce((total, grade) => {
-        const coefficient = Number(grade.assessment?.coefficient || 1);
-        return total + Number(grade.score) * coefficient;
-      }, 0);
-      const coefficientTotal = scoredGrades.reduce((total, grade) => total + Number(grade.assessment?.coefficient || 1), 0);
+
+      // Subject averages (from grade-entry.summary, weighted by Assessment.coefficient
+      // within each subject) combined here, weighted by each subject's class-subject.coefficient.
+      const subjectContributions = subjectSummaries
+        .map(({ coefficient, students }) => {
+          const entry = students.find((student) => student.enrollment.id === enrollment.id);
+          return entry && entry.average !== null
+            ? { average: Number(entry.average), coefficient }
+            : null;
+        })
+        .filter(Boolean);
+      const weightedTotal = subjectContributions.reduce(
+        (total, contribution) => total + contribution.average * contribution.coefficient,
+        0,
+      );
+      const coefficientTotal = subjectContributions.reduce(
+        (total, contribution) => total + contribution.coefficient,
+        0,
+      );
 
       const studentSummary = await strapi.entityService.create('api::class-council-student.class-council-student', {
         data: {

@@ -1,14 +1,14 @@
 {
-  "key": "plugin_content_manager_configuration_content_types::api::payment.payment",
+  "key": "plugin_content_manager_configuration_content_types::api::assessment.assessment",
   "value": {
-    "uid": "api::payment.payment",
+    "uid": "api::assessment.assessment",
     "settings": {
       "bulkable": true,
       "filterable": true,
       "searchable": true,
       "pageSize": 10,
-      "mainField": "motive",
-      "defaultSortBy": "motive",
+      "mainField": "title",
+      "defaultSortBy": "title",
       "defaultSortOrder": "ASC"
     },
     "metadatas": {
@@ -20,51 +20,197 @@
           "sortable": true
         }
       },
-      "reference": {
+      "title": {
         "edit": {
-          "label": "reference",
+          "label": "title",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "reference",
+          "label": "title",
           "searchable": true,
           "sortable": true
         }
       },
-      "monthOf": {
+      "assessmentType": {
         "edit": {
-          "label": "monthOf",
+          "label": "assessmentType",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "monthOf",
+          "label": "assessmentType",
           "searchable": true,
           "sortable": true
         }
       },
-      "isPaid": {
+      "assessmentDate": {
         "edit": {
-          "label": "isPaid",
+          "label": "assessmentDate",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "isPaid",
+          "label": "assessmentDate",
           "searchable": true,
           "sortable": true
         }
       },
-      "enrollment": {
+      "dueDate": {
         "edit": {
-          "label": "enrollment",
+          "label": "dueDate",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "dueDate",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "maxScore": {
+        "edit": {
+          "label": "maxScore",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "maxScore",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "coefficient": {
+        "edit": {
+          "label": "coefficient",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "coefficient",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "description": {
+        "edit": {
+          "label": "description",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "description",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "class": {
+        "edit": {
+          "label": "class",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "description"
+        },
+        "list": {
+          "label": "class",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "subject": {
+        "edit": {
+          "label": "subject",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "subjectname"
+        },
+        "list": {
+          "label": "subject",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "teacher": {
+        "edit": {
+          "label": "teacher",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "firstname"
+        },
+        "list": {
+          "label": "teacher",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "academicPeriod": {
+        "edit": {
+          "label": "academicPeriod",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "name"
+        },
+        "list": {
+          "label": "academicPeriod",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "school": {
+        "edit": {
+          "label": "school",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "name"
+        },
+        "list": {
+          "label": "school",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "schoolYear": {
+        "edit": {
+          "label": "schoolYear",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "name"
+        },
+        "list": {
+          "label": "schoolYear",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "gradeEntries": {
+        "edit": {
+          "label": "gradeEntries",
           "description": "",
           "placeholder": "",
           "visible": true,
@@ -72,107 +218,9 @@
           "mainField": "id"
         },
         "list": {
-          "label": "enrollment",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "amount": {
-        "edit": {
-          "label": "amount",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "amount",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "paymentType": {
-        "edit": {
-          "label": "paymentType",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "paymentType",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "motive": {
-        "edit": {
-          "label": "motive",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "motive",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "comment": {
-        "edit": {
-          "label": "comment",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "comment",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "status": {
-        "edit": {
-          "label": "status",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "status",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "cancellationReason": {
-        "edit": {
-          "label": "cancellationReason",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "cancellationReason",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "cancelledAt": {
-        "edit": {
-          "label": "cancelledAt",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "cancelledAt",
-          "searchable": true,
-          "sortable": true
+          "label": "gradeEntries",
+          "searchable": false,
+          "sortable": false
         }
       },
       "createdAt": {
@@ -237,64 +285,78 @@
     "layouts": {
       "list": [
         "id",
-        "monthOf",
-        "isPaid",
-        "enrollment"
+        "title",
+        "assessmentType",
+        "assessmentDate"
       ],
       "edit": [
         [
           {
-            "name": "monthOf",
+            "name": "title",
+            "size": 6
+          },
+          {
+            "name": "assessmentType",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "assessmentDate",
             "size": 4
           },
           {
-            "name": "isPaid",
+            "name": "dueDate",
             "size": 4
-          }
-        ],
-        [
-          {
-            "name": "enrollment",
-            "size": 6
           },
           {
-            "name": "amount",
-            "size": 4
-          }
-        ],
-        [
-          {
-            "name": "paymentType",
-            "size": 6
-          },
-          {
-            "name": "motive",
-            "size": 6
-          }
-        ],
-        [
-          {
-            "name": "comment",
-            "size": 6
-          },
-          {
-            "name": "status",
-            "size": 6
-          }
-        ],
-        [
-          {
-            "name": "cancellationReason",
-            "size": 6
-          },
-          {
-            "name": "cancelledAt",
+            "name": "maxScore",
             "size": 4
           }
         ],
         [
           {
-            "name": "reference",
+            "name": "coefficient",
+            "size": 4
+          },
+          {
+            "name": "description",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "class",
+            "size": 6
+          },
+          {
+            "name": "subject",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "teacher",
+            "size": 6
+          },
+          {
+            "name": "academicPeriod",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "school",
+            "size": 6
+          },
+          {
+            "name": "schoolYear",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "gradeEntries",
             "size": 6
           }
         ]

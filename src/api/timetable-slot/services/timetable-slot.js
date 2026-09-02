@@ -49,10 +49,19 @@ function normalizeTime(value) {
     return value;
   }
 
-  return String(value).length === 5 ? `${value}:00` : String(value);
+  const [time, milliseconds] = String(value).split('.');
+  const [hours, minutes, seconds] = time.split(':');
+
+  return [
+    (hours || '00').padStart(2, '0'),
+    (minutes || '00').padStart(2, '0'),
+    (seconds || '00').padStart(2, '0'),
+  ].join(':') + '.' + (milliseconds || '000').padEnd(3, '0').slice(0, 3);
 }
 
 module.exports = createCoreService('api::timetable-slot.timetable-slot', ({ strapi }) => ({
+  normalizeTime,
+
   buildWeeklyFilters(query = {}) {
     const filters = {};
 

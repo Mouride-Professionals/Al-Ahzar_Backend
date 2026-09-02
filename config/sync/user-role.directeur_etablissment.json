@@ -4,6 +4,21 @@
   "type": "directeur_etablissment",
   "permissions": [
     {
+      "action": "api::academic-period.academic-period.create"
+    },
+    {
+      "action": "api::academic-period.academic-period.delete"
+    },
+    {
+      "action": "api::academic-period.academic-period.find"
+    },
+    {
+      "action": "api::academic-period.academic-period.findOne"
+    },
+    {
+      "action": "api::academic-period.academic-period.update"
+    },
+    {
       "action": "api::assessment.assessment.create"
     },
     {
@@ -34,16 +49,58 @@
       "action": "api::attendance-record.attendance-record.update"
     },
     {
+      "action": "api::class-council-student.class-council-student.create"
+    },
+    {
+      "action": "api::class-council-student.class-council-student.delete"
+    },
+    {
       "action": "api::class-council-student.class-council-student.find"
     },
     {
       "action": "api::class-council-student.class-council-student.findOne"
     },
     {
+      "action": "api::class-council-student.class-council-student.update"
+    },
+    {
+      "action": "api::class-subject.class-subject.create"
+    },
+    {
+      "action": "api::class-subject.class-subject.delete"
+    },
+    {
+      "action": "api::class-subject.class-subject.find"
+    },
+    {
+      "action": "api::class-subject.class-subject.findOne"
+    },
+    {
+      "action": "api::class-subject.class-subject.update"
+    },
+    {
+      "action": "api::class-council.class-council.create"
+    },
+    {
+      "action": "api::class-council.class-council.delete"
+    },
+    {
       "action": "api::class-council.class-council.find"
     },
     {
       "action": "api::class-council.class-council.findOne"
+    },
+    {
+      "action": "api::class-council.class-council.generate"
+    },
+    {
+      "action": "api::class-council.class-council.reopen"
+    },
+    {
+      "action": "api::class-council.class-council.update"
+    },
+    {
+      "action": "api::class-council.class-council.validateCouncil"
     },
     {
       "action": "api::class.class.create"
@@ -154,6 +211,9 @@
       "action": "api::school.school.findOne"
     },
     {
+      "action": "api::school.school.updatePeriodTemplate"
+    },
+    {
       "action": "api::student.student.bulkImport"
     },
     {
@@ -205,10 +265,19 @@
       "action": "api::teacher.teacher.update"
     },
     {
+      "action": "api::timetable-slot.timetable-slot.create"
+    },
+    {
+      "action": "api::timetable-slot.timetable-slot.delete"
+    },
+    {
       "action": "api::timetable-slot.timetable-slot.find"
     },
     {
       "action": "api::timetable-slot.timetable-slot.findOne"
+    },
+    {
+      "action": "api::timetable-slot.timetable-slot.update"
     },
     {
       "action": "api::timetable-slot.timetable-slot.weekly"

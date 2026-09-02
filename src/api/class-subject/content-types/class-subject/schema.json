@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "class_subjects",
+  "info": {
+    "singularName": "class-subject",
+    "pluralName": "class-subjects",
+    "displayName": "Class Subject",
+    "description": "Coefficient of a subject for a specific class"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "class": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::class.class",
+      "inversedBy": "classSubjects"
+    },
+    "subject": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::subject.subject",
+      "inversedBy": "classSubjects"
+    },
+    "coefficient": {
+      "type": "decimal",
+      "default": 1,
+      "min": 0,
+      "required": true
+    }
+  }
+}

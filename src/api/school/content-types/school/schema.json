@@ -152,6 +152,12 @@
       "target": "api::class.class",
       "mappedBy": "school"
     },
+    "subjects": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::subject.subject",
+      "mappedBy": "school"
+    },
     "banner": {
       "type": "media",
       "multiple": false,
@@ -165,6 +171,9 @@
       "relation": "oneToMany",
       "target": "api::expense.expense",
       "mappedBy": "school"
+    },
+    "periodTemplate": {
+      "type": "json"
     }
   }
 }

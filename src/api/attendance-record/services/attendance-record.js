@@ -89,6 +89,21 @@ module.exports = createCoreService('api::attendance-record.attendance-record', (
       throw new Error("L'inscription ne correspond pas à l'année scolaire sélectionnée.");
     }
 
+    const schoolYear = await strapi.entityService.findOne(
+      'api::school-year.school-year',
+      schoolYearId,
+    );
+
+    if (schoolYear) {
+      if (schoolYear.startDate && data.attendanceDate < schoolYear.startDate) {
+        throw new Error("La date doit être comprise dans l'année scolaire sélectionnée.");
+      }
+
+      if (schoolYear.endDate && data.attendanceDate > schoolYear.endDate) {
+        throw new Error("La date doit être comprise dans l'année scolaire sélectionnée.");
+      }
+    }
+
     if (!options.allowExisting) {
       const existing = await strapi.entityService.findMany('api::attendance-record.attendance-record', {
         filters: getDuplicateFilters(data),

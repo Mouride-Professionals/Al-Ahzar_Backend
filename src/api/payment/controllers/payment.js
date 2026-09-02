@@ -3,7 +3,50 @@
 const { createCoreController } = require("@strapi/strapi").factories;
 const { resolveFinanceAccessContext } = require("../../../utils/finance-access");
 
+async function buildPaymentReference(strapi, enrollmentId) {
+  if (!enrollmentId) {
+    return undefined;
+  }
+
+  const enrollment = await strapi.db.query("api::enrollment.enrollment").findOne({
+    where: { id: enrollmentId },
+    populate: ["schoolYear"],
+  });
+
+  const schoolYear = enrollment?.schoolYear;
+
+  if (!schoolYear) {
+    return undefined;
+  }
+
+  const yearLabel = new Date(schoolYear.startDate).getFullYear();
+  const prefix = `PAY-${yearLabel}-`;
+
+  const lastPayment = await strapi.db.query("api::payment.payment").findOne({
+    where: { reference: { $startsWith: prefix } },
+    orderBy: { reference: "desc" },
+    select: ["reference"],
+  });
+
+  const lastSequence = lastPayment
+    ? Number.parseInt(lastPayment.reference.slice(prefix.length), 10)
+    : 0;
+  const nextSequence = String(lastSequence + 1).padStart(6, "0");
+
+  return `${prefix}${nextSequence}`;
+}
+
 module.exports = createCoreController("api::payment.payment", ({ strapi }) => ({
+  async create(ctx) {
+    const { data } = ctx.request.body;
+
+    if (!data.reference) {
+      data.reference = await buildPaymentReference(strapi, data.enrollment);
+    }
+
+    return super.create(ctx);
+  },
+
   async stats(ctx) {
     try {
       const accessContext = await resolveFinanceAccessContext(

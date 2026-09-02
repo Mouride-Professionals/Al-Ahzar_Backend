@@ -1,14 +1,14 @@
 {
-  "key": "plugin_content_manager_configuration_content_types::api::payment.payment",
+  "key": "plugin_content_manager_configuration_content_types::api::class-council.class-council",
   "value": {
-    "uid": "api::payment.payment",
+    "uid": "api::class-council.class-council",
     "settings": {
       "bulkable": true,
       "filterable": true,
       "searchable": true,
       "pageSize": 10,
-      "mainField": "motive",
-      "defaultSortBy": "motive",
+      "mainField": "title",
+      "defaultSortBy": "title",
       "defaultSortOrder": "ASC"
     },
     "metadatas": {
@@ -20,115 +20,30 @@
           "sortable": true
         }
       },
-      "reference": {
+      "title": {
         "edit": {
-          "label": "reference",
+          "label": "title",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "reference",
+          "label": "title",
           "searchable": true,
           "sortable": true
         }
       },
-      "monthOf": {
+      "councilDate": {
         "edit": {
-          "label": "monthOf",
+          "label": "councilDate",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "monthOf",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "isPaid": {
-        "edit": {
-          "label": "isPaid",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "isPaid",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "enrollment": {
-        "edit": {
-          "label": "enrollment",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true,
-          "mainField": "id"
-        },
-        "list": {
-          "label": "enrollment",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "amount": {
-        "edit": {
-          "label": "amount",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "amount",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "paymentType": {
-        "edit": {
-          "label": "paymentType",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "paymentType",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "motive": {
-        "edit": {
-          "label": "motive",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "motive",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "comment": {
-        "edit": {
-          "label": "comment",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "comment",
+          "label": "councilDate",
           "searchable": true,
           "sortable": true
         }
@@ -147,32 +62,93 @@
           "sortable": true
         }
       },
-      "cancellationReason": {
+      "generalNotes": {
         "edit": {
-          "label": "cancellationReason",
+          "label": "generalNotes",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "cancellationReason",
+          "label": "generalNotes",
           "searchable": true,
           "sortable": true
         }
       },
-      "cancelledAt": {
+      "class": {
         "edit": {
-          "label": "cancelledAt",
+          "label": "class",
           "description": "",
           "placeholder": "",
           "visible": true,
-          "editable": true
+          "editable": true,
+          "mainField": "description"
         },
         "list": {
-          "label": "cancelledAt",
+          "label": "class",
           "searchable": true,
           "sortable": true
+        }
+      },
+      "academicPeriod": {
+        "edit": {
+          "label": "academicPeriod",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "name"
+        },
+        "list": {
+          "label": "academicPeriod",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "school": {
+        "edit": {
+          "label": "school",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "name"
+        },
+        "list": {
+          "label": "school",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "schoolYear": {
+        "edit": {
+          "label": "schoolYear",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "name"
+        },
+        "list": {
+          "label": "schoolYear",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "students": {
+        "edit": {
+          "label": "students",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "id"
+        },
+        "list": {
+          "label": "students",
+          "searchable": false,
+          "sortable": false
         }
       },
       "createdAt": {
@@ -237,64 +213,54 @@
     "layouts": {
       "list": [
         "id",
-        "monthOf",
-        "isPaid",
-        "enrollment"
+        "title",
+        "councilDate",
+        "status"
       ],
       "edit": [
         [
           {
-            "name": "monthOf",
-            "size": 4
-          },
-          {
-            "name": "isPaid",
-            "size": 4
-          }
-        ],
-        [
-          {
-            "name": "enrollment",
+            "name": "title",
             "size": 6
           },
           {
-            "name": "amount",
+            "name": "councilDate",
             "size": 4
           }
         ],
         [
-          {
-            "name": "paymentType",
-            "size": 6
-          },
-          {
-            "name": "motive",
-            "size": 6
-          }
-        ],
-        [
-          {
-            "name": "comment",
-            "size": 6
-          },
           {
             "name": "status",
             "size": 6
+          },
+          {
+            "name": "generalNotes",
+            "size": 6
           }
         ],
         [
           {
-            "name": "cancellationReason",
+            "name": "class",
             "size": 6
           },
           {
-            "name": "cancelledAt",
-            "size": 4
+            "name": "academicPeriod",
+            "size": 6
           }
         ],
         [
           {
-            "name": "reference",
+            "name": "school",
+            "size": 6
+          },
+          {
+            "name": "schoolYear",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "students",
             "size": 6
           }
         ]

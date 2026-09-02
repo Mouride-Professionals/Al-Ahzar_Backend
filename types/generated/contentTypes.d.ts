@@ -950,6 +950,10 @@ export interface ApiClassClass extends Schema.CollectionType {
     draftAndPublish: false;
   };
   attributes: {
+    capacity: Attribute.Integer &
+      Attribute.SetMinMax<{
+        min: 1;
+      }>;
     cycle: Attribute.Enumeration<
       ['primaire', 'secondaire 1er cycle', 'secondaire 2eme cycle']
     > &
@@ -986,6 +990,11 @@ export interface ApiClassClass extends Schema.CollectionType {
       'api::class.class',
       'oneToMany',
       'api::enrollment.enrollment'
+    >;
+    classSubjects: Attribute.Relation<
+      'api::class.class',
+      'oneToMany',
+      'api::class-subject.class-subject'
     >;
     description: Attribute.String;
     createdAt: Attribute.DateTime;
@@ -1134,6 +1143,51 @@ export interface ApiClassCouncilStudentClassCouncilStudent
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::class-council-student.class-council-student',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiClassSubjectClassSubject extends Schema.CollectionType {
+  collectionName: 'class_subjects';
+  info: {
+    singularName: 'class-subject';
+    pluralName: 'class-subjects';
+    displayName: 'Class Subject';
+    description: 'Coefficient of a subject for a specific class';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    class: Attribute.Relation<
+      'api::class-subject.class-subject',
+      'manyToOne',
+      'api::class.class'
+    >;
+    subject: Attribute.Relation<
+      'api::class-subject.class-subject',
+      'manyToOne',
+      'api::subject.subject'
+    >;
+    coefficient: Attribute.Decimal &
+      Attribute.Required &
+      Attribute.SetMinMax<{
+        min: 0;
+      }> &
+      Attribute.DefaultTo<1>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::class-subject.class-subject',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::class-subject.class-subject',
       'oneToOne',
       'admin::user'
     > &
@@ -1415,6 +1469,7 @@ export interface ApiPaymentPayment extends Schema.CollectionType {
     draftAndPublish: false;
   };
   attributes: {
+    reference: Attribute.String & Attribute.Unique;
     monthOf: Attribute.Date;
     isPaid: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<true>;
     enrollment: Attribute.Relation<
@@ -1567,12 +1622,18 @@ export interface ApiSchoolSchool extends Schema.CollectionType {
       'oneToMany',
       'api::class.class'
     >;
+    subjects: Attribute.Relation<
+      'api::school.school',
+      'oneToMany',
+      'api::subject.subject'
+    >;
     banner: Attribute.Media;
     expenses: Attribute.Relation<
       'api::school.school',
       'oneToMany',
       'api::expense.expense'
     >;
+    periodTemplate: Attribute.JSON;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1717,9 +1778,18 @@ export interface ApiSubjectSubject extends Schema.CollectionType {
   };
   attributes: {
     subjectname: Attribute.String & Attribute.Required;
-    hourlyQuantity: Attribute.Integer;
-    hourlyRate: Attribute.Integer;
-    salaireStatus: Attribute.Enumeration<['Pay\u00E9', 'Impay\u00E9']>;
+    school: Attribute.Relation<
+      'api::subject.subject',
+      'manyToOne',
+      'api::school.school'
+    >;
+    classSubjects: Attribute.Relation<
+      'api::subject.subject',
+      'oneToMany',
+      'api::class-subject.class-subject'
+    >;
+    code: Attribute.String;
+    isActive: Attribute.Boolean & Attribute.DefaultTo<true>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1905,6 +1975,7 @@ declare module '@strapi/types' {
       'api::class.class': ApiClassClass;
       'api::class-council.class-council': ApiClassCouncilClassCouncil;
       'api::class-council-student.class-council-student': ApiClassCouncilStudentClassCouncilStudent;
+      'api::class-subject.class-subject': ApiClassSubjectClassSubject;
       'api::course-session.course-session': ApiCourseSessionCourseSession;
       'api::enrollment.enrollment': ApiEnrollmentEnrollment;
       'api::expense.expense': ApiExpenseExpense;

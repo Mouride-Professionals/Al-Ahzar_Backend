@@ -55,5 +55,33 @@ module.exports = createCoreService('api::assessment.assessment', ({ strapi }) =>
     if (String(classEntity.schoolYear?.id) !== String(schoolYearId)) {
       throw new Error("La classe ne correspond pas à l'année scolaire sélectionnée.");
     }
+
+    const assessmentDate = data.assessmentDate || current?.assessmentDate;
+    const dueDate = data.dueDate !== undefined ? data.dueDate : current?.dueDate;
+
+    if (assessmentDate || dueDate) {
+      const schoolYear = await strapi.entityService.findOne(
+        'api::school-year.school-year',
+        schoolYearId,
+      );
+
+      if (schoolYear) {
+        if (assessmentDate && schoolYear.startDate && assessmentDate < schoolYear.startDate) {
+          throw new Error("La date doit être comprise dans l'année scolaire sélectionnée.");
+        }
+
+        if (assessmentDate && schoolYear.endDate && assessmentDate > schoolYear.endDate) {
+          throw new Error("La date doit être comprise dans l'année scolaire sélectionnée.");
+        }
+
+        if (dueDate && schoolYear.startDate && dueDate < schoolYear.startDate) {
+          throw new Error("La date doit être comprise dans l'année scolaire sélectionnée.");
+        }
+
+        if (dueDate && schoolYear.endDate && dueDate > schoolYear.endDate) {
+          throw new Error("La date doit être comprise dans l'année scolaire sélectionnée.");
+        }
+      }
+    }
   },
 }));

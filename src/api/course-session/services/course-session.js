@@ -80,5 +80,24 @@ module.exports = createCoreService('api::course-session.course-session', ({ stra
     }
 
     await assertClassScope(strapi, classId, schoolId, schoolYearId);
+
+    const sessionDate = data.sessionDate || current?.sessionDate;
+
+    if (sessionDate) {
+      const schoolYear = await strapi.entityService.findOne(
+        'api::school-year.school-year',
+        schoolYearId,
+      );
+
+      if (schoolYear) {
+        if (schoolYear.startDate && sessionDate < schoolYear.startDate) {
+          throw new Error("La date doit être comprise dans l'année scolaire sélectionnée.");
+        }
+
+        if (schoolYear.endDate && sessionDate > schoolYear.endDate) {
+          throw new Error("La date doit être comprise dans l'année scolaire sélectionnée.");
+        }
+      }
+    }
   },
 }));

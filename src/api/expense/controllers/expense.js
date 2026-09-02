@@ -4,6 +4,43 @@ const { createCoreController } = require("@strapi/strapi").factories;
 const { resolveFinanceAccessContext } = require("../../../utils/finance-access");
 
 module.exports = createCoreController("api::expense.expense", ({ strapi }) => ({
+  async create(ctx) {
+    const data = ctx.request.body?.data || ctx.request.body;
+
+    try {
+      await strapi.service("api::expense.expense").validateExpense(data);
+    } catch (error) {
+      return ctx.badRequest(error.message);
+    }
+
+    const entity = await strapi.entityService.create("api::expense.expense", {
+      data,
+      populate: ["school", "schoolYear"],
+    });
+
+    const sanitized = await this.sanitizeOutput(entity, ctx);
+    return this.transformResponse(sanitized);
+  },
+
+  async update(ctx) {
+    const { id } = ctx.params;
+    const data = ctx.request.body?.data || ctx.request.body;
+
+    try {
+      await strapi.service("api::expense.expense").validateExpense(data, { expenseId: id });
+    } catch (error) {
+      return ctx.badRequest(error.message);
+    }
+
+    const entity = await strapi.entityService.update("api::expense.expense", id, {
+      data,
+      populate: ["school", "schoolYear"],
+    });
+
+    const sanitized = await this.sanitizeOutput(entity, ctx);
+    return this.transformResponse(sanitized);
+  },
+
   async stats(ctx) {
     try {
       const accessContext = await resolveFinanceAccessContext(

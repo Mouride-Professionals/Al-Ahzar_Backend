@@ -1,14 +1,14 @@
 {
-  "key": "plugin_content_manager_configuration_content_types::api::payment.payment",
+  "key": "plugin_content_manager_configuration_content_types::api::course-session.course-session",
   "value": {
-    "uid": "api::payment.payment",
+    "uid": "api::course-session.course-session",
     "settings": {
       "bulkable": true,
       "filterable": true,
       "searchable": true,
       "pageSize": 10,
-      "mainField": "motive",
-      "defaultSortBy": "motive",
+      "mainField": "title",
+      "defaultSortBy": "title",
       "defaultSortOrder": "ASC"
     },
     "metadatas": {
@@ -20,115 +20,58 @@
           "sortable": true
         }
       },
-      "reference": {
+      "sessionDate": {
         "edit": {
-          "label": "reference",
+          "label": "sessionDate",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "reference",
+          "label": "sessionDate",
           "searchable": true,
           "sortable": true
         }
       },
-      "monthOf": {
+      "title": {
         "edit": {
-          "label": "monthOf",
+          "label": "title",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "monthOf",
+          "label": "title",
           "searchable": true,
           "sortable": true
         }
       },
-      "isPaid": {
+      "summary": {
         "edit": {
-          "label": "isPaid",
+          "label": "summary",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "isPaid",
+          "label": "summary",
           "searchable": true,
           "sortable": true
         }
       },
-      "enrollment": {
+      "homeworkGiven": {
         "edit": {
-          "label": "enrollment",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true,
-          "mainField": "id"
-        },
-        "list": {
-          "label": "enrollment",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "amount": {
-        "edit": {
-          "label": "amount",
+          "label": "homeworkGiven",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "amount",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "paymentType": {
-        "edit": {
-          "label": "paymentType",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "paymentType",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "motive": {
-        "edit": {
-          "label": "motive",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "motive",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "comment": {
-        "edit": {
-          "label": "comment",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "comment",
+          "label": "homeworkGiven",
           "searchable": true,
           "sortable": true
         }
@@ -147,32 +90,151 @@
           "sortable": true
         }
       },
-      "cancellationReason": {
+      "cancelReason": {
         "edit": {
-          "label": "cancellationReason",
+          "label": "cancelReason",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "cancellationReason",
+          "label": "cancelReason",
           "searchable": true,
           "sortable": true
         }
       },
-      "cancelledAt": {
+      "replacementNote": {
         "edit": {
-          "label": "cancelledAt",
+          "label": "replacementNote",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "cancelledAt",
+          "label": "replacementNote",
           "searchable": true,
           "sortable": true
+        }
+      },
+      "completedAt": {
+        "edit": {
+          "label": "completedAt",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "completedAt",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "timetableSlot": {
+        "edit": {
+          "label": "timetableSlot",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "room"
+        },
+        "list": {
+          "label": "timetableSlot",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "class": {
+        "edit": {
+          "label": "class",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "description"
+        },
+        "list": {
+          "label": "class",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "teacher": {
+        "edit": {
+          "label": "teacher",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "firstname"
+        },
+        "list": {
+          "label": "teacher",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "subject": {
+        "edit": {
+          "label": "subject",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "subjectname"
+        },
+        "list": {
+          "label": "subject",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "school": {
+        "edit": {
+          "label": "school",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "name"
+        },
+        "list": {
+          "label": "school",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "schoolYear": {
+        "edit": {
+          "label": "schoolYear",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "name"
+        },
+        "list": {
+          "label": "schoolYear",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "attendanceRecords": {
+        "edit": {
+          "label": "attendanceRecords",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "id"
+        },
+        "list": {
+          "label": "attendanceRecords",
+          "searchable": false,
+          "sortable": false
         }
       },
       "createdAt": {
@@ -237,64 +299,84 @@
     "layouts": {
       "list": [
         "id",
-        "monthOf",
-        "isPaid",
-        "enrollment"
+        "sessionDate",
+        "title",
+        "summary"
       ],
       "edit": [
         [
           {
-            "name": "monthOf",
+            "name": "sessionDate",
             "size": 4
           },
           {
-            "name": "isPaid",
-            "size": 4
-          }
-        ],
-        [
-          {
-            "name": "enrollment",
-            "size": 6
-          },
-          {
-            "name": "amount",
-            "size": 4
-          }
-        ],
-        [
-          {
-            "name": "paymentType",
-            "size": 6
-          },
-          {
-            "name": "motive",
+            "name": "title",
             "size": 6
           }
         ],
         [
           {
-            "name": "comment",
+            "name": "summary",
             "size": 6
           },
+          {
+            "name": "homeworkGiven",
+            "size": 6
+          }
+        ],
+        [
           {
             "name": "status",
             "size": 6
+          },
+          {
+            "name": "cancelReason",
+            "size": 6
           }
         ],
         [
           {
-            "name": "cancellationReason",
+            "name": "replacementNote",
             "size": 6
           },
           {
-            "name": "cancelledAt",
-            "size": 4
+            "name": "completedAt",
+            "size": 6
           }
         ],
         [
           {
-            "name": "reference",
+            "name": "timetableSlot",
+            "size": 6
+          },
+          {
+            "name": "class",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "teacher",
+            "size": 6
+          },
+          {
+            "name": "subject",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "school",
+            "size": 6
+          },
+          {
+            "name": "schoolYear",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "attendanceRecords",
             "size": 6
           }
         ]

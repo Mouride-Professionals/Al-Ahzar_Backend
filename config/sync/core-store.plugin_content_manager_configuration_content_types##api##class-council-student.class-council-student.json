@@ -1,14 +1,14 @@
 {
-  "key": "plugin_content_manager_configuration_content_types::api::payment.payment",
+  "key": "plugin_content_manager_configuration_content_types::api::class-council-student.class-council-student",
   "value": {
-    "uid": "api::payment.payment",
+    "uid": "api::class-council-student.class-council-student",
     "settings": {
       "bulkable": true,
       "filterable": true,
       "searchable": true,
       "pageSize": 10,
-      "mainField": "motive",
-      "defaultSortBy": "motive",
+      "mainField": "id",
+      "defaultSortBy": "id",
       "defaultSortOrder": "ASC"
     },
     "metadatas": {
@@ -20,44 +20,115 @@
           "sortable": true
         }
       },
-      "reference": {
+      "generalAverage": {
         "edit": {
-          "label": "reference",
+          "label": "generalAverage",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "reference",
+          "label": "generalAverage",
           "searchable": true,
           "sortable": true
         }
       },
-      "monthOf": {
+      "rank": {
         "edit": {
-          "label": "monthOf",
+          "label": "rank",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "monthOf",
+          "label": "rank",
           "searchable": true,
           "sortable": true
         }
       },
-      "isPaid": {
+      "attendanceAbsences": {
         "edit": {
-          "label": "isPaid",
+          "label": "attendanceAbsences",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "isPaid",
+          "label": "attendanceAbsences",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "attendanceLates": {
+        "edit": {
+          "label": "attendanceLates",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "attendanceLates",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "teacherComment": {
+        "edit": {
+          "label": "teacherComment",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "teacherComment",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "councilDecision": {
+        "edit": {
+          "label": "councilDecision",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "councilDecision",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "decisionNote": {
+        "edit": {
+          "label": "decisionNote",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "decisionNote",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "council": {
+        "edit": {
+          "label": "council",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "council",
           "searchable": true,
           "sortable": true
         }
@@ -77,100 +148,32 @@
           "sortable": true
         }
       },
-      "amount": {
+      "school": {
         "edit": {
-          "label": "amount",
+          "label": "school",
           "description": "",
           "placeholder": "",
           "visible": true,
-          "editable": true
+          "editable": true,
+          "mainField": "name"
         },
         "list": {
-          "label": "amount",
+          "label": "school",
           "searchable": true,
           "sortable": true
         }
       },
-      "paymentType": {
+      "schoolYear": {
         "edit": {
-          "label": "paymentType",
+          "label": "schoolYear",
           "description": "",
           "placeholder": "",
           "visible": true,
-          "editable": true
+          "editable": true,
+          "mainField": "name"
         },
         "list": {
-          "label": "paymentType",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "motive": {
-        "edit": {
-          "label": "motive",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "motive",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "comment": {
-        "edit": {
-          "label": "comment",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "comment",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "status": {
-        "edit": {
-          "label": "status",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "status",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "cancellationReason": {
-        "edit": {
-          "label": "cancellationReason",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "cancellationReason",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "cancelledAt": {
-        "edit": {
-          "label": "cancelledAt",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "cancelledAt",
+          "label": "schoolYear",
           "searchable": true,
           "sortable": true
         }
@@ -237,64 +240,62 @@
     "layouts": {
       "list": [
         "id",
-        "monthOf",
-        "isPaid",
-        "enrollment"
+        "generalAverage",
+        "rank",
+        "attendanceAbsences"
       ],
       "edit": [
         [
           {
-            "name": "monthOf",
+            "name": "generalAverage",
             "size": 4
           },
           {
-            "name": "isPaid",
+            "name": "rank",
+            "size": 4
+          },
+          {
+            "name": "attendanceAbsences",
             "size": 4
           }
         ],
         [
+          {
+            "name": "attendanceLates",
+            "size": 4
+          },
+          {
+            "name": "teacherComment",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "councilDecision",
+            "size": 6
+          },
+          {
+            "name": "decisionNote",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "council",
+            "size": 6
+          },
           {
             "name": "enrollment",
             "size": 6
-          },
-          {
-            "name": "amount",
-            "size": 4
           }
         ],
         [
           {
-            "name": "paymentType",
+            "name": "school",
             "size": 6
           },
           {
-            "name": "motive",
-            "size": 6
-          }
-        ],
-        [
-          {
-            "name": "comment",
-            "size": 6
-          },
-          {
-            "name": "status",
-            "size": 6
-          }
-        ],
-        [
-          {
-            "name": "cancellationReason",
-            "size": 6
-          },
-          {
-            "name": "cancelledAt",
-            "size": 4
-          }
-        ],
-        [
-          {
-            "name": "reference",
+            "name": "schoolYear",
             "size": 6
           }
         ]

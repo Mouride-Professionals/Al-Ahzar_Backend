@@ -28,6 +28,12 @@
       "action": "api::class-council-student.class-council-student.findOne"
     },
     {
+      "action": "api::class-subject.class-subject.find"
+    },
+    {
+      "action": "api::class-subject.class-subject.findOne"
+    },
+    {
       "action": "api::class-council.class-council.find"
     },
     {

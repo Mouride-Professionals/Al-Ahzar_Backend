@@ -12,6 +12,10 @@
   },
   "pluginOptions": {},
   "attributes": {
+    "reference": {
+      "type": "string",
+      "unique": true
+    },
     "monthOf": {
       "type": "date",
       "required": false
