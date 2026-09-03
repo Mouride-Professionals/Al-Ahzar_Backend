@@ -218,6 +218,52 @@ module.exports = createCoreController("api::payment.payment", ({ strapi }) => ({
         )
           .count({ count: "*" })
           .first(),
+
+        // Distinct enrollments that paid their monthly fee this month.
+        // Always joins payments_enrollment_links (unlike applyFilters, which only
+        // joins it when a school/schoolYear filter is present) since we need
+        // enrollment_id for the DISTINCT count regardless of scoping.
+        currentMonthMonthlyPayersCount: (() => {
+          const query = baseQuery
+            .clone()
+            .where({ "payments.payment_type": "monthly" })
+            .andWhere("payments.created_at", ">=", startOfCurrentMonth)
+            .andWhere("payments.created_at", "<", startOfNextMonth)
+            .join(
+              "payments_enrollment_links",
+              "payments.id",
+              "payments_enrollment_links.payment_id"
+            );
+
+          if (schoolYearId) {
+            query
+              .join(
+                "enrollments_school_year_links",
+                "payments_enrollment_links.enrollment_id",
+                "enrollments_school_year_links.enrollment_id"
+              )
+              .andWhere("enrollments_school_year_links.school_year_id", schoolYearId);
+          }
+
+          if (schoolId) {
+            query
+              .join(
+                "enrollments_class_links",
+                "payments_enrollment_links.enrollment_id",
+                "enrollments_class_links.enrollment_id"
+              )
+              .join(
+                "classes_school_links",
+                "enrollments_class_links.class_id",
+                "classes_school_links.class_id"
+              )
+              .andWhere("classes_school_links.school_id", schoolId);
+          }
+
+          return query
+            .countDistinct({ count: "payments_enrollment_links.enrollment_id" })
+            .first();
+        })(),
       };
 
       // New query: Monthly breakdown for the school year.
@@ -266,6 +312,7 @@ module.exports = createCoreController("api::payment.payment", ({ strapi }) => ({
         cancelledPaymentsCountRes,
         pendingPaymentsTotalRes,
         pendingPaymentsCountRes,
+        currentMonthMonthlyPayersCountRes,
         monthlyBreakdown,
         paymentTypeBreakdown,
         statusBreakdown,
@@ -299,6 +346,9 @@ module.exports = createCoreController("api::payment.payment", ({ strapi }) => ({
         // Pending payments insights
         pendingPaymentsTotal: extractTotal(pendingPaymentsTotalRes),
         pendingPaymentsCount: extractCount(pendingPaymentsCountRes),
+
+        // Distinct enrollments that paid their monthly fee this month
+        currentMonthMonthlyPayersCount: extractCount(currentMonthMonthlyPayersCountRes),
 
         // Breakdown by month (excluding cancelled)
         monthlyBreakdown: monthlyBreakdown.map((row) => ({
