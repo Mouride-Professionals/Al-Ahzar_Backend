@@ -18,12 +18,18 @@
     },
     "assessmentType": {
       "type": "enumeration",
-      "enum": ["note", "homework", "exam"],
+      "enum": ["homework", "composition", "exam"],
       "required": true
     },
     "assessmentDate": {
       "type": "date",
       "required": true
+    },
+    "startTime": {
+      "type": "time"
+    },
+    "endTime": {
+      "type": "time"
     },
     "dueDate": {
       "type": "date"

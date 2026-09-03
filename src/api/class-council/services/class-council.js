@@ -66,6 +66,7 @@ module.exports = createCoreService('api::class-council.class-council', ({ strapi
             schoolYearId: data.schoolYear,
             subjectId: classSubject.subject.id,
             academicPeriodId: data.academicPeriod,
+            excludeAssessmentTypes: ['exam'],
           });
 
           return {

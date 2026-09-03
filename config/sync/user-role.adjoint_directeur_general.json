@@ -31,6 +31,9 @@
       "action": "api::assessment.assessment.findOne"
     },
     {
+      "action": "api::assessment.assessment.generateBatch"
+    },
+    {
       "action": "api::assessment.assessment.update"
     },
     {
@@ -167,6 +170,21 @@
     },
     {
       "action": "api::expense.expense.stats"
+    },
+    {
+      "action": "api::fee-schedule.fee-schedule.create"
+    },
+    {
+      "action": "api::fee-schedule.fee-schedule.delete"
+    },
+    {
+      "action": "api::fee-schedule.fee-schedule.find"
+    },
+    {
+      "action": "api::fee-schedule.fee-schedule.findOne"
+    },
+    {
+      "action": "api::fee-schedule.fee-schedule.update"
     },
     {
       "action": "api::grade-entry.grade-entry.bulk"

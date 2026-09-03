@@ -9,6 +9,18 @@ const { createCoreController } = require('@strapi/strapi').factories;
 const populate = ['class', 'subject', 'teacher', 'academicPeriod', 'school', 'schoolYear'];
 
 module.exports = createCoreController('api::assessment.assessment', ({ strapi }) => ({
+  async generateBatch(ctx) {
+    const data = ctx.request.body?.data || ctx.request.body;
+
+    try {
+      const entities = await strapi.service('api::assessment.assessment').generateBatch(data);
+      const sanitized = await this.sanitizeOutput(entities, ctx);
+      return this.transformResponse(sanitized);
+    } catch (error) {
+      return ctx.badRequest(error.message);
+    }
+  },
+
   async create(ctx) {
     const data = ctx.request.body?.data || ctx.request.body;
 

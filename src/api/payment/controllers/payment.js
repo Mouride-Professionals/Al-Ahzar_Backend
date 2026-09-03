@@ -97,6 +97,21 @@ module.exports = createCoreController("api::payment.payment", ({ strapi }) => ({
       // Base query on the payments table - EXCLUDE CANCELLED PAYMENTS
       const baseQuery = knex("payments").whereNot("payments.status", "cancelled");
 
+      // "Annual" aggregates are scoped to a school year, not a calendar year.
+      // When a schoolYearId is provided, applyFilters() below already restricts
+      // rows to that school year's enrollments via a relational join — that's
+      // the correct scope and needs no extra date filter (a payment made just
+      // before the term's official start date still belongs to that school
+      // year). The created_at date window is only a fallback for the rare case
+      // where no school year is selected at all, to avoid summing all-time data.
+      const applyPeriod = (query, dateColumn) => {
+        if (schoolYearId) {
+          return query;
+        }
+
+        return query.where(dateColumn, ">=", startOfYear).andWhere(dateColumn, "<", startOfNextYear);
+      };
+
       // Helper function to apply relationship filters.
       // Assumes Strapi relationships are organized as:
       // payments -> payments_enrollment_links -> enrollments ->
@@ -137,12 +152,7 @@ module.exports = createCoreController("api::payment.payment", ({ strapi }) => ({
 
       // Build the aggregation queries using the base query and filters
       const queries = {
-        yearPaymentTotal: applyFilters(
-          baseQuery
-            .clone()
-            .where("payments.created_at", ">=", startOfYear)
-            .andWhere("payments.created_at", "<", startOfNextYear)
-        )
+        yearPaymentTotal: applyFilters(applyPeriod(baseQuery.clone(), "payments.created_at"))
           .sum({ total: "payments.amount" })
           .first(),
 
@@ -180,21 +190,19 @@ module.exports = createCoreController("api::payment.payment", ({ strapi }) => ({
 
         // New queries for cancelled payment insights
         cancelledPaymentsTotal: applyFilters(
-          knex("payments")
-            .clone()
-            .where("payments.status", "cancelled")
-            .where("payments.created_at", ">=", startOfYear)
-            .andWhere("payments.created_at", "<", startOfNextYear)
+          applyPeriod(
+            knex("payments").clone().where("payments.status", "cancelled"),
+            "payments.created_at"
+          )
         )
           .sum({ total: "payments.amount" })
           .first(),
 
         cancelledPaymentsCount: applyFilters(
-          knex("payments")
-            .clone()
-            .where("payments.status", "cancelled")
-            .where("payments.created_at", ">=", startOfYear)
-            .andWhere("payments.created_at", "<", startOfNextYear)
+          applyPeriod(
+            knex("payments").clone().where("payments.status", "cancelled"),
+            "payments.created_at"
+          )
         )
           .count({ count: "*" })
           .first(),
@@ -212,35 +220,29 @@ module.exports = createCoreController("api::payment.payment", ({ strapi }) => ({
           .first(),
       };
 
-      // New query: Monthly breakdown for the current year.
-      // Groups payments by month
-      const monthlyBreakdownQuery = applyFilters(
-        baseQuery
-          .clone()
-          .where("payments.created_at", ">=", startOfYear)
-          .andWhere("payments.created_at", "<", startOfNextYear)
-      )
-        .groupByRaw("EXTRACT(MONTH FROM payments.created_at)::INTEGER")
-        .select(knex.raw("EXTRACT(MONTH FROM payments.created_at)::INTEGER AS month"))
+      // New query: Monthly breakdown for the school year.
+      // Groups payments by calendar year + month, since a school year spans
+      // two calendar years (e.g. Oct 2026 - Jul 2027) and a bare month number
+      // would be ambiguous between them.
+      const monthlyBreakdownQuery = applyFilters(applyPeriod(baseQuery.clone(), "payments.created_at"))
+        .groupByRaw(
+          "EXTRACT(YEAR FROM payments.created_at)::INTEGER, EXTRACT(MONTH FROM payments.created_at)::INTEGER"
+        )
+        .select(
+          knex.raw("EXTRACT(YEAR FROM payments.created_at)::INTEGER AS year"),
+          knex.raw("EXTRACT(MONTH FROM payments.created_at)::INTEGER AS month")
+        )
         .sum({ total: "payments.amount" });
 
-      // New query: Group payments by payment_type for the current year.
-      const paymentTypeBreakdownQuery = applyFilters(
-        baseQuery
-          .clone()
-          .where("payments.created_at", ">=", startOfYear)
-          .andWhere("payments.created_at", "<", startOfNextYear)
-      )
+      // New query: Group payments by payment_type for the school year.
+      const paymentTypeBreakdownQuery = applyFilters(applyPeriod(baseQuery.clone(), "payments.created_at"))
         .groupBy("payments.payment_type")
         .select("payments.payment_type as paymentType")
         .sum({ total: "payments.amount" });
 
-      // Group payments by status for the current year
+      // Group payments by status for the school year
       const statusBreakdownQuery = applyFilters(
-        knex("payments")
-          .clone()
-          .where("payments.created_at", ">=", startOfYear)
-          .andWhere("payments.created_at", "<", startOfNextYear)
+        applyPeriod(knex("payments").clone(), "payments.created_at")
       )
         .groupBy("payments.status")
         .select("payments.status as status")
@@ -302,6 +304,7 @@ module.exports = createCoreController("api::payment.payment", ({ strapi }) => ({
         monthlyBreakdown: monthlyBreakdown.map((row) => ({
           month: row.month,
           total: extractTotal(row),
+          year: row.year,
         })),
 
         // Breakdown by payment type (excluding cancelled)

@@ -4,6 +4,27 @@
   "type": "surveillant_general",
   "permissions": [
     {
+      "action": "api::academic-period.academic-period.find"
+    },
+    {
+      "action": "api::academic-period.academic-period.findOne"
+    },
+    {
+      "action": "api::assessment.assessment.create"
+    },
+    {
+      "action": "api::assessment.assessment.delete"
+    },
+    {
+      "action": "api::assessment.assessment.find"
+    },
+    {
+      "action": "api::assessment.assessment.findOne"
+    },
+    {
+      "action": "api::assessment.assessment.update"
+    },
+    {
       "action": "api::attendance-record.attendance-record.bulk"
     },
     {
@@ -86,6 +107,27 @@
     },
     {
       "action": "api::enrollment.enrollment.update"
+    },
+    {
+      "action": "api::grade-entry.grade-entry.bulk"
+    },
+    {
+      "action": "api::grade-entry.grade-entry.create"
+    },
+    {
+      "action": "api::grade-entry.grade-entry.delete"
+    },
+    {
+      "action": "api::grade-entry.grade-entry.find"
+    },
+    {
+      "action": "api::grade-entry.grade-entry.findOne"
+    },
+    {
+      "action": "api::grade-entry.grade-entry.summary"
+    },
+    {
+      "action": "api::grade-entry.grade-entry.update"
     },
     {
       "action": "api::payment.payment.find"

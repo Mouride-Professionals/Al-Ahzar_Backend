@@ -1,0 +1,72 @@
+{
+  "kind": "collectionType",
+  "collectionName": "fee_schedules",
+  "info": {
+    "singularName": "fee-schedule",
+    "pluralName": "fee-schedules",
+    "displayName": "Fee Schedule",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "school": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::school.school",
+      "required": true
+    },
+    "schoolYear": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::school-year.school-year",
+      "required": true
+    },
+    "cycle": {
+      "type": "enumeration",
+      "enum": [
+        "primaire",
+        "secondaire 1er cycle",
+        "secondaire 2eme cycle"
+      ],
+      "required": true
+    },
+    "level": {
+      "type": "enumeration",
+      "enum": [
+        "CI",
+        "CP",
+        "CE1",
+        "CE2",
+        "CM1",
+        "CM2",
+        "a 6eme",
+        "a 5eme",
+        "a 4eme",
+        "a 3eme",
+        "a 2nd",
+        "a 1ere",
+        "Terminale"
+      ]
+    },
+    "paymentType": {
+      "type": "enumeration",
+      "enum": [
+        "enrollment",
+        "monthly",
+        "exam",
+        "blouse",
+        "parentContribution",
+        "other"
+      ],
+      "required": true
+    },
+    "amount": {
+      "type": "decimal",
+      "min": 0,
+      "required": true
+    }
+  }
+}

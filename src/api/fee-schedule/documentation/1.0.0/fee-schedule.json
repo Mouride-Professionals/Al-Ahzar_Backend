@@ -1,5 +1,5 @@
 {
-  "/assessments": {
+  "/fee-schedules": {
     "get": {
       "responses": {
         "200": {
@@ -7,7 +7,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/AssessmentListResponse"
+                "$ref": "#/components/schemas/FeeScheduleListResponse"
               }
             }
           }
@@ -64,7 +64,7 @@
         }
       },
       "tags": [
-        "Assessment"
+        "Fee-schedule"
       ],
       "parameters": [
         {
@@ -170,7 +170,7 @@
           }
         }
       ],
-      "operationId": "get/assessments"
+      "operationId": "get/fee-schedules"
     },
     "post": {
       "responses": {
@@ -179,7 +179,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/AssessmentResponse"
+                "$ref": "#/components/schemas/FeeScheduleResponse"
               }
             }
           }
@@ -236,23 +236,23 @@
         }
       },
       "tags": [
-        "Assessment"
+        "Fee-schedule"
       ],
       "parameters": [],
-      "operationId": "post/assessments",
+      "operationId": "post/fee-schedules",
       "requestBody": {
         "required": true,
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/AssessmentRequest"
+              "$ref": "#/components/schemas/FeeScheduleRequest"
             }
           }
         }
       }
     }
   },
-  "/assessments/{id}": {
+  "/fee-schedules/{id}": {
     "get": {
       "responses": {
         "200": {
@@ -260,7 +260,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/AssessmentResponse"
+                "$ref": "#/components/schemas/FeeScheduleResponse"
               }
             }
           }
@@ -317,7 +317,7 @@
         }
       },
       "tags": [
-        "Assessment"
+        "Fee-schedule"
       ],
       "parameters": [
         {
@@ -331,7 +331,7 @@
           }
         }
       ],
-      "operationId": "get/assessments/{id}"
+      "operationId": "get/fee-schedules/{id}"
     },
     "put": {
       "responses": {
@@ -340,7 +340,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/AssessmentResponse"
+                "$ref": "#/components/schemas/FeeScheduleResponse"
               }
             }
           }
@@ -397,7 +397,7 @@
         }
       },
       "tags": [
-        "Assessment"
+        "Fee-schedule"
       ],
       "parameters": [
         {
@@ -411,13 +411,13 @@
           }
         }
       ],
-      "operationId": "put/assessments/{id}",
+      "operationId": "put/fee-schedules/{id}",
       "requestBody": {
         "required": true,
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/AssessmentRequest"
+              "$ref": "#/components/schemas/FeeScheduleRequest"
             }
           }
         }
@@ -488,7 +488,7 @@
         }
       },
       "tags": [
-        "Assessment"
+        "Fee-schedule"
       ],
       "parameters": [
         {
@@ -502,88 +502,7 @@
           }
         }
       ],
-      "operationId": "delete/assessments/{id}"
-    }
-  },
-  "/assessments/generate-batch": {
-    "post": {
-      "responses": {
-        "200": {
-          "description": "OK",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/AssessmentResponse"
-              }
-            }
-          }
-        },
-        "400": {
-          "description": "Bad Request",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          }
-        },
-        "401": {
-          "description": "Unauthorized",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          }
-        },
-        "403": {
-          "description": "Forbidden",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          }
-        },
-        "404": {
-          "description": "Not Found",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          }
-        },
-        "500": {
-          "description": "Internal Server Error",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          }
-        }
-      },
-      "tags": [
-        "Assessment"
-      ],
-      "parameters": [],
-      "operationId": "post/assessments/generate-batch",
-      "requestBody": {
-        "required": true,
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/AssessmentRequest"
-            }
-          }
-        }
-      }
+      "operationId": "delete/fee-schedules/{id}"
     }
   }
 }

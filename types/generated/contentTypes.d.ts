@@ -798,9 +798,11 @@ export interface ApiAssessmentAssessment extends Schema.CollectionType {
   };
   attributes: {
     title: Attribute.String & Attribute.Required;
-    assessmentType: Attribute.Enumeration<['note', 'homework', 'exam']> &
+    assessmentType: Attribute.Enumeration<['homework', 'composition', 'exam']> &
       Attribute.Required;
     assessmentDate: Attribute.Date & Attribute.Required;
+    startTime: Attribute.Time;
+    endTime: Attribute.Time;
     dueDate: Attribute.Date;
     maxScore: Attribute.Decimal &
       Attribute.Required &
@@ -1355,6 +1357,7 @@ export interface ApiExpenseExpense extends Schema.CollectionType {
     draftAndPublish: false;
   };
   attributes: {
+    reference: Attribute.String & Attribute.Unique;
     expenseDate: Attribute.Date;
     amount: Attribute.Decimal &
       Attribute.SetMinMax<{
@@ -1395,6 +1398,77 @@ export interface ApiExpenseExpense extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::expense.expense',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiFeeScheduleFeeSchedule extends Schema.CollectionType {
+  collectionName: 'fee_schedules';
+  info: {
+    singularName: 'fee-schedule';
+    pluralName: 'fee-schedules';
+    displayName: 'Fee Schedule';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    school: Attribute.Relation<
+      'api::fee-schedule.fee-schedule',
+      'manyToOne',
+      'api::school.school'
+    > &
+      Attribute.Required;
+    schoolYear: Attribute.Relation<
+      'api::fee-schedule.fee-schedule',
+      'manyToOne',
+      'api::school-year.school-year'
+    > &
+      Attribute.Required;
+    cycle: Attribute.Enumeration<
+      ['primaire', 'secondaire 1er cycle', 'secondaire 2eme cycle']
+    > &
+      Attribute.Required;
+    level: Attribute.Enumeration<
+      [
+        'CI',
+        'CP',
+        'CE1',
+        'CE2',
+        'CM1',
+        'CM2',
+        'a 6eme',
+        'a 5eme',
+        'a 4eme',
+        'a 3eme',
+        'a 2nd',
+        'a 1ere',
+        'Terminale'
+      ]
+    >;
+    paymentType: Attribute.Enumeration<
+      ['enrollment', 'monthly', 'exam', 'blouse', 'parentContribution', 'other']
+    > &
+      Attribute.Required;
+    amount: Attribute.Decimal &
+      Attribute.Required &
+      Attribute.SetMinMax<{
+        min: 0;
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::fee-schedule.fee-schedule',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::fee-schedule.fee-schedule',
       'oneToOne',
       'admin::user'
     > &
@@ -1979,6 +2053,7 @@ declare module '@strapi/types' {
       'api::course-session.course-session': ApiCourseSessionCourseSession;
       'api::enrollment.enrollment': ApiEnrollmentEnrollment;
       'api::expense.expense': ApiExpenseExpense;
+      'api::fee-schedule.fee-schedule': ApiFeeScheduleFeeSchedule;
       'api::grade-entry.grade-entry': ApiGradeEntryGradeEntry;
       'api::payment.payment': ApiPaymentPayment;
       'api::school.school': ApiSchoolSchool;

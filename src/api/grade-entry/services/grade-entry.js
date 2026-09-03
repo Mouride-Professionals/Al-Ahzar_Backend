@@ -120,6 +120,14 @@ module.exports = createCoreService('api::grade-entry.grade-entry', ({ strapi }) 
       assessmentFilters.assessmentType = params.assessmentType;
     }
 
+    const excludeAssessmentTypes = Array.isArray(params.excludeAssessmentTypes)
+      ? params.excludeAssessmentTypes
+      : [];
+
+    if (excludeAssessmentTypes.length > 0) {
+      assessmentFilters.assessmentType = { $notIn: excludeAssessmentTypes };
+    }
+
     const assessments = await strapi.entityService.findMany('api::assessment.assessment', {
       filters: assessmentFilters,
       populate: ['subject', 'academicPeriod'],

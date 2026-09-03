@@ -18,7 +18,85 @@ function relationId(value) {
   return undefined;
 }
 
+const CYCLE_TERMINAL_LEVELS = ['CM2', 'a 3eme', 'Terminale'];
+
 module.exports = createCoreService('api::assessment.assessment', ({ strapi }) => ({
+  async generateBatch(data) {
+    const assessmentType = data.assessmentType;
+    const classId = relationId(data.class);
+    const schoolId = relationId(data.school);
+    const schoolYearId = relationId(data.schoolYear);
+    const academicPeriodId = relationId(data.academicPeriod);
+    const rows = Array.isArray(data.rows) ? data.rows : [];
+
+    if (!['composition', 'exam'].includes(assessmentType)) {
+      throw new Error("Le type doit être 'composition' ou 'exam'.");
+    }
+
+    if (!classId || !schoolId || !schoolYearId || rows.length === 0) {
+      throw new Error('Classe, école, année scolaire et au moins une matière sont obligatoires.');
+    }
+
+    if (assessmentType === 'composition' && !academicPeriodId) {
+      throw new Error('La période académique est obligatoire pour une composition.');
+    }
+
+    const classEntity = await strapi.entityService.findOne('api::class.class', classId, {
+      populate: ['school', 'schoolYear'],
+    });
+
+    if (!classEntity) {
+      throw new Error('Classe introuvable.');
+    }
+
+    if (String(classEntity.school?.id) !== String(schoolId)) {
+      throw new Error("La classe ne correspond pas à l'école sélectionnée.");
+    }
+
+    if (String(classEntity.schoolYear?.id) !== String(schoolYearId)) {
+      throw new Error("La classe ne correspond pas à l'année scolaire sélectionnée.");
+    }
+
+    if (assessmentType === 'exam' && !CYCLE_TERMINAL_LEVELS.includes(classEntity.level)) {
+      throw new Error(
+        "Un examen ne concerne que les classes de fin de cycle (CM2, 3ème, Terminale).",
+      );
+    }
+
+    const created = [];
+
+    for (const row of rows) {
+      const subjectId = relationId(row.subject);
+
+      if (!subjectId || !row.assessmentDate) {
+        throw new Error('Chaque ligne doit avoir une matière et une date.');
+      }
+
+      const entity = await strapi.entityService.create('api::assessment.assessment', {
+        data: {
+          title: row.title,
+          assessmentType,
+          assessmentDate: row.assessmentDate,
+          startTime: row.startTime || null,
+          endTime: row.endTime || null,
+          maxScore: row.maxScore || 20,
+          coefficient: row.coefficient || 1,
+          class: classId,
+          subject: subjectId,
+          teacher: relationId(row.teacher) || null,
+          academicPeriod: assessmentType === 'composition' ? academicPeriodId : null,
+          school: schoolId,
+          schoolYear: schoolYearId,
+        },
+        populate: ['class', 'subject', 'teacher', 'academicPeriod', 'school', 'schoolYear'],
+      });
+
+      created.push(entity);
+    }
+
+    return created;
+  },
+
   async validateAssessment(data, options = {}) {
     let current = null;
 

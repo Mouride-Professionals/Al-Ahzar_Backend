@@ -34,6 +34,12 @@
       "action": "api::expense.expense.update"
     },
     {
+      "action": "api::fee-schedule.fee-schedule.find"
+    },
+    {
+      "action": "api::fee-schedule.fee-schedule.findOne"
+    },
+    {
       "action": "api::payment.payment.create"
     },
     {

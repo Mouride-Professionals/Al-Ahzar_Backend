@@ -3,9 +3,44 @@
 const { createCoreController } = require("@strapi/strapi").factories;
 const { resolveFinanceAccessContext } = require("../../../utils/finance-access");
 
+async function buildExpenseReference(strapi, schoolYearId) {
+  if (!schoolYearId) {
+    return undefined;
+  }
+
+  const schoolYear = await strapi.db.query("api::school-year.school-year").findOne({
+    where: { id: schoolYearId },
+    select: ["startDate"],
+  });
+
+  if (!schoolYear) {
+    return undefined;
+  }
+
+  const yearLabel = new Date(schoolYear.startDate).getFullYear();
+  const prefix = `EXP-${yearLabel}-`;
+
+  const lastExpense = await strapi.db.query("api::expense.expense").findOne({
+    where: { reference: { $startsWith: prefix } },
+    orderBy: { reference: "desc" },
+    select: ["reference"],
+  });
+
+  const lastSequence = lastExpense
+    ? Number.parseInt(lastExpense.reference.slice(prefix.length), 10)
+    : 0;
+  const nextSequence = String(lastSequence + 1).padStart(6, "0");
+
+  return `${prefix}${nextSequence}`;
+}
+
 module.exports = createCoreController("api::expense.expense", ({ strapi }) => ({
   async create(ctx) {
     const data = ctx.request.body?.data || ctx.request.body;
+
+    if (!data.reference) {
+      data.reference = await buildExpenseReference(strapi, data.schoolYear);
+    }
 
     try {
       await strapi.service("api::expense.expense").validateExpense(data);
@@ -91,6 +126,21 @@ module.exports = createCoreController("api::expense.expense", ({ strapi }) => ({
       // Base query on the expenses table
       const baseQuery = knex("expenses");
 
+      // "Annual" aggregates are scoped to a school year, not a calendar year.
+      // When a schoolYearId is provided, applyFilters() below already restricts
+      // rows to that school year via a relational join — that's the correct
+      // scope and needs no extra date filter (an expense recorded just before
+      // the term's official start date still belongs to that school year). The
+      // expense_date window is only a fallback for the rare case where no
+      // school year is selected at all, to avoid summing all-time data.
+      const applyPeriod = (query, dateColumn) => {
+        if (schoolYearId) {
+          return query;
+        }
+
+        return query.where(dateColumn, ">=", startOfYear).andWhere(dateColumn, "<", startOfNextYear);
+      };
+
       // Helper function to apply relationship filters
       const applyFilters = (query) => {
         if (schoolYearId || schoolId) {
@@ -123,12 +173,7 @@ module.exports = createCoreController("api::expense.expense", ({ strapi }) => ({
 
       // Build the aggregation queries using the base query and filters
       const queries = {
-        yearExpenseTotal: applyFilters(
-          baseQuery
-            .clone()
-            .where("expenses.expense_date", ">=", startOfYear)
-            .andWhere("expenses.expense_date", "<", startOfNextYear)
-        )
+        yearExpenseTotal: applyFilters(applyPeriod(baseQuery.clone(), "expenses.expense_date"))
           .sum({ total: "expenses.amount" })
           .first(),
 
@@ -154,24 +199,21 @@ module.exports = createCoreController("api::expense.expense", ({ strapi }) => ({
 
       };
 
-      // Monthly breakdown for the current year
-      const monthlyBreakdownQuery = applyFilters(
-        baseQuery
-          .clone()
-          .where("expenses.expense_date", ">=", startOfYear)
-          .andWhere("expenses.expense_date", "<", startOfNextYear)
-      )
-        .groupByRaw("EXTRACT(MONTH FROM expenses.expense_date)::INTEGER")
-        .select(knex.raw("EXTRACT(MONTH FROM expenses.expense_date)::INTEGER AS month"))
+      // Monthly breakdown for the school year. Groups by calendar year + month,
+      // since a school year spans two calendar years (e.g. Oct 2026 - Jul 2027)
+      // and a bare month number would be ambiguous between them.
+      const monthlyBreakdownQuery = applyFilters(applyPeriod(baseQuery.clone(), "expenses.expense_date"))
+        .groupByRaw(
+          "EXTRACT(YEAR FROM expenses.expense_date)::INTEGER, EXTRACT(MONTH FROM expenses.expense_date)::INTEGER"
+        )
+        .select(
+          knex.raw("EXTRACT(YEAR FROM expenses.expense_date)::INTEGER AS year"),
+          knex.raw("EXTRACT(MONTH FROM expenses.expense_date)::INTEGER AS month")
+        )
         .sum({ total: "expenses.amount" });
 
-      // Category breakdown for the current year
-      const categoryBreakdownQuery = applyFilters(
-        baseQuery
-          .clone()
-          .where("expenses.expense_date", ">=", startOfYear)
-          .andWhere("expenses.expense_date", "<", startOfNextYear)
-      )
+      // Category breakdown for the school year
+      const categoryBreakdownQuery = applyFilters(applyPeriod(baseQuery.clone(), "expenses.expense_date"))
         .groupBy("expenses.category")
         .select("expenses.category as category")
         .sum({ total: "expenses.amount" });
@@ -205,6 +247,7 @@ module.exports = createCoreController("api::expense.expense", ({ strapi }) => ({
         monthlyBreakdown: monthlyBreakdown.map((row) => ({
           month: row.month,
           total: extractTotal(row),
+          year: row.year,
         })),
         totalByCategory: categoryBreakdown.reduce((acc, row) => {
           acc[row.category] = extractTotal(row);
