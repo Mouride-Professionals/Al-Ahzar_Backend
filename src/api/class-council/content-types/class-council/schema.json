@@ -1,0 +1,59 @@
+{
+  "kind": "collectionType",
+  "collectionName": "class_councils",
+  "info": {
+    "singularName": "class-council",
+    "pluralName": "class-councils",
+    "displayName": "Class Council",
+    "description": "Class council session for a class and academic period"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "councilDate": {
+      "type": "date",
+      "required": true
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["draft", "validated", "archived"],
+      "default": "draft",
+      "required": true
+    },
+    "generalNotes": {
+      "type": "text"
+    },
+    "class": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::class.class"
+    },
+    "academicPeriod": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::academic-period.academic-period"
+    },
+    "school": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::school.school"
+    },
+    "schoolYear": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::school-year.school-year"
+    },
+    "students": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::class-council-student.class-council-student",
+      "mappedBy": "council"
+    }
+  }
+}

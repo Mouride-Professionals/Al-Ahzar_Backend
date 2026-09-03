@@ -1,0 +1,55 @@
+{
+  "kind": "collectionType",
+  "collectionName": "academic_periods",
+  "info": {
+    "singularName": "academic-period",
+    "pluralName": "academic-periods",
+    "displayName": "Academic Period",
+    "description": "Academic period for grades, exams, and class councils"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "trimester",
+        "semester",
+        "custom"
+      ],
+      "default": "trimester",
+      "required": true
+    },
+    "order": {
+      "type": "integer",
+      "required": true,
+      "min": 1
+    },
+    "startDate": {
+      "type": "date"
+    },
+    "endDate": {
+      "type": "date"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": false
+    },
+    "school": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::school.school"
+    },
+    "schoolYear": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::school-year.school-year"
+    }
+  }
+}

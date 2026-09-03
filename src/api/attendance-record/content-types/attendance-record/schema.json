@@ -1,0 +1,78 @@
+{
+  "kind": "collectionType",
+  "collectionName": "attendance_records",
+  "info": {
+    "singularName": "attendance-record",
+    "pluralName": "attendance-records",
+    "displayName": "Attendance Record",
+    "description": "Student attendance and lateness tracking"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "attendanceDate": {
+      "type": "date",
+      "required": true
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "present",
+        "absent",
+        "excused",
+        "late"
+      ],
+      "required": true
+    },
+    "lateMinutes": {
+      "type": "integer",
+      "min": 0
+    },
+    "reason": {
+      "type": "text"
+    },
+    "isJustified": {
+      "type": "boolean",
+      "default": false
+    },
+    "justificationNote": {
+      "type": "text"
+    },
+    "recordedAt": {
+      "type": "datetime"
+    },
+    "enrollment": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::enrollment.enrollment"
+    },
+    "courseSession": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::course-session.course-session",
+      "inversedBy": "attendanceRecords"
+    },
+    "class": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::class.class"
+    },
+    "school": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::school.school"
+    },
+    "schoolYear": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::school-year.school-year"
+    },
+    "recordedBy": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    }
+  }
+}

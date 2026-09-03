@@ -1,0 +1,64 @@
+{
+  "kind": "collectionType",
+  "collectionName": "class_council_students",
+  "info": {
+    "singularName": "class-council-student",
+    "pluralName": "class-council-students",
+    "displayName": "Class Council Student",
+    "description": "Student summary and decision inside a class council"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "generalAverage": {
+      "type": "decimal"
+    },
+    "rank": {
+      "type": "integer"
+    },
+    "attendanceAbsences": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
+    },
+    "attendanceLates": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
+    },
+    "teacherComment": {
+      "type": "text"
+    },
+    "councilDecision": {
+      "type": "enumeration",
+      "enum": ["pass", "repeat", "warning", "encouragement", "honor_roll", "excluded", "pending"],
+      "default": "pending"
+    },
+    "decisionNote": {
+      "type": "text"
+    },
+    "council": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::class-council.class-council",
+      "inversedBy": "students"
+    },
+    "enrollment": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::enrollment.enrollment"
+    },
+    "school": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::school.school"
+    },
+    "schoolYear": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::school-year.school-year"
+    }
+  }
+}

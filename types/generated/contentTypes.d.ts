@@ -734,6 +734,212 @@ export interface PluginEmailDesignerEmailTemplate
   };
 }
 
+export interface ApiAcademicPeriodAcademicPeriod extends Schema.CollectionType {
+  collectionName: 'academic_periods';
+  info: {
+    singularName: 'academic-period';
+    pluralName: 'academic-periods';
+    displayName: 'Academic Period';
+    description: 'Academic period for grades, exams, and class councils';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    type: Attribute.Enumeration<['trimester', 'semester', 'custom']> &
+      Attribute.Required &
+      Attribute.DefaultTo<'trimester'>;
+    order: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetMinMax<{
+        min: 1;
+      }>;
+    startDate: Attribute.Date;
+    endDate: Attribute.Date;
+    isActive: Attribute.Boolean & Attribute.DefaultTo<false>;
+    school: Attribute.Relation<
+      'api::academic-period.academic-period',
+      'manyToOne',
+      'api::school.school'
+    >;
+    schoolYear: Attribute.Relation<
+      'api::academic-period.academic-period',
+      'manyToOne',
+      'api::school-year.school-year'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::academic-period.academic-period',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::academic-period.academic-period',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiAssessmentAssessment extends Schema.CollectionType {
+  collectionName: 'assessments';
+  info: {
+    singularName: 'assessment';
+    pluralName: 'assessments';
+    displayName: 'Assessment';
+    description: 'Notes, homework, and exam assessment definitions';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    assessmentType: Attribute.Enumeration<['homework', 'composition', 'exam']> &
+      Attribute.Required;
+    assessmentDate: Attribute.Date & Attribute.Required;
+    startTime: Attribute.Time;
+    endTime: Attribute.Time;
+    dueDate: Attribute.Date;
+    maxScore: Attribute.Decimal &
+      Attribute.Required &
+      Attribute.SetMinMax<{
+        min: 1;
+      }> &
+      Attribute.DefaultTo<20>;
+    coefficient: Attribute.Decimal &
+      Attribute.Required &
+      Attribute.SetMinMax<{
+        min: 0;
+      }> &
+      Attribute.DefaultTo<1>;
+    description: Attribute.Text;
+    class: Attribute.Relation<
+      'api::assessment.assessment',
+      'manyToOne',
+      'api::class.class'
+    >;
+    subject: Attribute.Relation<
+      'api::assessment.assessment',
+      'manyToOne',
+      'api::subject.subject'
+    >;
+    teacher: Attribute.Relation<
+      'api::assessment.assessment',
+      'manyToOne',
+      'api::teacher.teacher'
+    >;
+    academicPeriod: Attribute.Relation<
+      'api::assessment.assessment',
+      'manyToOne',
+      'api::academic-period.academic-period'
+    >;
+    school: Attribute.Relation<
+      'api::assessment.assessment',
+      'manyToOne',
+      'api::school.school'
+    >;
+    schoolYear: Attribute.Relation<
+      'api::assessment.assessment',
+      'manyToOne',
+      'api::school-year.school-year'
+    >;
+    gradeEntries: Attribute.Relation<
+      'api::assessment.assessment',
+      'oneToMany',
+      'api::grade-entry.grade-entry'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::assessment.assessment',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::assessment.assessment',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiAttendanceRecordAttendanceRecord
+  extends Schema.CollectionType {
+  collectionName: 'attendance_records';
+  info: {
+    singularName: 'attendance-record';
+    pluralName: 'attendance-records';
+    displayName: 'Attendance Record';
+    description: 'Student attendance and lateness tracking';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    attendanceDate: Attribute.Date & Attribute.Required;
+    status: Attribute.Enumeration<['present', 'absent', 'excused', 'late']> &
+      Attribute.Required;
+    lateMinutes: Attribute.Integer &
+      Attribute.SetMinMax<{
+        min: 0;
+      }>;
+    reason: Attribute.Text;
+    isJustified: Attribute.Boolean & Attribute.DefaultTo<false>;
+    justificationNote: Attribute.Text;
+    recordedAt: Attribute.DateTime;
+    enrollment: Attribute.Relation<
+      'api::attendance-record.attendance-record',
+      'manyToOne',
+      'api::enrollment.enrollment'
+    >;
+    courseSession: Attribute.Relation<
+      'api::attendance-record.attendance-record',
+      'manyToOne',
+      'api::course-session.course-session'
+    >;
+    class: Attribute.Relation<
+      'api::attendance-record.attendance-record',
+      'manyToOne',
+      'api::class.class'
+    >;
+    school: Attribute.Relation<
+      'api::attendance-record.attendance-record',
+      'manyToOne',
+      'api::school.school'
+    >;
+    schoolYear: Attribute.Relation<
+      'api::attendance-record.attendance-record',
+      'manyToOne',
+      'api::school-year.school-year'
+    >;
+    recordedBy: Attribute.Relation<
+      'api::attendance-record.attendance-record',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::attendance-record.attendance-record',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::attendance-record.attendance-record',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiClassClass extends Schema.CollectionType {
   collectionName: 'classes';
   info: {
@@ -746,6 +952,10 @@ export interface ApiClassClass extends Schema.CollectionType {
     draftAndPublish: false;
   };
   attributes: {
+    capacity: Attribute.Integer &
+      Attribute.SetMinMax<{
+        min: 1;
+      }>;
     cycle: Attribute.Enumeration<
       ['primaire', 'secondaire 1er cycle', 'secondaire 2eme cycle']
     > &
@@ -783,6 +993,11 @@ export interface ApiClassClass extends Schema.CollectionType {
       'oneToMany',
       'api::enrollment.enrollment'
     >;
+    classSubjects: Attribute.Relation<
+      'api::class.class',
+      'oneToMany',
+      'api::class-subject.class-subject'
+    >;
     description: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -794,6 +1009,263 @@ export interface ApiClassClass extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::class.class',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiClassCouncilClassCouncil extends Schema.CollectionType {
+  collectionName: 'class_councils';
+  info: {
+    singularName: 'class-council';
+    pluralName: 'class-councils';
+    displayName: 'Class Council';
+    description: 'Class council session for a class and academic period';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    councilDate: Attribute.Date & Attribute.Required;
+    status: Attribute.Enumeration<['draft', 'validated', 'archived']> &
+      Attribute.Required &
+      Attribute.DefaultTo<'draft'>;
+    generalNotes: Attribute.Text;
+    class: Attribute.Relation<
+      'api::class-council.class-council',
+      'manyToOne',
+      'api::class.class'
+    >;
+    academicPeriod: Attribute.Relation<
+      'api::class-council.class-council',
+      'manyToOne',
+      'api::academic-period.academic-period'
+    >;
+    school: Attribute.Relation<
+      'api::class-council.class-council',
+      'manyToOne',
+      'api::school.school'
+    >;
+    schoolYear: Attribute.Relation<
+      'api::class-council.class-council',
+      'manyToOne',
+      'api::school-year.school-year'
+    >;
+    students: Attribute.Relation<
+      'api::class-council.class-council',
+      'oneToMany',
+      'api::class-council-student.class-council-student'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::class-council.class-council',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::class-council.class-council',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiClassCouncilStudentClassCouncilStudent
+  extends Schema.CollectionType {
+  collectionName: 'class_council_students';
+  info: {
+    singularName: 'class-council-student';
+    pluralName: 'class-council-students';
+    displayName: 'Class Council Student';
+    description: 'Student summary and decision inside a class council';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    generalAverage: Attribute.Decimal;
+    rank: Attribute.Integer;
+    attendanceAbsences: Attribute.Integer &
+      Attribute.SetMinMax<{
+        min: 0;
+      }> &
+      Attribute.DefaultTo<0>;
+    attendanceLates: Attribute.Integer &
+      Attribute.SetMinMax<{
+        min: 0;
+      }> &
+      Attribute.DefaultTo<0>;
+    teacherComment: Attribute.Text;
+    councilDecision: Attribute.Enumeration<
+      [
+        'pass',
+        'repeat',
+        'warning',
+        'encouragement',
+        'honor_roll',
+        'excluded',
+        'pending'
+      ]
+    > &
+      Attribute.DefaultTo<'pending'>;
+    decisionNote: Attribute.Text;
+    council: Attribute.Relation<
+      'api::class-council-student.class-council-student',
+      'manyToOne',
+      'api::class-council.class-council'
+    >;
+    enrollment: Attribute.Relation<
+      'api::class-council-student.class-council-student',
+      'manyToOne',
+      'api::enrollment.enrollment'
+    >;
+    school: Attribute.Relation<
+      'api::class-council-student.class-council-student',
+      'manyToOne',
+      'api::school.school'
+    >;
+    schoolYear: Attribute.Relation<
+      'api::class-council-student.class-council-student',
+      'manyToOne',
+      'api::school-year.school-year'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::class-council-student.class-council-student',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::class-council-student.class-council-student',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiClassSubjectClassSubject extends Schema.CollectionType {
+  collectionName: 'class_subjects';
+  info: {
+    singularName: 'class-subject';
+    pluralName: 'class-subjects';
+    displayName: 'Class Subject';
+    description: 'Coefficient of a subject for a specific class';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    class: Attribute.Relation<
+      'api::class-subject.class-subject',
+      'manyToOne',
+      'api::class.class'
+    >;
+    subject: Attribute.Relation<
+      'api::class-subject.class-subject',
+      'manyToOne',
+      'api::subject.subject'
+    >;
+    coefficient: Attribute.Decimal &
+      Attribute.Required &
+      Attribute.SetMinMax<{
+        min: 0;
+      }> &
+      Attribute.DefaultTo<1>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::class-subject.class-subject',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::class-subject.class-subject',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiCourseSessionCourseSession extends Schema.CollectionType {
+  collectionName: 'course_sessions';
+  info: {
+    singularName: 'course-session';
+    pluralName: 'course-sessions';
+    displayName: 'Course Session';
+    description: 'Tracked delivered or planned course session';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    sessionDate: Attribute.Date & Attribute.Required;
+    title: Attribute.String & Attribute.Required;
+    summary: Attribute.Text;
+    homeworkGiven: Attribute.Text;
+    status: Attribute.Enumeration<
+      ['planned', 'done', 'cancelled', 'replaced']
+    > &
+      Attribute.Required &
+      Attribute.DefaultTo<'planned'>;
+    cancelReason: Attribute.Text;
+    replacementNote: Attribute.Text;
+    completedAt: Attribute.DateTime;
+    timetableSlot: Attribute.Relation<
+      'api::course-session.course-session',
+      'manyToOne',
+      'api::timetable-slot.timetable-slot'
+    >;
+    class: Attribute.Relation<
+      'api::course-session.course-session',
+      'manyToOne',
+      'api::class.class'
+    >;
+    teacher: Attribute.Relation<
+      'api::course-session.course-session',
+      'manyToOne',
+      'api::teacher.teacher'
+    >;
+    subject: Attribute.Relation<
+      'api::course-session.course-session',
+      'manyToOne',
+      'api::subject.subject'
+    >;
+    school: Attribute.Relation<
+      'api::course-session.course-session',
+      'manyToOne',
+      'api::school.school'
+    >;
+    schoolYear: Attribute.Relation<
+      'api::course-session.course-session',
+      'manyToOne',
+      'api::school-year.school-year'
+    >;
+    attendanceRecords: Attribute.Relation<
+      'api::course-session.course-session',
+      'oneToMany',
+      'api::attendance-record.attendance-record'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::course-session.course-session',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::course-session.course-session',
       'oneToOne',
       'admin::user'
     > &
@@ -885,6 +1357,7 @@ export interface ApiExpenseExpense extends Schema.CollectionType {
     draftAndPublish: false;
   };
   attributes: {
+    reference: Attribute.String & Attribute.Unique;
     expenseDate: Attribute.Date;
     amount: Attribute.Decimal &
       Attribute.SetMinMax<{
@@ -932,6 +1405,132 @@ export interface ApiExpenseExpense extends Schema.CollectionType {
   };
 }
 
+export interface ApiFeeScheduleFeeSchedule extends Schema.CollectionType {
+  collectionName: 'fee_schedules';
+  info: {
+    singularName: 'fee-schedule';
+    pluralName: 'fee-schedules';
+    displayName: 'Fee Schedule';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    school: Attribute.Relation<
+      'api::fee-schedule.fee-schedule',
+      'manyToOne',
+      'api::school.school'
+    > &
+      Attribute.Required;
+    schoolYear: Attribute.Relation<
+      'api::fee-schedule.fee-schedule',
+      'manyToOne',
+      'api::school-year.school-year'
+    > &
+      Attribute.Required;
+    cycle: Attribute.Enumeration<
+      ['primaire', 'secondaire 1er cycle', 'secondaire 2eme cycle']
+    > &
+      Attribute.Required;
+    level: Attribute.Enumeration<
+      [
+        'CI',
+        'CP',
+        'CE1',
+        'CE2',
+        'CM1',
+        'CM2',
+        'a 6eme',
+        'a 5eme',
+        'a 4eme',
+        'a 3eme',
+        'a 2nd',
+        'a 1ere',
+        'Terminale'
+      ]
+    >;
+    paymentType: Attribute.Enumeration<
+      ['enrollment', 'monthly', 'exam', 'blouse', 'parentContribution', 'other']
+    > &
+      Attribute.Required;
+    amount: Attribute.Decimal &
+      Attribute.Required &
+      Attribute.SetMinMax<{
+        min: 0;
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::fee-schedule.fee-schedule',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::fee-schedule.fee-schedule',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiGradeEntryGradeEntry extends Schema.CollectionType {
+  collectionName: 'grade_entries';
+  info: {
+    singularName: 'grade-entry';
+    pluralName: 'grade-entries';
+    displayName: 'Grade Entry';
+    description: 'Student score for one assessment';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    score: Attribute.Decimal &
+      Attribute.SetMinMax<{
+        min: 0;
+      }>;
+    isAbsent: Attribute.Boolean & Attribute.DefaultTo<false>;
+    comment: Attribute.Text;
+    assessment: Attribute.Relation<
+      'api::grade-entry.grade-entry',
+      'manyToOne',
+      'api::assessment.assessment'
+    >;
+    enrollment: Attribute.Relation<
+      'api::grade-entry.grade-entry',
+      'manyToOne',
+      'api::enrollment.enrollment'
+    >;
+    school: Attribute.Relation<
+      'api::grade-entry.grade-entry',
+      'manyToOne',
+      'api::school.school'
+    >;
+    schoolYear: Attribute.Relation<
+      'api::grade-entry.grade-entry',
+      'manyToOne',
+      'api::school-year.school-year'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::grade-entry.grade-entry',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::grade-entry.grade-entry',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiPaymentPayment extends Schema.CollectionType {
   collectionName: 'payments';
   info: {
@@ -944,6 +1543,7 @@ export interface ApiPaymentPayment extends Schema.CollectionType {
     draftAndPublish: false;
   };
   attributes: {
+    reference: Attribute.String & Attribute.Unique;
     monthOf: Attribute.Date;
     isPaid: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<true>;
     enrollment: Attribute.Relation<
@@ -1096,12 +1696,18 @@ export interface ApiSchoolSchool extends Schema.CollectionType {
       'oneToMany',
       'api::class.class'
     >;
+    subjects: Attribute.Relation<
+      'api::school.school',
+      'oneToMany',
+      'api::subject.subject'
+    >;
     banner: Attribute.Media;
     expenses: Attribute.Relation<
       'api::school.school',
       'oneToMany',
       'api::expense.expense'
     >;
+    periodTemplate: Attribute.JSON;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1246,9 +1852,18 @@ export interface ApiSubjectSubject extends Schema.CollectionType {
   };
   attributes: {
     subjectname: Attribute.String & Attribute.Required;
-    hourlyQuantity: Attribute.Integer;
-    hourlyRate: Attribute.Integer;
-    salaireStatus: Attribute.Enumeration<['Pay\u00E9', 'Impay\u00E9']>;
+    school: Attribute.Relation<
+      'api::subject.subject',
+      'manyToOne',
+      'api::school.school'
+    >;
+    classSubjects: Attribute.Relation<
+      'api::subject.subject',
+      'oneToMany',
+      'api::class-subject.class-subject'
+    >;
+    code: Attribute.String;
+    isActive: Attribute.Boolean & Attribute.DefaultTo<true>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1338,6 +1953,79 @@ export interface ApiTeacherTeacher extends Schema.CollectionType {
   };
 }
 
+export interface ApiTimetableSlotTimetableSlot extends Schema.CollectionType {
+  collectionName: 'timetable_slots';
+  info: {
+    singularName: 'timetable-slot';
+    pluralName: 'timetable-slots';
+    displayName: 'Timetable Slot';
+    description: 'Weekly class schedule slot';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    dayOfWeek: Attribute.Enumeration<
+      [
+        'monday',
+        'tuesday',
+        'wednesday',
+        'thursday',
+        'friday',
+        'saturday',
+        'sunday'
+      ]
+    > &
+      Attribute.Required;
+    startTime: Attribute.Time & Attribute.Required;
+    endTime: Attribute.Time & Attribute.Required;
+    room: Attribute.String;
+    status: Attribute.Enumeration<['active', 'inactive']> &
+      Attribute.Required &
+      Attribute.DefaultTo<'active'>;
+    notes: Attribute.Text;
+    class: Attribute.Relation<
+      'api::timetable-slot.timetable-slot',
+      'manyToOne',
+      'api::class.class'
+    >;
+    teacher: Attribute.Relation<
+      'api::timetable-slot.timetable-slot',
+      'manyToOne',
+      'api::teacher.teacher'
+    >;
+    subject: Attribute.Relation<
+      'api::timetable-slot.timetable-slot',
+      'manyToOne',
+      'api::subject.subject'
+    >;
+    school: Attribute.Relation<
+      'api::timetable-slot.timetable-slot',
+      'manyToOne',
+      'api::school.school'
+    >;
+    schoolYear: Attribute.Relation<
+      'api::timetable-slot.timetable-slot',
+      'manyToOne',
+      'api::school-year.school-year'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::timetable-slot.timetable-slot',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::timetable-slot.timetable-slot',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1355,15 +2043,25 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
       'plugin::email-designer.email-template': PluginEmailDesignerEmailTemplate;
+      'api::academic-period.academic-period': ApiAcademicPeriodAcademicPeriod;
+      'api::assessment.assessment': ApiAssessmentAssessment;
+      'api::attendance-record.attendance-record': ApiAttendanceRecordAttendanceRecord;
       'api::class.class': ApiClassClass;
+      'api::class-council.class-council': ApiClassCouncilClassCouncil;
+      'api::class-council-student.class-council-student': ApiClassCouncilStudentClassCouncilStudent;
+      'api::class-subject.class-subject': ApiClassSubjectClassSubject;
+      'api::course-session.course-session': ApiCourseSessionCourseSession;
       'api::enrollment.enrollment': ApiEnrollmentEnrollment;
       'api::expense.expense': ApiExpenseExpense;
+      'api::fee-schedule.fee-schedule': ApiFeeScheduleFeeSchedule;
+      'api::grade-entry.grade-entry': ApiGradeEntryGradeEntry;
       'api::payment.payment': ApiPaymentPayment;
       'api::school.school': ApiSchoolSchool;
       'api::school-year.school-year': ApiSchoolYearSchoolYear;
       'api::student.student': ApiStudentStudent;
       'api::subject.subject': ApiSubjectSubject;
       'api::teacher.teacher': ApiTeacherTeacher;
+      'api::timetable-slot.timetable-slot': ApiTimetableSlotTimetableSlot;
     }
   }
 }

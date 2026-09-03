@@ -1,5 +1,7 @@
 # CLAUDE.md
 
+> **Migration in progress**: this Strapi backend is being replaced by `../Al-Ahzar_Backend_v2` (Laravel, multi-tenant SaaS). This is still the live production API — both `Al-Ahzar_Front` and `Al-Ahzar_Front_v2` talk to it today — so treat it as authoritative for current behavior, and treat `config/sync/user-role.*.json` in particular as the ground truth for real role permissions when working on the v2 RBAC port. See the root `CLAUDE.md` for migration status.
+
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Development Commands

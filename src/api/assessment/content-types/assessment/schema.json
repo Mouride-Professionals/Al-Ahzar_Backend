@@ -1,0 +1,89 @@
+{
+  "kind": "collectionType",
+  "collectionName": "assessments",
+  "info": {
+    "singularName": "assessment",
+    "pluralName": "assessments",
+    "displayName": "Assessment",
+    "description": "Notes, homework, and exam assessment definitions"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "assessmentType": {
+      "type": "enumeration",
+      "enum": ["homework", "composition", "exam"],
+      "required": true
+    },
+    "assessmentDate": {
+      "type": "date",
+      "required": true
+    },
+    "startTime": {
+      "type": "time"
+    },
+    "endTime": {
+      "type": "time"
+    },
+    "dueDate": {
+      "type": "date"
+    },
+    "maxScore": {
+      "type": "decimal",
+      "default": 20,
+      "min": 1,
+      "required": true
+    },
+    "coefficient": {
+      "type": "decimal",
+      "default": 1,
+      "min": 0,
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "class": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::class.class"
+    },
+    "subject": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::subject.subject"
+    },
+    "teacher": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::teacher.teacher"
+    },
+    "academicPeriod": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::academic-period.academic-period"
+    },
+    "school": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::school.school"
+    },
+    "schoolYear": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::school-year.school-year"
+    },
+    "gradeEntries": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::grade-entry.grade-entry",
+      "mappedBy": "assessment"
+    }
+  }
+}

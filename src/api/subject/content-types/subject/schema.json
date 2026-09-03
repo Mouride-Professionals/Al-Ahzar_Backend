@@ -16,18 +16,24 @@
       "type": "string",
       "required": true
     },
-    "hourlyQuantity": {
-      "type": "integer"
+    "school": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::school.school",
+      "inversedBy": "subjects"
     },
-    "hourlyRate": {
-      "type": "integer"
+    "classSubjects": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::class-subject.class-subject",
+      "mappedBy": "subject"
     },
-    "salaireStatus": {
-      "type": "enumeration",
-      "enum": [
-        "Payé",
-        "Impayé"
-      ]
+    "code": {
+      "type": "string"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
     }
   }
 }

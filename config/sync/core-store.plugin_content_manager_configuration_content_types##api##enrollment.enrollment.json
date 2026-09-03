@@ -136,6 +136,20 @@
           "sortable": true
         }
       },
+      "isConfirmed": {
+        "edit": {
+          "label": "isConfirmed",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "isConfirmed",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -241,6 +255,12 @@
           {
             "name": "socialStatus",
             "size": 6
+          }
+        ],
+        [
+          {
+            "name": "isConfirmed",
+            "size": 4
           }
         ]
       ]

@@ -6,6 +6,356 @@
     {
       "action": "plugin::content-manager.explorer.create",
       "actionParameters": {},
+      "subject": "api::academic-period.academic-period",
+      "properties": {
+        "fields": [
+          "name",
+          "type",
+          "order",
+          "startDate",
+          "endDate",
+          "isActive",
+          "school",
+          "schoolYear"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "actionParameters": {},
+      "subject": "api::academic-period.academic-period",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "actionParameters": {},
+      "subject": "api::academic-period.academic-period",
+      "properties": {
+        "fields": [
+          "name",
+          "type",
+          "order",
+          "startDate",
+          "endDate",
+          "isActive",
+          "school",
+          "schoolYear"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "actionParameters": {},
+      "subject": "api::academic-period.academic-period",
+      "properties": {
+        "fields": [
+          "name",
+          "type",
+          "order",
+          "startDate",
+          "endDate",
+          "isActive",
+          "school",
+          "schoolYear"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "actionParameters": {},
+      "subject": "api::assessment.assessment",
+      "properties": {
+        "fields": [
+          "title",
+          "assessmentType",
+          "assessmentDate",
+          "dueDate",
+          "maxScore",
+          "coefficient",
+          "description",
+          "class",
+          "subject",
+          "teacher",
+          "academicPeriod",
+          "school",
+          "schoolYear",
+          "gradeEntries"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "actionParameters": {},
+      "subject": "api::assessment.assessment",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "actionParameters": {},
+      "subject": "api::assessment.assessment",
+      "properties": {
+        "fields": [
+          "title",
+          "assessmentType",
+          "assessmentDate",
+          "dueDate",
+          "maxScore",
+          "coefficient",
+          "description",
+          "class",
+          "subject",
+          "teacher",
+          "academicPeriod",
+          "school",
+          "schoolYear",
+          "gradeEntries"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "actionParameters": {},
+      "subject": "api::assessment.assessment",
+      "properties": {
+        "fields": [
+          "title",
+          "assessmentType",
+          "assessmentDate",
+          "dueDate",
+          "maxScore",
+          "coefficient",
+          "description",
+          "class",
+          "subject",
+          "teacher",
+          "academicPeriod",
+          "school",
+          "schoolYear",
+          "gradeEntries"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "actionParameters": {},
+      "subject": "api::attendance-record.attendance-record",
+      "properties": {
+        "fields": [
+          "attendanceDate",
+          "status",
+          "lateMinutes",
+          "reason",
+          "isJustified",
+          "justificationNote",
+          "recordedAt",
+          "enrollment",
+          "courseSession",
+          "class",
+          "school",
+          "schoolYear",
+          "recordedBy"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "actionParameters": {},
+      "subject": "api::attendance-record.attendance-record",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "actionParameters": {},
+      "subject": "api::attendance-record.attendance-record",
+      "properties": {
+        "fields": [
+          "attendanceDate",
+          "status",
+          "lateMinutes",
+          "reason",
+          "isJustified",
+          "justificationNote",
+          "recordedAt",
+          "enrollment",
+          "courseSession",
+          "class",
+          "school",
+          "schoolYear",
+          "recordedBy"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "actionParameters": {},
+      "subject": "api::attendance-record.attendance-record",
+      "properties": {
+        "fields": [
+          "attendanceDate",
+          "status",
+          "lateMinutes",
+          "reason",
+          "isJustified",
+          "justificationNote",
+          "recordedAt",
+          "enrollment",
+          "courseSession",
+          "class",
+          "school",
+          "schoolYear",
+          "recordedBy"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "actionParameters": {},
+      "subject": "api::class-council-student.class-council-student",
+      "properties": {
+        "fields": [
+          "generalAverage",
+          "rank",
+          "attendanceAbsences",
+          "attendanceLates",
+          "teacherComment",
+          "councilDecision",
+          "decisionNote",
+          "council",
+          "enrollment",
+          "school",
+          "schoolYear"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "actionParameters": {},
+      "subject": "api::class-council-student.class-council-student",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "actionParameters": {},
+      "subject": "api::class-council-student.class-council-student",
+      "properties": {
+        "fields": [
+          "generalAverage",
+          "rank",
+          "attendanceAbsences",
+          "attendanceLates",
+          "teacherComment",
+          "councilDecision",
+          "decisionNote",
+          "council",
+          "enrollment",
+          "school",
+          "schoolYear"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "actionParameters": {},
+      "subject": "api::class-council-student.class-council-student",
+      "properties": {
+        "fields": [
+          "generalAverage",
+          "rank",
+          "attendanceAbsences",
+          "attendanceLates",
+          "teacherComment",
+          "councilDecision",
+          "decisionNote",
+          "council",
+          "enrollment",
+          "school",
+          "schoolYear"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "actionParameters": {},
+      "subject": "api::class-council.class-council",
+      "properties": {
+        "fields": [
+          "title",
+          "councilDate",
+          "status",
+          "generalNotes",
+          "class",
+          "academicPeriod",
+          "school",
+          "schoolYear",
+          "students"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "actionParameters": {},
+      "subject": "api::class-council.class-council",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "actionParameters": {},
+      "subject": "api::class-council.class-council",
+      "properties": {
+        "fields": [
+          "title",
+          "councilDate",
+          "status",
+          "generalNotes",
+          "class",
+          "academicPeriod",
+          "school",
+          "schoolYear",
+          "students"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "actionParameters": {},
+      "subject": "api::class-council.class-council",
+      "properties": {
+        "fields": [
+          "title",
+          "councilDate",
+          "status",
+          "generalNotes",
+          "class",
+          "academicPeriod",
+          "school",
+          "schoolYear",
+          "students"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "actionParameters": {},
       "subject": "api::class.class",
       "properties": {
         "fields": [
@@ -64,6 +414,88 @@
     {
       "action": "plugin::content-manager.explorer.create",
       "actionParameters": {},
+      "subject": "api::course-session.course-session",
+      "properties": {
+        "fields": [
+          "sessionDate",
+          "title",
+          "summary",
+          "homeworkGiven",
+          "status",
+          "cancelReason",
+          "replacementNote",
+          "completedAt",
+          "timetableSlot",
+          "class",
+          "teacher",
+          "subject",
+          "school",
+          "schoolYear",
+          "attendanceRecords"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "actionParameters": {},
+      "subject": "api::course-session.course-session",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "actionParameters": {},
+      "subject": "api::course-session.course-session",
+      "properties": {
+        "fields": [
+          "sessionDate",
+          "title",
+          "summary",
+          "homeworkGiven",
+          "status",
+          "cancelReason",
+          "replacementNote",
+          "completedAt",
+          "timetableSlot",
+          "class",
+          "teacher",
+          "subject",
+          "school",
+          "schoolYear",
+          "attendanceRecords"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "actionParameters": {},
+      "subject": "api::course-session.course-session",
+      "properties": {
+        "fields": [
+          "sessionDate",
+          "title",
+          "summary",
+          "homeworkGiven",
+          "status",
+          "cancelReason",
+          "replacementNote",
+          "completedAt",
+          "timetableSlot",
+          "class",
+          "teacher",
+          "subject",
+          "school",
+          "schoolYear",
+          "attendanceRecords"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "actionParameters": {},
       "subject": "api::enrollment.enrollment",
       "properties": {
         "fields": [
@@ -74,7 +506,8 @@
           "enrollmentNumber",
           "payments",
           "enrollmentType",
-          "socialStatus"
+          "socialStatus",
+          "isConfirmed"
         ]
       },
       "conditions": []
@@ -99,7 +532,8 @@
           "enrollmentNumber",
           "payments",
           "enrollmentType",
-          "socialStatus"
+          "socialStatus",
+          "isConfirmed"
         ]
       },
       "conditions": []
@@ -117,7 +551,8 @@
           "enrollmentNumber",
           "payments",
           "enrollmentType",
-          "socialStatus"
+          "socialStatus",
+          "isConfirmed"
         ]
       },
       "conditions": []
@@ -171,6 +606,64 @@
           "amount",
           "category",
           "description",
+          "school",
+          "schoolYear"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "actionParameters": {},
+      "subject": "api::grade-entry.grade-entry",
+      "properties": {
+        "fields": [
+          "score",
+          "isAbsent",
+          "comment",
+          "assessment",
+          "enrollment",
+          "school",
+          "schoolYear"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "actionParameters": {},
+      "subject": "api::grade-entry.grade-entry",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "actionParameters": {},
+      "subject": "api::grade-entry.grade-entry",
+      "properties": {
+        "fields": [
+          "score",
+          "isAbsent",
+          "comment",
+          "assessment",
+          "enrollment",
+          "school",
+          "schoolYear"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "actionParameters": {},
+      "subject": "api::grade-entry.grade-entry",
+      "properties": {
+        "fields": [
+          "score",
+          "isAbsent",
+          "comment",
+          "assessment",
+          "enrollment",
           "school",
           "schoolYear"
         ]
@@ -183,6 +676,7 @@
       "subject": "api::payment.payment",
       "properties": {
         "fields": [
+          "reference",
           "monthOf",
           "isPaid",
           "enrollment",
@@ -210,6 +704,7 @@
       "subject": "api::payment.payment",
       "properties": {
         "fields": [
+          "reference",
           "monthOf",
           "isPaid",
           "enrollment",
@@ -230,6 +725,7 @@
       "subject": "api::payment.payment",
       "properties": {
         "fields": [
+          "reference",
           "monthOf",
           "isPaid",
           "enrollment",
@@ -671,6 +1167,76 @@
           "professionalDegrees",
           "disciplines",
           "subjects"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "actionParameters": {},
+      "subject": "api::timetable-slot.timetable-slot",
+      "properties": {
+        "fields": [
+          "dayOfWeek",
+          "startTime",
+          "endTime",
+          "room",
+          "status",
+          "notes",
+          "class",
+          "teacher",
+          "subject",
+          "school",
+          "schoolYear"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "actionParameters": {},
+      "subject": "api::timetable-slot.timetable-slot",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "actionParameters": {},
+      "subject": "api::timetable-slot.timetable-slot",
+      "properties": {
+        "fields": [
+          "dayOfWeek",
+          "startTime",
+          "endTime",
+          "room",
+          "status",
+          "notes",
+          "class",
+          "teacher",
+          "subject",
+          "school",
+          "schoolYear"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "actionParameters": {},
+      "subject": "api::timetable-slot.timetable-slot",
+      "properties": {
+        "fields": [
+          "dayOfWeek",
+          "startTime",
+          "endTime",
+          "room",
+          "status",
+          "notes",
+          "class",
+          "teacher",
+          "subject",
+          "school",
+          "schoolYear"
         ]
       },
       "conditions": []

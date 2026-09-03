@@ -28,4 +28,46 @@ module.exports = createCoreController('api::enrollment.enrollment', ({ strapi })
 
         return response;
     },
+
+    async update(ctx) {
+        const { data } = ctx.request.body;
+        const { id } = ctx.params;
+
+        if (data.class) {
+            const existing = await strapi.db.query('api::enrollment.enrollment').findOne({
+                where: { id },
+                populate: ['class'],
+            });
+
+            const isMovingToAnotherClass =
+                !existing?.class || String(existing.class.id) !== String(data.class);
+
+            if (isMovingToAnotherClass) {
+                // Find the highest enrollment number in the destination class
+                const maxEnrollment = await strapi.db.query('api::enrollment.enrollment').findOne({
+                    where: { class: data.class },
+                    orderBy: { enrollmentNumber: 'desc' },
+                    select: ['enrollmentNumber'],
+                });
+
+                data.enrollmentNumber = maxEnrollment ? maxEnrollment.enrollmentNumber + 1 : 1;
+            }
+        }
+
+        const response = await super.update(ctx);
+
+        return response;
+    },
+
+    async bulkCreate(ctx) {
+        const payload = ctx.request.body?.data || ctx.request.body;
+
+        try {
+            const result = await strapi.service('api::enrollment.enrollment').bulkCreate(payload);
+
+            return ctx.send(result);
+        } catch (error) {
+            return ctx.badRequest(error.message);
+        }
+    },
 }));

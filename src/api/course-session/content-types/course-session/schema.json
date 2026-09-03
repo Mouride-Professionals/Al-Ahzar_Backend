@@ -1,0 +1,86 @@
+{
+  "kind": "collectionType",
+  "collectionName": "course_sessions",
+  "info": {
+    "singularName": "course-session",
+    "pluralName": "course-sessions",
+    "displayName": "Course Session",
+    "description": "Tracked delivered or planned course session"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "sessionDate": {
+      "type": "date",
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "summary": {
+      "type": "text"
+    },
+    "homeworkGiven": {
+      "type": "text"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "planned",
+        "done",
+        "cancelled",
+        "replaced"
+      ],
+      "default": "planned",
+      "required": true
+    },
+    "cancelReason": {
+      "type": "text"
+    },
+    "replacementNote": {
+      "type": "text"
+    },
+    "completedAt": {
+      "type": "datetime"
+    },
+    "timetableSlot": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::timetable-slot.timetable-slot"
+    },
+    "class": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::class.class"
+    },
+    "teacher": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::teacher.teacher"
+    },
+    "subject": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::subject.subject"
+    },
+    "school": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::school.school"
+    },
+    "schoolYear": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::school-year.school-year"
+    },
+    "attendanceRecords": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::attendance-record.attendance-record",
+      "mappedBy": "courseSession"
+    }
+  }
+}

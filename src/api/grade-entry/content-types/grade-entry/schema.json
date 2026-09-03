@@ -1,0 +1,48 @@
+{
+  "kind": "collectionType",
+  "collectionName": "grade_entries",
+  "info": {
+    "singularName": "grade-entry",
+    "pluralName": "grade-entries",
+    "displayName": "Grade Entry",
+    "description": "Student score for one assessment"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "score": {
+      "type": "decimal",
+      "min": 0
+    },
+    "isAbsent": {
+      "type": "boolean",
+      "default": false
+    },
+    "comment": {
+      "type": "text"
+    },
+    "assessment": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::assessment.assessment",
+      "inversedBy": "gradeEntries"
+    },
+    "enrollment": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::enrollment.enrollment"
+    },
+    "school": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::school.school"
+    },
+    "schoolYear": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::school-year.school-year"
+    }
+  }
+}
