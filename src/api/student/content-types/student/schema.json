@@ -81,6 +81,14 @@
       "required": false,
       "unique": true,
       "minLength": 5
+    },
+    "photo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
     }
   }
 }
