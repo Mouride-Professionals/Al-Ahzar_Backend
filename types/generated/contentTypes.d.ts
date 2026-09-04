@@ -1822,6 +1822,7 @@ export interface ApiStudentStudent extends Schema.CollectionType {
       Attribute.SetMinMaxLength<{
         minLength: 5;
       }>;
+    photo: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

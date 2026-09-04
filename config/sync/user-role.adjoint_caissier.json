@@ -4,6 +4,30 @@
   "type": "adjoint_caissier",
   "permissions": [
     {
+      "action": "api::class-council-student.class-council-student.find"
+    },
+    {
+      "action": "api::class-council-student.class-council-student.findOne"
+    },
+    {
+      "action": "api::class-subject.class-subject.find"
+    },
+    {
+      "action": "api::class-subject.class-subject.findOne"
+    },
+    {
+      "action": "api::class-council.class-council.find"
+    },
+    {
+      "action": "api::class-council.class-council.findOne"
+    },
+    {
+      "action": "api::grade-entry.grade-entry.find"
+    },
+    {
+      "action": "api::grade-entry.grade-entry.findOne"
+    },
+    {
       "action": "api::class.class.find"
     },
     {
