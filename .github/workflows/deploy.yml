@@ -23,17 +23,19 @@ jobs:
       - name: Authenticate to DO registry
         run: doctl registry login --expiry-seconds 600
 
-      - name: Build image
-        run: |
-          docker build \
-            -t registry.digitalocean.com/africadex-registry/al-azhar-backend:${{ github.sha }} \
-            -t registry.digitalocean.com/africadex-registry/al-azhar-backend:latest \
-            .
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
 
-      - name: Push image
-        run: |
-          docker push registry.digitalocean.com/africadex-registry/al-azhar-backend:${{ github.sha }}
-          docker push registry.digitalocean.com/africadex-registry/al-azhar-backend:latest
+      - name: Build and push image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: |
+            registry.digitalocean.com/africadex-registry/al-azhar-backend:${{ github.sha }}
+            registry.digitalocean.com/africadex-registry/al-azhar-backend:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1
