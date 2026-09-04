@@ -7,9 +7,7 @@ module.exports = ({ env }) => ({
       resetPassword: {
         from: env("EMAIL_FROM", "toubadarou399@gmail.com"),
         replyTo: env("EMAIL_REPLY_TO", "toubadarou399@gmail.com"),
-        redirectUrl:
-          env("FRONTEND_URL", "https://app.alazharsn.com") +
-          "/user/auth/reset-password",
+        redirectUrl: "https://app.alazharsn.com/fr/auth/reset-password",
         emailTemplate: {
           subject: "Al Azhar - Réinitialisation de Mot de Passe",
           text: `Bonjour, nous avons reçu une demande pour réinitialiser le mot de passe de votre compte Al Azhar. Visitez: <%= url %>`,
@@ -58,9 +56,7 @@ module.exports = ({ env }) => ({
       emailConfirmation: {
         from: env("EMAIL_FROM", "toubadarou399@gmail.com"),
         replyTo: env("EMAIL_REPLY_TO", "toubadarou399@gmail.com"),
-        redirectUrl:
-          env("FRONTEND_URL", "https://app.alazharsn.com") +
-          "/user/auth/email-confirmed",
+        redirectUrl: "https://app.alazharsn.com/fr/auth/email-confirmed",
         emailTemplate: {
           subject: "Al Azhar - Confirmation d'Inscription",
           text: `Merci de vous être inscrit au système de gestion Al Azhar ! Pour activer votre compte, veuillez confirmer votre adresse e-mail en visitant: <%= url %>`,
