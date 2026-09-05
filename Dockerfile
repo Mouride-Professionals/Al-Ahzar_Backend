@@ -41,12 +41,14 @@ RUN apt-get update \
     libvips \
   && rm -rf /var/lib/apt/lists/*
 
-# Copy built app and deps
-COPY --from=build /srv/app /srv/app
+# Copy built app and deps (ownership set during copy — a separate
+# `chown -R` over this whole tree afterward is prohibitively slow on
+# overlayfs with this many files)
+COPY --from=build --chown=node:node /srv/app /srv/app
 
 # Ensure writable dirs for Strapi
 RUN mkdir -p /srv/app/.tmp /srv/app/public/uploads \
-  && chown -R node:node /srv/app
+  && chown node:node /srv/app/.tmp /srv/app/public/uploads
 
 COPY --chown=node:node docker/entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
