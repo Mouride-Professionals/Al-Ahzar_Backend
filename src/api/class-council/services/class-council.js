@@ -145,6 +145,130 @@ module.exports = createCoreService('api::class-council.class-council', ({ strapi
     });
   },
 
+  async recalculate(id) {
+    const council = await strapi.entityService.findOne('api::class-council.class-council', id, {
+      populate: ['class', 'academicPeriod', 'schoolYear'],
+    });
+
+    if (!council) {
+      throw new Error('Conseil introuvable.');
+    }
+
+    if (council.status === 'archived') {
+      throw new Error('Un conseil archivé ne peut pas être recalculé.');
+    }
+
+    if (!council.class || !council.academicPeriod || !council.schoolYear) {
+      throw new Error('Conseil incomplet : classe, période ou année scolaire manquante.');
+    }
+
+    const period = council.academicPeriod;
+
+    const studentRows = await strapi.entityService.findMany('api::class-council-student.class-council-student', {
+      filters: { council: { id } },
+      populate: ['enrollment'],
+      limit: 500,
+    });
+
+    const classSubjects = await strapi.entityService.findMany('api::class-subject.class-subject', {
+      filters: { class: { id: council.class.id } },
+      populate: ['subject'],
+      limit: 100,
+    });
+
+    const subjectSummaries = await Promise.all(
+      classSubjects
+        .filter((classSubject) => classSubject.subject?.id)
+        .map(async (classSubject) => {
+          const summary = await strapi.service('api::grade-entry.grade-entry').summary({
+            classId: council.class.id,
+            schoolYearId: council.schoolYear.id,
+            subjectId: classSubject.subject.id,
+            academicPeriodId: period.id,
+            excludeAssessmentTypes: ['exam'],
+          });
+
+          return {
+            coefficient: Number(classSubject.coefficient || 1),
+            students: summary.students,
+          };
+        }),
+    );
+
+    const updatedStudents = [];
+
+    for (const row of studentRows) {
+      if (!row.enrollment?.id) continue;
+
+      const attendanceFilters = {
+        enrollment: { id: row.enrollment.id },
+        schoolYear: { id: council.schoolYear.id },
+      };
+
+      if (period.startDate || period.endDate) {
+        attendanceFilters.attendanceDate = {};
+        if (period.startDate) attendanceFilters.attendanceDate.$gte = period.startDate;
+        if (period.endDate) attendanceFilters.attendanceDate.$lte = period.endDate;
+      }
+
+      const attendance = await strapi.entityService.findMany('api::attendance-record.attendance-record', {
+        filters: attendanceFilters,
+        limit: 500,
+      });
+
+      const subjectContributions = subjectSummaries
+        .map(({ coefficient, students }) => {
+          const entry = students.find((student) => student.enrollment.id === row.enrollment.id);
+          return entry && entry.average !== null
+            ? { average: Number(entry.average), coefficient }
+            : null;
+        })
+        .filter(Boolean);
+      const weightedTotal = subjectContributions.reduce(
+        (total, contribution) => total + contribution.average * contribution.coefficient,
+        0,
+      );
+      const coefficientTotal = subjectContributions.reduce(
+        (total, contribution) => total + contribution.coefficient,
+        0,
+      );
+
+      const updated = await strapi.entityService.update('api::class-council-student.class-council-student', row.id, {
+        data: {
+          generalAverage: coefficientTotal > 0 ? weightedTotal / coefficientTotal : null,
+          attendanceAbsences: attendance.filter((record) => record.status === 'absent').length,
+          attendanceLates: attendance.filter((record) => record.status === 'late').length,
+        },
+      });
+
+      updatedStudents.push(updated);
+    }
+
+    const rankedStudents = [...updatedStudents]
+      .filter((student) => student.generalAverage !== null && student.generalAverage !== undefined)
+      .sort((left, right) => Number(right.generalAverage) - Number(left.generalAverage));
+
+    for (let index = 0; index < rankedStudents.length; index += 1) {
+      await strapi.entityService.update('api::class-council-student.class-council-student', rankedStudents[index].id, {
+        data: { rank: index + 1 },
+      });
+    }
+
+    const unrankedStudentIds = updatedStudents
+      .filter((student) => student.generalAverage === null || student.generalAverage === undefined)
+      .map((student) => student.id);
+
+    for (const studentId of unrankedStudentIds) {
+      await strapi.entityService.update('api::class-council-student.class-council-student', studentId, {
+        data: { rank: null },
+      });
+    }
+
+    return strapi.entityService.findOne('api::class-council.class-council', id, {
+      populate: ['class', 'academicPeriod', 'school', 'schoolYear', 'students.enrollment.student'],
+    });
+  },
+
   async reopen(id) {
     const council = await strapi.entityService.findOne('api::class-council.class-council', id);
 

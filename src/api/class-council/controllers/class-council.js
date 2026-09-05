@@ -31,6 +31,18 @@ module.exports = createCoreController('api::class-council.class-council', ({ str
     return this.transformResponse(sanitized);
   },
 
+  async recalculate(ctx) {
+    const { id } = ctx.params;
+
+    try {
+      const entity = await strapi.service('api::class-council.class-council').recalculate(id);
+      const sanitized = await this.sanitizeOutput(entity, ctx);
+      return this.transformResponse(sanitized);
+    } catch (error) {
+      return ctx.badRequest(error.message);
+    }
+  },
+
   async reopen(ctx) {
     const { id } = ctx.params;
 

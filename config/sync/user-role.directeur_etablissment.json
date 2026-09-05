@@ -97,6 +97,9 @@
       "action": "api::class-council.class-council.generate"
     },
     {
+      "action": "api::class-council.class-council.recalculate"
+    },
+    {
       "action": "api::class-council.class-council.reopen"
     },
     {
