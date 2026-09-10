@@ -196,6 +196,18 @@
       "action": "api::timetable-slot.timetable-slot.weekly"
     },
     {
+      "action": "api::timetable-slot.timetable-slot.create"
+    },
+    {
+      "action": "api::timetable-slot.timetable-slot.update"
+    },
+    {
+      "action": "api::timetable-slot.timetable-slot.delete"
+    },
+    {
+      "action": "api::school.school.updatePeriodTemplate"
+    },
+    {
       "action": "plugin::email.email.send"
     },
     {
@@ -254,6 +266,12 @@
     },
     {
       "action": "plugin::users-permissions.user.update"
+    },
+    {
+      "action": "api::personnel.personnel.find"
+    },
+    {
+      "action": "api::personnel.personnel.findOne"
     }
   ]
 }

@@ -940,6 +940,56 @@ export interface ApiAttendanceRecordAttendanceRecord
   };
 }
 
+export interface ApiBankTransactionBankTransaction
+  extends Schema.CollectionType {
+  collectionName: 'bank_transactions';
+  info: {
+    singularName: 'bank-transaction';
+    pluralName: 'bank-transactions';
+    displayName: 'Bank Transaction';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    transactionDate: Attribute.Date & Attribute.Required;
+    amount: Attribute.Decimal &
+      Attribute.Required &
+      Attribute.SetMinMax<{
+        min: 0;
+      }>;
+    type: Attribute.Enumeration<['D\u00E9p\u00F4t', 'Retrait']> &
+      Attribute.Required;
+    bankReference: Attribute.String;
+    note: Attribute.String;
+    school: Attribute.Relation<
+      'api::bank-transaction.bank-transaction',
+      'manyToOne',
+      'api::school.school'
+    >;
+    schoolYear: Attribute.Relation<
+      'api::bank-transaction.bank-transaction',
+      'manyToOne',
+      'api::school-year.school-year'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::bank-transaction.bank-transaction',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::bank-transaction.bank-transaction',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiClassClass extends Schema.CollectionType {
   collectionName: 'classes';
   info: {
@@ -1388,6 +1438,11 @@ export interface ApiExpenseExpense extends Schema.CollectionType {
       'manyToOne',
       'api::school-year.school-year'
     >;
+    personnelBeneficiary: Attribute.Relation<
+      'api::expense.expense',
+      'manyToOne',
+      'api::personnel.personnel'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1577,6 +1632,68 @@ export interface ApiPaymentPayment extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::payment.payment',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPersonnelPersonnel extends Schema.CollectionType {
+  collectionName: 'personnel';
+  info: {
+    singularName: 'personnel';
+    pluralName: 'personnels';
+    displayName: 'Personnel';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    firstname: Attribute.String & Attribute.Required;
+    lastname: Attribute.String & Attribute.Required;
+    position: Attribute.Enumeration<
+      [
+        'Enseignant',
+        'Surveillant',
+        'Secr\u00E9taire G\u00E9n\u00E9ral',
+        "Agent d'entretien",
+        'Agent de s\u00E9curit\u00E9',
+        'Autre'
+      ]
+    > &
+      Attribute.Required;
+    phoneNumber: Attribute.String;
+    salary: Attribute.Decimal &
+      Attribute.SetMinMax<{
+        min: 0;
+      }>;
+    school: Attribute.Relation<
+      'api::personnel.personnel',
+      'manyToOne',
+      'api::school.school'
+    >;
+    linkedTeacher: Attribute.Relation<
+      'api::personnel.personnel',
+      'manyToOne',
+      'api::teacher.teacher'
+    >;
+    linkedUser: Attribute.Relation<
+      'api::personnel.personnel',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::personnel.personnel',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::personnel.personnel',
       'oneToOne',
       'admin::user'
     > &
@@ -2047,6 +2164,7 @@ declare module '@strapi/types' {
       'api::academic-period.academic-period': ApiAcademicPeriodAcademicPeriod;
       'api::assessment.assessment': ApiAssessmentAssessment;
       'api::attendance-record.attendance-record': ApiAttendanceRecordAttendanceRecord;
+      'api::bank-transaction.bank-transaction': ApiBankTransactionBankTransaction;
       'api::class.class': ApiClassClass;
       'api::class-council.class-council': ApiClassCouncilClassCouncil;
       'api::class-council-student.class-council-student': ApiClassCouncilStudentClassCouncilStudent;
@@ -2057,6 +2175,7 @@ declare module '@strapi/types' {
       'api::fee-schedule.fee-schedule': ApiFeeScheduleFeeSchedule;
       'api::grade-entry.grade-entry': ApiGradeEntryGradeEntry;
       'api::payment.payment': ApiPaymentPayment;
+      'api::personnel.personnel': ApiPersonnelPersonnel;
       'api::school.school': ApiSchoolSchool;
       'api::school-year.school-year': ApiSchoolYearSchoolYear;
       'api::student.student': ApiStudentStudent;

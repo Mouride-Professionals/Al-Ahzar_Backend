@@ -161,6 +161,24 @@
     },
     {
       "action": "plugin::users-permissions.user.update"
+    },
+    {
+      "action": "api::personnel.personnel.find"
+    },
+    {
+      "action": "api::personnel.personnel.findOne"
+    },
+    {
+      "action": "api::bank-transaction.bank-transaction.create"
+    },
+    {
+      "action": "api::bank-transaction.bank-transaction.find"
+    },
+    {
+      "action": "api::bank-transaction.bank-transaction.findOne"
+    },
+    {
+      "action": "api::bank-transaction.bank-transaction.update"
     }
   ]
 }

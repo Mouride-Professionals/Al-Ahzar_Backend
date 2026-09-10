@@ -1,0 +1,58 @@
+{
+  "kind": "collectionType",
+  "collectionName": "personnel",
+  "info": {
+    "singularName": "personnel",
+    "pluralName": "personnels",
+    "displayName": "Personnel",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "firstname": {
+      "type": "string",
+      "required": true
+    },
+    "lastname": {
+      "type": "string",
+      "required": true
+    },
+    "position": {
+      "type": "enumeration",
+      "enum": [
+        "Enseignant",
+        "Surveillant",
+        "Secrétaire Général",
+        "Agent d'entretien",
+        "Agent de sécurité",
+        "Autre"
+      ],
+      "required": true
+    },
+    "phoneNumber": {
+      "type": "string"
+    },
+    "salary": {
+      "type": "decimal",
+      "min": 0
+    },
+    "school": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::school.school"
+    },
+    "linkedTeacher": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::teacher.teacher"
+    },
+    "linkedUser": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    }
+  }
+}

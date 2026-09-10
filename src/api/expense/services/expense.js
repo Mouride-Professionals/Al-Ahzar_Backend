@@ -24,7 +24,7 @@ module.exports = createCoreService('api::expense.expense', ({ strapi }) => ({
 
     if (options.expenseId) {
       current = await strapi.entityService.findOne('api::expense.expense', options.expenseId, {
-        populate: ['school', 'schoolYear'],
+        populate: ['school', 'schoolYear', 'personnelBeneficiary'],
       });
     }
 
@@ -39,6 +39,19 @@ module.exports = createCoreService('api::expense.expense', ({ strapi }) => ({
 
     if (Number(amount) <= 0) {
       throw new Error('Le montant doit être supérieur à zéro.');
+    }
+
+    const personnelBeneficiaryId =
+      data.personnelBeneficiary !== undefined
+        ? relationId(data.personnelBeneficiary)
+        : current?.personnelBeneficiary?.id;
+
+    if (category === 'Salaires' && !personnelBeneficiaryId) {
+      throw new Error('Un membre du personnel bénéficiaire est obligatoire pour un paiement de salaire.');
+    }
+
+    if (category !== 'Salaires' && personnelBeneficiaryId) {
+      throw new Error('Un bénéficiaire ne peut être renseigné que pour la catégorie "Salaires".');
     }
 
     const expenseDate = data.expenseDate || current?.expenseDate;

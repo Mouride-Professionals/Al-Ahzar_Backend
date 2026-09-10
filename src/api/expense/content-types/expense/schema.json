@@ -52,6 +52,11 @@
       "relation": "manyToOne",
       "target": "api::school-year.school-year",
       "inversedBy": "expenses"
+    },
+    "personnelBeneficiary": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::personnel.personnel"
     }
   }
 }
