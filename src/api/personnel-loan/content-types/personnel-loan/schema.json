@@ -1,0 +1,71 @@
+{
+  "kind": "collectionType",
+  "collectionName": "personnel_loans",
+  "info": {
+    "singularName": "personnel-loan",
+    "pluralName": "personnel-loans",
+    "displayName": "Personnel Loan",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "personnel": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::personnel.personnel"
+    },
+    "school": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::school.school"
+    },
+    "schoolYear": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::school-year.school-year"
+    },
+    "loanType": {
+      "type": "enumeration",
+      "enum": [
+        "installment",
+        "lump_sum"
+      ],
+      "required": true
+    },
+    "amount": {
+      "type": "decimal",
+      "min": 0,
+      "required": true
+    },
+    "installmentAmount": {
+      "type": "decimal",
+      "min": 0
+    },
+    "loanDate": {
+      "type": "date",
+      "required": true
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "active",
+        "repaid",
+        "cancelled"
+      ],
+      "default": "active",
+      "required": true
+    },
+    "note": {
+      "type": "text"
+    },
+    "repayments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::loan-repayment.loan-repayment",
+      "mappedBy": "loan"
+    }
+  }
+}

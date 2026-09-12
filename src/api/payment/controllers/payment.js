@@ -36,9 +36,45 @@ async function buildPaymentReference(strapi, enrollmentId) {
   return `${prefix}${nextSequence}`;
 }
 
+const ONE_TIME_PAYMENT_TYPES = ["enrollment", "exam", "blouse", "parentContribution"];
+
+function monthRange(monthOf) {
+  const [year, month] = String(monthOf).slice(0, 7).split("-").map(Number);
+  const pad = (value) => String(value).padStart(2, "0");
+  const nextYear = month === 12 ? year + 1 : year;
+  const nextMonth = month === 12 ? 1 : month + 1;
+
+  return { $gte: `${year}-${pad(month)}-01`, $lt: `${nextYear}-${pad(nextMonth)}-01` };
+}
+
+async function findActiveDuplicate(strapi, data) {
+  const enrollmentId =
+    typeof data.enrollment === "object" ? data.enrollment?.id : data.enrollment;
+  const isOneTime = ONE_TIME_PAYMENT_TYPES.includes(data.paymentType);
+  const isMonthly = data.paymentType === "monthly" && Boolean(data.monthOf);
+
+  if (!enrollmentId || (!isOneTime && !isMonthly)) {
+    return null;
+  }
+
+  return strapi.db.query("api::payment.payment").findOne({
+    where: {
+      enrollment: { id: enrollmentId },
+      paymentType: data.paymentType,
+      status: { $ne: "cancelled" },
+      ...(isMonthly ? { monthOf: monthRange(data.monthOf) } : {}),
+    },
+    select: ["id"],
+  });
+}
+
 module.exports = createCoreController("api::payment.payment", ({ strapi }) => ({
   async create(ctx) {
     const { data } = ctx.request.body;
+
+    if (await findActiveDuplicate(strapi, data)) {
+      return ctx.badRequest("This fee is already paid for this enrollment.");
+    }
 
     if (!data.reference) {
       data.reference = await buildPaymentReference(strapi, data.enrollment);

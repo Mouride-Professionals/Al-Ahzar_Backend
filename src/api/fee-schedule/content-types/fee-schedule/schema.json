@@ -46,9 +46,14 @@
         "a 5eme",
         "a 4eme",
         "a 3eme",
+        "Préparatoire",
         "a 2nd",
         "a 1ere",
-        "Terminale"
+        "Terminale",
+        "Spécial 1",
+        "Spécial 2",
+        "Spécial 3",
+        "Spécial 4"
       ]
     },
     "paymentType": {
@@ -59,7 +64,9 @@
         "exam",
         "blouse",
         "parentContribution",
-        "other"
+        "other",
+        "reducedEnrollment",
+        "reducedMonthly"
       ],
       "required": true
     },

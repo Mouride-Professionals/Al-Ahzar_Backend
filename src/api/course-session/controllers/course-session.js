@@ -6,7 +6,15 @@
 
 const { createCoreController } = require('@strapi/strapi').factories;
 
-const populate = ['timetableSlot', 'class', 'teacher', 'subject', 'school', 'schoolYear'];
+const populate = [
+  'timetableSlot',
+  'class',
+  'teacher',
+  'substituteTeacher',
+  'subject',
+  'school',
+  'schoolYear',
+];
 
 module.exports = createCoreController('api::course-session.course-session', ({ strapi }) => ({
   async create(ctx) {
@@ -91,12 +99,13 @@ module.exports = createCoreController('api::course-session.course-session', ({ s
     const { id } = ctx.params;
     const data = ctx.request.body?.data || ctx.request.body || {};
 
-    if (!data.replacementNote) {
-      return ctx.badRequest('La note de remplacement est obligatoire.');
+    if (!data.substituteTeacher) {
+      return ctx.badRequest('Le professeur remplaçant est obligatoire.');
     }
 
     const entity = await strapi.entityService.update('api::course-session.course-session', id, {
       data: {
+        substituteTeacher: data.substituteTeacher,
         replacementNote: data.replacementNote,
         status: 'replaced',
       },

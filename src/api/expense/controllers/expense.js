@@ -36,14 +36,20 @@ async function buildExpenseReference(strapi, schoolYearId) {
 
 module.exports = createCoreController("api::expense.expense", ({ strapi }) => ({
   async create(ctx) {
+    const loanDeductions = ctx.request.body?.loanDeductions;
     const data = ctx.request.body?.data || ctx.request.body;
 
     if (!data.reference) {
       data.reference = await buildExpenseReference(strapi, data.schoolYear);
     }
 
+    let deductions = [];
+
     try {
       await strapi.service("api::expense.expense").validateExpense(data);
+      deductions = await strapi
+        .service("api::expense.expense")
+        .validateLoanDeductions(loanDeductions, data);
     } catch (error) {
       return ctx.badRequest(error.message);
     }
@@ -53,6 +59,30 @@ module.exports = createCoreController("api::expense.expense", ({ strapi }) => ({
       populate: ["school", "schoolYear"],
     });
 
+    // No DB transaction here: on failure, compensate by removing what was created.
+    const createdRepaymentIds = [];
+
+    try {
+      for (const deduction of deductions) {
+        const repayment = await strapi.entityService.create("api::loan-repayment.loan-repayment", {
+          data: {
+            amount: deduction.amount,
+            expense: entity.id,
+            loan: deduction.loanId,
+            repaymentDate: data.expenseDate || new Date().toISOString().slice(0, 10),
+          },
+        });
+        createdRepaymentIds.push(repayment.id);
+      }
+    } catch (error) {
+      for (const repaymentId of createdRepaymentIds) {
+        await strapi.entityService.delete("api::loan-repayment.loan-repayment", repaymentId);
+      }
+      await strapi.entityService.delete("api::expense.expense", entity.id);
+
+      return ctx.badRequest(`Impossible d'enregistrer les prélèvements de prêt : ${error.message}`);
+    }
+
     const sanitized = await this.sanitizeOutput(entity, ctx);
     return this.transformResponse(sanitized);
   },
@@ -61,7 +91,32 @@ module.exports = createCoreController("api::expense.expense", ({ strapi }) => ({
     const { id } = ctx.params;
     const data = ctx.request.body?.data || ctx.request.body;
 
+    // A cancellation is a special-cased branch of update (same convention
+    // as payment cancellation): it bypasses the normal field-edit guards
+    // below, since cancelling is exactly the sanctioned mutation for an
+    // already-locked (e.g. Salaires) expense.
+    if (data.status === "cancelled") {
+      let cancelFields;
+
+      try {
+        cancelFields = await strapi
+          .service("api::expense.expense")
+          .cancelExpense(id, data.cancellationReason);
+      } catch (error) {
+        return ctx.badRequest(error.message);
+      }
+
+      const cancelled = await strapi.entityService.update("api::expense.expense", id, {
+        data: cancelFields,
+        populate: ["school", "schoolYear", "personnelBeneficiary", "loanRepayments"],
+      });
+
+      const sanitizedCancelled = await this.sanitizeOutput(cancelled, ctx);
+      return this.transformResponse(sanitizedCancelled);
+    }
+
     try {
+      await strapi.service("api::expense.expense").assertCanEditFields(id);
       await strapi.service("api::expense.expense").validateExpense(data, { expenseId: id });
     } catch (error) {
       return ctx.badRequest(error.message);
@@ -123,8 +178,8 @@ module.exports = createCoreController("api::expense.expense", ({ strapi }) => ({
       // Use knex for aggregation queries
       const knex = strapi.db.connection;
 
-      // Base query on the expenses table
-      const baseQuery = knex("expenses");
+      // Base query on the expenses table — EXCLUDE CANCELLED EXPENSES
+      const baseQuery = knex("expenses").whereNot("expenses.status", "cancelled");
 
       // "Annual" aggregates are scoped to a school year, not a calendar year.
       // When a schoolYearId is provided, applyFilters() below already restricts

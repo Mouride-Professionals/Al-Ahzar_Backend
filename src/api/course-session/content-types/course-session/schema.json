@@ -61,6 +61,11 @@
       "relation": "manyToOne",
       "target": "api::teacher.teacher"
     },
+    "substituteTeacher": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::teacher.teacher"
+    },
     "subject": {
       "type": "relation",
       "relation": "manyToOne",

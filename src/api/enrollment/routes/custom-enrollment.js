@@ -1,16 +1,14 @@
 'use strict';
 
-/**
- * enrollment custom router
- */
 module.exports = {
     routes: [
         {
-            method: 'POST',
-            path: '/enrollments/bulk-create',
-            handler: 'enrollment.bulkCreate',
+            method: 'PUT',
+            path: '/enrollments/:id/withdraw',
+            handler: 'enrollment.markWithdrawn',
             config: {
-                auth: { scope: ['api::enrollment.enrollment.create'] },
+                policies: [],
+                middlewares: [],
             },
         },
     ],

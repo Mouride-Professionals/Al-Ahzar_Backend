@@ -64,6 +64,9 @@
       "action": "api::class.class.create"
     },
     {
+      "action": "api::class.class.delete"
+    },
+    {
       "action": "api::class.class.find"
     },
     {
@@ -98,6 +101,9 @@
     },
     {
       "action": "api::enrollment.enrollment.create"
+    },
+    {
+      "action": "api::enrollment.enrollment.delete"
     },
     {
       "action": "api::enrollment.enrollment.find"
@@ -272,6 +278,9 @@
     },
     {
       "action": "api::personnel.personnel.findOne"
+    },
+    {
+      "action": "api::enrollment.enrollment.markWithdrawn"
     }
   ]
 }
