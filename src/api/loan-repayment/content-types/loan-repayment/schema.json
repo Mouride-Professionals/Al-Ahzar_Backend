@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "loan_repayments",
+  "info": {
+    "singularName": "loan-repayment",
+    "pluralName": "loan-repayments",
+    "displayName": "Loan Repayment",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "loan": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::personnel-loan.personnel-loan",
+      "inversedBy": "repayments"
+    },
+    "expense": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::expense.expense",
+      "inversedBy": "loanRepayments"
+    },
+    "amount": {
+      "type": "decimal",
+      "min": 0,
+      "required": true
+    },
+    "repaymentDate": {
+      "type": "date",
+      "required": true
+    }
+  }
+}

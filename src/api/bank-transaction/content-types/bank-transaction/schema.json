@@ -1,0 +1,49 @@
+{
+  "kind": "collectionType",
+  "collectionName": "bank_transactions",
+  "info": {
+    "singularName": "bank-transaction",
+    "pluralName": "bank-transactions",
+    "displayName": "Bank Transaction",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "transactionDate": {
+      "type": "date",
+      "required": true
+    },
+    "amount": {
+      "type": "decimal",
+      "min": 0,
+      "required": true
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "Dépôt",
+        "Retrait"
+      ],
+      "required": true
+    },
+    "bankReference": {
+      "type": "string"
+    },
+    "note": {
+      "type": "string"
+    },
+    "school": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::school.school"
+    },
+    "schoolYear": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::school-year.school-year"
+    }
+  }
+}

@@ -59,6 +59,30 @@ module.exports = createCoreController('api::enrollment.enrollment', ({ strapi })
         return response;
     },
 
+    async delete(ctx) {
+        const { id } = ctx.params;
+
+        const payments = await strapi.db.query('api::payment.payment').findMany({
+            where: { enrollment: id },
+        });
+
+        const hasActivePayment = payments.some((p) => p.status !== 'cancelled');
+
+        if (hasActivePayment) {
+            return ctx.badRequest(
+                "Impossible de supprimer cette inscription : un paiement non annulé y est rattaché."
+            );
+        }
+
+        for (const payment of payments) {
+            await strapi.entityService.delete('api::payment.payment', payment.id);
+        }
+
+        const response = await super.delete(ctx);
+
+        return response;
+    },
+
     async bulkCreate(ctx) {
         const payload = ctx.request.body?.data || ctx.request.body;
 
@@ -69,5 +93,33 @@ module.exports = createCoreController('api::enrollment.enrollment', ({ strapi })
         } catch (error) {
             return ctx.badRequest(error.message);
         }
+    },
+
+    async markWithdrawn(ctx) {
+        const { id } = ctx.params;
+        const body = ctx.request.body?.data || ctx.request.body || {};
+
+        const existing = await strapi.db.query('api::enrollment.enrollment').findOne({
+            where: { id },
+        });
+
+        if (!existing) {
+            return ctx.notFound("Inscription introuvable.");
+        }
+
+        if (existing.status === 'withdrawn') {
+            return ctx.badRequest("Cette inscription est déjà marquée comme abandon.");
+        }
+
+        const withdrawalDate = body.withdrawalDate || new Date().toISOString().slice(0, 10);
+
+        const updated = await strapi.entityService.update('api::enrollment.enrollment', id, {
+            data: {
+                status: 'withdrawn',
+                withdrawalDate,
+            },
+        });
+
+        return ctx.send({ data: updated });
     },
 }));

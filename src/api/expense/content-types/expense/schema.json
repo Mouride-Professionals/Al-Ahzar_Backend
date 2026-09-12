@@ -19,6 +19,9 @@
     "expenseDate": {
       "type": "date"
     },
+    "monthOf": {
+      "type": "date"
+    },
     "amount": {
       "type": "decimal",
       "min": 0
@@ -41,6 +44,21 @@
     "description": {
       "type": "string"
     },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "paid",
+        "cancelled"
+      ],
+      "default": "paid",
+      "required": true
+    },
+    "cancellationReason": {
+      "type": "text"
+    },
+    "cancelledAt": {
+      "type": "date"
+    },
     "school": {
       "type": "relation",
       "relation": "manyToOne",
@@ -52,6 +70,17 @@
       "relation": "manyToOne",
       "target": "api::school-year.school-year",
       "inversedBy": "expenses"
+    },
+    "personnelBeneficiary": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::personnel.personnel"
+    },
+    "loanRepayments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::loan-repayment.loan-repayment",
+      "mappedBy": "expense"
     }
   }
 }

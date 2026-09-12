@@ -356,6 +356,66 @@
     },
     {
       "action": "plugin::users-permissions.user.update"
+    },
+    {
+      "action": "api::personnel.personnel.create"
+    },
+    {
+      "action": "api::personnel.personnel.find"
+    },
+    {
+      "action": "api::personnel.personnel.findOne"
+    },
+    {
+      "action": "api::personnel.personnel.update"
+    },
+    {
+      "action": "api::bank-transaction.bank-transaction.create"
+    },
+    {
+      "action": "api::bank-transaction.bank-transaction.find"
+    },
+    {
+      "action": "api::bank-transaction.bank-transaction.findOne"
+    },
+    {
+      "action": "api::bank-transaction.bank-transaction.update"
+    },
+    {
+      "action": "api::bank-transaction.bank-transaction.stats"
+    },
+    {
+      "action": "api::enrollment.enrollment.markWithdrawn"
+    },
+    {
+      "action": "api::financial-report.financial-report.generate"
+    },
+    {
+      "action": "api::personnel-loan.personnel-loan.find"
+    },
+    {
+      "action": "api::personnel-loan.personnel-loan.findOne"
+    },
+    {
+      "action": "api::personnel-loan.personnel-loan.create"
+    },
+    {
+      "action": "api::personnel-loan.personnel-loan.update"
+    },
+    {
+      "action": "api::loan-repayment.loan-repayment.find"
+    },
+    {
+      "action": "api::loan-repayment.loan-repayment.findOne"
+    },
+    {
+      "action": "api::loan-repayment.loan-repayment.create"
+    },
+    {
+      "action": "api::loan-repayment.loan-repayment.update"
+    },
+    {
+      "action": "api::loan-repayment.loan-repayment.delete"
     }
   ]
 }

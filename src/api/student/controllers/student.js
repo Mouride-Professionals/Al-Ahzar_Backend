@@ -223,6 +223,15 @@ module.exports = createCoreController('api::student.student', ({ strapi }) => ({
       );
     }
 
+    const hasActivePayment = enrollments.some((e) =>
+      (e.payments || []).some((p) => p.status !== 'cancelled')
+    );
+    if (hasActivePayment) {
+      return ctx.forbidden(
+        "Impossible de supprimer cet élève : un paiement non annulé existe sur l'une de ses inscriptions."
+      );
+    }
+
     for (const enrollment of enrollments) {
       for (const payment of enrollment.payments || []) {
         await strapi.entityService.delete('api::payment.payment', payment.id);

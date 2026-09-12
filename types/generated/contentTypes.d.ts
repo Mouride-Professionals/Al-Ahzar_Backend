@@ -940,6 +940,56 @@ export interface ApiAttendanceRecordAttendanceRecord
   };
 }
 
+export interface ApiBankTransactionBankTransaction
+  extends Schema.CollectionType {
+  collectionName: 'bank_transactions';
+  info: {
+    singularName: 'bank-transaction';
+    pluralName: 'bank-transactions';
+    displayName: 'Bank Transaction';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    transactionDate: Attribute.Date & Attribute.Required;
+    amount: Attribute.Decimal &
+      Attribute.Required &
+      Attribute.SetMinMax<{
+        min: 0;
+      }>;
+    type: Attribute.Enumeration<['D\u00E9p\u00F4t', 'Retrait']> &
+      Attribute.Required;
+    bankReference: Attribute.String;
+    note: Attribute.String;
+    school: Attribute.Relation<
+      'api::bank-transaction.bank-transaction',
+      'manyToOne',
+      'api::school.school'
+    >;
+    schoolYear: Attribute.Relation<
+      'api::bank-transaction.bank-transaction',
+      'manyToOne',
+      'api::school-year.school-year'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::bank-transaction.bank-transaction',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::bank-transaction.bank-transaction',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiClassClass extends Schema.CollectionType {
   collectionName: 'classes';
   info: {
@@ -977,12 +1027,19 @@ export interface ApiClassClass extends Schema.CollectionType {
         'a 5eme',
         'a 4eme',
         'a 3eme',
+        'Pr\u00E9paratoire',
         'a 2nd',
         'a 1ere',
-        'Terminale'
+        'Terminale',
+        'Sp\u00E9cial 1',
+        'Sp\u00E9cial 2',
+        'Sp\u00E9cial 3',
+        'Sp\u00E9cial 4'
       ]
     >;
-    letter: Attribute.Enumeration<['A', 'B', 'C', 'D', 'E']>;
+    letter: Attribute.Enumeration<
+      ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']
+    >;
     schoolYear: Attribute.Relation<
       'api::class.class',
       'manyToOne',
@@ -1236,6 +1293,11 @@ export interface ApiCourseSessionCourseSession extends Schema.CollectionType {
       'manyToOne',
       'api::teacher.teacher'
     >;
+    substituteTeacher: Attribute.Relation<
+      'api::course-session.course-session',
+      'manyToOne',
+      'api::teacher.teacher'
+    >;
     subject: Attribute.Relation<
       'api::course-session.course-session',
       'manyToOne',
@@ -1325,9 +1387,21 @@ export interface ApiEnrollmentEnrollment extends Schema.CollectionType {
       ]
     > &
       Attribute.DefaultTo<'Non'>;
+    customEnrollmentFee: Attribute.Decimal &
+      Attribute.SetMinMax<{
+        min: 0;
+      }>;
+    customMonthlyFee: Attribute.Decimal &
+      Attribute.SetMinMax<{
+        min: 0;
+      }>;
     isConfirmed: Attribute.Boolean &
       Attribute.Required &
       Attribute.DefaultTo<false>;
+    status: Attribute.Enumeration<['active', 'withdrawn', 'completed']> &
+      Attribute.Required &
+      Attribute.DefaultTo<'active'>;
+    withdrawalDate: Attribute.Date;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1359,6 +1433,7 @@ export interface ApiExpenseExpense extends Schema.CollectionType {
   attributes: {
     reference: Attribute.String & Attribute.Unique;
     expenseDate: Attribute.Date;
+    monthOf: Attribute.Date;
     amount: Attribute.Decimal &
       Attribute.SetMinMax<{
         min: 0;
@@ -1378,6 +1453,11 @@ export interface ApiExpenseExpense extends Schema.CollectionType {
     > &
       Attribute.Required;
     description: Attribute.String;
+    status: Attribute.Enumeration<['paid', 'cancelled']> &
+      Attribute.Required &
+      Attribute.DefaultTo<'paid'>;
+    cancellationReason: Attribute.Text;
+    cancelledAt: Attribute.Date;
     school: Attribute.Relation<
       'api::expense.expense',
       'manyToOne',
@@ -1387,6 +1467,16 @@ export interface ApiExpenseExpense extends Schema.CollectionType {
       'api::expense.expense',
       'manyToOne',
       'api::school-year.school-year'
+    >;
+    personnelBeneficiary: Attribute.Relation<
+      'api::expense.expense',
+      'manyToOne',
+      'api::personnel.personnel'
+    >;
+    loanRepayments: Attribute.Relation<
+      'api::expense.expense',
+      'oneToMany',
+      'api::loan-repayment.loan-repayment'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1445,13 +1535,27 @@ export interface ApiFeeScheduleFeeSchedule extends Schema.CollectionType {
         'a 5eme',
         'a 4eme',
         'a 3eme',
+        'Pr\u00E9paratoire',
         'a 2nd',
         'a 1ere',
-        'Terminale'
+        'Terminale',
+        'Sp\u00E9cial 1',
+        'Sp\u00E9cial 2',
+        'Sp\u00E9cial 3',
+        'Sp\u00E9cial 4'
       ]
     >;
     paymentType: Attribute.Enumeration<
-      ['enrollment', 'monthly', 'exam', 'blouse', 'parentContribution', 'other']
+      [
+        'enrollment',
+        'monthly',
+        'exam',
+        'blouse',
+        'parentContribution',
+        'other',
+        'reducedEnrollment',
+        'reducedMonthly'
+      ]
     > &
       Attribute.Required;
     amount: Attribute.Decimal &
@@ -1531,6 +1635,51 @@ export interface ApiGradeEntryGradeEntry extends Schema.CollectionType {
   };
 }
 
+export interface ApiLoanRepaymentLoanRepayment extends Schema.CollectionType {
+  collectionName: 'loan_repayments';
+  info: {
+    singularName: 'loan-repayment';
+    pluralName: 'loan-repayments';
+    displayName: 'Loan Repayment';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    loan: Attribute.Relation<
+      'api::loan-repayment.loan-repayment',
+      'manyToOne',
+      'api::personnel-loan.personnel-loan'
+    >;
+    expense: Attribute.Relation<
+      'api::loan-repayment.loan-repayment',
+      'manyToOne',
+      'api::expense.expense'
+    >;
+    amount: Attribute.Decimal &
+      Attribute.Required &
+      Attribute.SetMinMax<{
+        min: 0;
+      }>;
+    repaymentDate: Attribute.Date & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::loan-repayment.loan-repayment',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::loan-repayment.loan-repayment',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiPaymentPayment extends Schema.CollectionType {
   collectionName: 'payments';
   info: {
@@ -1577,6 +1726,133 @@ export interface ApiPaymentPayment extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::payment.payment',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPersonnelPersonnel extends Schema.CollectionType {
+  collectionName: 'personnel';
+  info: {
+    singularName: 'personnel';
+    pluralName: 'personnels';
+    displayName: 'Personnel';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    firstname: Attribute.String & Attribute.Required;
+    lastname: Attribute.String & Attribute.Required;
+    position: Attribute.Enumeration<
+      [
+        'Enseignant',
+        'Surveillant',
+        'Secr\u00E9taire G\u00E9n\u00E9ral',
+        "Agent d'entretien",
+        'Agent de s\u00E9curit\u00E9',
+        'Autre'
+      ]
+    > &
+      Attribute.Required;
+    phoneNumber: Attribute.String;
+    salary: Attribute.Decimal &
+      Attribute.SetMinMax<{
+        min: 0;
+      }>;
+    school: Attribute.Relation<
+      'api::personnel.personnel',
+      'manyToOne',
+      'api::school.school'
+    >;
+    linkedTeacher: Attribute.Relation<
+      'api::personnel.personnel',
+      'manyToOne',
+      'api::teacher.teacher'
+    >;
+    linkedUser: Attribute.Relation<
+      'api::personnel.personnel',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::personnel.personnel',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::personnel.personnel',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPersonnelLoanPersonnelLoan extends Schema.CollectionType {
+  collectionName: 'personnel_loans';
+  info: {
+    singularName: 'personnel-loan';
+    pluralName: 'personnel-loans';
+    displayName: 'Personnel Loan';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    personnel: Attribute.Relation<
+      'api::personnel-loan.personnel-loan',
+      'manyToOne',
+      'api::personnel.personnel'
+    >;
+    school: Attribute.Relation<
+      'api::personnel-loan.personnel-loan',
+      'manyToOne',
+      'api::school.school'
+    >;
+    schoolYear: Attribute.Relation<
+      'api::personnel-loan.personnel-loan',
+      'manyToOne',
+      'api::school-year.school-year'
+    >;
+    loanType: Attribute.Enumeration<['installment', 'lump_sum']> &
+      Attribute.Required;
+    amount: Attribute.Decimal &
+      Attribute.Required &
+      Attribute.SetMinMax<{
+        min: 0;
+      }>;
+    installmentAmount: Attribute.Decimal &
+      Attribute.SetMinMax<{
+        min: 0;
+      }>;
+    loanDate: Attribute.Date & Attribute.Required;
+    status: Attribute.Enumeration<['active', 'repaid', 'cancelled']> &
+      Attribute.Required &
+      Attribute.DefaultTo<'active'>;
+    note: Attribute.Text;
+    repayments: Attribute.Relation<
+      'api::personnel-loan.personnel-loan',
+      'oneToMany',
+      'api::loan-repayment.loan-repayment'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::personnel-loan.personnel-loan',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::personnel-loan.personnel-loan',
       'oneToOne',
       'admin::user'
     > &
@@ -1812,6 +2088,7 @@ export interface ApiStudentStudent extends Schema.CollectionType {
     > &
       Attribute.DefaultTo<'Non'>;
     registrationComment: Attribute.String;
+    arabicFullName: Attribute.String;
     enrollments: Attribute.Relation<
       'api::student.student',
       'oneToMany',
@@ -2047,6 +2324,7 @@ declare module '@strapi/types' {
       'api::academic-period.academic-period': ApiAcademicPeriodAcademicPeriod;
       'api::assessment.assessment': ApiAssessmentAssessment;
       'api::attendance-record.attendance-record': ApiAttendanceRecordAttendanceRecord;
+      'api::bank-transaction.bank-transaction': ApiBankTransactionBankTransaction;
       'api::class.class': ApiClassClass;
       'api::class-council.class-council': ApiClassCouncilClassCouncil;
       'api::class-council-student.class-council-student': ApiClassCouncilStudentClassCouncilStudent;
@@ -2056,7 +2334,10 @@ declare module '@strapi/types' {
       'api::expense.expense': ApiExpenseExpense;
       'api::fee-schedule.fee-schedule': ApiFeeScheduleFeeSchedule;
       'api::grade-entry.grade-entry': ApiGradeEntryGradeEntry;
+      'api::loan-repayment.loan-repayment': ApiLoanRepaymentLoanRepayment;
       'api::payment.payment': ApiPaymentPayment;
+      'api::personnel.personnel': ApiPersonnelPersonnel;
+      'api::personnel-loan.personnel-loan': ApiPersonnelLoanPersonnelLoan;
       'api::school.school': ApiSchoolSchool;
       'api::school-year.school-year': ApiSchoolYearSchoolYear;
       'api::student.student': ApiStudentStudent;

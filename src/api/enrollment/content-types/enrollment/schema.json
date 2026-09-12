@@ -65,10 +65,31 @@
       ],
       "default": "Non"
     },
+    "customEnrollmentFee": {
+      "type": "decimal",
+      "min": 0
+    },
+    "customMonthlyFee": {
+      "type": "decimal",
+      "min": 0
+    },
     "isConfirmed": {
       "type": "boolean",
       "default": false,
       "required": true
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "active",
+        "withdrawn",
+        "completed"
+      ],
+      "default": "active",
+      "required": true
+    },
+    "withdrawalDate": {
+      "type": "date"
     }
   }
 }
