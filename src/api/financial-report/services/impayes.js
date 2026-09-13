@@ -9,30 +9,76 @@ function monthsBetweenInclusive(start, end) {
 }
 
 /**
- * Computes cumulative outstanding balances (Impayés) as of `periodEnd`.
+ * Resolves the expected amount for one enrollment/paymentType pair, honoring
+ * per-family negotiated cas-sociaux rates.
  *
- * SETTLED DECISION: computed only for `socialStatus = 'Non'` enrollments.
- * Cas-sociaux enrollments (Réduction inscription/mensualité, Tout tarifs
- * offerts) are permanently excluded — these discounts are negotiated
- * case-by-case per family, there is no fixed percentage stored anywhere
- * to compute an "expected amount" against. They're surfaced separately as
- * `casSociauxExcludedCount` instead of being folded into a guessed total.
+ * REVISED DECISION (supersedes the earlier "cas-sociaux permanently excluded"
+ * design): every enrollment with a non-`Non` `socialStatus` already carries
+ * its own negotiated `customEnrollmentFee`/`customMonthlyFee` on the
+ * enrollment record (set via the Social Status dialog on the front end), so
+ * there IS a real per-family amount to compute against — it just isn't the
+ * standard fee-schedule rate. Cas-sociaux enrollments are therefore included
+ * in Impayés like any other enrollment, using this resolution order:
+ *  - `enrollment` type: "Tout tarifs offerts" → 0; "Réduction inscription" →
+ *    `customEnrollmentFee` if set, else the fee-schedule `reducedEnrollment`
+ *    rate, else the normal `enrollment` rate; anything else → normal rate.
+ *  - `monthly` type: same pattern with `customMonthlyFee` /
+ *    `reducedMonthly` / `monthly`.
+ *  - All other payment types (exam, blouse, parentContribution, other): no
+ *    override field exists on the enrollment, so the normal fee-schedule
+ *    rate always applies regardless of socialStatus.
  *
  * ASSUMPTION (flagged, not silently invented — verify against real
  * accounting practice before trusting these figures): fee-schedule's
- * `monthly` rate is treated as accruing once per distinct calendar month
- * from the school year's start date through `periodEnd` inclusive (e.g.
- * whether vacation months should accrue is not encoded anywhere and is
- * assumed here to follow the same monthly cadence the legacy manual
- * report already uses for Recettes). Every other paymentType (enrollment,
- * exam, blouse, parentContribution, other) is treated as a one-time
- * expected amount, not repeated per month.
+ * `monthly` (and `reducedMonthly`) rate is treated as accruing once per
+ * distinct calendar month from the school year's start date through
+ * `periodEnd` inclusive (e.g. whether vacation months should accrue is not
+ * encoded anywhere and is assumed here to follow the same monthly cadence
+ * the legacy manual report already uses for Recettes). Every other
+ * paymentType is treated as a one-time expected amount, not repeated per
+ * month.
+ */
+function resolveExpectedRate({ enrollment, paymentType, feeScheduleMap }) {
+  const { cycle, level, socialStatus, customEnrollmentFee, customMonthlyFee } = enrollment;
+  const normalRate = feeScheduleMap.get(`${cycle}|${level}|${paymentType}`);
+
+  if (paymentType === 'enrollment') {
+    if (socialStatus === 'Tout tarifs offerts') return 0;
+    if (socialStatus === 'Réduction inscription') {
+      if (customEnrollmentFee !== null && customEnrollmentFee !== undefined) {
+        return parseFloat(customEnrollmentFee) || 0;
+      }
+      const reducedRate = feeScheduleMap.get(`${cycle}|${level}|reducedEnrollment`);
+      return reducedRate !== undefined ? reducedRate : normalRate;
+    }
+    return normalRate;
+  }
+
+  if (paymentType === 'monthly') {
+    if (socialStatus === 'Tout tarifs offerts') return 0;
+    if (socialStatus === 'Réduction mensualité') {
+      if (customMonthlyFee !== null && customMonthlyFee !== undefined) {
+        return parseFloat(customMonthlyFee) || 0;
+      }
+      const reducedRate = feeScheduleMap.get(`${cycle}|${level}|reducedMonthly`);
+      return reducedRate !== undefined ? reducedRate : normalRate;
+    }
+    return normalRate;
+  }
+
+  return normalRate;
+}
+
+/**
+ * Computes cumulative outstanding balances (Impayés) as of `periodEnd`,
+ * across all active enrollments including cas-sociaux (see
+ * `resolveExpectedRate` above for how their negotiated rates are resolved).
  *
- * KNOWN LIMITATION: fee-schedule's `level` enum is a strict subset of
- * class's `level` enum (missing "Préparatoire", "Spécial 1-4"). Enrollments
- * in those levels will have no matching fee-schedule row and contribute 0
- * to `expectedTotal`, silently under-counting impayés for those classes
- * until fee-schedule is extended to cover them.
+ * KNOWN LIMITATION: fee-schedule's `level` enum matches class's `level`
+ * enum as of the fee-schedule module (no coverage gap today) — if new class
+ * levels are ever added without a matching fee-schedule entry, those
+ * enrollments will contribute 0 to `expectedTotal`, silently under-counting
+ * impayés for those classes.
  */
 async function computeImpayes({ strapi, schoolId, schoolYearId, schoolYearStartDate, periodEnd }) {
   const knex = strapi.db.connection;
@@ -62,27 +108,23 @@ async function computeImpayes({ strapi, schoolId, schoolYearId, schoolYearStartD
         );
       });
 
-  const extractCount = (res) => (res ? parseInt(res.count, 10) || 0 : 0);
+  const enrollments = await activeEnrollmentQuery().select(
+    'enrollments.id as enrollmentId',
+    'classes.cycle as cycle',
+    'classes.level as level',
+    'enrollments.social_status as socialStatus',
+    'enrollments.custom_enrollment_fee as customEnrollmentFee',
+    'enrollments.custom_monthly_fee as customMonthlyFee'
+  );
 
-  const [enrollments, casSociauxExcludedRow] = await Promise.all([
-    activeEnrollmentQuery()
-      .andWhere('enrollments.social_status', 'Non')
-      .select('enrollments.id as enrollmentId', 'classes.cycle as cycle', 'classes.level as level'),
-
-    activeEnrollmentQuery()
-      .andWhereNot('enrollments.social_status', 'Non')
-      .count({ count: '*' })
-      .first(),
-  ]);
-
-  const casSociauxExcludedCount = extractCount(casSociauxExcludedRow);
+  const casSociauxCount = enrollments.filter((e) => e.socialStatus !== 'Non').length;
 
   if (enrollments.length === 0) {
     return {
       expectedTotal: 0,
       paidTotal: 0,
       balance: 0,
-      casSociauxExcludedCount,
+      casSociauxCount,
       enrollmentCount: 0,
     };
   }
@@ -128,7 +170,7 @@ async function computeImpayes({ strapi, schoolId, schoolYearId, schoolYearStartD
 
   for (const enrollment of enrollments) {
     for (const paymentType of PAYMENT_TYPES) {
-      const rate = feeScheduleMap.get(`${enrollment.cycle}|${enrollment.level}|${paymentType}`);
+      const rate = resolveExpectedRate({ enrollment, paymentType, feeScheduleMap });
       if (rate === undefined) continue;
 
       expectedTotal += paymentType === 'monthly' ? rate * monthsElapsed : rate;
@@ -140,7 +182,7 @@ async function computeImpayes({ strapi, schoolId, schoolYearId, schoolYearStartD
     expectedTotal,
     paidTotal,
     balance: Math.max(expectedTotal - paidTotal, 0),
-    casSociauxExcludedCount,
+    casSociauxCount,
     enrollmentCount: enrollments.length,
   };
 }
