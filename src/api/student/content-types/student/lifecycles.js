@@ -14,6 +14,8 @@ module.exports = {
     const { data } = event.params;
     if (!data) return;
 
+    await strapi.service('api::student.student').validateName(data);
+
     if (!data.studentIdentifer) {
       data.studentIdentifer = await generateUniqueIdentifier(strapi);
     }
@@ -21,8 +23,11 @@ module.exports = {
 
   // Ensure identifiers are not overwritten on update unless explicitly provided
   async beforeUpdate(event) {
-    const { data } = event.params;
+    const { data, where } = event.params;
     if (!data) return;
+
+    await strapi.service('api::student.student').validateName(data, { studentId: where?.id });
+
     // If update clears identifier or sets it to empty, prevent accidental deletion
     if (Object.prototype.hasOwnProperty.call(data, 'studentIdentifer') && (data.studentIdentifer === null || data.studentIdentifer === '')) {
       delete data.studentIdentifer;

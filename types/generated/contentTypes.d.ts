@@ -2066,8 +2066,8 @@ export interface ApiStudentStudent extends Schema.CollectionType {
     draftAndPublish: false;
   };
   attributes: {
-    firstname: Attribute.String & Attribute.Required;
-    lastname: Attribute.String & Attribute.Required;
+    firstname: Attribute.String;
+    lastname: Attribute.String;
     gender: Attribute.Enumeration<['Homme', 'Femme']> & Attribute.Required;
     dateOfBirth: Attribute.Date & Attribute.Required;
     birthPlace: Attribute.String & Attribute.Required;

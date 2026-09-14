@@ -14,11 +14,11 @@
   "attributes": {
     "firstname": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "lastname": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "gender": {
       "type": "enumeration",
