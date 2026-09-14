@@ -21,15 +21,7 @@
       "required": true
     },
     "position": {
-      "type": "enumeration",
-      "enum": [
-        "Enseignant",
-        "Surveillant",
-        "Secrétaire Général",
-        "Agent d'entretien",
-        "Agent de sécurité",
-        "Autre"
-      ],
+      "type": "string",
       "required": true
     },
     "phoneNumber": {

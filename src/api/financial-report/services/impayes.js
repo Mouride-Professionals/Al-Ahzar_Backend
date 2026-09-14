@@ -22,8 +22,16 @@ function monthsBetweenInclusive(start, end) {
  *  - `enrollment` type: "Tout tarifs offerts" → 0; "Réduction inscription" →
  *    `customEnrollmentFee` if set, else the fee-schedule `reducedEnrollment`
  *    rate, else the normal `enrollment` rate; anything else → normal rate.
- *  - `monthly` type: same pattern with `customMonthlyFee` /
- *    `reducedMonthly` / `monthly`.
+ *  - `monthly` type: "Tout tarifs offerts" OR "Réduction inscription" → 0 —
+ *    confirmed business rule: "Réduction inscription" means a reduced
+ *    one-time enrollment fee AND full exemption from monthly fees for the
+ *    rest of the year, not just a discounted enrollment fee with monthly
+ *    fees still due (matches `isMonthlyFeeWaived` in the frontend's
+ *    `payment-rules.ts`, which already disables monthly payment collection
+ *    for this status — this function used to disagree with that and expect
+ *    a full monthly rate, which was the actual bug). "Réduction mensualité"
+ *    → `customMonthlyFee` if set, else the fee-schedule `reducedMonthly`
+ *    rate, else the normal `monthly` rate; anything else → normal rate.
  *  - All other payment types (exam, blouse, parentContribution, other): no
  *    override field exists on the enrollment, so the normal fee-schedule
  *    rate always applies regardless of socialStatus.
@@ -55,7 +63,9 @@ function resolveExpectedRate({ enrollment, paymentType, feeScheduleMap }) {
   }
 
   if (paymentType === 'monthly') {
-    if (socialStatus === 'Tout tarifs offerts') return 0;
+    if (socialStatus === 'Tout tarifs offerts' || socialStatus === 'Réduction inscription') {
+      return 0;
+    }
     if (socialStatus === 'Réduction mensualité') {
       if (customMonthlyFee !== null && customMonthlyFee !== undefined) {
         return parseFloat(customMonthlyFee) || 0;

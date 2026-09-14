@@ -154,29 +154,25 @@ module.exports = createCoreService('api::expense.expense', ({ strapi }) => ({
   },
 
   // Guards a plain field edit (amount/date/category/...), as opposed to a
-  // cancellation (see cancelExpense below). Salary payments are cancel-only,
-  // never edited — mirrors how student payments work (cancel + re-record
-  // instead of mutating history) and avoids ever having to reconcile a
-  // changed amount/beneficiary against loan-repayment records already
-  // linked to this expense. A cancelled expense of any category is frozen.
+  // cancellation (see cancelExpense below). Every expense, regardless of
+  // category, is cancel-only — never edited — mirroring how student
+  // payments work (cancel + re-record instead of mutating history) and
+  // avoiding ever having to reconcile a changed amount/beneficiary against
+  // loan-repayment records already linked to this expense.
   async assertCanEditFields(expenseId) {
     const current = await strapi.entityService.findOne('api::expense.expense', expenseId, {
-      select: ['category', 'status'],
+      select: ['status'],
     });
 
     if (!current) {
       throw new Error('Dépense introuvable.');
     }
 
-    if (current.status === 'cancelled') {
-      throw new Error('Cette dépense est annulée : elle ne peut plus être modifiée.');
-    }
-
-    if (current.category === 'Salaires') {
-      throw new Error(
-        "Un paiement de salaire ne peut pas être modifié — annulez-le et enregistrez un nouveau paiement.",
-      );
-    }
+    throw new Error(
+      current.status === 'cancelled'
+        ? 'Cette dépense est annulée : elle ne peut plus être modifiée.'
+        : 'Une dépense ne peut pas être modifiée — annulez-la et enregistrez une nouvelle dépense.',
+    );
   },
 
   // The only sanctioned way to remove an expense from the books: a soft

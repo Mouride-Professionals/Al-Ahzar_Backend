@@ -1747,17 +1747,7 @@ export interface ApiPersonnelPersonnel extends Schema.CollectionType {
   attributes: {
     firstname: Attribute.String & Attribute.Required;
     lastname: Attribute.String & Attribute.Required;
-    position: Attribute.Enumeration<
-      [
-        'Enseignant',
-        'Surveillant',
-        'Secr\u00E9taire G\u00E9n\u00E9ral',
-        "Agent d'entretien",
-        'Agent de s\u00E9curit\u00E9',
-        'Autre'
-      ]
-    > &
-      Attribute.Required;
+    position: Attribute.String & Attribute.Required;
     phoneNumber: Attribute.String;
     salary: Attribute.Decimal &
       Attribute.SetMinMax<{

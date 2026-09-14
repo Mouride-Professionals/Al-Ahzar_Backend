@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2026-09-14T10:34:16.466Z"
+    "x-generation-date": "2026-09-14T16:33:23.817Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -1672,15 +1672,7 @@
                                                                             "type": "string"
                                                                           },
                                                                           "position": {
-                                                                            "type": "string",
-                                                                            "enum": [
-                                                                              "Enseignant",
-                                                                              "Surveillant",
-                                                                              "Secrétaire Général",
-                                                                              "Agent d'entretien",
-                                                                              "Agent de sécurité",
-                                                                              "Autre"
-                                                                            ]
+                                                                            "type": "string"
                                                                           },
                                                                           "phoneNumber": {
                                                                             "type": "string"
@@ -5177,15 +5169,7 @@
                                                               "type": "string"
                                                             },
                                                             "position": {
-                                                              "type": "string",
-                                                              "enum": [
-                                                                "Enseignant",
-                                                                "Surveillant",
-                                                                "Secrétaire Général",
-                                                                "Agent d'entretien",
-                                                                "Agent de sécurité",
-                                                                "Autre"
-                                                              ]
+                                                              "type": "string"
                                                             },
                                                             "phoneNumber": {
                                                               "type": "string"
@@ -8300,15 +8284,7 @@
                                                                           "type": "string"
                                                                         },
                                                                         "position": {
-                                                                          "type": "string",
-                                                                          "enum": [
-                                                                            "Enseignant",
-                                                                            "Surveillant",
-                                                                            "Secrétaire Général",
-                                                                            "Agent d'entretien",
-                                                                            "Agent de sécurité",
-                                                                            "Autre"
-                                                                          ]
+                                                                          "type": "string"
                                                                         },
                                                                         "phoneNumber": {
                                                                           "type": "string"
@@ -12136,15 +12112,7 @@
                                                                             "type": "string"
                                                                           },
                                                                           "position": {
-                                                                            "type": "string",
-                                                                            "enum": [
-                                                                              "Enseignant",
-                                                                              "Surveillant",
-                                                                              "Secrétaire Général",
-                                                                              "Agent d'entretien",
-                                                                              "Agent de sécurité",
-                                                                              "Autre"
-                                                                            ]
+                                                                            "type": "string"
                                                                           },
                                                                           "phoneNumber": {
                                                                             "type": "string"
@@ -15237,15 +15205,7 @@
                                                                             "type": "string"
                                                                           },
                                                                           "position": {
-                                                                            "type": "string",
-                                                                            "enum": [
-                                                                              "Enseignant",
-                                                                              "Surveillant",
-                                                                              "Secrétaire Général",
-                                                                              "Agent d'entretien",
-                                                                              "Agent de sécurité",
-                                                                              "Autre"
-                                                                            ]
+                                                                            "type": "string"
                                                                           },
                                                                           "phoneNumber": {
                                                                             "type": "string"
@@ -18752,15 +18712,7 @@
                                                               "type": "string"
                                                             },
                                                             "position": {
-                                                              "type": "string",
-                                                              "enum": [
-                                                                "Enseignant",
-                                                                "Surveillant",
-                                                                "Secrétaire Général",
-                                                                "Agent d'entretien",
-                                                                "Agent de sécurité",
-                                                                "Autre"
-                                                              ]
+                                                              "type": "string"
                                                             },
                                                             "phoneNumber": {
                                                               "type": "string"
@@ -22318,15 +22270,7 @@
                                                                           "type": "string"
                                                                         },
                                                                         "position": {
-                                                                          "type": "string",
-                                                                          "enum": [
-                                                                            "Enseignant",
-                                                                            "Surveillant",
-                                                                            "Secrétaire Général",
-                                                                            "Agent d'entretien",
-                                                                            "Agent de sécurité",
-                                                                            "Autre"
-                                                                          ]
+                                                                          "type": "string"
                                                                         },
                                                                         "phoneNumber": {
                                                                           "type": "string"
@@ -25730,15 +25674,7 @@
                                                               "type": "string"
                                                             },
                                                             "position": {
-                                                              "type": "string",
-                                                              "enum": [
-                                                                "Enseignant",
-                                                                "Surveillant",
-                                                                "Secrétaire Général",
-                                                                "Agent d'entretien",
-                                                                "Agent de sécurité",
-                                                                "Autre"
-                                                              ]
+                                                              "type": "string"
                                                             },
                                                             "phoneNumber": {
                                                               "type": "string"
@@ -28929,15 +28865,7 @@
                                                                           "type": "string"
                                                                         },
                                                                         "position": {
-                                                                          "type": "string",
-                                                                          "enum": [
-                                                                            "Enseignant",
-                                                                            "Surveillant",
-                                                                            "Secrétaire Général",
-                                                                            "Agent d'entretien",
-                                                                            "Agent de sécurité",
-                                                                            "Autre"
-                                                                          ]
+                                                                          "type": "string"
                                                                         },
                                                                         "phoneNumber": {
                                                                           "type": "string"
@@ -32631,15 +32559,7 @@
                                                               "type": "string"
                                                             },
                                                             "position": {
-                                                              "type": "string",
-                                                              "enum": [
-                                                                "Enseignant",
-                                                                "Surveillant",
-                                                                "Secrétaire Général",
-                                                                "Agent d'entretien",
-                                                                "Agent de sécurité",
-                                                                "Autre"
-                                                              ]
+                                                              "type": "string"
                                                             },
                                                             "phoneNumber": {
                                                               "type": "string"
@@ -35493,15 +35413,7 @@
                                                                             "type": "string"
                                                                           },
                                                                           "position": {
-                                                                            "type": "string",
-                                                                            "enum": [
-                                                                              "Enseignant",
-                                                                              "Surveillant",
-                                                                              "Secrétaire Général",
-                                                                              "Agent d'entretien",
-                                                                              "Agent de sécurité",
-                                                                              "Autre"
-                                                                            ]
+                                                                            "type": "string"
                                                                           },
                                                                           "phoneNumber": {
                                                                             "type": "string"
@@ -38597,15 +38509,7 @@
                                                                             "type": "string"
                                                                           },
                                                                           "position": {
-                                                                            "type": "string",
-                                                                            "enum": [
-                                                                              "Enseignant",
-                                                                              "Surveillant",
-                                                                              "Secrétaire Général",
-                                                                              "Agent d'entretien",
-                                                                              "Agent de sécurité",
-                                                                              "Autre"
-                                                                            ]
+                                                                            "type": "string"
                                                                           },
                                                                           "phoneNumber": {
                                                                             "type": "string"
@@ -42092,15 +41996,7 @@
                                                                           "type": "string"
                                                                         },
                                                                         "position": {
-                                                                          "type": "string",
-                                                                          "enum": [
-                                                                            "Enseignant",
-                                                                            "Surveillant",
-                                                                            "Secrétaire Général",
-                                                                            "Agent d'entretien",
-                                                                            "Agent de sécurité",
-                                                                            "Autre"
-                                                                          ]
+                                                                          "type": "string"
                                                                         },
                                                                         "phoneNumber": {
                                                                           "type": "string"
@@ -43764,15 +43660,7 @@
                                     "type": "string"
                                   },
                                   "position": {
-                                    "type": "string",
-                                    "enum": [
-                                      "Enseignant",
-                                      "Surveillant",
-                                      "Secrétaire Général",
-                                      "Agent d'entretien",
-                                      "Agent de sécurité",
-                                      "Autre"
-                                    ]
+                                    "type": "string"
                                   },
                                   "phoneNumber": {
                                     "type": "string"
@@ -48085,15 +47973,7 @@
                                                                           "type": "string"
                                                                         },
                                                                         "position": {
-                                                                          "type": "string",
-                                                                          "enum": [
-                                                                            "Enseignant",
-                                                                            "Surveillant",
-                                                                            "Secrétaire Général",
-                                                                            "Agent d'entretien",
-                                                                            "Agent de sécurité",
-                                                                            "Autre"
-                                                                          ]
+                                                                          "type": "string"
                                                                         },
                                                                         "phoneNumber": {
                                                                           "type": "string"
@@ -49764,15 +49644,7 @@
                 "type": "string"
               },
               "position": {
-                "type": "string",
-                "enum": [
-                  "Enseignant",
-                  "Surveillant",
-                  "Secrétaire Général",
-                  "Agent d'entretien",
-                  "Agent de sécurité",
-                  "Autre"
-                ]
+                "type": "string"
               },
               "phoneNumber": {
                 "type": "string"
@@ -49879,15 +49751,7 @@
             "type": "string"
           },
           "position": {
-            "type": "string",
-            "enum": [
-              "Enseignant",
-              "Surveillant",
-              "Secrétaire Général",
-              "Agent d'entretien",
-              "Agent de sécurité",
-              "Autre"
-            ]
+            "type": "string"
           },
           "phoneNumber": {
             "type": "string"
@@ -51338,15 +51202,7 @@
                                                                             "type": "string"
                                                                           },
                                                                           "position": {
-                                                                            "type": "string",
-                                                                            "enum": [
-                                                                              "Enseignant",
-                                                                              "Surveillant",
-                                                                              "Secrétaire Général",
-                                                                              "Agent d'entretien",
-                                                                              "Agent de sécurité",
-                                                                              "Autre"
-                                                                            ]
+                                                                            "type": "string"
                                                                           },
                                                                           "phoneNumber": {
                                                                             "type": "string"
@@ -53004,15 +52860,7 @@
                         "type": "string"
                       },
                       "position": {
-                        "type": "string",
-                        "enum": [
-                          "Enseignant",
-                          "Surveillant",
-                          "Secrétaire Général",
-                          "Agent d'entretien",
-                          "Agent de sécurité",
-                          "Autre"
-                        ]
+                        "type": "string"
                       },
                       "phoneNumber": {
                         "type": "string"
@@ -57689,15 +57537,7 @@
                                                                             "type": "string"
                                                                           },
                                                                           "position": {
-                                                                            "type": "string",
-                                                                            "enum": [
-                                                                              "Enseignant",
-                                                                              "Surveillant",
-                                                                              "Secrétaire Général",
-                                                                              "Agent d'entretien",
-                                                                              "Agent de sécurité",
-                                                                              "Autre"
-                                                                            ]
+                                                                            "type": "string"
                                                                           },
                                                                           "phoneNumber": {
                                                                             "type": "string"
@@ -61440,15 +61280,7 @@
                                                                 "type": "string"
                                                               },
                                                               "position": {
-                                                                "type": "string",
-                                                                "enum": [
-                                                                  "Enseignant",
-                                                                  "Surveillant",
-                                                                  "Secrétaire Général",
-                                                                  "Agent d'entretien",
-                                                                  "Agent de sécurité",
-                                                                  "Autre"
-                                                                ]
+                                                                "type": "string"
                                                               },
                                                               "phoneNumber": {
                                                                 "type": "string"
@@ -64089,15 +63921,7 @@
                                                                             "type": "string"
                                                                           },
                                                                           "position": {
-                                                                            "type": "string",
-                                                                            "enum": [
-                                                                              "Enseignant",
-                                                                              "Surveillant",
-                                                                              "Secrétaire Général",
-                                                                              "Agent d'entretien",
-                                                                              "Agent de sécurité",
-                                                                              "Autre"
-                                                                            ]
+                                                                            "type": "string"
                                                                           },
                                                                           "phoneNumber": {
                                                                             "type": "string"
@@ -67401,15 +67225,7 @@
                                                                             "type": "string"
                                                                           },
                                                                           "position": {
-                                                                            "type": "string",
-                                                                            "enum": [
-                                                                              "Enseignant",
-                                                                              "Surveillant",
-                                                                              "Secrétaire Général",
-                                                                              "Agent d'entretien",
-                                                                              "Agent de sécurité",
-                                                                              "Autre"
-                                                                            ]
+                                                                            "type": "string"
                                                                           },
                                                                           "phoneNumber": {
                                                                             "type": "string"
@@ -70547,15 +70363,7 @@
                                                                             "type": "string"
                                                                           },
                                                                           "position": {
-                                                                            "type": "string",
-                                                                            "enum": [
-                                                                              "Enseignant",
-                                                                              "Surveillant",
-                                                                              "Secrétaire Général",
-                                                                              "Agent d'entretien",
-                                                                              "Agent de sécurité",
-                                                                              "Autre"
-                                                                            ]
+                                                                            "type": "string"
                                                                           },
                                                                           "phoneNumber": {
                                                                             "type": "string"
@@ -74091,15 +73899,7 @@
                                                               "type": "string"
                                                             },
                                                             "position": {
-                                                              "type": "string",
-                                                              "enum": [
-                                                                "Enseignant",
-                                                                "Surveillant",
-                                                                "Secrétaire Général",
-                                                                "Agent d'entretien",
-                                                                "Agent de sécurité",
-                                                                "Autre"
-                                                              ]
+                                                              "type": "string"
                                                             },
                                                             "phoneNumber": {
                                                               "type": "string"
