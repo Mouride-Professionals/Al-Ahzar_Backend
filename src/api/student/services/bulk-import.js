@@ -87,7 +87,7 @@ module.exports = ({ strapi }) => ({
   /**
    * Validate student data before import
    */
-  async validateStudentData(studentData) {
+  async validateStudentData(studentData, seenStudentKeys) {
     const errors = [];
     const warnings = [];
 
@@ -175,6 +175,38 @@ module.exports = ({ strapi }) => ({
       if (existingStudent.length > 0) {
         errors.push(`Identifiant étudiant déjà existant: ${studentData.studentIdentifer}`);
       }
+    }
+
+    // Check for duplicate student (same name + date of birth)
+    if (studentData.firstname && studentData.lastname && studentData.dateOfBirth) {
+      const key = [studentData.firstname, studentData.lastname, studentData.dateOfBirth]
+        .map((value) => value.toString().trim().toLowerCase())
+        .join('|');
+
+      if (seenStudentKeys?.has(key)) {
+        errors.push(
+          `Doublon dans le fichier: un élève avec le même nom, prénom et date de naissance apparaît plusieurs fois`
+        );
+      } else {
+        const candidates = await strapi.entityService.findMany('api::student.student', {
+          filters: { dateOfBirth: studentData.dateOfBirth },
+          fields: ['firstname', 'lastname', 'studentIdentifer']
+        });
+
+        const existingStudent = candidates.find(
+          (candidate) =>
+            candidate.firstname?.trim().toLowerCase() === studentData.firstname.trim().toLowerCase() &&
+            candidate.lastname?.trim().toLowerCase() === studentData.lastname.trim().toLowerCase()
+        );
+
+        if (existingStudent) {
+          errors.push(
+            `Élève déjà existant: ${studentData.firstname} ${studentData.lastname} (${studentData.dateOfBirth}) est déjà enregistré sous l'identifiant ${existingStudent.studentIdentifer}`
+          );
+        }
+      }
+
+      seenStudentKeys?.add(key);
     }
 
     return { errors, warnings };
@@ -298,6 +330,8 @@ module.exports = ({ strapi }) => ({
 
       results.total = studentsData.length;
 
+      const seenStudentKeys = new Set();
+
       for (let i = 0; i < studentsData.length; i++) {
         const studentData = studentsData[i];
         const rowNumber = i + 2; // Excel row number (accounting for header)
@@ -309,7 +343,7 @@ module.exports = ({ strapi }) => ({
           }
 
           // Validate student data
-          const validation = await this.validateStudentData(studentData);
+          const validation = await this.validateStudentData(studentData, seenStudentKeys);
 
           if (validation.errors.length > 0) {
             results.errors++;

@@ -6,6 +6,15 @@
 
 const { createCoreController } = require('@strapi/strapi').factories;
 
+function flattenIssues(entries, messageKey) {
+  return entries.flatMap((entry) =>
+    (entry[messageKey] || []).map((message) => ({
+      row: entry.row,
+      message: `${entry.student}: ${message}`
+    }))
+  );
+}
+
 module.exports = createCoreController('api::student.student', ({ strapi }) => ({
   // Default CRUD operations remain available
 
@@ -91,7 +100,16 @@ module.exports = createCoreController('api::student.student', ({ strapi }) => ({
       ctx.body = {
         success: true,
         message: 'Validation terminée',
-        data: results
+        data: {
+          isValid: results.errors === 0,
+          rows: results.total,
+          summary: {
+            errors: results.errors,
+            warnings: results.warnings
+          },
+          errors: flattenIssues(results.errorDetails, 'errors'),
+          warnings: flattenIssues(results.details, 'warnings')
+        }
       };
     } catch (error) {
       ctx.throw(500, `Erreur lors de la validation: ${error.message}`);
@@ -159,7 +177,13 @@ module.exports = createCoreController('api::student.student', ({ strapi }) => ({
       ctx.body = {
         success: true,
         message: `Import terminé: ${results.success} créés, ${results.errors} erreurs`,
-        data: results
+        data: {
+          success: true,
+          imported: results.success,
+          skipped: results.errors,
+          errors: flattenIssues(results.errorDetails, 'errors'),
+          warnings: flattenIssues(results.details, 'warnings')
+        }
       };
     } catch (error) {
       ctx.throw(500, `Erreur lors de l'import: ${error.message}`);

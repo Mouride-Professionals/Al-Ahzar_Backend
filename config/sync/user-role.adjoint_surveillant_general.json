@@ -278,6 +278,12 @@
     },
     {
       "action": "api::enrollment.enrollment.markWithdrawn"
+    },
+    {
+      "action": "api::enrollment.enrollment.swapNumber"
+    },
+    {
+      "action": "api::enrollment.enrollment.reorder"
     }
   ]
 }
