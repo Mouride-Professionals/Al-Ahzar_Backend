@@ -64,6 +64,12 @@
       "action": "api::fee-schedule.fee-schedule.findOne"
     },
     {
+      "action": "api::fee-schedule.fee-schedule.create"
+    },
+    {
+      "action": "api::fee-schedule.fee-schedule.update"
+    },
+    {
       "action": "api::payment.payment.create"
     },
     {
