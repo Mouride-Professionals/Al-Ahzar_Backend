@@ -1,15 +1,11 @@
 #!/bin/sh
 set -eu
 
-# Optional one-time-ish action; keep it off by default for production safety.
-# Run manually when needed:
-#   STRAPI_CONFIG_SYNC_IMPORT=1 docker compose up -d --build
-# or:
-#   docker compose run --rm -e STRAPI_CONFIG_SYNC_IMPORT=1 strapi
+# Emergency opt-in only. Normal production role synchronization is performed by
+# docker/deploy.sh after the immutable deployment image passes its preflight.
 if [ "${STRAPI_CONFIG_SYNC_IMPORT:-}" = "1" ]; then
-  echo "Running config-sync import..."
-  yarn cs import -y
+  echo "Running role-only config-sync import..."
+  yarn cs import -y --type user-role
 fi
 
 exec "$@"
-

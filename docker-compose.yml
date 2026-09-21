@@ -21,7 +21,7 @@ services:
       - strapi
 
   strapi:
-    image: registry.digitalocean.com/africadex-registry/al-azhar-backend:${IMAGE_TAG:-latest}
+    image: registry.digitalocean.com/africadex-registry/al-azhar-backend:${IMAGE_TAG:?IMAGE_TAG must be set to an immutable Git SHA}
     build:
       context: .
       dockerfile: Dockerfile
@@ -39,6 +39,18 @@ services:
       - strapi_uploads:/srv/app/public/uploads
     depends_on:
       - db
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "const http=require('http');const req=http.get('http://127.0.0.1:1337/_health',(res)=>{res.resume();process.exit(res.statusCode>=200&&res.statusCode<400?0:1);});req.on('error',()=>process.exit(1));req.setTimeout(3000,()=>{req.destroy();process.exit(1);});",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 18
+      start_period: 30s
 
   # If you prefer DO Managed Postgres, delete this service and point DATABASE_URL to the managed DB.
   db:
