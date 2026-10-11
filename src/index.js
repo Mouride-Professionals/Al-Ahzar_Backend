@@ -1,5 +1,7 @@
 'use strict';
 
+const { registerSchoolScope } = require('./utils/school-scope');
+
 module.exports = {
   /**
    * An asynchronous register function that runs before
@@ -17,6 +19,8 @@ module.exports = {
    * run jobs, or perform some special logic.
    */
   async bootstrap({ strapi }) {
+    registerSchoolScope(strapi);
+
     // Strapi runs database/migrations before creating new columns, so the
     // status backfill migrations skipped and were marked done. Re-apply here,
     // after schema sync; idempotent.
