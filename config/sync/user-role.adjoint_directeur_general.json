@@ -1,6 +1,6 @@
 {
   "name": "Adjoint Directeur General",
-  "description": "Assistant au Directeur General - Même permissions que le Directeur General titulaire",
+  "description": "Assistant au Directeur General - M\u00eame permissions que le Directeur General titulaire",
   "type": "adjoint_directeur_general",
   "permissions": [
     {
@@ -257,6 +257,21 @@
     },
     {
       "action": "api::school.school.updatePeriodTemplate"
+    },
+    {
+      "action": "api::school-subject.school-subject.create"
+    },
+    {
+      "action": "api::school-subject.school-subject.delete"
+    },
+    {
+      "action": "api::school-subject.school-subject.find"
+    },
+    {
+      "action": "api::school-subject.school-subject.findOne"
+    },
+    {
+      "action": "api::school-subject.school-subject.update"
     },
     {
       "action": "api::student.student.bulkImport"

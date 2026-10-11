@@ -235,6 +235,21 @@
       "action": "api::school.school.updatePeriodTemplate"
     },
     {
+      "action": "api::school-subject.school-subject.create"
+    },
+    {
+      "action": "api::school-subject.school-subject.delete"
+    },
+    {
+      "action": "api::school-subject.school-subject.find"
+    },
+    {
+      "action": "api::school-subject.school-subject.findOne"
+    },
+    {
+      "action": "api::school-subject.school-subject.update"
+    },
+    {
       "action": "api::student.student.bulkImport"
     },
     {
@@ -259,19 +274,10 @@
       "action": "api::student.student.validateBulkImport"
     },
     {
-      "action": "api::subject.subject.create"
-    },
-    {
-      "action": "api::subject.subject.delete"
-    },
-    {
       "action": "api::subject.subject.find"
     },
     {
       "action": "api::subject.subject.findOne"
-    },
-    {
-      "action": "api::subject.subject.update"
     },
     {
       "action": "api::teacher.teacher.create"

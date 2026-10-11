@@ -1,6 +1,6 @@
 {
   "name": "Adjoint Directeur Etablissement",
-  "description": "Assistant au Directeur Etablissement - Même permissions que le Directeur Etablissement titulaire",
+  "description": "Assistant au Directeur Etablissement - M\u00eame permissions que le Directeur Etablissement titulaire",
   "type": "adjoint_directeur_etablissment",
   "permissions": [
     {
@@ -235,6 +235,21 @@
       "action": "api::school.school.updatePeriodTemplate"
     },
     {
+      "action": "api::school-subject.school-subject.create"
+    },
+    {
+      "action": "api::school-subject.school-subject.delete"
+    },
+    {
+      "action": "api::school-subject.school-subject.find"
+    },
+    {
+      "action": "api::school-subject.school-subject.findOne"
+    },
+    {
+      "action": "api::school-subject.school-subject.update"
+    },
+    {
       "action": "api::student.student.bulkImport"
     },
     {
@@ -259,19 +274,10 @@
       "action": "api::student.student.validateBulkImport"
     },
     {
-      "action": "api::subject.subject.create"
-    },
-    {
-      "action": "api::subject.subject.delete"
-    },
-    {
       "action": "api::subject.subject.find"
     },
     {
       "action": "api::subject.subject.findOne"
-    },
-    {
-      "action": "api::subject.subject.update"
     },
     {
       "action": "api::teacher.teacher.create"

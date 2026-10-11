@@ -1962,10 +1962,10 @@ export interface ApiSchoolSchool extends Schema.CollectionType {
       'oneToMany',
       'api::class.class'
     >;
-    subjects: Attribute.Relation<
+    schoolSubjects: Attribute.Relation<
       'api::school.school',
       'oneToMany',
-      'api::subject.subject'
+      'api::school-subject.school-subject'
     >;
     banner: Attribute.Media;
     expenses: Attribute.Relation<
@@ -1985,6 +1985,46 @@ export interface ApiSchoolSchool extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::school.school',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiSchoolSubjectSchoolSubject extends Schema.CollectionType {
+  collectionName: 'school_subjects';
+  info: {
+    singularName: 'school-subject';
+    pluralName: 'school-subjects';
+    displayName: 'School Subject';
+    description: 'Subjects a school has selected to teach from the institute-wide catalog';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    school: Attribute.Relation<
+      'api::school-subject.school-subject',
+      'manyToOne',
+      'api::school.school'
+    >;
+    subject: Attribute.Relation<
+      'api::school-subject.school-subject',
+      'manyToOne',
+      'api::subject.subject'
+    >;
+    isActive: Attribute.Boolean & Attribute.DefaultTo<true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::school-subject.school-subject',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::school-subject.school-subject',
       'oneToOne',
       'admin::user'
     > &
@@ -2120,17 +2160,17 @@ export interface ApiSubjectSubject extends Schema.CollectionType {
   };
   attributes: {
     subjectname: Attribute.String & Attribute.Required;
-    school: Attribute.Relation<
-      'api::subject.subject',
-      'manyToOne',
-      'api::school.school'
-    >;
     classSubjects: Attribute.Relation<
       'api::subject.subject',
       'oneToMany',
       'api::class-subject.class-subject'
     >;
-    code: Attribute.String;
+    schoolSubjects: Attribute.Relation<
+      'api::subject.subject',
+      'oneToMany',
+      'api::school-subject.school-subject'
+    >;
+    code: Attribute.String & Attribute.Required & Attribute.Unique;
     isActive: Attribute.Boolean & Attribute.DefaultTo<true>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -2329,6 +2369,7 @@ declare module '@strapi/types' {
       'api::personnel.personnel': ApiPersonnelPersonnel;
       'api::personnel-loan.personnel-loan': ApiPersonnelLoanPersonnelLoan;
       'api::school.school': ApiSchoolSchool;
+      'api::school-subject.school-subject': ApiSchoolSubjectSchoolSubject;
       'api::school-year.school-year': ApiSchoolYearSchoolYear;
       'api::student.student': ApiStudentStudent;
       'api::subject.subject': ApiSubjectSubject;

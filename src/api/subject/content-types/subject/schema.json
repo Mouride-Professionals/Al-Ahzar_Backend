@@ -16,20 +16,22 @@
       "type": "string",
       "required": true
     },
-    "school": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::school.school",
-      "inversedBy": "subjects"
-    },
     "classSubjects": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::class-subject.class-subject",
       "mappedBy": "subject"
     },
+    "schoolSubjects": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::school-subject.school-subject",
+      "mappedBy": "subject"
+    },
     "code": {
-      "type": "string"
+      "type": "string",
+      "required": true,
+      "unique": true
     },
     "isActive": {
       "type": "boolean",

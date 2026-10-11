@@ -152,10 +152,10 @@
       "target": "api::class.class",
       "mappedBy": "school"
     },
-    "subjects": {
+    "schoolSubjects": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::subject.subject",
+      "target": "api::school-subject.school-subject",
       "mappedBy": "school"
     },
     "banner": {

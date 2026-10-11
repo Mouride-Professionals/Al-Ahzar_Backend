@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "school_subjects",
+  "info": {
+    "singularName": "school-subject",
+    "pluralName": "school-subjects",
+    "displayName": "School Subject",
+    "description": "Subjects a school has selected to teach from the institute-wide catalog"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "school": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::school.school",
+      "inversedBy": "schoolSubjects"
+    },
+    "subject": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::subject.subject",
+      "inversedBy": "schoolSubjects"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}
