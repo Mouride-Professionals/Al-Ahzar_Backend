@@ -1,6 +1,6 @@
 {
   "name": "Adjoint Directeur Etablissement",
-  "description": "Assistant au Directeur Etablissement - M\u00eame permissions que le Directeur Etablissement titulaire",
+  "description": "Assistant au Directeur Etablissement - Même permissions que le Directeur Etablissement titulaire",
   "type": "adjoint_directeur_etablissment",
   "permissions": [
     {

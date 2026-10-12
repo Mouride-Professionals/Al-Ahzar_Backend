@@ -1,6 +1,6 @@
 {
   "name": "Adjoint Directeur General",
-  "description": "Assistant au Directeur General - M\u00eame permissions que le Directeur General titulaire",
+  "description": "Assistant au Directeur General - Même permissions que le Directeur General titulaire",
   "type": "adjoint_directeur_general",
   "permissions": [
     {
