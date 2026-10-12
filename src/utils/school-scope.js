@@ -39,6 +39,12 @@ const SCHOOL_PATHS = {
     'plugin::users-permissions.user': ['school'],
 };
 
+const STUDENT_UID = 'api::student.student';
+
+// Marks the guard's own lookups so they see every school and never recurse into the guard.
+const BYPASS = '__schoolScopeBypass';
+const APPLIED = Symbol('schoolScopeApplied');
+
 function forbid() {
     throw new ForbiddenError('You can only modify data belonging to your own school.');
 }
@@ -62,32 +68,53 @@ function refId(value) {
     return value;
 }
 
-async function getScope() {
+async function loadScope(userId) {
+    const user = await strapi.db.query('plugin::users-permissions.user').findOne({
+        where: { id: userId },
+        populate: ['role', 'school'],
+        [BYPASS]: true,
+    });
+
+    return SCHOOL_SCOPED_ROLES.has(user?.role?.type) ? { schoolId: user.school?.id ?? null } : null;
+}
+
+function getScope() {
     const ctx = strapi.requestContext.get();
 
     if (!ctx?.state?.user || ctx.state.auth?.strategy?.name !== 'users-permissions') {
-        return null;
+        return Promise.resolve(null);
     }
 
-    if (ctx.state.schoolScope !== undefined) {
-        return ctx.state.schoolScope;
-    }
-
-    const user = await strapi.db.query('plugin::users-permissions.user').findOne({
-        where: { id: ctx.state.user.id },
-        populate: ['role', 'school'],
-    });
-
-    ctx.state.schoolScope = SCHOOL_SCOPED_ROLES.has(user?.role?.type)
-        ? { schoolId: user.school?.id ?? null }
-        : null;
-
-    return ctx.state.schoolScope;
+    ctx.state.schoolScopePromise ??= loadScope(ctx.state.user.id);
+    return ctx.state.schoolScopePromise;
 }
 
 function buildPopulate(path) {
     const [head, ...rest] = path;
     return { [head]: rest.length ? { populate: buildPopulate(rest) } : true };
+}
+
+function nestCondition(path, schoolId) {
+    return path.reduceRight((condition, key) => ({ [key]: condition }), { id: schoolId });
+}
+
+function readCondition(uid, schoolId) {
+    // A scoped user without a school sees nothing; primary keys are never null.
+    if (!schoolId) {
+        return { id: { $null: true } };
+    }
+
+    if (uid === STUDENT_UID) {
+        // Students belong to a school only through enrollments; not-yet-enrolled students stay visible.
+        return {
+            $or: [
+                { enrollments: { class: { school: { id: schoolId } } } },
+                { enrollments: { id: { $null: true } } },
+            ],
+        };
+    }
+
+    return nestCondition(SCHOOL_PATHS[uid], schoolId);
 }
 
 async function schoolOfRecord(uid, path, id) {
@@ -99,6 +126,7 @@ async function schoolOfRecord(uid, path, id) {
         where: { id },
         select: ['id'],
         populate: buildPopulate(path),
+        [BYPASS]: true,
     });
 
     let node = record;
@@ -141,8 +169,8 @@ async function assertCanCreate(uid, path, data, scope) {
 async function assertCanModify(uid, path, id, data, scope) {
     const current = await schoolOfRecord(uid, path, id);
 
-    // A record not yet attached to any school (e.g. an unassigned teacher) may be claimed, not taken.
-    if (current !== null && !sameId(current, scope.schoolId)) {
+    // Records with no school (e.g. an unassigned teacher) are assigned by network roles only.
+    if (!sameId(current, scope.schoolId)) {
         forbid();
     }
 
@@ -155,8 +183,30 @@ async function assertCanModify(uid, path, id, data, scope) {
     }
 }
 
+// Students carry no school: one is ours if enrolled in our school, or not enrolled anywhere yet.
+async function assertStudentAccessible(id, scope) {
+    const student = await strapi.db.query(STUDENT_UID).findOne({
+        where: { id },
+        select: ['id'],
+        populate: { enrollments: { populate: { class: { populate: { school: true } } } } },
+        [BYPASS]: true,
+    });
+
+    const schoolIds = (student?.enrollments ?? []).map((enrollment) => enrollment.class?.school?.id);
+
+    if (schoolIds.length > 0 && !schoolIds.some((schoolId) => sameId(schoolId, scope.schoolId))) {
+        forbid();
+    }
+}
+
+function modifyCheck(uid, scope, data) {
+    return uid === STUDENT_UID
+        ? (id) => assertStudentAccessible(id, scope)
+        : (id) => assertCanModify(uid, SCHOOL_PATHS[uid], id, data, scope);
+}
+
 async function idsMatching(uid, where) {
-    const rows = await strapi.db.query(uid).findMany({ where, select: ['id'] });
+    const rows = await strapi.db.query(uid).findMany({ where, select: ['id'], [BYPASS]: true });
     return rows.map((row) => row.id);
 }
 
@@ -165,24 +215,55 @@ function singleId(where) {
     return id !== undefined && (typeof id === 'number' || typeof id === 'string') ? id : undefined;
 }
 
+async function writeScope(event) {
+    const scope = await getScope();
+    if (!scope) return null;
+    if (!scope.schoolId) forbid();
+
+    return scope;
+}
+
+// Reads are scoped only for GET requests: write requests run integrity checks (duplicate students,
+// double enrollments, safe delete) that must see every school, and the write guard covers them.
+async function restrictRead(event) {
+    const params = event.params;
+    if (!params || params[BYPASS] || params[APPLIED]) return;
+
+    const method = strapi.requestContext.get()?.method;
+    if (method !== 'GET' && method !== 'HEAD') return;
+
+    const scope = await getScope();
+    if (!scope || params[APPLIED]) return;
+
+    const condition = readCondition(event.model.uid, scope.schoolId);
+    params.where = params.where ? { $and: [params.where, condition] } : condition;
+    params[APPLIED] = true;
+}
+
 function registerSchoolScope(strapiInstance) {
-    const models = Object.keys(SCHOOL_PATHS).filter((uid) => strapiInstance.getModel(uid));
+    const models = [...Object.keys(SCHOOL_PATHS), STUDENT_UID].filter((uid) =>
+        strapiInstance.getModel(uid),
+    );
 
     strapiInstance.db.lifecycles.subscribe({
         models,
 
+        beforeFindMany: restrictRead,
+        beforeFindOne: restrictRead,
+        beforeCount: restrictRead,
+
         async beforeCreate(event) {
-            const scope = await getScope();
+            if (event.model.uid === STUDENT_UID) return;
+            const scope = await writeScope(event);
             if (!scope) return;
-            if (!scope.schoolId) forbid();
 
             await assertCanCreate(event.model.uid, SCHOOL_PATHS[event.model.uid], event.params.data, scope);
         },
 
         async beforeCreateMany(event) {
-            const scope = await getScope();
+            if (event.model.uid === STUDENT_UID) return;
+            const scope = await writeScope(event);
             if (!scope) return;
-            if (!scope.schoolId) forbid();
 
             for (const data of event.params.data ?? []) {
                 await assertCanCreate(event.model.uid, SCHOOL_PATHS[event.model.uid], data, scope);
@@ -190,57 +271,59 @@ function registerSchoolScope(strapiInstance) {
         },
 
         async beforeUpdate(event) {
-            const scope = await getScope();
+            const scope = await writeScope(event);
             if (!scope) return;
-            if (!scope.schoolId) forbid();
 
             const uid = event.model.uid;
             const id = singleId(event.params.where);
             const ids = id !== undefined ? [id] : await idsMatching(uid, event.params.where);
+            const check = modifyCheck(uid, scope, event.params.data);
 
             for (const recordId of ids) {
-                await assertCanModify(uid, SCHOOL_PATHS[uid], recordId, event.params.data, scope);
+                await check(recordId);
             }
         },
 
         async beforeUpdateMany(event) {
-            const scope = await getScope();
+            const scope = await writeScope(event);
             if (!scope) return;
-            if (!scope.schoolId) forbid();
 
             const uid = event.model.uid;
+            const check = modifyCheck(uid, scope, event.params.data);
+
             for (const recordId of await idsMatching(uid, event.params.where)) {
-                await assertCanModify(uid, SCHOOL_PATHS[uid], recordId, event.params.data, scope);
+                await check(recordId);
             }
         },
 
         async beforeDelete(event) {
-            const scope = await getScope();
+            const scope = await writeScope(event);
             if (!scope) return;
-            if (!scope.schoolId) forbid();
 
             const uid = event.model.uid;
             const id = singleId(event.params.where);
             const ids = id !== undefined ? [id] : await idsMatching(uid, event.params.where);
+            const check = modifyCheck(uid, scope, null);
 
             for (const recordId of ids) {
-                await assertCanModify(uid, SCHOOL_PATHS[uid], recordId, null, scope);
+                await check(recordId);
             }
         },
 
         async beforeDeleteMany(event) {
-            const scope = await getScope();
+            const scope = await writeScope(event);
             if (!scope) return;
-            if (!scope.schoolId) forbid();
 
             const uid = event.model.uid;
+            const check = modifyCheck(uid, scope, null);
+
             for (const recordId of await idsMatching(uid, event.params.where)) {
-                await assertCanModify(uid, SCHOOL_PATHS[uid], recordId, null, scope);
+                await check(recordId);
             }
         },
     });
 
-    strapiInstance.log.info(`[school-scope] Write guard active on ${models.length} models.`);
+    strapiInstance.log.info(`[school-scope] Read/write guard active on ${models.length} models.`);
 }
 
 module.exports = { registerSchoolScope, SCHOOL_SCOPED_ROLES, SCHOOL_PATHS };
