@@ -3,7 +3,8 @@
 const { createCoreController } = require("@strapi/strapi").factories;
 const { resolveFinanceAccessContext } = require("../../../utils/finance-access");
 
-async function buildPaymentReference(strapi, enrollmentId) {
+// PAY- numbers real collections; waivers get their own EXO- sequence so receipt numbers stay gapless.
+async function buildPaymentReference(strapi, enrollmentId, kind = "PAY") {
   if (!enrollmentId) {
     return undefined;
   }
@@ -20,7 +21,7 @@ async function buildPaymentReference(strapi, enrollmentId) {
   }
 
   const yearLabel = new Date(schoolYear.startDate).getFullYear();
-  const prefix = `PAY-${yearLabel}-`;
+  const prefix = `${kind}-${yearLabel}-`;
 
   const lastPayment = await strapi.db.query("api::payment.payment").findOne({
     where: { reference: { $startsWith: prefix } },
@@ -68,9 +69,16 @@ async function findActiveDuplicate(strapi, data) {
   });
 }
 
+const MONTH_KEY_PATTERN = /^\d{4}-(0[1-9]|1[0-2])$/;
+
 module.exports = createCoreController("api::payment.payment", ({ strapi }) => ({
   async create(ctx) {
     const { data } = ctx.request.body;
+
+    // Waivers carry their own permission and audit fields; only /payments/waive creates them.
+    if (data?.status === "waived") {
+      return ctx.forbidden("Use /payments/waive to waive a monthly fee.");
+    }
 
     if (await findActiveDuplicate(strapi, data)) {
       return ctx.badRequest("This fee is already paid for this enrollment.");
@@ -81,6 +89,85 @@ module.exports = createCoreController("api::payment.payment", ({ strapi }) => ({
     }
 
     return super.create(ctx);
+  },
+
+  async update(ctx) {
+    const data = ctx.request.body?.data ?? {};
+    const current = await strapi.db.query("api::payment.payment").findOne({
+      where: { id: ctx.params.id },
+      select: ["status"],
+    });
+
+    if (data.status === "waived" && current?.status !== "waived") {
+      return ctx.forbidden("Use /payments/waive to waive a monthly fee.");
+    }
+
+    // A waiver can only be revoked (cancelled), which makes the month due again.
+    if (current?.status === "waived" && data.status !== "cancelled") {
+      return ctx.forbidden("A waived month can only be cancelled.");
+    }
+
+    return super.update(ctx);
+  },
+
+  async waive(ctx) {
+    const data = ctx.request.body?.data ?? {};
+    const enrollmentId = data.enrollment;
+    const reason = typeof data.reason === "string" ? data.reason.trim() : "";
+    const months = [...new Set(Array.isArray(data.months) ? data.months.map(String) : [])];
+    const waivedAmount = Number(data.waivedAmount);
+
+    if (!enrollmentId) {
+      return ctx.badRequest("enrollment is required.");
+    }
+
+    if (!reason) {
+      return ctx.badRequest("A reason is required to waive a monthly fee.");
+    }
+
+    if (months.length === 0 || months.some((month) => !MONTH_KEY_PATTERN.test(month))) {
+      return ctx.badRequest("months must be a non-empty list of YYYY-MM values.");
+    }
+
+    // Check every month before writing so a partial waiver never happens.
+    for (const month of months) {
+      const duplicate = await findActiveDuplicate(strapi, {
+        enrollment: enrollmentId,
+        monthOf: `${month}-01`,
+        paymentType: "monthly",
+      });
+
+      if (duplicate) {
+        return ctx.badRequest(`The month ${month} is already paid or waived.`);
+      }
+    }
+
+    const waivedAt = new Date().toISOString();
+    const created = [];
+
+    // entityService (not knex) so the school-scope lifecycle guard still applies.
+    for (const month of months) {
+      created.push(
+        await strapi.entityService.create("api::payment.payment", {
+          data: {
+            amount: 0,
+            enrollment: enrollmentId,
+            isPaid: false,
+            monthOf: `${month}-01`,
+            paymentType: "monthly",
+            reference: await buildPaymentReference(strapi, enrollmentId, "EXO"),
+            status: "waived",
+            waivedAmount: Number.isFinite(waivedAmount) && waivedAmount > 0 ? waivedAmount : null,
+            waivedAt,
+            waivedBy: ctx.state.user.id,
+            waiverReason: reason,
+          },
+        })
+      );
+    }
+
+    const sanitized = await this.sanitizeOutput(created, ctx);
+    return this.transformResponse(sanitized);
   },
 
   async stats(ctx) {
@@ -130,8 +217,9 @@ module.exports = createCoreController("api::payment.payment", ({ strapi }) => ({
       // Use knex for aggregation queries
       const knex = strapi.db.connection;
 
-      // Base query on the payments table - EXCLUDE CANCELLED PAYMENTS
-      const baseQuery = knex("payments").whereNot("payments.status", "cancelled");
+      // Base query on the payments table - EXCLUDE CANCELLED PAYMENTS AND WAIVED MONTHS
+      // (waivers are amount 0 and must not count as monthly payers).
+      const baseQuery = knex("payments").whereNotIn("payments.status", ["cancelled", "waived"]);
 
       // "Annual" aggregates are scoped to a school year, not a calendar year.
       // When a schoolYearId is provided, applyFilters() below already restricts
@@ -300,6 +388,19 @@ module.exports = createCoreController("api::payment.payment", ({ strapi }) => ({
             .countDistinct({ count: "payments_enrollment_links.enrollment_id" })
             .first();
         })(),
+
+        // Waived (forgiven) monthly fees: how many months and the income forgone.
+        waivedMonthsCount: applyFilters(
+          applyPeriod(knex("payments").where("payments.status", "waived"), "payments.created_at")
+        )
+          .count({ count: "*" })
+          .first(),
+
+        waivedAmountTotal: applyFilters(
+          applyPeriod(knex("payments").where("payments.status", "waived"), "payments.created_at")
+        )
+          .sum({ total: "payments.waived_amount" })
+          .first(),
       };
 
       // New query: Monthly breakdown for the school year.
@@ -349,6 +450,8 @@ module.exports = createCoreController("api::payment.payment", ({ strapi }) => ({
         pendingPaymentsTotalRes,
         pendingPaymentsCountRes,
         currentMonthMonthlyPayersCountRes,
+        waivedMonthsCountRes,
+        waivedAmountTotalRes,
         monthlyBreakdown,
         paymentTypeBreakdown,
         statusBreakdown,
@@ -385,6 +488,10 @@ module.exports = createCoreController("api::payment.payment", ({ strapi }) => ({
 
         // Distinct enrollments that paid their monthly fee this month
         currentMonthMonthlyPayersCount: extractCount(currentMonthMonthlyPayersCountRes),
+
+        // Waived monthly fees
+        waivedMonthsCount: extractCount(waivedMonthsCountRes),
+        waivedAmountTotal: extractTotal(waivedAmountTotalRes),
 
         // Breakdown by month (excluding cancelled)
         monthlyBreakdown: monthlyBreakdown.map((row) => ({

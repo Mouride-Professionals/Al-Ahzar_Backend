@@ -59,7 +59,8 @@
       "enum": [
         "pending",
         "paid",
-        "cancelled"
+        "cancelled",
+        "waived"
       ],
       "default": "paid",
       "required": true
@@ -69,6 +70,21 @@
     },
     "cancelledAt": {
       "type": "date"
+    },
+    "waiverReason": {
+      "type": "text"
+    },
+    "waivedAmount": {
+      "type": "decimal",
+      "min": 0
+    },
+    "waivedAt": {
+      "type": "datetime"
+    },
+    "waivedBy": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
     }
   }
 }

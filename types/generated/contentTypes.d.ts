@@ -1711,11 +1711,22 @@ export interface ApiPaymentPayment extends Schema.CollectionType {
       Attribute.Required;
     motive: Attribute.String;
     comment: Attribute.Text;
-    status: Attribute.Enumeration<['pending', 'paid', 'cancelled']> &
+    status: Attribute.Enumeration<['pending', 'paid', 'cancelled', 'waived']> &
       Attribute.Required &
       Attribute.DefaultTo<'paid'>;
     cancellationReason: Attribute.Text;
     cancelledAt: Attribute.Date;
+    waiverReason: Attribute.Text;
+    waivedAmount: Attribute.Decimal &
+      Attribute.SetMinMax<{
+        min: 0;
+      }>;
+    waivedAt: Attribute.DateTime;
+    waivedBy: Attribute.Relation<
+      'api::payment.payment',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

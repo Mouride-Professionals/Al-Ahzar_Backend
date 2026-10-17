@@ -4,6 +4,12 @@
   "type": "adjoint_caissier",
   "permissions": [
     {
+      "action": "api::academic-period.academic-period.find"
+    },
+    {
+      "action": "api::academic-period.academic-period.findOne"
+    },
+    {
       "action": "api::class-council-student.class-council-student.find"
     },
     {
@@ -83,6 +89,9 @@
     },
     {
       "action": "api::payment.payment.update"
+    },
+    {
+      "action": "api::payment.payment.waive"
     },
     {
       "action": "api::school-year.school-year.find"

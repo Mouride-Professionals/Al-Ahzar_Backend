@@ -34,7 +34,7 @@ No test or lint commands are configured.
 | **class** | Classified by cycle (primaire/secondaire), level (CI through Terminale), and letter (A-E); tied to school + schoolYear |
 | **student** | Auto-generated unique identifier (format: `AZ[YY][6-chars]`), tutor info, social status |
 | **enrollment** | Links student → class → schoolYear; auto-incremented enrollmentNumber per class |
-| **payment** | Tracks enrollment/monthly/exam/blouse fees; status: pending/paid/cancelled |
+| **payment** | Tracks enrollment/monthly/exam/blouse fees; status: pending/paid/cancelled/waived (waived = forgiven month, created only via `POST /payments/waive`) |
 | **expense** | School expenses by category (Salaires, Fournitures, etc.) tied to school + schoolYear |
 | **teacher** | Personnel records with contract type, salary, academic degree |
 | **subject** | Course definitions with hourly rates |
